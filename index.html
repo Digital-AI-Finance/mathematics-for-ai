@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Math Powers AI in Everyday Finance</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How Math Powers AI in Everyday Finance">
+  <meta property="og:description" content="A fun, accessible look at how mathematics and AI help banks, apps, and digital services make decisions — from detecting fraud to recommending financial products.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digital-ai-finance.github.io/mathematics-for-ai/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#sections">Sections</a>
+      <a href="#math-concepts">Math</a>
+      <a href="#history">History</a>
+      <a href="#bankbot">BankBot</a>
+      <a href="#interactive">Interactive</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header id="hero">
+    <h1>How Math Powers AI in Everyday Finance</h1>
+    <p class="subtitle">A fun, accessible look at how mathematics and artificial intelligence help banks, apps, and digital services make decisions</p>
+    <div class="hero-badges">
+      <span class="badge">Patterns</span>
+      <span class="badge">Predictions</span>
+      <span class="badge">Data &rarr; Decisions</span>
+    </div>
+    <p class="speaker-info">A 45-Minute Talk for High School Students</p>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>&darr;</span>
+    </div>
+  </header>
+
+  <!-- ========== OVERVIEW ========== -->
+  <section id="overview">
+    <h2>The Journey: Five Acts</h2>
+    <div class="act-stepper">
+
+      <div class="act-step">
+        <div class="act-number">1</div>
+        <div class="act-content">
+          <h3>Hook &amp; Reveal</h3>
+          <span class="time-badge">0:00 &ndash; 7:00</span>
+          <p class="act-theme">&ldquo;You already use AI finance&rdquo;</p>
+          <p class="act-emotion">Surprise, curiosity</p>
+        </div>
+      </div>
+
+      <div class="act-step">
+        <div class="act-number">2</div>
+        <div class="act-content">
+          <h3>The Pattern Engine</h3>
+          <span class="time-badge">7:00 &ndash; 19:00</span>
+          <p class="act-theme">&ldquo;Math finds what humans miss&rdquo;</p>
+          <p class="act-emotion">&ldquo;Whoa, that&rsquo;s clever&rdquo;</p>
+        </div>
+      </div>
+
+      <div class="act-step">
+        <div class="act-number">3</div>
+        <div class="act-content">
+          <h3>Predictions &amp; Decisions</h3>
+          <span class="time-badge">19:00 &ndash; 32:00</span>
+          <p class="act-theme">&ldquo;From data to action&rdquo;</p>
+          <p class="act-emotion">Empowerment</p>
+        </div>
+      </div>
+
+      <div class="act-step">
+        <div class="act-number">4</div>
+        <div class="act-content">
+          <h3>The Bigger Picture</h3>
+          <span class="time-badge">32:00 &ndash; 40:00</span>
+          <p class="act-theme">&ldquo;Power, fairness, and your future&rdquo;</p>
+          <p class="act-emotion">Reflection</p>
+        </div>
+      </div>
+
+      <div class="act-step">
+        <div class="act-number">5</div>
+        <div class="act-content">
+          <h3>Close &amp; Call to Action</h3>
+          <span class="time-badge">40:00 &ndash; 42:00</span>
+          <p class="act-theme">&ldquo;Math is your superpower&rdquo;</p>
+          <p class="act-emotion">Inspiration</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== SECTIONS ========== -->
+  <section id="sections">
+    <h2>Talk Sections</h2>
+    <div class="sections-grid">
+
+      <!-- Card 1 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">1</span>
+          <h3>The Opening Hook</h3>
+          <span class="time-badge">0:00 &ndash; 3:00</span>
+        </div>
+        <p class="key-message">AI in finance made decisions about you today, probably before you ate breakfast.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong> None yet &mdash; pure engagement</li>
+            <li><strong>Humor/cartoon:</strong> BankBot introduction &mdash; &ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</li>
+            <li><strong>Engagement:</strong> Hand raise after the &ldquo;50&ndash;200 AI decisions before breakfast&rdquo; factoid</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">2</span>
+          <h3>&ldquo;You Already Think Like an AI&rdquo;</h3>
+          <span class="time-badge">3:00 &ndash; 7:00</span>
+        </div>
+        <p class="key-message">Pattern recognition is not alien &mdash; you do it every day.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong> Probability concepts introduced informally</li>
+            <li><strong>History vignette:</strong> Florence Nightingale &mdash; data visualization pioneer (1854)</li>
+            <li><strong>Humor/cartoon:</strong> Cafeteria &ldquo;mystery meat&rdquo; probability analogy</li>
+            <li><strong>Engagement:</strong> Cafeteria analogy &mdash; &ldquo;How do you decide if the lunch line is worth it?&rdquo;</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">3</span>
+          <h3>Fraud Detection &mdash; &ldquo;Catching the Weird Stuff&rdquo;</h3>
+          <span class="time-badge">7:00 &ndash; 15:30</span>
+        </div>
+        <p class="key-message">Fraud detection is pattern recognition plus probability.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong>
+              <ul>
+                <li>Bayes&rsquo; theorem: $$P(\text{Fraud} \mid \text{Data}) = \frac{P(\text{Data} \mid \text{Fraud}) \cdot P(\text{Fraud})}{P(\text{Data})}$$</li>
+                <li>Normal distribution (bell curve)</li>
+                <li>Sigmoid function: $$\sigma(x) = \frac{1}{1 + e^{-x}}$$</li>
+                <li>Decision boundaries</li>
+              </ul>
+            </li>
+            <li><strong>History vignettes:</strong> Gauss (bell curve), Bayes (updating beliefs), Rosenblatt (first neuron, 1958)</li>
+            <li><strong>Humor/cartoon:</strong> Gauss hair matches bell curve; AI Nightmare cartoon; BankBot sweating on the decision boundary</li>
+            <li><strong>Engagement:</strong> Step-by-step Bayesian reasoning walkthrough</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">4</span>
+          <h3>&ldquo;How Does the AI Learn?&rdquo;</h3>
+          <span class="time-badge">15:30 &ndash; 17:00</span>
+        </div>
+        <p class="key-message">AI learns through guess-check-adjust-repeat.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong> Feedback loops, gradient descent (named only, not derived)</li>
+            <li><strong>History vignette:</strong> Ada Lovelace &mdash; first programmer, &ldquo;math = computation&rdquo; (1843)</li>
+            <li><strong>Humor/cartoon:</strong> BankBot learning panels &mdash; confident, wrong, confused, improving</li>
+            <li><strong>Engagement:</strong> &ldquo;Think of it like learning a video game &mdash; you die, adjust, try again&rdquo;</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">5</span>
+          <h3>Interactive &mdash; &ldquo;Spot the Fraud&rdquo;</h3>
+          <span class="time-badge">17:00 &ndash; 21:00</span>
+        </div>
+        <p class="key-message">The AI&rsquo;s job is harder than it looks.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong> Applied Bayes, false positives, decision under uncertainty</li>
+            <li><strong>History vignette:</strong> Abraham Wald &mdash; survivorship bias (WWII bombers)</li>
+            <li><strong>Humor/cartoon:</strong> BankBot false positive &mdash; &ldquo;FRAUD DETECTED!&rdquo; ... &ldquo;suspicious flowers.&rdquo;</li>
+            <li><strong>Engagement:</strong> Warmup example + 3 voting scenarios (Alex buys a guitar in another city; Tomoko buys 50 gift cards at 3 AM; Karla has small charges in 4 countries)</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">6</span>
+          <h3>Credit Scoring &mdash; &ldquo;Your Financial Report Card&rdquo;</h3>
+          <span class="time-badge">21:00 &ndash; 28:00</span>
+        </div>
+        <p class="key-message">Credit scores are weighted averages &mdash; same math as your school grades.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong>
+              <ul>
+                <li>Weighted average: $$\text{Score} = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n$$</li>
+                <li>Linear regression: $$y = mx + b$$</li>
+              </ul>
+            </li>
+            <li><strong>History vignette:</strong> Andrey Markov &mdash; sequential patterns, Markov chains (1906)</li>
+            <li><strong>Humor/cartoon:</strong> Fortune teller cartoon; weighted average horror (&ldquo;Homework is only 10%?!&rdquo;)</li>
+            <li><strong>Engagement:</strong> &ldquo;Calculate your own credit score&rdquo; exercise with simplified weights</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">7</span>
+          <h3>Interactive &mdash; Live Demo</h3>
+          <span class="time-badge">28:00 &ndash; 32:00</span>
+        </div>
+        <p class="key-message">AI is learnable, buildable, and accessible.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong> Callback to all prior formulas (Bayes, sigmoid, weighted average, linear regression)</li>
+            <li><strong>Engagement:</strong> 3-tier demo approach:
+              <ol>
+                <li>Pre-recorded screencast (safest)</li>
+                <li>Live app demo (if tech permits)</li>
+                <li>Static slide walkthrough (fallback)</li>
+              </ol>
+            </li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">8</span>
+          <h3>Recommendation Engines</h3>
+          <span class="time-badge">32:00 &ndash; 34:00</span>
+        </div>
+        <p class="key-message">Same math as TikTok/Spotify powers financial recommendations.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong>
+              <ul>
+                <li>Dot product: $$\mathbf{A} \cdot \mathbf{B} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n$$</li>
+                <li>Cosine similarity: $$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| \cdot |\mathbf{B}|}$$</li>
+              </ul>
+            </li>
+            <li><strong>Humor/cartoon:</strong> BankBot recommends 47 houseplants</li>
+            <li><strong>Engagement:</strong> &ldquo;You and your friend both like saving accounts and crypto &mdash; how similar are you?&rdquo;</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">9</span>
+          <h3>Interactive &mdash; &ldquo;Design Your Own AI&rdquo;</h3>
+          <span class="time-badge">34:00 &ndash; 37:00</span>
+        </div>
+        <p class="key-message">Understanding AI means understanding the human choices behind it.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Math concepts:</strong> Callback to weighted averages &mdash; what weights would YOU choose?</li>
+            <li><strong>Engagement:</strong> USE IT / SKIP IT rapid-fire exercise &mdash; audience votes on which data an AI should use for credit decisions (income? social media? zip code? GPA?)</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="section-card">
+        <div class="card-header">
+          <span class="section-number">10</span>
+          <h3>The Bigger Picture + Closing</h3>
+          <span class="time-badge">37:00 &ndash; 42:00</span>
+        </div>
+        <p class="key-message">Math is a superpower. AI needs ethical thinkers.</p>
+        <details>
+          <summary>Details</summary>
+          <ul>
+            <li><strong>Careers:</strong> Data scientist, quant analyst, AI ethics officer, fintech founder, risk analyst</li>
+            <li><strong>History callback:</strong> Lovelace + Nightingale &mdash; math has always needed diverse thinkers</li>
+            <li><strong>Humor/cartoon:</strong> BankBot Final Form &mdash; graduation cap, &ldquo;I am 73% confident. But I defer to the human.&rdquo;</li>
+            <li><strong>Engagement:</strong> &ldquo;What will YOU build?&rdquo; closing question</li>
+          </ul>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== MATH CONCEPTS ========== -->
+  <section id="math-concepts">
+    <h2>Mathematics Behind the Magic</h2>
+    <div class="math-table-wrapper">
+      <table class="math-table">
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Where</th>
+            <th>How Presented</th>
+            <th>Formula</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Probability</td>
+            <td>Section 2</td>
+            <td>Cafeteria analogy &mdash; &ldquo;What are the chances the mystery meat is good?&rdquo;</td>
+            <td>Informal introduction, no formula yet</td>
+          </tr>
+          <tr>
+            <td>Bayes&rsquo; Theorem</td>
+            <td>Section 3</td>
+            <td>Updating your belief when new evidence arrives &mdash; &ldquo;How surprised should you be?&rdquo;</td>
+            <td>$$P(\text{Fraud} \mid \text{Data}) = \frac{P(\text{Data} \mid \text{Fraud}) \cdot P(\text{Fraud})}{P(\text{Data})}$$</td>
+          </tr>
+          <tr>
+            <td>Normal Distribution</td>
+            <td>Section 3</td>
+            <td>The bell curve describes &ldquo;normal&rdquo; spending &mdash; outliers trigger alerts</td>
+            <td>$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</td>
+          </tr>
+          <tr>
+            <td>Sigmoid Function</td>
+            <td>Section 3</td>
+            <td>Squishes any number into a probability between 0 and 1</td>
+            <td>$$\sigma(x) = \frac{1}{1 + e^{-x}}$$</td>
+          </tr>
+          <tr>
+            <td>Decision Boundaries</td>
+            <td>Section 3</td>
+            <td>The line where the AI switches from &ldquo;OK&rdquo; to &ldquo;suspicious&rdquo;</td>
+            <td>Visual concept (threshold on sigmoid output)</td>
+          </tr>
+          <tr>
+            <td>Gradient Descent</td>
+            <td>Section 4</td>
+            <td>Named only &mdash; &ldquo;the AI rolls downhill to find the best answer&rdquo;</td>
+            <td>Named, not derived</td>
+          </tr>
+          <tr>
+            <td>Weighted Average</td>
+            <td>Section 6</td>
+            <td>Credit scores work like school grades &mdash; different factors carry different weight</td>
+            <td>$$\text{Score} = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n$$</td>
+          </tr>
+          <tr>
+            <td>Linear Regression</td>
+            <td>Section 6</td>
+            <td>The simplest prediction: draw a straight line through data points</td>
+            <td>$$y = mx + b$$</td>
+          </tr>
+          <tr>
+            <td>Dot Product</td>
+            <td>Section 8</td>
+            <td>Multiply matching preferences, add them up to measure similarity</td>
+            <td>$$\mathbf{A} \cdot \mathbf{B} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n$$</td>
+          </tr>
+          <tr>
+            <td>Cosine Similarity</td>
+            <td>Section 8</td>
+            <td>How similar are two people&rsquo;s tastes? Measure the angle between their preference vectors</td>
+            <td>$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| \cdot |\mathbf{B}|}$$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== CHEAT SHEET ========== -->
+  <section id="cheat-sheet">
+    <h2>Math Cheat Sheet</h2>
+    <p class="section-subtitle">All the formulas from the talk &mdash; screenshot-friendly!</p>
+    <div class="formula-grid">
+
+      <div class="formula-card">
+        <h3>Bayes&rsquo; Theorem</h3>
+        <div class="formula">$$P(\text{Fraud} \mid \text{Data}) = \frac{P(\text{Data} \mid \text{Fraud}) \cdot P(\text{Fraud})}{P(\text{Data})}$$</div>
+        <p class="formula-english">How surprised should we be? Update your belief with new evidence.</p>
+      </div>
+
+      <div class="formula-card">
+        <h3>Sigmoid Function</h3>
+        <div class="formula">$$\sigma(x) = \frac{1}{1 + e^{-x}}$$</div>
+        <p class="formula-english">Squish any number into a probability between 0 and 1.</p>
+      </div>
+
+      <div class="formula-card">
+        <h3>Weighted Average</h3>
+        <div class="formula">$$\text{Score} = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n$$</div>
+        <p class="formula-english">Different factors matter differently &mdash; just like your grade.</p>
+      </div>
+
+      <div class="formula-card">
+        <h3>Dot Product</h3>
+        <div class="formula">$$\mathbf{A} \cdot \mathbf{B} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n$$</div>
+        <p class="formula-english">Multiply matching preferences, add them up.</p>
+      </div>
+
+      <div class="formula-card">
+        <h3>Cosine Similarity</h3>
+        <div class="formula">$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| \cdot |\mathbf{B}|}$$</div>
+        <p class="formula-english">How similar are two people&rsquo;s tastes? Measure the angle.</p>
+      </div>
+
+      <div class="formula-card">
+        <h3>Linear Regression</h3>
+        <div class="formula">$$y = mx + b$$</div>
+        <p class="formula-english">The simplest prediction: a straight line through your data.</p>
+      </div>
+
+      <div class="formula-card">
+        <h3>Normal Distribution</h3>
+        <div class="formula">$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</div>
+        <p class="formula-english">The bell curve &mdash; what &ldquo;normal&rdquo; looks like mathematically.</p>
+      </div>
+
+      <div class="formula-card formula-card-bonus">
+        <h3>Bonus: Sigmoid Derivative</h3>
+        <div class="formula">$$\sigma'(x) = \sigma(x)(1 - \sigma(x))$$</div>
+        <p class="formula-english">How the AI knows which direction to adjust.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== HISTORY TIMELINE ========== -->
+  <section id="history">
+    <h2>The Mathematicians Behind AI</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1701 &ndash; 1761</span>
+          <h3>Thomas Bayes</h3>
+          <p>Presbyterian minister whose theorem powers modern fraud detection. His work on probability was published posthumously by a friend. Core question: &ldquo;How surprised should you be?&rdquo;</p>
+          <p class="timeline-connection">Used in Section 3 &mdash; Fraud Detection</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1777 &ndash; 1855</span>
+          <h3>Carl Friedrich Gauss</h3>
+          <p>Child prodigy who summed 1 to 100 in seconds (50 pairs of 101 = 5,050). Discovered the bell curve that describes &ldquo;normal&rdquo; behavior in data. His hair allegedly matched its shape.</p>
+          <p class="timeline-connection">Used in Section 3 &mdash; Normal Distribution</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1815 &ndash; 1852</span>
+          <h3>Ada Lovelace</h3>
+          <p>Saw that math and computation were one, 180 years before ChatGPT. Wrote the first algorithm for Charles Babbage&rsquo;s Analytical Engine. &ldquo;The Analytical Engine weaves algebraic patterns just as the Jacquard loom weaves flowers and leaves.&rdquo;</p>
+          <p class="timeline-connection">Used in Section 4 &mdash; How Does the AI Learn?</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1820 &ndash; 1910</span>
+          <h3>Florence Nightingale</h3>
+          <p>Used her &ldquo;coxcomb diagrams&rdquo; (polar area charts) to prove that sanitation saves more soldiers than medicine. Data visualization pioneer who changed hospital policy through statistics.</p>
+          <p class="timeline-connection">Used in Section 2 &mdash; Pattern Recognition</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1856 &ndash; 1922</span>
+          <h3>Andrey Markov</h3>
+          <p>Analyzed vowels and consonants in Pushkin&rsquo;s poetry to discover sequential patterns. His Markov chains now power credit scoring models, autocomplete, and speech recognition.</p>
+          <p class="timeline-connection">Used in Section 6 &mdash; Credit Scoring</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1902 &ndash; 1950</span>
+          <h3>Abraham Wald</h3>
+          <p>WWII statistician who told the military to armor the parts of returning planes that DID NOT have bullet holes &mdash; because the planes hit in those spots never came back. A masterclass in survivorship bias.</p>
+          <p class="timeline-connection">Used in Section 5 &mdash; Spot the Fraud</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">1928 &ndash; 1971</span>
+          <h3>Frank Rosenblatt</h3>
+          <p>Built the Perceptron in 1958 &mdash; the first machine that could learn from data. The New York Times headline read: &ldquo;New Navy Device Learns by Doing.&rdquo; Ancestor of every neural network alive today.</p>
+          <p class="timeline-connection">Used in Section 3 &mdash; Fraud Detection</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">Closing</span>
+          <h3>The Callback</h3>
+          <p>Nightingale + Lovelace remind us: mathematics has always needed diverse thinkers. The field moves forward when different perspectives ask different questions.</p>
+          <p class="timeline-connection">Used in Section 10 &mdash; The Bigger Picture</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== BANKBOT JOURNEY ========== -->
+  <section id="bankbot">
+    <h2>Meet BankBot: Our AI Mascot</h2>
+    <p class="section-subtitle">Follow BankBot&rsquo;s journey from overconfident to wise</p>
+    <div class="bankbot-journey">
+
+      <div class="bankbot-stage" data-stage="1">
+        <div class="bankbot-icon" style="--stage-color: #e74c3c;">&#129302;</div>
+        <blockquote>&ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</blockquote>
+        <span class="bankbot-label">Overconfident (Sec 1)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="2">
+        <div class="bankbot-icon" style="--stage-color: #e74c3c;">&#128527;</div>
+        <blockquote>&ldquo;Too easy. Next.&rdquo;</blockquote>
+        <span class="bankbot-label">Cocky (Sec 4 warmup)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="3">
+        <div class="bankbot-icon" style="--stage-color: #e67e22;">&#128560;</div>
+        <blockquote>(sweating on the boundary)</blockquote>
+        <span class="bankbot-label">Stressed (Sec 3)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="4">
+        <div class="bankbot-icon" style="--stage-color: #e67e22;">&#129300;</div>
+        <blockquote>&ldquo;FRAUD!&rdquo; &rarr; &ldquo;Most things are fine&rdquo; &rarr; &ldquo;Let me calculate&hellip;&rdquo;</blockquote>
+        <span class="bankbot-label">Growing (Sec 3.5)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="5">
+        <div class="bankbot-icon" style="--stage-color: #f39c12;">&#128563;</div>
+        <blockquote>&ldquo;FRAUD DETECTED!&rdquo; / &ldquo;&hellip;suspicious flowers.&rdquo;</blockquote>
+        <span class="bankbot-label">Humbled (Sec 4)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="6">
+        <div class="bankbot-icon" style="--stage-color: #f1c40f;">&#127793;</div>
+        <blockquote>&ldquo;Based on my analysis, you need 47 houseplants.&rdquo;</blockquote>
+        <span class="bankbot-label">Observant (Sec 7)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="7">
+        <div class="bankbot-icon" style="--stage-color: #2ecc71;">&#129320;</div>
+        <blockquote>(shaking head at social media data)</blockquote>
+        <span class="bankbot-label">Critical (Sec 8)</span>
+      </div>
+
+      <div class="bankbot-stage" data-stage="8">
+        <div class="bankbot-icon" style="--stage-color: #27ae60;">&#127891;</div>
+        <blockquote>&ldquo;I am 73% confident. But I defer to the human.&rdquo;</blockquote>
+        <span class="bankbot-label">Wise (Sec 10)</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== INTERACTIVE ELEMENTS ========== -->
+  <section id="interactive">
+    <h2>Interactive Moments</h2>
+    <div class="interactive-list">
+
+      <div class="interactive-card">
+        <span class="interactive-icon" aria-hidden="true">&#128587;</span>
+        <div class="interactive-content">
+          <h3>Hand Raise</h3>
+          <span class="time-badge">0:30</span>
+          <p>&ldquo;Raise your hand if you KNEW that AI made 50&ndash;200 decisions about you before breakfast.&rdquo;</p>
+        </div>
+      </div>
+
+      <div class="interactive-card">
+        <span class="interactive-icon" aria-hidden="true">&#9995;</span>
+        <div class="interactive-content">
+          <h3>Hand Raise</h3>
+          <span class="time-badge">~10:00</span>
+          <p>&ldquo;Should the AI block this transaction? Hands up for YES, down for NO.&rdquo;</p>
+        </div>
+      </div>
+
+      <div class="interactive-card">
+        <span class="interactive-icon" aria-hidden="true">&#128499;</span>
+        <div class="interactive-content">
+          <h3>Audience Vote &mdash; &ldquo;Spot the Fraud&rdquo;</h3>
+          <span class="time-badge">17:00</span>
+          <p>Three scenarios: Alex buys a guitar in another city; Tomoko buys 50 gift cards at 3 AM; Karla has small charges in 4 countries. Vote: Fraud or Legit?</p>
+        </div>
+      </div>
+
+      <div class="interactive-card">
+        <span class="interactive-icon" aria-hidden="true">&#128077;&#128078;</span>
+        <div class="interactive-content">
+          <h3>Thumbs Up / Down</h3>
+          <span class="time-badge">28:00</span>
+          <p>Predict the AI&rsquo;s output during the live demo &mdash; thumbs up if you think it will approve, thumbs down if it will flag.</p>
+        </div>
+      </div>
+
+      <div class="interactive-card">
+        <span class="interactive-icon" aria-hidden="true">&#128226;</span>
+        <div class="interactive-content">
+          <h3>Shout Response &mdash; &ldquo;USE IT or SKIP IT&rdquo;</h3>
+          <span class="time-badge">34:00</span>
+          <p>Rapid-fire: Should an AI use this data for credit decisions? Income? Social media? Zip code? GPA? Shout &ldquo;USE IT&rdquo; or &ldquo;SKIP IT&rdquo;!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== RESOURCES ========== -->
+  <section id="resources">
+    <h2>Keep Exploring</h2>
+    <div class="resources-grid">
+
+      <a href="https://www.youtube.com/c/3blue1brown" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#127916;</span>
+        <h3>3Blue1Brown</h3>
+        <p>Visual math explanations that make linear algebra, calculus, and neural networks click.</p>
+      </a>
+
+      <a href="https://www.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#128218;</span>
+        <h3>Khan Academy</h3>
+        <p>Free statistics and probability courses &mdash; master the foundations at your own pace.</p>
+      </a>
+
+      <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#129302;</span>
+        <h3>Teachable Machine</h3>
+        <p>Train your own machine learning model right in the browser &mdash; no coding required.</p>
+      </a>
+
+      <a href="https://www.youtube.com/user/numberphile" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#128290;</span>
+        <h3>Numberphile</h3>
+        <p>Fun, engaging math videos covering everything from prime numbers to infinity.</p>
+      </a>
+
+      <div class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#128214;</span>
+        <h3>&ldquo;Weapons of Math Destruction&rdquo;</h3>
+        <p>By Cathy O&rsquo;Neil &mdash; how unchecked algorithms reinforce inequality. Essential reading on AI bias.</p>
+      </div>
+
+      <div class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#128214;</span>
+        <h3>&ldquo;The Art of Statistics&rdquo;</h3>
+        <p>By David Spiegelhalter &mdash; learn to make sense of data in everyday life. Accessible and brilliantly written.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== SPEAKER NOTES ========== -->
+  <section id="speaker-notes">
+    <details>
+      <summary>Speaker Notes &amp; Timeline (click to expand)</summary>
+      <div class="speaker-notes-content">
+
+        <h3>Full Timing Table</h3>
+        <table class="timing-table">
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Opening Hook</td>
+              <td>0:00 &ndash; 3:00</td>
+              <td>3 min</td>
+              <td>50&ndash;200 AI decisions factoid, BankBot intro, hand raise</td>
+            </tr>
+            <tr>
+              <td>2. Think Like an AI</td>
+              <td>3:00 &ndash; 7:00</td>
+              <td>4 min</td>
+              <td>Pattern recognition, cafeteria analogy, Nightingale</td>
+            </tr>
+            <tr>
+              <td>3. Fraud Detection</td>
+              <td>7:00 &ndash; 15:30</td>
+              <td>8.5 min</td>
+              <td>Bayes, bell curve, sigmoid, Gauss/Bayes/Rosenblatt</td>
+            </tr>
+            <tr>
+              <td>4. How AI Learns</td>
+              <td>15:30 &ndash; 17:00</td>
+              <td>1.5 min</td>
+              <td>Feedback loops, gradient descent, Lovelace</td>
+            </tr>
+            <tr>
+              <td>5. Spot the Fraud</td>
+              <td>17:00 &ndash; 21:00</td>
+              <td>4 min</td>
+              <td>Interactive voting, Wald, BankBot false positive</td>
+            </tr>
+            <tr>
+              <td>6. Credit Scoring</td>
+              <td>21:00 &ndash; 28:00</td>
+              <td>7 min</td>
+              <td>Weighted average, linear regression, Markov</td>
+            </tr>
+            <tr>
+              <td>7. Live Demo</td>
+              <td>28:00 &ndash; 32:00</td>
+              <td>4 min</td>
+              <td>3-tier demo, formula callbacks</td>
+            </tr>
+            <tr>
+              <td>8. Recommendations</td>
+              <td>32:00 &ndash; 34:00</td>
+              <td>2 min</td>
+              <td>Dot product, cosine similarity, 47 houseplants</td>
+            </tr>
+            <tr>
+              <td>9. Design Your AI</td>
+              <td>34:00 &ndash; 37:00</td>
+              <td>3 min</td>
+              <td>USE IT / SKIP IT exercise</td>
+            </tr>
+            <tr>
+              <td>10. Bigger Picture</td>
+              <td>37:00 &ndash; 42:00</td>
+              <td>5 min</td>
+              <td>Ethics, careers, BankBot finale, call to action</td>
+            </tr>
+            <tr>
+              <td>Buffer / Q&amp;A</td>
+              <td>42:00 &ndash; 45:00</td>
+              <td>3 min</td>
+              <td>Questions, overflow</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Slide Count Estimate</h3>
+        <p>Approximately <strong>32 slides</strong> total, averaging about 1.3 minutes per slide. Heavier sections (Fraud Detection, Credit Scoring) may use 5&ndash;7 slides each; lighter sections (Opening, Closing) use 2&ndash;3.</p>
+
+        <h3>Backup Notes: What to Cut or Expand</h3>
+        <ul>
+          <li><strong>Running short?</strong> Expand the Live Demo (Section 7) with a second example, or add a deeper Wald anecdote in Section 5. The USE IT / SKIP IT exercise can be extended with more data types.</li>
+          <li><strong>Running long?</strong> Cut the Markov poetry detail in Section 6 to a single sentence. Shorten Section 8 (Recommendations) to one formula instead of two. The Sigmoid Derivative (bonus formula) can be skipped entirely.</li>
+          <li><strong>Tech failure during demo?</strong> Fall back to the pre-recorded screencast (Tier 1) or the static slide walkthrough (Tier 3). Never waste audience time troubleshooting.</li>
+          <li><strong>Audience very engaged?</strong> Let the Spot the Fraud voting (Section 5) run longer &mdash; debate between scenarios is valuable. Add a 4th scenario if time permits.</li>
+          <li><strong>Audience quiet?</strong> Lean harder on BankBot humor. The false positive flowers joke and the 47 houseplants recommendation are reliable laugh lines.</li>
+        </ul>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <p><a href="https://github.com/Digital-AI-Finance" target="_blank" rel="noopener noreferrer">Digital-AI-Finance</a></p>
+      <p>2026 &mdash; How Math Powers AI in Everyday Finance</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
