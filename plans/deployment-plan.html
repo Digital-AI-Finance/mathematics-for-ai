@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deployment Plan -- How Math Powers AI in Everyday Finance</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Deployment Plan -- Mathematics for AI">
+  <meta property="og:description" content="Technical blueprint for the GitHub Pages website: file structure, design system, task breakdown, KaTeX integration, and deployment verification.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Plan-page inline styles -->
+  <style>
+    /* Task flow visualization */
+    .task-flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: center;
+      padding: var(--space-lg) 0;
+      margin-bottom: var(--space-lg);
+    }
+    .task-flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-sm) var(--space-md);
+      min-width: 110px;
+    }
+    .task-flow-step .flow-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-secondary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-xs);
+      box-shadow: 0 2px 8px rgba(0, 137, 123, 0.25);
+    }
+    .task-flow-step .flow-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-light);
+      max-width: 110px;
+      line-height: 1.3;
+    }
+    .task-flow-arrow {
+      font-size: 1.25rem;
+      color: var(--color-border);
+      font-weight: 700;
+      padding: 0 var(--space-xs);
+      flex-shrink: 0;
+    }
+
+    /* Agent badge */
+    .agent-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: var(--color-secondary);
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: var(--space-sm);
+    }
+    .agent-badge.agent-high {
+      background: var(--color-primary);
+    }
+    .agent-badge.agent-low {
+      background: var(--color-accent);
+      color: var(--color-text);
+    }
+
+    /* Acceptance criteria list */
+    .acceptance-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .acceptance-list li {
+      position: relative;
+      padding-left: 1.6em;
+      margin-bottom: var(--space-sm);
+    }
+    .acceptance-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--color-secondary);
+      font-weight: 700;
+    }
+
+    /* Must/Must-not columns */
+    .must-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .must-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .must-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      border: 1px solid var(--color-border);
+    }
+    .must-card.must-have {
+      border-top: 3px solid var(--color-secondary);
+    }
+    .must-card.must-not {
+      border-top: 3px solid #e53935;
+    }
+    .must-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+    .must-card.must-have h3 {
+      color: var(--color-secondary);
+    }
+    .must-card.must-not h3 {
+      color: #e53935;
+    }
+
+    /* Decision cards */
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .decision-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Formula reference grid */
+    .formula-ref-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .formula-ref-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .formula-ref-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .formula-ref-card .formula-ref-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-xs);
+    }
+    .formula-ref-card .formula-ref-math {
+      text-align: center;
+      padding: var(--space-sm);
+      background: var(--color-math-bg);
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+    }
+
+    /* Task flow responsive */
+    @media (max-width: 767px) {
+      .task-flow {
+        flex-direction: column;
+        align-items: center;
+      }
+      .task-flow-arrow {
+        transform: rotate(90deg);
+        padding: var(--space-xs) 0;
+      }
+    }
+
+    /* Plan version badge in hero */
+    .plan-version-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      background: rgba(255, 143, 0, 0.15);
+      border: 1px solid rgba(255, 143, 0, 0.35);
+      padding: 2px 12px;
+      border-radius: 999px;
+      margin-bottom: var(--space-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <a href="../index.html" class="nav-brand">Math + AI + Finance</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="talk-plan.html">Talk Plan</a>
+      <a href="deployment-plan.html" class="active">Deployment Plan</a>
+      <a href="visual-plan.html">Visual Plan</a>
+      <a href="../index.html">Main Site</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="plan-hero">
+    <span class="plan-version-badge">Plan v1.0</span>
+    <h1>Deployment Plan</h1>
+    <p class="subtitle">Technical blueprint for the GitHub Pages website &mdash; file structure, design system, task breakdown, KaTeX integration, and deployment verification</p>
+    <div class="plan-meta">
+      <span class="badge">Static HTML/CSS/JS</span>
+      <span class="badge">KaTeX Math</span>
+      <span class="badge">GitHub Pages</span>
+      <span class="badge">Mobile-First</span>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="plan-content">
+
+    <!-- 1. Overview -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>This document describes the complete deployment plan for transforming the "How Math Powers AI in Everyday Finance" talk plan into a live GitHub Pages website.</p>
+
+      <table class="math-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Plan Version</strong></td>
+            <td>1.0</td>
+          </tr>
+          <tr>
+            <td><strong>Target Repository</strong></td>
+            <td><code>Digital-AI-Finance/mathematics-for-ai</code></td>
+          </tr>
+          <tr>
+            <td><strong>Live URL</strong></td>
+            <td><a href="https://digital-ai-finance.github.io/mathematics-for-ai/" target="_blank" rel="noopener noreferrer">https://digital-ai-finance.github.io/mathematics-for-ai/</a></td>
+          </tr>
+          <tr>
+            <td><strong>GitHub Pages</strong></td>
+            <td>Main branch, root path (<code>/</code>)</td>
+          </tr>
+          <tr>
+            <td><strong>Status</strong></td>
+            <td>Ready for Execution</td>
+          </tr>
+          <tr>
+            <td><strong>Created</strong></td>
+            <td>2026-02-18</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 2. Work Objectives -->
+    <section id="objectives">
+      <h2>Work Objectives</h2>
+
+      <h3>Core Objective</h3>
+      <p>Transform the talk plan content into a visually stunning, responsive, single-page website that serves as both a talk companion and standalone educational resource.</p>
+
+      <h3>Deliverables</h3>
+      <ol>
+        <li>New GitHub repository created and configured</li>
+        <li>Complete static website (HTML/CSS/JS) deployed via GitHub Pages</li>
+        <li>All mathematical formulas rendered with KaTeX</li>
+        <li>Responsive design working on mobile and desktop</li>
+        <li>All 10 sections, 8 history vignettes, 7 formulas, BankBot journey, and resources presented</li>
+      </ol>
+
+      <h3>Definition of Done</h3>
+      <ul class="acceptance-list">
+        <li>Website loads at <code>https://digital-ai-finance.github.io/mathematics-for-ai/</code></li>
+        <li>All KaTeX formulas render correctly</li>
+        <li>Site is responsive (test at 375px, 768px, 1200px widths)</li>
+        <li>Navigation works (smooth scroll to all sections)</li>
+        <li>All content from the talk plan is represented</li>
+        <li>Page loads in under 3 seconds on a reasonable connection</li>
+        <li>Passes basic accessibility checks (heading hierarchy, contrast, semantic HTML)</li>
+      </ul>
+    </section>
+
+    <!-- 3. Must Have / Must NOT Have -->
+    <section id="must-have">
+      <h2>Must Have / Must NOT Have</h2>
+
+      <div class="must-grid">
+        <div class="must-card must-have scroll-reveal">
+          <h3>MUST Have</h3>
+          <ul>
+            <li>Static HTML/CSS/JS (no build tools, no Jekyll &mdash; pure static for instant GitHub Pages deployment)</li>
+            <li>KaTeX loaded via CDN for math rendering</li>
+            <li>Responsive CSS with mobile-first approach</li>
+            <li>Smooth-scroll navigation with a sticky/fixed nav</li>
+            <li>Hero section with talk title, subtitle, speaker placeholder</li>
+            <li>All 10 talk sections as cards or expandable areas</li>
+            <li>5-act story arc as a visual timeline</li>
+            <li>Math cheat sheet section with all 7 formulas rendered in KaTeX</li>
+            <li>History of mathematics timeline (8 vignettes)</li>
+            <li>BankBot journey section</li>
+            <li>Interactive elements summary</li>
+            <li>Resources section with external links</li>
+            <li>Color scheme: deep blues, teals, accent colors</li>
+            <li>Clean sans-serif typography (Inter)</li>
+            <li>Semantic HTML5 (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>)</li>
+            <li>Fast loading (no heavy frameworks, CDN for KaTeX only)</li>
+          </ul>
+        </div>
+
+        <div class="must-card must-not scroll-reveal">
+          <h3>Must NOT Have</h3>
+          <ul>
+            <li>No JavaScript frameworks (React, Vue, etc.)</li>
+            <li>No build tools or bundlers</li>
+            <li>No server-side rendering</li>
+            <li>No heavy image files (use CSS gradients, emojis/unicode, SVG icons)</li>
+            <li>No cookie banners or analytics</li>
+            <li>No databases or APIs</li>
+            <li>No Jekyll/Ruby dependencies (pure static HTML)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Technical Decisions -->
+    <section id="decisions">
+      <h2>Technical Decisions</h2>
+
+      <div class="decision-grid">
+        <div class="plan-info-card scroll-reveal">
+          <h3>Why Static HTML/CSS/JS</h3>
+          <ul>
+            <li>Zero build step &mdash; push and it deploys instantly</li>
+            <li>Full control over design without Jekyll theme constraints</li>
+            <li>KaTeX integration is simpler in raw HTML</li>
+            <li>No Ruby/Gem dependency issues</li>
+            <li>Content is fixed (not a blog), so Jekyll adds no value</li>
+          </ul>
+        </div>
+
+        <div class="plan-info-card scroll-reveal">
+          <h3>KaTeX for Math Rendering</h3>
+          <ul>
+            <li>CDN: <code>cdn.jsdelivr.net/npm/katex@0.16.9</code></li>
+            <li>Auto-render extension for <code>$...$</code> and <code>$$...$$</code></li>
+            <li>Lighter and faster than MathJax</li>
+            <li>Renders on page load, no FOUC</li>
+          </ul>
+        </div>
+
+        <div class="plan-info-card scroll-reveal">
+          <h3>CSS Architecture</h3>
+          <ul>
+            <li>Single CSS file with CSS custom properties for theming</li>
+            <li>Mobile-first responsive design</li>
+            <li>CSS Grid for card layouts, Flexbox for nav and components</li>
+            <li>No CSS framework &mdash; too heavy for a single page</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. File Structure -->
+    <section id="file-structure">
+      <h2>File Structure</h2>
+      <p>Total: 5 files + 1 directory structure. Minimal.</p>
+      <pre><code>mathematics-for-ai/
+|-- .nojekyll               # Prevent Jekyll processing (empty file)
+|-- index.html              # Main (and only) page
+|-- css/
+|   |-- style.css           # All styles
+|-- js/
+|   |-- main.js             # Navigation, smooth scroll, interactions
+|-- images/
+|   |-- (empty initially -- site uses CSS/SVG/emoji for visuals)
+|-- README.md               # Repo description (brief, links to site)</code></pre>
+    </section>
+
+    <!-- 6. Task Flow -->
+    <section id="task-flow">
+      <h2>Task Flow</h2>
+      <p>Seven sequential tasks with clear dependencies. Tasks 3, 4, and 5 reference the same HTML structure and can be developed in parallel once Task 2 establishes the class/ID naming.</p>
+
+      <div class="task-flow">
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">1</div>
+          <div class="flow-label">Create GitHub Repo</div>
+        </div>
+        <div class="task-flow-arrow">&rarr;</div>
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">2</div>
+          <div class="flow-label">Build index.html</div>
+        </div>
+        <div class="task-flow-arrow">&rarr;</div>
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">3</div>
+          <div class="flow-label">Build css/style.css</div>
+        </div>
+        <div class="task-flow-arrow">&rarr;</div>
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">4</div>
+          <div class="flow-label">Build js/main.js</div>
+        </div>
+        <div class="task-flow-arrow">&rarr;</div>
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">5</div>
+          <div class="flow-label">Create README.md</div>
+        </div>
+        <div class="task-flow-arrow">&rarr;</div>
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">6</div>
+          <div class="flow-label">Enable GitHub Pages</div>
+        </div>
+        <div class="task-flow-arrow">&rarr;</div>
+        <div class="task-flow-step scroll-reveal">
+          <div class="flow-number">7</div>
+          <div class="flow-label">Verify Deployment</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Detailed Tasks -->
+    <section id="tasks">
+      <h2>Detailed Tasks</h2>
+
+      <!-- Task 1 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">1</span>
+          <h3>Create GitHub Repository</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge">executor</span>
+          <p><strong>Estimated time:</strong> 2 minutes</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Steps</h4>
+          <ol>
+            <li>Create the repo via <code>gh repo create Digital-AI-Finance/mathematics-for-ai --public</code></li>
+            <li>Clone locally to the working directory</li>
+            <li>Create directory structure: <code>css/</code>, <code>js/</code>, <code>images/</code></li>
+            <li>Create <code>.nojekyll</code> file to prevent Jekyll processing</li>
+          </ol>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Acceptance Criteria</h4>
+          <ul class="acceptance-list">
+            <li>Repo exists at <code>github.com/Digital-AI-Finance/mathematics-for-ai</code></li>
+            <li>Repo is public with correct description</li>
+            <li>Local clone ready with directory structure</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Task 2 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">2</span>
+          <h3>Build index.html</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge agent-high">executor-high</span>
+          <p><strong>Estimated time:</strong> 15&ndash;20 minutes</p>
+          <p>This is the largest task. The HTML contains ALL content from the talk plan, structured for web presentation: navigation, hero, 10 section cards, math concepts table, cheat sheet, history timeline, BankBot journey, interactive elements, resources, and speaker notes.</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Acceptance Criteria</h4>
+          <ul class="acceptance-list">
+            <li>Valid HTML5, passes basic validation</li>
+            <li>All 10 section cards present with correct content</li>
+            <li>All 7+ KaTeX formulas present with correct LaTeX syntax</li>
+            <li>History timeline has all 8 entries</li>
+            <li>BankBot journey section present</li>
+            <li>Resources section with all links</li>
+            <li>Navigation links match section IDs</li>
+            <li>Semantic HTML structure</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Task 3 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">3</span>
+          <h3>Build css/style.css</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge agent-high">executor-high</span>
+          <p><strong>Estimated time:</strong> 15&ndash;20 minutes</p>
+          <p>Complete responsive stylesheet with CSS custom properties for theming, mobile-first breakpoints at 768px / 1024px / 1400px, and all component styles for cards, timeline, tables, formula display, navigation, and hero.</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Acceptance Criteria</h4>
+          <ul class="acceptance-list">
+            <li>Renders correctly at 375px, 768px, 1200px, and 1920px</li>
+            <li>Color contrast meets WCAG AA (4.5:1 for text)</li>
+            <li>No horizontal scrollbar at any viewport width</li>
+            <li>Cards have consistent spacing and alignment</li>
+            <li>KaTeX formulas styled with appropriate background and padding</li>
+            <li>Navigation functional on mobile (hamburger)</li>
+            <li>Hero section fills viewport</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Task 4 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">4</span>
+          <h3>Build js/main.js</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge">executor</span>
+          <p><strong>Estimated time:</strong> 8&ndash;10 minutes</p>
+          <p>Vanilla JavaScript with six features: mobile navigation toggle, scroll spy via <code>IntersectionObserver</code>, smooth scroll with fixed-nav offset, scroll-triggered reveal animations, navbar background on scroll, and KaTeX auto-render initialization. No external JS libraries.</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Acceptance Criteria</h4>
+          <ul class="acceptance-list">
+            <li>Mobile menu opens and closes correctly</li>
+            <li>Active nav link updates on scroll</li>
+            <li>Smooth scroll works on nav click</li>
+            <li>Cards animate in on scroll</li>
+            <li>Nav background changes on scroll past hero</li>
+            <li>KaTeX renders all formulas on page load</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Task 5 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">5</span>
+          <h3>Create README.md</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge agent-low">executor-low</span>
+          <p><strong>Estimated time:</strong> 2 minutes</p>
+          <p>Brief README with talk title and subtitle, link to the live site, brief description (2&ndash;3 sentences), tech stack mention (HTML/CSS/JS, KaTeX), and link to the GitHub org.</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Acceptance Criteria</h4>
+          <ul class="acceptance-list">
+            <li>Clear, concise README</li>
+            <li>Live site link present and correct</li>
+            <li>No broken links</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Task 6 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">6</span>
+          <h3>Enable GitHub Pages</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge">executor</span>
+          <p><strong>Estimated time:</strong> 3 minutes</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Steps</h4>
+          <ol>
+            <li>Commit all files: <code>git add -A &amp;&amp; git commit -m "Initial site"</code></li>
+            <li>Push to main: <code>git push origin main</code></li>
+            <li>Enable GitHub Pages via <code>gh api</code> &mdash; source: main branch, root path</li>
+            <li>Verify Pages is enabled: <code>gh api repos/.../pages</code></li>
+          </ol>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Acceptance Criteria</h4>
+          <ul class="acceptance-list">
+            <li>GitHub Pages enabled on main branch, root path</li>
+            <li>No build errors in GitHub Actions</li>
+            <li>Pages URL returns 200 within a few minutes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Task 7 -->
+      <div class="plan-task-card scroll-reveal">
+        <div class="task-header">
+          <span class="task-number">7</span>
+          <h3>Verify Deployment</h3>
+        </div>
+        <div class="task-body">
+          <span class="agent-badge agent-low">executor-low</span>
+          <p><strong>Estimated time:</strong> 5 minutes (includes waiting for GitHub Pages build)</p>
+          <h4 style="margin:var(--space-md) 0 var(--space-sm);color:var(--color-primary);font-size:0.95rem;">Verification Checklist</h4>
+          <ul class="acceptance-list">
+            <li>Page loads without errors</li>
+            <li>Navigation works (smooth scroll to all sections)</li>
+            <li>All sections visible and content complete</li>
+            <li>KaTeX formulas render (Bayes, sigmoid, weighted average, etc.)</li>
+            <li>Mobile responsive (resize browser or use dev tools)</li>
+            <li>All external links work and open in new tabs</li>
+            <li>No console errors</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. KaTeX Formulas Reference -->
+    <section id="formulas">
+      <h2>KaTeX Formulas Reference</h2>
+      <p>All 8 LaTeX strings used across the site, rendered here for verification.</p>
+
+      <div class="formula-ref-grid">
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">1. Bayes' Theorem</div>
+          <div class="formula-ref-math">$$P(\text{Fraud} \mid \text{Data}) = \frac{P(\text{Data} \mid \text{Fraud}) \cdot P(\text{Fraud})}{P(\text{Data})}$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">2. Sigmoid Function</div>
+          <div class="formula-ref-math">$$\sigma(x) = \frac{1}{1 + e^{-x}}$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">3. Sigmoid Derivative (bonus)</div>
+          <div class="formula-ref-math">$$\sigma'(x) = \sigma(x)(1 - \sigma(x))$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">4. Weighted Average</div>
+          <div class="formula-ref-math">$$\text{Score} = w_1 x_1 + w_2 x_2 + w_3 x_3 + \cdots + w_n x_n$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">5. Dot Product</div>
+          <div class="formula-ref-math">$$\mathbf{A} \cdot \mathbf{B} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">6. Cosine Similarity</div>
+          <div class="formula-ref-math">$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| \cdot |\mathbf{B}|}$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">7. Linear Regression</div>
+          <div class="formula-ref-math">$$y = mx + b$$</div>
+        </div>
+
+        <div class="formula-ref-card scroll-reveal">
+          <div class="formula-ref-name">8. Normal Distribution (PDF)</div>
+          <div class="formula-ref-math">$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. Content References -->
+    <section id="content-references">
+      <h2>Content References</h2>
+
+      <h3>Section Timing Table</h3>
+      <div class="plan-table-wrapper">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Section</th>
+              <th>Duration</th>
+              <th>Energy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0:00 &ndash; 3:00</td>
+              <td>Opening Hook</td>
+              <td>3 min</td>
+              <td>HIGH</td>
+            </tr>
+            <tr>
+              <td>3:00 &ndash; 7:00</td>
+              <td>You Already Think Like an AI</td>
+              <td>4 min</td>
+              <td>WARM</td>
+            </tr>
+            <tr>
+              <td>7:00 &ndash; 15:30</td>
+              <td>Fraud Detection</td>
+              <td>8.5 min</td>
+              <td>HIGH</td>
+            </tr>
+            <tr>
+              <td>15:30 &ndash; 17:00</td>
+              <td>How Does the AI Learn?</td>
+              <td>1.5 min</td>
+              <td>MEDIUM</td>
+            </tr>
+            <tr>
+              <td>17:00 &ndash; 21:00</td>
+              <td>Interactive: Spot the Fraud</td>
+              <td>4 min</td>
+              <td>PEAK</td>
+            </tr>
+            <tr>
+              <td>21:00 &ndash; 28:00</td>
+              <td>Credit Scoring</td>
+              <td>7 min</td>
+              <td>MEDIUM</td>
+            </tr>
+            <tr>
+              <td>28:00 &ndash; 32:00</td>
+              <td>Interactive: Live Demo</td>
+              <td>4 min</td>
+              <td>PEAK</td>
+            </tr>
+            <tr>
+              <td>32:00 &ndash; 34:00</td>
+              <td>Recommendation Engines</td>
+              <td>2 min</td>
+              <td>HIGH</td>
+            </tr>
+            <tr>
+              <td>34:00 &ndash; 37:00</td>
+              <td>Interactive: Design Your Own AI</td>
+              <td>3 min</td>
+              <td>PEAK</td>
+            </tr>
+            <tr>
+              <td>37:00 &ndash; 42:00</td>
+              <td>Ethics, Careers, and Closing</td>
+              <td>5 min</td>
+              <td>HIGH</td>
+            </tr>
+            <tr>
+              <td>42:00 &ndash; 45:00</td>
+              <td>Buffer / Q&amp;A</td>
+              <td>3 min</td>
+              <td>&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Interactive Elements</h3>
+      <div class="plan-table-wrapper">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Type</th>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Hand raise</td>
+              <td>0:30</td>
+              <td>&ldquo;Raise your hand if you KNEW that&rdquo;</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Hand raise</td>
+              <td>~10:00</td>
+              <td>Mid-section prompt: &ldquo;Should the AI block this?&rdquo;</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Audience vote</td>
+              <td>17:00</td>
+              <td>&ldquo;Spot the Fraud&rdquo; &mdash; 3 scenarios</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Thumbs up/down</td>
+              <td>28:00</td>
+              <td>Predictions during demo</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Shout response</td>
+              <td>34:00</td>
+              <td>&ldquo;USE IT or SKIP IT&rdquo; exercise</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>BankBot Arc</h3>
+      <div class="plan-table-wrapper">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Section</th>
+              <th>Quote</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Intro</td>
+              <td>1</td>
+              <td>&ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</td>
+              <td>Overconfident</td>
+            </tr>
+            <tr>
+              <td>Smug</td>
+              <td>4 (warmup)</td>
+              <td>&ldquo;Too easy. Next.&rdquo;</td>
+              <td>Cocky</td>
+            </tr>
+            <tr>
+              <td>Nightmare</td>
+              <td>3</td>
+              <td>(sweating on boundary)</td>
+              <td>Stressed</td>
+            </tr>
+            <tr>
+              <td>Learning</td>
+              <td>3.5</td>
+              <td>&ldquo;FRAUD!&rdquo; &rarr; &ldquo;Most things are fine&rdquo; &rarr; &ldquo;Let me calculate&hellip;&rdquo;</td>
+              <td>Growing</td>
+            </tr>
+            <tr>
+              <td>False Positive</td>
+              <td>4</td>
+              <td>&ldquo;FRAUD DETECTED!&rdquo; / &ldquo;&hellip;suspicious flowers.&rdquo;</td>
+              <td>Humbled</td>
+            </tr>
+            <tr>
+              <td>Recommendation</td>
+              <td>7</td>
+              <td>&ldquo;Plant parents are savers.&rdquo;</td>
+              <td>Observant</td>
+            </tr>
+            <tr>
+              <td>Skeptic</td>
+              <td>8</td>
+              <td>(shaking head at social media data)</td>
+              <td>Critical</td>
+            </tr>
+            <tr>
+              <td>Final Form</td>
+              <td>10</td>
+              <td>&ldquo;I am 73% confident. But I defer to the human.&rdquo;</td>
+              <td>Wise</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 10. Success Criteria -->
+    <section id="success-criteria">
+      <h2>Success Criteria</h2>
+      <div class="plan-table-wrapper">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Criterion</th>
+              <th>How to Verify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Site is live</td>
+              <td>GET <code>https://digital-ai-finance.github.io/mathematics-for-ai/</code> returns 200</td>
+            </tr>
+            <tr>
+              <td>All formulas render</td>
+              <td>Visual check of all 7+ KaTeX formulas</td>
+            </tr>
+            <tr>
+              <td>Responsive</td>
+              <td>Browser dev tools at 375px, 768px, 1200px</td>
+            </tr>
+            <tr>
+              <td>Navigation works</td>
+              <td>Click each nav link, verify smooth scroll</td>
+            </tr>
+            <tr>
+              <td>Content complete</td>
+              <td>Verify all 10 sections, 8 historians, 7 formulas, BankBot, resources</td>
+            </tr>
+            <tr>
+              <td>Fast loading</td>
+              <td>No heavy assets, KaTeX from CDN</td>
+            </tr>
+            <tr>
+              <td>Accessible</td>
+              <td>Heading hierarchy (h1 &gt; h2 &gt; h3), semantic HTML, alt text</td>
+            </tr>
+            <tr>
+              <td>No errors</td>
+              <td>Browser console clean</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. Risk Mitigation -->
+    <section id="risk-mitigation">
+      <h2>Risk Mitigation</h2>
+      <div class="plan-table-wrapper">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Risk</th>
+              <th>Likelihood</th>
+              <th>Mitigation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>KaTeX CDN down</td>
+              <td>Very low</td>
+              <td>Pin specific version, fallback to plain text</td>
+            </tr>
+            <tr>
+              <td>GitHub Pages build fails</td>
+              <td>Low</td>
+              <td>Pure static HTML has no build step to fail</td>
+            </tr>
+            <tr>
+              <td>Formula rendering issues</td>
+              <td>Medium</td>
+              <td>Test each formula individually, use KaTeX documentation for escaping</td>
+            </tr>
+            <tr>
+              <td>Mobile layout breaks</td>
+              <td>Medium</td>
+              <td>Test at all breakpoints during development</td>
+            </tr>
+            <tr>
+              <td><code>gh</code> CLI auth issues</td>
+              <td>Low</td>
+              <td>Verify auth before starting: <code>gh auth status</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <p><a href="https://github.com/Digital-AI-Finance" target="_blank" rel="noopener noreferrer">Digital-AI-Finance</a></p>
+      <p>2026 &mdash; How Math Powers AI in Everyday Finance</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk Plan v3 &mdash; How Math Powers AI in Everyday Finance</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared site CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Plan-page-specific styles -->
+  <style>
+    /* ---- Plan hero (compact, not full-height) ---- */
+    .plan-hero {
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(64px + var(--space-xl)) var(--space-lg) var(--space-xl);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, #0d47a1 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .plan-hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin-bottom: var(--space-sm);
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .plan-hero .subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      opacity: 0.9;
+      max-width: 640px;
+      margin-bottom: var(--space-md);
+      font-weight: 400;
+      animation: fadeInUp 0.8s 0.15s ease both;
+    }
+
+    .plan-hero .version-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.1);
+      animation: fadeInUp 0.8s 0.3s ease both;
+    }
+
+    /* ---- Plan article wrapper ---- */
+    .plan-article {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ---- Info grid (overview metadata) ---- */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+      max-width: 1200px;
+      margin: 0 auto var(--space-xl);
+    }
+
+    .info-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-secondary);
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .info-card p,
+    .info-card ul {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      line-height: 1.55;
+    }
+
+    .info-card ul {
+      padding-left: 1.1em;
+    }
+
+    .info-card ul li {
+      margin-bottom: var(--space-xs);
+    }
+
+    /* ---- Section anchor offset for fixed nav ---- */
+    .plan-section {
+      scroll-margin-top: 80px;
+    }
+
+    /* ---- Compact description lists inside section cards ---- */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-sm) var(--space-lg);
+      margin-top: var(--space-md);
+    }
+
+    .detail-grid dt {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-secondary);
+      margin-bottom: 2px;
+    }
+
+    .detail-grid dd {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      line-height: 1.5;
+      margin: 0 0 var(--space-sm);
+    }
+
+    /* ---- BankBot description card ---- */
+    .bankbot-desc {
+      max-width: 1200px;
+      margin: 0 auto var(--space-lg);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .bankbot-desc p {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+      line-height: 1.6;
+    }
+
+    /* ---- Timing philosophy callout ---- */
+    .callout {
+      max-width: 1200px;
+      margin: 0 auto var(--space-lg);
+      background: var(--color-math-bg);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .callout h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .callout p,
+    .callout ul {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      line-height: 1.6;
+    }
+
+    .callout ul li {
+      margin-bottom: var(--space-xs);
+    }
+
+    /* ---- Section breakdown cards ---- */
+    .breakdown-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      margin-bottom: var(--space-lg);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .breakdown-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .breakdown-card .card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      color: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .breakdown-card .card-body {
+      padding: var(--space-lg);
+    }
+
+    .breakdown-card .key-msg {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .breakdown-card .content-outline {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+
+    .breakdown-card .content-outline li {
+      margin-bottom: var(--space-xs);
+    }
+
+    /* ---- Backup notes ---- */
+    .backup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .backup-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .backup-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .backup-card p,
+    .backup-card ul {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      line-height: 1.55;
+    }
+
+    .backup-card ul li {
+      margin-bottom: var(--space-xs);
+    }
+
+    /* ---- Make act-stepper work as a centered block ---- */
+    .plan-article .act-stepper {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- Ensure math-table-wrapper stays constrained ---- */
+    .plan-article .math-table-wrapper {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <a href="../index.html" class="nav-brand">Math + AI + Finance</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="talk-plan.html" class="active">Talk Plan</a>
+      <a href="deployment-plan.html">Deployment Plan</a>
+      <a href="visual-plan.html">Visual Plan</a>
+      <a href="../index.html">Main Site</a>
+    </div>
+  </nav>
+
+  <!-- ========== PLAN HERO ========== -->
+  <header class="plan-hero">
+    <h1>Talk Plan v3</h1>
+    <p class="subtitle">Complete roadmap for &ldquo;How Math Powers AI in Everyday Finance&rdquo; &mdash; a 45-minute presentation for high school students</p>
+    <span class="version-badge">Version 3.0 &mdash; 45 min &mdash; Ages 16&ndash;18</span>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <article class="plan-article">
+
+    <!-- ===== 1. OVERVIEW ===== -->
+    <section id="overview" class="plan-section">
+      <h2>Overview</h2>
+      <p class="section-subtitle">Presentation metadata and guiding principles</p>
+
+      <div class="info-grid scroll-reveal">
+        <div class="info-card">
+          <h4>Title</h4>
+          <p>How Math Powers AI in Everyday Finance</p>
+        </div>
+        <div class="info-card">
+          <h4>Version</h4>
+          <p>v3.0 &mdash; Final talk plan</p>
+        </div>
+        <div class="info-card">
+          <h4>Audience</h4>
+          <p>High school students (ages 16&ndash;18), math focus. No prior AI or programming knowledge assumed.</p>
+        </div>
+        <div class="info-card">
+          <h4>Duration</h4>
+          <p>45 minutes (42 min content + 3 min Q&amp;A buffer)</p>
+        </div>
+        <div class="info-card">
+          <h4>Key Themes</h4>
+          <ul>
+            <li>Patterns</li>
+            <li>Predictions</li>
+            <li>Data to Decisions</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Speaker</h4>
+          <p>Prof. Dr. J&ouml;rg Osterrieder</p>
+        </div>
+      </div>
+
+      <div class="callout scroll-reveal">
+        <h4>Timing Philosophy</h4>
+        <p>Every section has a <strong>primary time allocation</strong> and built-in flex. The talk is designed so that cutting any single section loses breadth but not coherence. Interactive moments are the pressure valve: expand them when ahead of schedule, compress them when behind. The 3-minute Q&amp;A buffer at the end absorbs any remaining overrun.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2. STORYTELLING ARC ===== -->
+    <section id="story-arc" class="plan-section" style="background:#ffffff;">
+      <h2>Storytelling Arc: Five Acts</h2>
+      <p class="section-subtitle">The emotional journey from surprise to inspiration</p>
+
+      <div class="act-stepper scroll-reveal">
+
+        <div class="act-step">
+          <div class="act-number">1</div>
+          <div class="act-content">
+            <h3>Hook &amp; Reveal</h3>
+            <span class="time-badge">0:00 &ndash; 7:00</span>
+            <p class="act-theme">&ldquo;You already use AI finance&rdquo;</p>
+            <p class="act-emotion">Surprise, curiosity</p>
+          </div>
+        </div>
+
+        <div class="act-step">
+          <div class="act-number">2</div>
+          <div class="act-content">
+            <h3>The Pattern Engine</h3>
+            <span class="time-badge">7:00 &ndash; 19:00</span>
+            <p class="act-theme">&ldquo;Math finds what humans miss&rdquo;</p>
+            <p class="act-emotion">&ldquo;Whoa, that&rsquo;s clever&rdquo;</p>
+          </div>
+        </div>
+
+        <div class="act-step">
+          <div class="act-number">3</div>
+          <div class="act-content">
+            <h3>Predictions &amp; Decisions</h3>
+            <span class="time-badge">19:00 &ndash; 32:00</span>
+            <p class="act-theme">&ldquo;From data to action&rdquo;</p>
+            <p class="act-emotion">Empowerment</p>
+          </div>
+        </div>
+
+        <div class="act-step">
+          <div class="act-number">4</div>
+          <div class="act-content">
+            <h3>The Bigger Picture</h3>
+            <span class="time-badge">32:00 &ndash; 40:00</span>
+            <p class="act-theme">&ldquo;Power, fairness, and your future&rdquo;</p>
+            <p class="act-emotion">Reflection</p>
+          </div>
+        </div>
+
+        <div class="act-step">
+          <div class="act-number">5</div>
+          <div class="act-content">
+            <h3>Close &amp; Call to Action</h3>
+            <span class="time-badge">40:00 &ndash; 42:00</span>
+            <p class="act-theme">&ldquo;Math is your superpower&rdquo;</p>
+            <p class="act-emotion">Inspiration</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout scroll-reveal" style="margin-top:var(--space-xl);">
+        <h4>Buffer</h4>
+        <p><strong>42:00 &ndash; 45:00</strong> &mdash; Q&amp;A and overflow. If no questions arise, revisit the strongest audience moment from the session or share one more career path.</p>
+      </div>
+    </section>
+
+    <!-- ===== 3. RUNNING GAG: BANKBOT ===== -->
+    <section id="bankbot-gag" class="plan-section">
+      <h2>Running Gag &mdash; BankBot</h2>
+      <p class="section-subtitle">Our AI mascot&rsquo;s journey from overconfident to wise</p>
+
+      <div class="bankbot-desc scroll-reveal">
+        <p><strong>BankBot</strong> is a cartoon AI character that appears throughout the talk as a comic-relief thread. It starts overconfident (&ldquo;I analyzed your breakfast. You are 94% human.&rdquo;), gets humbled by edge cases and false positives, and ends the talk wearing a graduation cap, saying &ldquo;I am 73% confident. But I defer to the human.&rdquo; The arc mirrors the audience&rsquo;s own learning journey: from awe to understanding to critical thinking. Each BankBot moment also serves as a micro-break between heavier math content.</p>
+      </div>
+
+      <div class="math-table-wrapper scroll-reveal">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Section</th>
+              <th>Personality</th>
+              <th>Quote / Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Sec 1</td>
+              <td>Overconfident</td>
+              <td>&ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Sec 4 warmup</td>
+              <td>Cocky</td>
+              <td>&ldquo;Too easy. Next.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Sec 3</td>
+              <td>Stressed</td>
+              <td>(sweating on the decision boundary)</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Sec 3.5</td>
+              <td>Growing</td>
+              <td>&ldquo;FRAUD!&rdquo; &rarr; &ldquo;Most things are fine&rdquo; &rarr; &ldquo;Let me calculate&hellip;&rdquo;</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Sec 4</td>
+              <td>Humbled</td>
+              <td>&ldquo;FRAUD DETECTED!&rdquo; / &ldquo;&hellip;suspicious flowers.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Sec 7</td>
+              <td>Observant</td>
+              <td>&ldquo;Based on my analysis, you need 47 houseplants.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Sec 8</td>
+              <td>Critical</td>
+              <td>(shaking head at social media data)</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Sec 10</td>
+              <td>Wise</td>
+              <td>&ldquo;I am 73% confident. But I defer to the human.&rdquo;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 4. MATH CONCEPTS ===== -->
+    <section id="math-concepts" class="plan-section" style="background:#ffffff;">
+      <h2>Math Concepts Index</h2>
+      <p class="section-subtitle">Every mathematical idea in the talk, where it appears, and whether the formula is shown</p>
+
+      <div class="math-table-wrapper scroll-reveal">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Where</th>
+              <th>How Presented</th>
+              <th>Formula Shown</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Probability / Conditional Probability</td>
+              <td>Fraud detection (Sec 3)</td>
+              <td>Updating beliefs when new evidence arrives</td>
+              <td>$$P(\text{Fraud} \mid \text{Data}) = \frac{P(\text{Data} \mid \text{Fraud}) \cdot P(\text{Fraud})}{P(\text{Data})}$$</td>
+            </tr>
+            <tr>
+              <td>Statistics (mean, variance, outliers)</td>
+              <td>Spending patterns (Sec 3)</td>
+              <td>Bell curve describes &ldquo;normal&rdquo;; outliers trigger alerts</td>
+              <td>$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</td>
+            </tr>
+            <tr>
+              <td>Classification / Decision Boundaries</td>
+              <td>Fraud vs. legit (Sec 3)</td>
+              <td>The line where the AI switches from &ldquo;OK&rdquo; to &ldquo;suspicious&rdquo;</td>
+              <td>Conceptual only (threshold on sigmoid output)</td>
+            </tr>
+            <tr>
+              <td>Sigmoid / Logistic Function</td>
+              <td>Under the Hood (Sec 3)</td>
+              <td>Squishes any number into a probability between 0 and 1</td>
+              <td>$$\sigma(x) = \frac{1}{1 + e^{-x}}$$</td>
+            </tr>
+            <tr>
+              <td>Linear Relationships &amp; Regression</td>
+              <td>Credit scoring (Sec 6)</td>
+              <td>The simplest prediction: draw a straight line through data</td>
+              <td>$$y = mx + b$$</td>
+            </tr>
+            <tr>
+              <td>Weighted Averages / Scoring</td>
+              <td>Credit scores (Sec 6)</td>
+              <td>Different factors carry different weight &mdash; just like school grades</td>
+              <td>$$\text{Score} = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n$$</td>
+            </tr>
+            <tr>
+              <td>Cosine Similarity / Distance</td>
+              <td>Recommendation engines (Sec 8)</td>
+              <td>Measure the angle between two people&rsquo;s preference vectors</td>
+              <td>$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| \cdot |\mathbf{B}|}$$</td>
+            </tr>
+            <tr>
+              <td>Feedback Loops &amp; Iteration</td>
+              <td>How AI learns (Sec 4)</td>
+              <td>Guess &rarr; check &rarr; adjust &rarr; repeat</td>
+              <td>Conceptual (gradient descent named, not derived)</td>
+            </tr>
+            <tr>
+              <td>Dot Product</td>
+              <td>Recommendations (Sec 8)</td>
+              <td>Multiply matching preferences, add them up to measure similarity</td>
+              <td>$$\mathbf{A} \cdot \mathbf{B} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n$$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 5. HISTORY VIGNETTES ===== -->
+    <section id="history-vignettes" class="plan-section">
+      <h2>History Vignettes</h2>
+      <p class="section-subtitle">Short mathematician stories woven into the talk for human connection</p>
+
+      <div class="math-table-wrapper scroll-reveal">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Mathematician</th>
+              <th>Dates</th>
+              <th>Section</th>
+              <th>Duration</th>
+              <th>Connection</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Thomas Bayes</td>
+              <td>1701&ndash;1761</td>
+              <td>Sec 3</td>
+              <td>45 s</td>
+              <td>His theorem powers modern fraud detection. Published posthumously.</td>
+            </tr>
+            <tr>
+              <td>Carl Friedrich Gauss</td>
+              <td>1777&ndash;1855</td>
+              <td>Sec 3</td>
+              <td>30 s</td>
+              <td>Discovered the normal distribution (bell curve). Child prodigy who summed 1&ndash;100 in seconds.</td>
+            </tr>
+            <tr>
+              <td>Florence Nightingale</td>
+              <td>1820&ndash;1910</td>
+              <td>Sec 2</td>
+              <td>40 s</td>
+              <td>Data visualization pioneer. Her &ldquo;coxcomb diagrams&rdquo; changed hospital policy.</td>
+            </tr>
+            <tr>
+              <td>Ada Lovelace</td>
+              <td>1815&ndash;1852</td>
+              <td>Sec 3.5</td>
+              <td>30 s</td>
+              <td>First programmer. Saw that math and computation were one, 180 years before ChatGPT.</td>
+            </tr>
+            <tr>
+              <td>Frank Rosenblatt</td>
+              <td>1928&ndash;1971</td>
+              <td>Sec 3</td>
+              <td>40 s</td>
+              <td>Built the Perceptron (1958) &mdash; the first artificial neuron. Ancestor of every neural network today.</td>
+            </tr>
+            <tr>
+              <td>Andrey Markov</td>
+              <td>1856&ndash;1922</td>
+              <td>Sec 5</td>
+              <td>35 s</td>
+              <td>Analyzed Pushkin&rsquo;s poetry for sequential patterns. His Markov chains now power credit scoring and autocomplete.</td>
+            </tr>
+            <tr>
+              <td>Abraham Wald</td>
+              <td>1902&ndash;1950</td>
+              <td>Sec 4</td>
+              <td>45 s</td>
+              <td>WWII survivorship bias: armor the spots with NO bullet holes, because those planes never returned.</td>
+            </tr>
+            <tr>
+              <td>Lovelace + Nightingale callback</td>
+              <td>&mdash;</td>
+              <td>Sec 9</td>
+              <td>15 s</td>
+              <td>Math has always needed diverse thinkers. Different perspectives ask different questions.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 6. CARTOON & HUMOR INDEX ===== -->
+    <section id="humor-index" class="plan-section" style="background:#ffffff;">
+      <h2>Cartoon &amp; Humor Index</h2>
+      <p class="section-subtitle">Every laugh line and visual gag, mapped to the timeline</p>
+
+      <div class="math-table-wrapper scroll-reveal">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Section</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Sec 1</td>
+              <td>BankBot intro</td>
+              <td>&ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Sec 2</td>
+              <td>Analogy</td>
+              <td>Cafeteria &ldquo;mystery meat&rdquo; probability &mdash; what are the chances it&rsquo;s edible?</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Sec 3</td>
+              <td>Visual gag</td>
+              <td>Gauss&rsquo;s hair matches the bell curve shape</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Sec 3</td>
+              <td>Cartoon</td>
+              <td>AI Nightmare &mdash; the model sees fraud everywhere</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Sec 3</td>
+              <td>BankBot</td>
+              <td>Sweating on the decision boundary</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Sec 4</td>
+              <td>BankBot panels</td>
+              <td>Four-panel sequence: confident &rarr; wrong &rarr; confused &rarr; improving</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Sec 5</td>
+              <td>BankBot false positive</td>
+              <td>&ldquo;FRAUD DETECTED!&rdquo; &hellip; &ldquo;suspicious flowers.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Sec 6</td>
+              <td>Cartoon</td>
+              <td>Fortune teller with a crystal ball (credit scoring analogy)</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Sec 6</td>
+              <td>One-liner</td>
+              <td>Weighted average horror: &ldquo;Homework is only 10%?!&rdquo;</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Sec 8</td>
+              <td>BankBot</td>
+              <td>&ldquo;Based on my analysis, you need 47 houseplants.&rdquo;</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Sec 10</td>
+              <td>BankBot finale</td>
+              <td>Graduation cap &mdash; &ldquo;I am 73% confident. But I defer to the human.&rdquo;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 7. DETAILED SECTIONS BREAKDOWN ===== -->
+    <section id="sections-breakdown" class="plan-section">
+      <h2>Detailed Sections Breakdown</h2>
+      <p class="section-subtitle">All 10 sections with key messages, content, math, history, humor, and engagement techniques</p>
+
+      <!-- Section 1 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">1</span>
+          <h3>The Opening Hook</h3>
+          <span class="time-badge">0:00 &ndash; 3:00 (3 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">AI in finance made decisions about you today &mdash; probably before you ate breakfast.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>&ldquo;50&ndash;200 AI decisions before breakfast&rdquo; factoid; reveal that banking, insurance, payments all use AI; introduce BankBot</dd>
+            <dt>Math Concepts</dt>
+            <dd>None yet &mdash; pure engagement</dd>
+            <dt>History Vignette</dt>
+            <dd>&mdash;</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot introduction: &ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</dd>
+            <dt>Engagement</dt>
+            <dd>Hand raise &mdash; &ldquo;Raise your hand if you KNEW that AI made 50&ndash;200 decisions about you before breakfast.&rdquo;</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">2</span>
+          <h3>&ldquo;You Already Think Like an AI&rdquo;</h3>
+          <span class="time-badge">3:00 &ndash; 7:00 (4 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">Pattern recognition is not alien &mdash; you do it every day.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Bridge from everyday pattern recognition to how AI does it; cafeteria analogy; introduce probability informally</dd>
+            <dt>Math Concepts</dt>
+            <dd>Probability concepts introduced informally</dd>
+            <dt>History Vignette</dt>
+            <dd>Florence Nightingale (1820&ndash;1910) &mdash; data visualization pioneer, 40s</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>Cafeteria &ldquo;mystery meat&rdquo; probability analogy</dd>
+            <dt>Engagement</dt>
+            <dd>Cafeteria analogy &mdash; &ldquo;How do you decide if the lunch line is worth it?&rdquo;</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">3</span>
+          <h3>Fraud Detection &mdash; &ldquo;Catching the Weird Stuff&rdquo;</h3>
+          <span class="time-badge">7:00 &ndash; 15:30 (8.5 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">Fraud detection is pattern recognition plus probability.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Step-by-step Bayesian reasoning walkthrough; normal distribution for &ldquo;normal&rdquo; spending; sigmoid function to squish scores; decision boundaries</dd>
+            <dt>Math Concepts</dt>
+            <dd>Bayes&rsquo; theorem, normal distribution, sigmoid function, decision boundaries</dd>
+            <dt>History Vignettes</dt>
+            <dd>Gauss (bell curve, 30s), Bayes (updating beliefs, 45s), Rosenblatt (first neuron 1958, 40s)</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>Gauss hair matches bell curve; AI Nightmare cartoon; BankBot sweating on the decision boundary</dd>
+            <dt>Engagement</dt>
+            <dd>Step-by-step Bayesian reasoning walkthrough with audience</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">4</span>
+          <h3>&ldquo;How Does the AI Learn?&rdquo;</h3>
+          <span class="time-badge">15:30 &ndash; 17:00 (1.5 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">AI learns through guess &rarr; check &rarr; adjust &rarr; repeat.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Feedback loops; gradient descent (named only, not derived); connect to video-game learning analogy</dd>
+            <dt>Math Concepts</dt>
+            <dd>Feedback loops, gradient descent (named only)</dd>
+            <dt>History Vignette</dt>
+            <dd>Ada Lovelace (1815&ndash;1852) &mdash; first programmer, 30s</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot learning panels: confident &rarr; wrong &rarr; confused &rarr; improving</dd>
+            <dt>Engagement</dt>
+            <dd>&ldquo;Think of it like learning a video game &mdash; you die, adjust, try again&rdquo;</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">5</span>
+          <h3>Interactive &mdash; &ldquo;Spot the Fraud&rdquo;</h3>
+          <span class="time-badge">17:00 &ndash; 21:00 (4 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">The AI&rsquo;s job is harder than it looks.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Warmup example + 3 voting scenarios: Alex buys a guitar in another city; Tomoko buys 50 gift cards at 3 AM; Karla has small charges in 4 countries</dd>
+            <dt>Math Concepts</dt>
+            <dd>Applied Bayes, false positives, decision under uncertainty</dd>
+            <dt>History Vignette</dt>
+            <dd>Abraham Wald (1902&ndash;1950) &mdash; survivorship bias (WWII bombers), 45s</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot false positive: &ldquo;FRAUD DETECTED!&rdquo; &hellip; &ldquo;suspicious flowers.&rdquo;</dd>
+            <dt>Engagement</dt>
+            <dd>Audience vote &mdash; Fraud or Legit? Hands up for each scenario</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">6</span>
+          <h3>Credit Scoring &mdash; &ldquo;Your Financial Report Card&rdquo;</h3>
+          <span class="time-badge">21:00 &ndash; 28:00 (7 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">Credit scores are weighted averages &mdash; same math as your school grades.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Weighted average formula; linear regression; connect school grades to credit factors; simplified &ldquo;calculate your own score&rdquo; exercise</dd>
+            <dt>Math Concepts</dt>
+            <dd>Weighted average, linear regression</dd>
+            <dt>History Vignette</dt>
+            <dd>Andrey Markov (1856&ndash;1922) &mdash; sequential patterns / Markov chains, 35s</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>Fortune teller cartoon; weighted average horror (&ldquo;Homework is only 10%?!&rdquo;)</dd>
+            <dt>Engagement</dt>
+            <dd>&ldquo;Calculate your own credit score&rdquo; exercise with simplified weights</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">7</span>
+          <h3>Interactive &mdash; Live Demo</h3>
+          <span class="time-badge">28:00 &ndash; 32:00 (4 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">AI is learnable, buildable, and accessible.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>3-tier demo approach: (1) pre-recorded screencast (safest), (2) live app demo (if tech permits), (3) static slide walkthrough (fallback). Callbacks to all prior formulas.</dd>
+            <dt>Math Concepts</dt>
+            <dd>Callback to Bayes, sigmoid, weighted average, linear regression</dd>
+            <dt>History Vignette</dt>
+            <dd>&mdash;</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot observes: &ldquo;Based on my analysis, you need 47 houseplants.&rdquo;</dd>
+            <dt>Engagement</dt>
+            <dd>Thumbs up/down &mdash; predict the AI&rsquo;s output before it appears</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 8 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">8</span>
+          <h3>Recommendation Engines</h3>
+          <span class="time-badge">32:00 &ndash; 34:00 (2 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">Same math as TikTok/Spotify powers financial recommendations.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Dot product for similarity; cosine similarity for normalizing; connect to how music/video recommendations work, then pivot to financial products</dd>
+            <dt>Math Concepts</dt>
+            <dd>Dot product, cosine similarity</dd>
+            <dt>History Vignette</dt>
+            <dd>&mdash;</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot recommends 47 houseplants</dd>
+            <dt>Engagement</dt>
+            <dd>&ldquo;You and your friend both like savings accounts and crypto &mdash; how similar are you?&rdquo;</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 9 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">9</span>
+          <h3>Interactive &mdash; &ldquo;Design Your Own AI&rdquo;</h3>
+          <span class="time-badge">34:00 &ndash; 37:00 (3 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">Understanding AI means understanding the human choices behind it.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>USE IT / SKIP IT rapid-fire exercise &mdash; audience votes on which data an AI should use for credit decisions (income? social media? zip code? GPA?)</dd>
+            <dt>Math Concepts</dt>
+            <dd>Callback to weighted averages &mdash; what weights would YOU choose?</dd>
+            <dt>History Vignette</dt>
+            <dd>Lovelace + Nightingale callback (15s) &mdash; diverse thinkers</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot shaking head at social media data</dd>
+            <dt>Engagement</dt>
+            <dd>Shout response &mdash; &ldquo;USE IT&rdquo; or &ldquo;SKIP IT&rdquo; for each data type</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Section 10 -->
+      <div class="breakdown-card scroll-reveal">
+        <div class="card-header">
+          <span class="section-number">10</span>
+          <h3>The Bigger Picture + Closing</h3>
+          <span class="time-badge">37:00 &ndash; 42:00 (5 min)</span>
+        </div>
+        <div class="card-body">
+          <p class="key-msg">Math is a superpower. AI needs ethical thinkers.</p>
+          <dl class="detail-grid">
+            <dt>Content</dt>
+            <dd>Career paths (data scientist, quant analyst, AI ethics officer, fintech founder, risk analyst); ethics reflection; &ldquo;What will YOU build?&rdquo; closing question</dd>
+            <dt>Math Concepts</dt>
+            <dd>Recap of all formulas; emphasis on math as the common thread</dd>
+            <dt>History Vignette</dt>
+            <dd>Lovelace + Nightingale callback &mdash; math has always needed diverse thinkers</dd>
+            <dt>Humor / Cartoon</dt>
+            <dd>BankBot Final Form: graduation cap, &ldquo;I am 73% confident. But I defer to the human.&rdquo;</dd>
+            <dt>Engagement</dt>
+            <dd>&ldquo;What will YOU build?&rdquo; &mdash; closing question left with the audience</dd>
+          </dl>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== 8. TIMING TABLE ===== -->
+    <section id="timing" class="plan-section" style="background:#ffffff;">
+      <h2>Full Timing Table</h2>
+      <p class="section-subtitle">Complete minute-by-minute breakdown</p>
+
+      <div class="math-table-wrapper scroll-reveal">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Opening Hook</td>
+              <td>0:00 &ndash; 3:00</td>
+              <td>3 min</td>
+              <td>50&ndash;200 AI decisions factoid, BankBot intro, hand raise</td>
+            </tr>
+            <tr>
+              <td>2. Think Like an AI</td>
+              <td>3:00 &ndash; 7:00</td>
+              <td>4 min</td>
+              <td>Pattern recognition, cafeteria analogy, Nightingale vignette</td>
+            </tr>
+            <tr>
+              <td>3. Fraud Detection</td>
+              <td>7:00 &ndash; 15:30</td>
+              <td>8.5 min</td>
+              <td>Bayes, bell curve, sigmoid, decision boundaries; Gauss / Bayes / Rosenblatt vignettes</td>
+            </tr>
+            <tr>
+              <td>4. How AI Learns</td>
+              <td>15:30 &ndash; 17:00</td>
+              <td>1.5 min</td>
+              <td>Feedback loops, gradient descent (named), Lovelace vignette</td>
+            </tr>
+            <tr>
+              <td>5. Spot the Fraud</td>
+              <td>17:00 &ndash; 21:00</td>
+              <td>4 min</td>
+              <td>Interactive voting (3 scenarios), Wald vignette, BankBot false positive</td>
+            </tr>
+            <tr>
+              <td>6. Credit Scoring</td>
+              <td>21:00 &ndash; 28:00</td>
+              <td>7 min</td>
+              <td>Weighted average, linear regression, Markov vignette, calculate-your-score exercise</td>
+            </tr>
+            <tr>
+              <td>7. Live Demo</td>
+              <td>28:00 &ndash; 32:00</td>
+              <td>4 min</td>
+              <td>3-tier demo, formula callbacks, thumbs up/down predictions</td>
+            </tr>
+            <tr>
+              <td>8. Recommendations</td>
+              <td>32:00 &ndash; 34:00</td>
+              <td>2 min</td>
+              <td>Dot product, cosine similarity, 47 houseplants</td>
+            </tr>
+            <tr>
+              <td>9. Design Your AI</td>
+              <td>34:00 &ndash; 37:00</td>
+              <td>3 min</td>
+              <td>USE IT / SKIP IT exercise, Lovelace+Nightingale callback</td>
+            </tr>
+            <tr>
+              <td>10. Bigger Picture + Closing</td>
+              <td>37:00 &ndash; 42:00</td>
+              <td>5 min</td>
+              <td>Ethics, careers, BankBot finale, &ldquo;What will YOU build?&rdquo;</td>
+            </tr>
+            <tr>
+              <td>Buffer / Q&amp;A</td>
+              <td>42:00 &ndash; 45:00</td>
+              <td>3 min</td>
+              <td>Questions, overflow, or revisit strongest audience moment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 9. BACKUP & FLEXIBILITY ===== -->
+    <section id="backup" class="plan-section">
+      <h2>Backup &amp; Flexibility Notes</h2>
+      <p class="section-subtitle">What to cut, what to expand, and how to handle the unexpected</p>
+
+      <div class="backup-grid scroll-reveal">
+
+        <div class="backup-card">
+          <h4>Running Short?</h4>
+          <ul>
+            <li>Expand the Live Demo (Sec 7) with a second example</li>
+            <li>Add a deeper Wald anecdote in Sec 5</li>
+            <li>Extend USE IT / SKIP IT with more data types</li>
+            <li>Let Spot the Fraud debate run longer</li>
+          </ul>
+        </div>
+
+        <div class="backup-card">
+          <h4>Running Long?</h4>
+          <ul>
+            <li>Cut the Markov poetry detail in Sec 6 to a single sentence</li>
+            <li>Shorten Sec 8 (Recommendations) to one formula instead of two</li>
+            <li>Skip the sigmoid derivative (bonus formula) entirely</li>
+            <li>Compress the Wald anecdote to one sentence</li>
+          </ul>
+        </div>
+
+        <div class="backup-card">
+          <h4>Tech Failure During Demo?</h4>
+          <ul>
+            <li>Fall back to pre-recorded screencast (Tier 1)</li>
+            <li>Then to static slide walkthrough (Tier 3)</li>
+            <li>Never waste audience time troubleshooting</li>
+          </ul>
+        </div>
+
+        <div class="backup-card">
+          <h4>Audience Very Engaged?</h4>
+          <ul>
+            <li>Let the Spot the Fraud voting (Sec 5) run longer &mdash; debate is valuable</li>
+            <li>Add a 4th voting scenario if time permits</li>
+            <li>Expand the &ldquo;Design Your AI&rdquo; exercise with additional data types</li>
+          </ul>
+        </div>
+
+        <div class="backup-card">
+          <h4>Audience Quiet?</h4>
+          <ul>
+            <li>Lean harder on BankBot humor</li>
+            <li>The false-positive flowers joke is a reliable laugh line</li>
+            <li>The 47 houseplants recommendation always gets a reaction</li>
+            <li>Switch from hand raises to thumbs up/down (lower social barrier)</li>
+          </ul>
+        </div>
+
+        <div class="backup-card">
+          <h4>Slide Count Estimate</h4>
+          <p>Approximately <strong>32 slides</strong> total, averaging ~1.3 min/slide. Heavier sections (Fraud Detection, Credit Scoring) use 5&ndash;7 slides each; lighter sections (Opening, Closing) use 2&ndash;3.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </article>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <p><a href="https://github.com/Digital-AI-Finance" target="_blank" rel="noopener noreferrer">Digital-AI-Finance</a></p>
+      <p>2026 &mdash; How Math Powers AI in Everyday Finance</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ---- Mobile nav toggle ----
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks  = document.querySelector('.nav-links');
+
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('active');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          const navbar = document.querySelector('#navbar');
+          if (navbar && !navbar.contains(e.target)) {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // ---- Navbar background on scroll ----
+      const navbar = document.querySelector('#navbar');
+      const hero   = document.querySelector('.plan-hero');
+
+      if (navbar && hero) {
+        let ticking = false;
+        const updateNavbar = () => {
+          if (window.scrollY > hero.offsetHeight * 0.5) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+          ticking = false;
+        };
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(updateNavbar);
+            ticking = true;
+          }
+        }, { passive: true });
+        updateNavbar();
+      }
+
+      // ---- Scroll-reveal ----
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        revealElements.forEach(el => revealObserver.observe(el));
+      }
+
+      // ---- KaTeX auto-render ----
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true  },
+            { left: '$',  right: '$',  display: false }
+          ],
+          throwOnError: false
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>

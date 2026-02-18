@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Design Plan &mdash; Math + AI + Finance</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared site CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Plan-page overrides -->
+  <style>
+    /* ---------- PLAN-PAGE TOKENS ---------- */
+    :root {
+      --vp-dark:       #1A1A2E;
+      --vp-accent:     #E94560;
+      --vp-blue:       #0F3460;
+      --vp-positive:   #16C79A;
+      --vp-warning:    #F5A623;
+      --vp-light:      #F0F0F5;
+      --vp-gold:       #FFD700;
+      --vp-bayes-gold: #FFD700;
+      --vp-bayes-red:  #E94560;
+      --vp-bayes-blue: #4A90D9;
+      --vp-bayes-green:#16C79A;
+    }
+
+    /* ---------- COMPACT HERO ---------- */
+    #hero {
+      min-height: auto;
+      padding: calc(64px + var(--space-xl)) var(--space-lg) var(--space-xl);
+    }
+    #hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-sm); }
+    #hero .subtitle { margin-bottom: var(--space-md); }
+    .scroll-indicator { display: none; }
+
+    /* ---------- PLAN CONTENT CONTAINER ---------- */
+    .plan-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* ---------- PLAN SECTION ---------- */
+    .plan-section {
+      padding: var(--space-2xl) 0;
+    }
+    .plan-section:nth-child(odd)  { background: var(--color-bg); }
+    .plan-section:nth-child(even) { background: #ffffff; }
+
+    .plan-section > .plan-content > h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.01em;
+    }
+    .plan-section > .plan-content > .section-subtitle {
+      text-align: left;
+      margin-left: 0;
+      margin-bottom: var(--space-xl);
+    }
+
+    /* ---------- SUB-SECTION HEADING ---------- */
+    .plan-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: var(--space-xl) 0 var(--space-md);
+    }
+    .plan-section h3:first-child { margin-top: 0; }
+
+    /* ---------- SPEC TABLE ---------- */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin-bottom: var(--space-lg);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .spec-table thead th {
+      background: var(--color-primary);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      white-space: nowrap;
+    }
+    .spec-table tbody td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+      vertical-align: top;
+    }
+    .spec-table tbody tr:nth-child(even) { background: rgba(232,234,246,0.2); }
+    .spec-table tbody tr:last-child td   { border-bottom: none; }
+    .spec-table tbody tr:hover            { background: rgba(232,234,246,0.4); }
+
+    /* Color swatch in table */
+    .swatch {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+    .swatch-lg {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+    code.hex {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      background: var(--color-math-bg);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    /* ---------- SECTION SUMMARY CARDS ---------- */
+    .section-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .section-summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1200px) {
+      .section-summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .section-summary-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .section-summary-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .section-summary-card .card-header {
+      padding: var(--space-sm) var(--space-md);
+    }
+    .section-summary-card .card-header h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      flex: 1;
+      color: #ffffff;
+    }
+    .section-summary-card .card-body {
+      padding: var(--space-md);
+    }
+    .section-summary-card .card-body .meta {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-sm);
+    }
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .pill-time {
+      background: var(--color-accent);
+      color: #ffffff;
+    }
+    .pill-slides {
+      background: var(--color-secondary);
+      color: #ffffff;
+    }
+    .section-summary-card .card-body ul {
+      font-size: 0.82rem;
+      color: var(--color-text-light);
+      margin: 0;
+      padding-left: 1.1em;
+    }
+    .section-summary-card .card-body li {
+      margin-bottom: 4px;
+      line-height: 1.45;
+    }
+
+    /* ---------- CHARACTER BIBLE ---------- */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-md);
+    }
+    .emotion-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--emotion-color, var(--color-border));
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .emotion-card:hover { transform: translateY(-2px); }
+    .emotion-card .emoji { font-size: 2.5rem; line-height: 1; margin-bottom: var(--space-xs); }
+    .emotion-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--color-text); margin-bottom: 4px; }
+    .emotion-card p { font-size: 0.8rem; color: var(--color-text-light); line-height: 1.4; }
+
+    /* ---------- DESIGN RULES BOX ---------- */
+    .rules-box {
+      background: var(--color-math-bg);
+      border-left: 4px solid var(--color-secondary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.875rem;
+      color: var(--color-text);
+    }
+    .rules-box ul { padding-left: 1.2em; margin: var(--space-sm) 0 0; }
+    .rules-box li { margin-bottom: var(--space-xs); line-height: 1.5; }
+
+    /* ---------- NUMBERED LIST ---------- */
+    .viz-list {
+      counter-reset: viz;
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+    @media (min-width: 768px) {
+      .viz-list { grid-template-columns: repeat(2, 1fr); }
+    }
+    .viz-list li {
+      counter-increment: viz;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--color-border);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      transition: background 0.2s ease;
+    }
+    .viz-list li:hover { background: var(--color-math-bg); }
+    .viz-list li::before {
+      content: counter(viz);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--color-secondary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    /* ---------- SIMPLE ITEM LIST ---------- */
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .item-list li {
+      position: relative;
+      padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+    .item-list li:last-child { border-bottom: none; }
+    .item-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: calc(var(--space-sm) + 6px);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+    }
+    .item-list li strong { color: var(--color-primary); }
+
+    /* ---------- PRIORITY MATRIX ---------- */
+    .priority-row {
+      display: flex;
+      align-items: stretch;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+    .priority-card {
+      flex: 1;
+      min-width: 260px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+    .priority-card .priority-header {
+      padding: var(--space-sm) var(--space-md);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #ffffff;
+    }
+    .priority-card .priority-header.must    { background: var(--vp-accent); }
+    .priority-card .priority-header.nice    { background: var(--color-accent); }
+    .priority-card .priority-header.dream   { background: var(--color-secondary); }
+    .priority-card ul {
+      padding: var(--space-md);
+      padding-left: calc(var(--space-md) + 1.2em);
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--color-text-light);
+    }
+    .priority-card li { margin-bottom: var(--space-xs); line-height: 1.5; }
+
+    /* ---------- FORMULA REF BLOCK ---------- */
+    .formula-ref {
+      text-align: center;
+      padding: var(--space-md);
+      background: var(--color-math-bg);
+      border-radius: var(--radius-md);
+      margin: var(--space-md) 0;
+      overflow-x: auto;
+    }
+
+    /* ---------- PROPS GRID ---------- */
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+    .prop-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .prop-card:hover { transform: translateY(-2px); }
+    .prop-card .prop-icon { font-size: 2.25rem; margin-bottom: var(--space-xs); }
+    .prop-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--color-primary); margin-bottom: 4px; }
+    .prop-card p { font-size: 0.8rem; color: var(--color-text-light); line-height: 1.4; }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <a href="../index.html" class="nav-brand">Math + AI + Finance</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="talk-plan.html">Talk Plan</a>
+      <a href="deployment-plan.html">Deployment Plan</a>
+      <a href="visual-plan.html" class="active">Visual Plan</a>
+      <a href="../index.html">Main Site</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header id="hero">
+    <h1>Visual Design Plan</h1>
+    <p class="subtitle">Complete design system, slide-by-slide visual inventory, character bible, and asset specifications for the talk</p>
+  </header>
+
+
+  <!-- ================================================================
+       1. GLOBAL DESIGN SYSTEM
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>1. Global Design System</h2>
+      <p class="section-subtitle">Consistent tokens governing every slide: colors, type, layout, motion, and templates.</p>
+
+      <!-- Color Palette -->
+      <h3>Color Palette</h3>
+      <div class="math-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr><th>Role</th><th>Swatch</th><th>Hex</th><th>Usage</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primary Dark</td>
+              <td><span class="swatch" style="background:#1A1A2E;"></span></td>
+              <td><code class="hex">#1A1A2E</code></td>
+              <td>Slide backgrounds, title bars, deep contrast</td>
+            </tr>
+            <tr>
+              <td>Primary Accent</td>
+              <td><span class="swatch" style="background:#E94560;"></span></td>
+              <td><code class="hex">#E94560</code></td>
+              <td>Call-outs, fraud highlights, BankBot's tie</td>
+            </tr>
+            <tr>
+              <td>Secondary Accent</td>
+              <td><span class="swatch" style="background:#0F3460;"></span></td>
+              <td><code class="hex">#0F3460</code></td>
+              <td>Supporting headers, data axes, info panels</td>
+            </tr>
+            <tr>
+              <td>Positive / Safe</td>
+              <td><span class="swatch" style="background:#16C79A;"></span></td>
+              <td><code class="hex">#16C79A</code></td>
+              <td>"Approved" states, correct answers, growth indicators</td>
+            </tr>
+            <tr>
+              <td>Warning</td>
+              <td><span class="swatch" style="background:#F5A623;"></span></td>
+              <td><code class="hex">#F5A623</code></td>
+              <td>Caution states, "maybe" zone, time badges</td>
+            </tr>
+            <tr>
+              <td>Neutral Light</td>
+              <td><span class="swatch" style="background:#F0F0F5; border-color:#ccc;"></span></td>
+              <td><code class="hex">#F0F0F5</code></td>
+              <td>Slide content backgrounds, card fills</td>
+            </tr>
+            <tr>
+              <td>Formula Gold</td>
+              <td><span class="swatch" style="background:#FFD700;"></span></td>
+              <td><code class="hex">#FFD700</code></td>
+              <td>Formula highlight backgrounds, math emphasis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Bayes Color-Coding System</h3>
+      <div class="math-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr><th>Term</th><th>Swatch</th><th>Hex</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$$P(\text{Fraud} \mid \text{Data})$$</td>
+              <td><span class="swatch" style="background:#FFD700;"></span></td>
+              <td><code class="hex">#FFD700</code> Gold</td>
+              <td>Posterior &mdash; what we want to know</td>
+            </tr>
+            <tr>
+              <td>$$P(\text{Data} \mid \text{Fraud})$$</td>
+              <td><span class="swatch" style="background:#E94560;"></span></td>
+              <td><code class="hex">#E94560</code> Red</td>
+              <td>Likelihood &mdash; how well evidence fits fraud</td>
+            </tr>
+            <tr>
+              <td>$$P(\text{Fraud})$$</td>
+              <td><span class="swatch" style="background:#4A90D9;"></span></td>
+              <td><code class="hex">#4A90D9</code> Blue</td>
+              <td>Prior &mdash; how common fraud is</td>
+            </tr>
+            <tr>
+              <td>$$P(\text{Data})$$</td>
+              <td><span class="swatch" style="background:#16C79A;"></span></td>
+              <td><code class="hex">#16C79A</code> Green</td>
+              <td>Evidence &mdash; how common this pattern is overall</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Typography -->
+      <h3>Typography</h3>
+      <div class="math-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr><th>Role</th><th>Typeface</th><th>Weight</th><th>Size Range</th><th>Usage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Slide Title</td><td>Inter / Montserrat</td><td>Bold (700)</td><td>44 &ndash; 56 pt</td><td>Section openers, major headings</td></tr>
+            <tr><td>Body Text</td><td>Inter</td><td>Regular (400)</td><td>24 &ndash; 32 pt</td><td>Explanations, bullet points</td></tr>
+            <tr><td>Formula Display</td><td>STIX Two Math</td><td>Regular</td><td>36 &ndash; 48 pt</td><td>All mathematical formulas</td></tr>
+            <tr><td>Cartoon / BankBot Text</td><td>xkcd Script</td><td>Regular</td><td>20 &ndash; 28 pt</td><td>Speech bubbles, informal annotations</td></tr>
+            <tr><td>Data Labels</td><td>Inter</td><td>Medium (500)</td><td>16 &ndash; 20 pt</td><td>Chart axes, data point labels</td></tr>
+            <tr><td>Source / Citation</td><td>Inter</td><td>Light Italic (300i)</td><td>12 &ndash; 14 pt</td><td>Image credits, footnotes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Layout Grid -->
+      <h3>Layout Grid</h3>
+      <div class="rules-box">
+        <strong>16:9 Aspect Ratio (1920 x 1080 px)</strong>
+        <ul>
+          <li><strong>Safe margins:</strong> 80 px on all sides &mdash; no essential content in the outer 4%</li>
+          <li><strong>Title zone:</strong> top 180 px reserved for section titles and progress bar</li>
+          <li><strong>Content zone:</strong> 1760 x 720 px working area for visuals, text, and formulas</li>
+          <li><strong>Footer strip:</strong> bottom 60 px for BankBot micro-reactions and slide numbers</li>
+          <li><strong>Column splits:</strong> 50/50 for comparisons, 60/40 for text-visual, 30/70 for formula-reveal</li>
+        </ul>
+      </div>
+
+      <!-- Animation Philosophy -->
+      <h3>Animation Philosophy</h3>
+      <div class="rules-box">
+        <ul>
+          <li><strong>Build, don't flash:</strong> content appears in logical reading order, never all at once</li>
+          <li><strong>Settle, then speak:</strong> animation completes 0.5 s before the speaker references the element</li>
+          <li><strong>Direction = meaning:</strong> left-to-right = time progression; bottom-to-top = increase; fade-in = new idea</li>
+          <li><strong>Consistent transitions:</strong> 400 ms ease-out for reveals; 200 ms for micro-interactions</li>
+          <li><strong>No fly-ins:</strong> never slide content from off-screen edges; use opacity + short translate only</li>
+        </ul>
+      </div>
+
+      <!-- Slide Template Variants -->
+      <h3>Slide Template Variants</h3>
+      <div class="math-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr><th>Template</th><th>Layout</th><th>Usage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Title</strong></td><td>Full-bleed background, centered text, badges</td><td>Section openers, act transitions</td></tr>
+            <tr><td><strong>Story</strong></td><td>Left: narrative text; Right: character illustration</td><td>BankBot dialogues, Mia's story</td></tr>
+            <tr><td><strong>Data Viz</strong></td><td>70% chart area; 30% annotation panel</td><td>All charts, scatter plots, distributions</td></tr>
+            <tr><td><strong>Formula Reveal</strong></td><td>30% context; 70% formula with color-coding</td><td>Bayes, sigmoid, weighted avg, etc.</td></tr>
+            <tr><td><strong>Cartoon</strong></td><td>60% illustration; 40% caption/quote</td><td>BankBot moments, historical vignettes</td></tr>
+            <tr><td><strong>Comparison</strong></td><td>50/50 split with divider line</td><td>You vs AI, Grade vs Credit, before/after</td></tr>
+            <tr><td><strong>Interactive</strong></td><td>Central prompt with voting UI overlay</td><td>Hand raise, Spot the Fraud, USE IT / SKIP IT</td></tr>
+            <tr><td><strong>Timeline</strong></td><td>Horizontal lane with date markers</td><td>Mathematician timeline, morning timeline</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       2. SECTION-BY-SECTION VISUAL INVENTORY
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>2. Section-by-Section Visual Inventory</h2>
+      <p class="section-subtitle">Summary of every section's slide count and key visual elements. ~32 slides total.</p>
+
+      <div class="section-summary-grid">
+
+        <!-- Section 1 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">01</span>
+            <h4>The Opening Hook</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">0:00 &ndash; 3:00</span>
+              <span class="pill pill-slides">3 slides</span>
+            </div>
+            <ul>
+              <li>Full-bleed <strong>title slide</strong> with talk name and badges</li>
+              <li><strong>Morning Timeline Infographic</strong> &mdash; horizontal, 5 stations showing AI decisions before breakfast</li>
+              <li><strong>BankBot Introduction</strong> &mdash; character reveal with speech bubble</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">02</span>
+            <h4>"You Already Think Like an AI"</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">3:00 &ndash; 7:00</span>
+              <span class="pill pill-slides">3 slides</span>
+            </div>
+            <ul>
+              <li><strong>Split-Screen Comparison</strong> &mdash; "You" (cafeteria) vs "AI" (data center)</li>
+              <li><strong>Nightingale's Rose Diagram</strong> recreation &mdash; polar area chart</li>
+              <li><strong>Bridge to Finance</strong> &mdash; transition visual connecting everyday patterns to financial data</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">03</span>
+            <h4>Fraud Detection</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">7:00 &ndash; 15:30</span>
+              <span class="pill pill-slides">7 slides</span>
+            </div>
+            <ul>
+              <li><strong>Opening Story (Mia)</strong> &mdash; character with spending scenario</li>
+              <li><strong>Scatter Plot</strong> &mdash; Mia's spending with normal vs anomalous points</li>
+              <li><strong>Animated Bell Curve</strong> &mdash; builds from data points to full distribution</li>
+              <li><strong>Bayes' Theorem Reveal</strong> &mdash; color-coded formula, step-by-step build</li>
+              <li><strong>Sigmoid Function Reveal</strong> &mdash; S-curve animation from 0 to 1</li>
+              <li><strong>BankBot's Nightmare</strong> cartoon &mdash; sweating on the decision boundary</li>
+              <li><strong>Rosenblatt's Perceptron</strong> &mdash; simple neuron diagram</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">04</span>
+            <h4>"How Does the AI Learn?"</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">15:30 &ndash; 17:00</span>
+              <span class="pill pill-slides">2 slides</span>
+            </div>
+            <ul>
+              <li><strong>BankBot Learning Panels</strong> &mdash; 4-panel comic strip (confident, wrong, confused, improving)</li>
+              <li><strong>Ada Lovelace Vignette</strong> &mdash; portrait + Jacquard loom connection</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">05</span>
+            <h4>Interactive: "Spot the Fraud"</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">17:00 &ndash; 21:00</span>
+              <span class="pill pill-slides">3 slides</span>
+            </div>
+            <ul>
+              <li><strong>"Spot the Fraud" 3 Scenario Cards</strong> &mdash; Alex, Tomoko, Karla</li>
+              <li><strong>Wald's Bomber Diagram</strong> &mdash; survivorship bias visual</li>
+              <li><strong>BankBot False Positive</strong> &mdash; "FRAUD DETECTED!... suspicious flowers"</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">06</span>
+            <h4>Credit Scoring</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">21:00 &ndash; 28:00</span>
+              <span class="pill pill-slides">5 slides</span>
+            </div>
+            <ul>
+              <li><strong>Credit Score Comparison</strong> &mdash; school grade vs credit score side-by-side</li>
+              <li><strong>Weight Slider Visualization</strong> &mdash; interactive-style weight adjustment bars</li>
+              <li><strong>Linear Regression Scatter</strong> &mdash; data points with best-fit line building</li>
+              <li><strong>Markov Chain Diagram</strong> &mdash; state transitions for payment patterns</li>
+              <li><strong>Fortune Teller Cartoon</strong> &mdash; BankBot predicting the future</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">07</span>
+            <h4>Live Demo</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">28:00 &ndash; 32:00</span>
+              <span class="pill pill-slides">3 slides</span>
+            </div>
+            <ul>
+              <li><strong>Live Demo UI Mockup</strong> &mdash; simplified app interface showing inputs/outputs</li>
+              <li>Fallback: pre-recorded screencast embed</li>
+              <li>Fallback: static slide walkthrough with annotated screenshots</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">08</span>
+            <h4>Recommendation Engines</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">32:00 &ndash; 34:00</span>
+              <span class="pill pill-slides">2 slides</span>
+            </div>
+            <ul>
+              <li><strong>Dot Product Visual</strong> &mdash; matching preferences diagram</li>
+              <li><strong>Cosine Similarity Angle Diagram</strong> &mdash; two vectors with angle labeled</li>
+              <li>BankBot recommends 47 houseplants (illustration overlay)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">09</span>
+            <h4>"Design Your Own AI"</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">34:00 &ndash; 37:00</span>
+              <span class="pill pill-slides">2 slides</span>
+            </div>
+            <ul>
+              <li>USE IT / SKIP IT rapid-fire voting interface</li>
+              <li>Data categories displayed as cards the audience evaluates</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="section-summary-card">
+          <div class="card-header">
+            <span class="section-number">10</span>
+            <h4>The Bigger Picture + Closing</h4>
+          </div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="pill pill-time">37:00 &ndash; 42:00</span>
+              <span class="pill pill-slides">3 slides</span>
+            </div>
+            <ul>
+              <li><strong>Career Map Constellation</strong> &mdash; roles radiating from a central "Math + AI" node</li>
+              <li><strong>Math Cheat Sheet Layout</strong> &mdash; all formulas on one takeaway slide</li>
+              <li><strong>BankBot Graduation</strong> &mdash; cap and diploma, final quote</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /section-summary-grid -->
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       3. BANKBOT CHARACTER BIBLE
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>3. BankBot Character Bible</h2>
+      <p class="section-subtitle">Detailed appearance and behavioral spec for the talk's recurring AI mascot.</p>
+
+      <h3>Core Appearance</h3>
+      <div class="rules-box">
+        <ul>
+          <li><strong>Shape:</strong> Simple geometric robot &mdash; round head, rectangular body, thin limbs</li>
+          <li><strong>Accessory:</strong> Banker's necktie (red, <code class="hex">#E94560</code>) &mdash; always visible</li>
+          <li><strong>Eyes:</strong> Friendly round eyes, primary tool for expressing emotion</li>
+          <li><strong>Style:</strong> Always rendered in line art &mdash; clean, monochrome except for the red tie</li>
+          <li><strong>Size:</strong> Never larger than 15% of the slide area</li>
+          <li><strong>Speech bubbles:</strong> White fill with dark text; rounded rectangle; tail points to BankBot's head</li>
+          <li><strong>Expressions:</strong> Conveyed exclusively through eyes and mouth &mdash; no limb gestures for emotion</li>
+        </ul>
+      </div>
+
+      <h3>Eight Emotional States</h3>
+      <div class="character-grid">
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-blue);">
+          <div class="emoji">&#129302;</div>
+          <h4>Confident</h4>
+          <p>Wide eyes, slight smile. Used in Section 1 intro.</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-accent);">
+          <div class="emoji">&#128527;</div>
+          <h4>Cocky</h4>
+          <p>Half-lidded eyes, smirk. "Too easy. Next." (Sec 4 warmup)</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-warning);">
+          <div class="emoji">&#128560;</div>
+          <h4>Stressed</h4>
+          <p>Sweat drops, wide alarmed eyes. Decision boundary scene (Sec 3).</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-positive);">
+          <div class="emoji">&#129300;</div>
+          <h4>Learning</h4>
+          <p>Thoughtful look, one eye slightly squinted. Growth moment (Sec 3.5).</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-warning);">
+          <div class="emoji">&#128563;</div>
+          <h4>Humbled</h4>
+          <p>Embarrassed blush, downcast eyes. False positive moment (Sec 5).</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-positive);">
+          <div class="emoji">&#127793;</div>
+          <h4>Observant</h4>
+          <p>Binoculars or magnifying glass. 47 houseplants recommendation (Sec 8).</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--vp-accent);">
+          <div class="emoji">&#129320;</div>
+          <h4>Critical</h4>
+          <p>Raised eyebrow, head shake. Ethics discussion, rejects social media data (Sec 9).</p>
+        </div>
+
+        <div class="emotion-card" style="--emotion-color: var(--color-secondary);">
+          <div class="emoji">&#127891;</div>
+          <h4>Wise</h4>
+          <p>Graduation cap, serene smile. "I defer to the human." (Sec 10).</p>
+        </div>
+
+      </div>
+
+      <h3>Design Rules</h3>
+      <div class="rules-box">
+        <ul>
+          <li>Always line art; never solid-filled or 3D-rendered</li>
+          <li>Red tie (<code class="hex">#E94560</code>) always visible regardless of pose</li>
+          <li>Facial expressions via eyes and mouth only &mdash; no exaggerated limb poses</li>
+          <li>Maximum size: 15% of slide area; consistent scale across all slides</li>
+          <li>Monochrome body except for the red tie; no background colors on the character</li>
+          <li>Speech bubbles: white (#FFFFFF) fill, dark text (#1A1A2E), 8px corner radius</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       4. DATA VISUALIZATIONS DEEP SPEC
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>4. Data Visualizations Deep Spec</h2>
+      <p class="section-subtitle">17 distinct data visualizations required across all sections.</p>
+
+      <ol class="viz-list">
+        <li><strong>Morning Timeline</strong> &mdash; horizontal infographic with 5 stations (alarm, commute, payment, feed, school)</li>
+        <li><strong>Split-Screen: You vs AI</strong> &mdash; left: cafeteria scene; right: data center making same decision</li>
+        <li><strong>Nightingale's Rose Diagram</strong> &mdash; faithful recreation of polar area chart (1854 data)</li>
+        <li><strong>Mia's Spending Scatter Plot</strong> &mdash; normal transactions in blue, anomalies in red, axes = amount x time</li>
+        <li><strong>Animated Bell Curve</strong> &mdash; builds from individual data points into full Gaussian; highlights sigma zones</li>
+        <li><strong>Bayes' Theorem Color-Coded Formula</strong> &mdash; each term colored per Bayes palette; step-by-step numeric build</li>
+        <li><strong>Sigmoid S-Curve</strong> &mdash; animated trace from left asymptote through inflection to right; threshold line at 0.5</li>
+        <li><strong>"Spot the Fraud" 3 Scenario Cards</strong> &mdash; each card: icon, name, transaction description, Fraud/Legit vote button</li>
+        <li><strong>Credit Score Comparison</strong> &mdash; school grade weights (left) vs credit score weights (right) in matching bar charts</li>
+        <li><strong>Weight Slider Visualization</strong> &mdash; horizontal sliders for each factor; total bar updates in real-time</li>
+        <li><strong>Linear Regression Scatter</strong> &mdash; data points appear first, then best-fit line animates through them</li>
+        <li><strong>Markov Chain Diagram</strong> &mdash; state bubbles (On-time, Late, Default) with transition arrows and probabilities</li>
+        <li><strong>Live Demo UI Mockup</strong> &mdash; simplified interface: input fields, "Analyze" button, output panel with score + verdict</li>
+        <li><strong>Dot Product Visual</strong> &mdash; two preference vectors shown as bar pairs; multiply-and-sum animation</li>
+        <li><strong>Cosine Similarity Angle Diagram</strong> &mdash; two vectors from origin with angle theta labeled; similarity score readout</li>
+        <li><strong>Career Map Constellation</strong> &mdash; central "Math + AI" node with radiating career paths (data scientist, quant, ethicist, etc.)</li>
+        <li><strong>Math Cheat Sheet Layout</strong> &mdash; all 7 formulas in a 2-column grid; color-coded by section</li>
+      </ol>
+
+      <h3>Example: Bayes Color-Coded Build</h3>
+      <div class="formula-ref">
+        $$\color{#FFD700}{P(\text{Fraud} \mid \text{Data})} = \frac{\color{#E94560}{P(\text{Data} \mid \text{Fraud})} \cdot \color{#4A90D9}{P(\text{Fraud})}}{\color{#16C79A}{P(\text{Data})}}$$
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       5. HISTORICAL IMAGERY RESEARCH
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>5. Historical Imagery Research</h2>
+      <p class="section-subtitle">8 mathematician visuals needed &mdash; portraits, diagrams, and artifacts.</p>
+
+      <ul class="item-list">
+        <li><strong>Thomas Bayes (1701&ndash;1761)</strong> &mdash; portrait (idealized, no verified likeness exists); paired with probability tree diagram</li>
+        <li><strong>Carl Friedrich Gauss (1777&ndash;1855)</strong> &mdash; portrait; paired with humorous "hair matches bell curve" overlay</li>
+        <li><strong>Ada Lovelace (1815&ndash;1852)</strong> &mdash; Chalon portrait; paired with Jacquard loom illustration and her Note G algorithm</li>
+        <li><strong>Florence Nightingale (1820&ndash;1910)</strong> &mdash; portrait; paired with her original coxcomb diagram (public domain)</li>
+        <li><strong>Andrey Markov (1856&ndash;1922)</strong> &mdash; portrait; paired with Pushkin poetry analysis diagram showing vowel/consonant chains</li>
+        <li><strong>Abraham Wald (1902&ndash;1950)</strong> &mdash; photo; paired with WWII bomber survivorship bias diagram (bullet-hole plane)</li>
+        <li><strong>Frank Rosenblatt (1928&ndash;1971)</strong> &mdash; photo with Perceptron hardware; paired with 1958 NYT headline clipping</li>
+        <li><strong>Closing Callback</strong> &mdash; composite panel of Nightingale + Lovelace emphasizing "diverse thinkers" theme</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       6. CARTOON AND ILLUSTRATION SPECS
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>6. Cartoon and Illustration Specs</h2>
+      <p class="section-subtitle">11 custom cartoon illustrations needed, all in consistent xkcd-inspired line style.</p>
+
+      <ul class="item-list">
+        <li><strong>BankBot Introduction</strong> (Sec 1) &mdash; full-body reveal, confident pose, speech bubble: "I analyzed your breakfast. You are 94% human."</li>
+        <li><strong>Cafeteria Mystery Meat</strong> (Sec 2) &mdash; student eyeing cafeteria tray, thought bubble with probability bar</li>
+        <li><strong>Gauss Hair = Bell Curve</strong> (Sec 3) &mdash; Gauss portrait where wild hair is styled as a Gaussian curve overlay</li>
+        <li><strong>BankBot's Nightmare</strong> (Sec 3) &mdash; BankBot sweating on the decision boundary; one foot in "Fraud", one in "Legit"</li>
+        <li><strong>BankBot Learning Panels</strong> (Sec 4) &mdash; 4-panel comic: confident guess, wrong answer, confused face, improved result</li>
+        <li><strong>BankBot False Positive</strong> (Sec 5) &mdash; "FRAUD DETECTED!" alarm, zoom out to reveal: grandma buying flowers</li>
+        <li><strong>Fortune Teller BankBot</strong> (Sec 6) &mdash; BankBot in crystal-ball-gazer outfit, predictions emanating as regression lines</li>
+        <li><strong>Weighted Average Horror</strong> (Sec 6) &mdash; student shocked: "Homework is only 10%?!" with weight bars for each category</li>
+        <li><strong>47 Houseplants</strong> (Sec 8) &mdash; BankBot surrounded by houseplants, confidently presenting recommendation</li>
+        <li><strong>BankBot Shakes Head</strong> (Sec 9) &mdash; BankBot disapproves of social-media-based credit scoring</li>
+        <li><strong>BankBot Graduation</strong> (Sec 10) &mdash; graduation cap on BankBot, diploma, speech bubble: "I am 73% confident. But I defer to the human."</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       7. PHYSICAL PROPS
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>7. Physical Props</h2>
+      <p class="section-subtitle">Tangible items that enhance engagement during the live presentation.</p>
+
+      <div class="props-grid">
+
+        <div class="prop-card">
+          <div class="prop-icon">&#129302;</div>
+          <h4>BankBot Plushie / Cutout</h4>
+          <p>Cardboard standee or small plushie placed on the lectern. Refer to it during BankBot dialogue moments.</p>
+        </div>
+
+        <div class="prop-card">
+          <div class="prop-icon">&#128196;</div>
+          <h4>Laminated Math Cheat Sheet</h4>
+          <p>A5 size, double-sided. All 7 formulas with color-coding. Distributed to each student as a takeaway.</p>
+        </div>
+
+        <div class="prop-card">
+          <div class="prop-icon">&#11088;</div>
+          <h4>"BankBot Approved" Stickers</h4>
+          <p>Fun stickers for students who answer questions or participate in voting. Reward engagement.</p>
+        </div>
+
+        <div class="prop-card">
+          <div class="prop-icon">&#128466;</div>
+          <h4>Red / Green Voting Cards</h4>
+          <p>Double-sided cards (red = Fraud, green = Legit). Used during "Spot the Fraud" and thumbs-up/down segments.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       8. PRIORITY MATRIX
+       ================================================================ -->
+  <div class="plan-section scroll-reveal">
+    <div class="plan-content">
+      <h2>8. Priority Matrix</h2>
+      <p class="section-subtitle">What must ship, what would be great, and what to aim for if time allows.</p>
+
+      <div class="priority-row">
+
+        <div class="priority-card">
+          <div class="priority-header must">Must-Have</div>
+          <ul>
+            <li>All 17 data visualizations (static or animated)</li>
+            <li>BankBot character in all 8 emotional states</li>
+            <li>Color-coded Bayes theorem build</li>
+            <li>Sigmoid and bell curve animations</li>
+            <li>"Spot the Fraud" scenario cards</li>
+            <li>Credit score comparison diagram</li>
+            <li>Laminated math cheat sheets for students</li>
+            <li>Red/green voting cards</li>
+            <li>Career map constellation (closing slide)</li>
+            <li>All 8 mathematician portraits/diagrams</li>
+          </ul>
+        </div>
+
+        <div class="priority-card">
+          <div class="priority-header nice">Nice-to-Have</div>
+          <ul>
+            <li>All 11 cartoon illustrations in final polished style</li>
+            <li>Smooth CSS/JS slide animations (vs. static builds)</li>
+            <li>Interactive weight slider (live demo, not pre-recorded)</li>
+            <li>Markov chain animated transitions</li>
+            <li>Nightingale rose diagram with real 1854 data</li>
+            <li>BankBot plushie/cutout prop</li>
+            <li>"BankBot Approved" stickers</li>
+            <li>Pre-recorded screencast as demo fallback</li>
+          </ul>
+        </div>
+
+        <div class="priority-card">
+          <div class="priority-header dream">Dream</div>
+          <ul>
+            <li>Fully interactive live demo app (not just screencast)</li>
+            <li>Real-time audience polling with phone-based voting</li>
+            <li>Animated BankBot sprite (multi-frame, responds to audience)</li>
+            <li>AR overlay &mdash; BankBot appears on students' phones</li>
+            <li>Custom xkcd-style font generated from handwriting</li>
+            <li>3D printed BankBot figurines as prizes</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <p><a href="https://github.com/Digital-AI-Finance" target="_blank" rel="noopener noreferrer">Digital-AI-Finance</a></p>
+      <p>2026 &mdash; How Math Powers AI in Everyday Finance</p>
+    </div>
+  </footer>
+
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    /* -- KaTeX auto-render -- */
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$",  right: "$",  display: false }
+        ],
+        throwOnError: false
+      });
+    });
+
+    /* -- Scroll reveal -- */
+    (function () {
+      var els = document.querySelectorAll(".scroll-reveal");
+      if (!els.length) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+
+    /* -- Navbar scroll shadow -- */
+    (function () {
+      var nav = document.getElementById("navbar");
+      if (!nav) return;
+      window.addEventListener("scroll", function () {
+        nav.classList.toggle("scrolled", window.scrollY > 20);
+      });
+    })();
+
+    /* -- Mobile nav toggle -- */
+    (function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var links  = document.querySelector(".nav-links");
+      if (!toggle || !links) return;
+      toggle.addEventListener("click", function () {
+        var open = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!open));
+        links.classList.toggle("active");
+      });
+    })();
+  </script>
+
+</body>
+</html>
