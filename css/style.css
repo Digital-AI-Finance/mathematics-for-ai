@@ -1637,7 +1637,70 @@ footer {
 
 
 /* ==========================================================================
-   21. PLAN PAGES
+   21. VISUALIZATION CONTAINERS
+   ========================================================================== */
+
+/* Shared visualization wrapper */
+[id^="viz-"] {
+    width: 100%;
+    overflow: hidden;
+}
+
+[id^="viz-"] svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Morning timeline section */
+#morning-timeline {
+    background: #ffffff;
+}
+
+/* Visualizations section */
+#visualizations {
+    background: #ffffff;
+}
+
+/* Careers section */
+#careers {
+    background: var(--color-bg);
+}
+
+/* Interactive game/widget containers */
+#fraud-game-container,
+#weight-slider-container,
+#use-skip-container {
+    margin-top: var(--space-md);
+    width: 100%;
+}
+
+/* Override interactive-card to handle larger content */
+.interactive-card:has(#fraud-game-container),
+.interactive-card:has(#weight-slider-container),
+.interactive-card:has(#use-skip-container) {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Historical visuals inside timeline cards */
+.timeline-card [id^="viz-"] {
+    margin-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-md);
+}
+
+/* Visualization containers responsive */
+@media (min-width: 768px) {
+    #visualizations .formula-card {
+        padding: var(--space-xl);
+    }
+}
+
+
+/* ==========================================================================
+   22. PLAN PAGES
    ========================================================================== */
 
 /* -- Plan page hero (compact, not full-viewport) -- */

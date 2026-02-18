@@ -36,6 +36,7 @@
       <a href="#overview">Overview</a>
       <a href="#sections">Sections</a>
       <a href="#math-concepts">Math</a>
+      <a href="#visualizations">Visualizations</a>
       <a href="#history">History</a>
       <a href="#bankbot">BankBot</a>
       <a href="#interactive">Interactive</a>
@@ -58,6 +59,13 @@
       <span>&darr;</span>
     </div>
   </header>
+
+  <!-- ========== MORNING TIMELINE INFOGRAPHIC ========== -->
+  <section id="morning-timeline" style="background: #ffffff;">
+    <h2>50-200 AI Decisions Before Breakfast</h2>
+    <p class="section-subtitle">Every morning, AI makes hundreds of invisible decisions about you</p>
+    <div id="viz-morning-timeline" class="scroll-reveal" style="max-width:1200px; margin:0 auto;"></div>
+  </section>
 
   <!-- ========== OVERVIEW ========== -->
   <section id="overview">
@@ -411,6 +419,42 @@
     </div>
   </section>
 
+  <!-- ========== INTERACTIVE VISUALIZATIONS ========== -->
+  <section id="visualizations" style="background: #ffffff;">
+    <h2>See the Math in Action</h2>
+    <p class="section-subtitle">Interactive visualizations of the key mathematical concepts</p>
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr; gap:3rem;">
+      <div class="formula-card scroll-reveal">
+        <h3>Bayes&rsquo; Theorem &mdash; Color-Coded</h3>
+        <div id="viz-bayes"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>The Sigmoid S-Curve</h3>
+        <div id="viz-sigmoid"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>The Bell Curve &mdash; What Is &ldquo;Normal&rdquo;?</h3>
+        <div id="viz-bellcurve"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>Fraud Detection &mdash; Scatter Plot</h3>
+        <div id="viz-scatter"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>Linear Regression</h3>
+        <div id="viz-regression"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>Cosine Similarity</h3>
+        <div id="viz-cosine"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>Dot Product</h3>
+        <div id="viz-dotproduct"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== CHEAT SHEET ========== -->
   <section id="cheat-sheet">
     <h2>Math Cheat Sheet</h2>
@@ -510,6 +554,7 @@
           <h3>Florence Nightingale</h3>
           <p>Used her &ldquo;coxcomb diagrams&rdquo; (polar area charts) to prove that sanitation saves more soldiers than medicine. Data visualization pioneer who changed hospital policy through statistics.</p>
           <p class="timeline-connection">Used in Section 2 &mdash; Pattern Recognition</p>
+          <div id="viz-nightingale" style="margin-top:1rem;"></div>
         </div>
       </div>
 
@@ -530,6 +575,7 @@
           <h3>Abraham Wald</h3>
           <p>WWII statistician who told the military to armor the parts of returning planes that DID NOT have bullet holes &mdash; because the planes hit in those spots never came back. A masterclass in survivorship bias.</p>
           <p class="timeline-connection">Used in Section 5 &mdash; Spot the Fraud</p>
+          <div id="viz-wald" style="margin-top:1rem;"></div>
         </div>
       </div>
 
@@ -540,6 +586,7 @@
           <h3>Frank Rosenblatt</h3>
           <p>Built the Perceptron in 1958 &mdash; the first machine that could learn from data. The New York Times headline read: &ldquo;New Navy Device Learns by Doing.&rdquo; Ancestor of every neural network alive today.</p>
           <p class="timeline-connection">Used in Section 3 &mdash; Fraud Detection</p>
+          <div id="viz-perceptron" style="margin-top:1rem;"></div>
         </div>
       </div>
 
@@ -562,49 +609,49 @@
     <p class="section-subtitle">Follow BankBot&rsquo;s journey from overconfident to wise</p>
     <div class="bankbot-journey">
 
-      <div class="bankbot-stage" data-stage="1">
+      <div class="bankbot-stage" data-stage="1" data-bankbot="confident" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #e74c3c;">&#129302;</div>
         <blockquote>&ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</blockquote>
         <span class="bankbot-label">Overconfident (Sec 1)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="2">
+      <div class="bankbot-stage" data-stage="2" data-bankbot="cocky" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #e74c3c;">&#128527;</div>
         <blockquote>&ldquo;Too easy. Next.&rdquo;</blockquote>
         <span class="bankbot-label">Cocky (Sec 4 warmup)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="3">
+      <div class="bankbot-stage" data-stage="3" data-bankbot="stressed" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #e67e22;">&#128560;</div>
         <blockquote>(sweating on the boundary)</blockquote>
         <span class="bankbot-label">Stressed (Sec 3)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="4">
+      <div class="bankbot-stage" data-stage="4" data-bankbot="learning" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #e67e22;">&#129300;</div>
         <blockquote>&ldquo;FRAUD!&rdquo; &rarr; &ldquo;Most things are fine&rdquo; &rarr; &ldquo;Let me calculate&hellip;&rdquo;</blockquote>
         <span class="bankbot-label">Growing (Sec 3.5)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="5">
+      <div class="bankbot-stage" data-stage="5" data-bankbot="humbled" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #f39c12;">&#128563;</div>
         <blockquote>&ldquo;FRAUD DETECTED!&rdquo; / &ldquo;&hellip;suspicious flowers.&rdquo;</blockquote>
         <span class="bankbot-label">Humbled (Sec 4)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="6">
+      <div class="bankbot-stage" data-stage="6" data-bankbot="observant" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #f1c40f;">&#127793;</div>
         <blockquote>&ldquo;Based on my analysis, you need 47 houseplants.&rdquo;</blockquote>
         <span class="bankbot-label">Observant (Sec 7)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="7">
+      <div class="bankbot-stage" data-stage="7" data-bankbot="critical" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #2ecc71;">&#129320;</div>
         <blockquote>(shaking head at social media data)</blockquote>
         <span class="bankbot-label">Critical (Sec 8)</span>
       </div>
 
-      <div class="bankbot-stage" data-stage="8">
+      <div class="bankbot-stage" data-stage="8" data-bankbot="wise" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #27ae60;">&#127891;</div>
         <blockquote>&ldquo;I am 73% confident. But I defer to the human.&rdquo;</blockquote>
         <span class="bankbot-label">Wise (Sec 10)</span>
@@ -645,6 +692,14 @@
         </div>
       </div>
 
+      <div class="interactive-card scroll-reveal">
+        <span class="interactive-icon" aria-hidden="true">&#127922;</span>
+        <div class="interactive-content">
+          <h3>Try It Yourself &mdash; Spot the Fraud</h3>
+          <div id="fraud-game-container"></div>
+        </div>
+      </div>
+
       <div class="interactive-card">
         <span class="interactive-icon" aria-hidden="true">&#128077;&#128078;</span>
         <div class="interactive-content">
@@ -654,12 +709,28 @@
         </div>
       </div>
 
+      <div class="interactive-card scroll-reveal">
+        <span class="interactive-icon" aria-hidden="true">&#9878;</span>
+        <div class="interactive-content">
+          <h3>Build Your Own Credit Score</h3>
+          <div id="weight-slider-container"></div>
+        </div>
+      </div>
+
       <div class="interactive-card">
         <span class="interactive-icon" aria-hidden="true">&#128226;</span>
         <div class="interactive-content">
           <h3>Shout Response &mdash; &ldquo;USE IT or SKIP IT&rdquo;</h3>
           <span class="time-badge">34:00</span>
           <p>Rapid-fire: Should an AI use this data for credit decisions? Income? Social media? Zip code? GPA? Shout &ldquo;USE IT&rdquo; or &ldquo;SKIP IT&rdquo;!</p>
+        </div>
+      </div>
+
+      <div class="interactive-card scroll-reveal">
+        <span class="interactive-icon" aria-hidden="true">&#128161;</span>
+        <div class="interactive-content">
+          <h3>Try It &mdash; USE IT or SKIP IT</h3>
+          <div id="use-skip-container"></div>
         </div>
       </div>
 
@@ -708,6 +779,13 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ========== CAREER CONSTELLATION ========== -->
+  <section id="careers" style="background: var(--color-bg);">
+    <h2>Where Could Math + AI Take You?</h2>
+    <p class="section-subtitle">Career paths that combine mathematics, AI, and finance</p>
+    <div id="viz-career-constellation" class="scroll-reveal" style="max-width:800px; margin:0 auto;"></div>
   </section>
 
   <!-- ========== PLANS ========== -->
@@ -851,5 +929,12 @@
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/bankbot.js"></script>
+  <script src="js/visualizations.js"></script>
+  <script src="js/fraud-game.js"></script>
+  <script src="js/weight-slider.js"></script>
+  <script src="js/use-skip.js"></script>
+  <script src="js/infographics.js"></script>
+  <script src="js/historical-visuals.js"></script>
 </body>
 </html>
