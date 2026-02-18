@@ -1089,6 +1089,19 @@
         toggle.setAttribute("aria-expanded", String(!open));
         links.classList.toggle("active");
       });
+      links.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          links.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+      document.addEventListener("click", function (e) {
+        var nav = document.querySelector("#navbar");
+        if (nav && !nav.contains(e.target)) {
+          links.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
     })();
   </script>
 
