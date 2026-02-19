@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 3: Calculus &amp; Optimization &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-02.html">&larr; Prev</a>
+      <a href="lecture-04.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-number-badge">3</div>
+    <h1>Calculus &amp; Optimization</h1>
+    <p class="subtitle">From Tangent Lines to Training Runs</p>
+    <div class="lecture-meta">
+      <span class="badge era-range">1629 &rarr; 2024</span>
+      <span class="badge">How Machines Learn</span>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      Every time a language model improves its predictions &mdash; learning from trillions
+      of words to produce coherent, meaningful text &mdash; it&rsquo;s performing an act of
+      calculus. The same mathematics that Newton invented to describe falling apples now
+      teaches AI to write poetry, code, and conversation.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── Milestone 1: Fermat's Method of Adequality (1629) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">1629</span>
+          <h3 class="milestone-figure">Pierre de Fermat</h3>
+          <div class="milestone-content">
+            <p>
+              Before calculus formally existed, Fermat developed a method to find maxima and
+              minima of curves. He would set $f(x) \approx f(x+e)$, divide by $e$, then let
+              $e \to 0$. This &ldquo;method of adequality&rdquo; was the first optimization
+              algorithm &mdash; finding the peaks and valleys of functions.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$f'(x) = \lim_{e \to 0} \frac{f(x+e) - f(x)}{e}$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Fermat&rsquo;s insight &mdash; that at a maximum or minimum, the slope is
+              zero &mdash; is literally the principle behind training every neural network.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 2: Newton & Leibniz — The Calculus Wars (1665-1684) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1665&ndash;1684</span>
+          <h3 class="milestone-figure">Isaac Newton &amp; Gottfried Wilhelm Leibniz</h3>
+          <div class="milestone-content">
+            <p>
+              The most famous priority dispute in mathematics. Newton developed
+              &ldquo;fluxions&rdquo; for physics (1665&ndash;66, published later). Leibniz
+              independently developed calculus with superior notation (1684). Their combined
+              work unified differentiation and integration through the Fundamental Theorem of
+              Calculus. Newton used it for gravity; we use it for gradient descent.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\int_a^b f'(x)\,dx = f(b) - f(a)$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Leibniz&rsquo;s notation ($\frac{dy}{dx}$, $\int$) won out over Newton&rsquo;s
+              dots. We still use Leibniz notation today in every machine learning paper.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 3: The Chain Rule & Multivariable Calculus (1740s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1740s</span>
+          <h3 class="milestone-figure">Leonhard Euler</h3>
+          <div class="milestone-content">
+            <p>
+              Euler extended calculus to functions of multiple variables. The chain rule &mdash;
+              the derivative of a composition of functions &mdash; is the mathematical heart
+              of backpropagation. If a neural network has layers $f \circ g \circ h$, the
+              chain rule tells us how each layer&rsquo;s parameters affect the final output.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial z_3} \cdot \frac{\partial z_3}{\partial z_2} \cdot \frac{\partial z_2}{\partial w_1}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              The chain rule is THE mathematical reason deep learning works. Without it,
+              we couldn&rsquo;t compute gradients through 100+ layers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 4: Euler-Lagrange & Variational Calculus (1755) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1755</span>
+          <h3 class="milestone-figure">Leonhard Euler &amp; Joseph-Louis Lagrange</h3>
+          <div class="milestone-content">
+            <p>
+              Instead of optimizing functions, what if we could optimize entire curves and
+              paths? Variational calculus finds the function that minimizes a quantity. This
+              idea &mdash; optimization over function spaces &mdash; prefigured the training
+              of neural networks, where we search for the optimal function from a
+              parameterized family.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'} = 0$$
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved Problem</span>
+            <p>
+              The Brachistochrone Problem: What curve allows the fastest descent under
+              gravity? This optimization problem inspired variational calculus, which
+              inspired optimization over neural network parameters.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 5: Cauchy's Gradient Descent (1847) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1847</span>
+          <h3 class="milestone-figure">Augustin-Louis Cauchy</h3>
+          <div class="milestone-content">
+            <p>
+              Cauchy proposed a simple idea: to find the minimum of a function, take small
+              steps in the direction of steepest descent (the negative gradient). This is
+              gradient descent &mdash; the engine that trains every neural network. Simple,
+              elegant, and 175 years later still the foundation of AI training.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$w_{t+1} = w_t - \eta \nabla L(w_t)$$
+            <p style="font-size:0.85rem; color:var(--color-text-light); margin-top:var(--space-sm); text-align:center;">
+              Where $\eta$ is the learning rate and $\nabla L$ is the gradient of the loss.
+            </p>
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Cauchy invented gradient descent to solve systems of equations. Today it trains
+              models with 1.8 trillion parameters.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 6: Backpropagation (1986) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">1986</span>
+          <h3 class="milestone-figure">David Rumelhart, Geoffrey Hinton &amp; Ronald Williams</h3>
+          <div class="milestone-content">
+            <p>
+              The key insight: use the chain rule to efficiently compute gradients through a
+              neural network, layer by layer, from output back to input. Before
+              backpropagation, training deep networks was computationally impractical. After
+              it, the age of deep learning began. The paper &ldquo;Learning representations
+              by back-propagating errors&rdquo; is one of the most cited in all of science.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\delta^{(l)} = \left(\mathbf{W}^{(l+1)T} \delta^{(l+1)}\right) \odot \sigma'(z^{(l)})$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Backpropagation is just the chain rule, applied systematically.
+              Hinton called it &ldquo;the calculus of neural networks.&rdquo;
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 7: The Vanishing Gradient Problem & Solutions (1991-2015) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-unsolved">Unsolved</span>
+          <span class="milestone-era">1991&ndash;2015</span>
+          <h3 class="milestone-figure">Sepp Hochreiter, Yoshua Bengio &amp; Kaiming He</h3>
+          <div class="milestone-content">
+            <p>
+              Deep networks faced a crisis: gradients vanished or exploded as they propagated
+              through many layers. Hochreiter identified this in 1991. Solutions came
+              gradually: LSTMs (1997), ReLU activation (2010), batch normalization (2015),
+              residual connections (2015). Each was a calculus insight &mdash; engineering the
+              gradient flow through the network.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{ReLU}(x) = \max(0, x), \quad \text{ReLU}'(x) = \begin{cases} 1 & x > 0 \\ 0 & x \leq 0 \end{cases}$$
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved Problem</span>
+            <p>
+              The vanishing gradient was the biggest unsolved problem in deep learning for
+              25 years. Residual connections (skip connections) finally tamed it by creating
+              gradient &ldquo;highways.&rdquo;
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 8: Adam Optimizer & Modern Training (2014-2024) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2014&ndash;2024</span>
+          <h3 class="milestone-figure">Diederik Kingma &amp; Jimmy Ba</h3>
+          <div class="milestone-content">
+            <p>
+              Adam (Adaptive Moment Estimation) combines the best ideas: momentum (using
+              gradient history) and adaptive learning rates (different rates for different
+              parameters). It uses first and second moments of the gradient &mdash; mean and
+              variance &mdash; to adjust each step. Nearly every LLM is trained with Adam or
+              its variants (AdamW with weight decay).
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t, \quad v_t = \beta_2 v_{t-1} + (1-\beta_2)g_t^2, \quad w_{t+1} = w_t - \frac{\eta \hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Training GPT-4 reportedly cost over $100 million in compute. Every dollar was
+              spent running Adam optimizer &mdash; this equation &mdash; trillions of times.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">Culmination</h2>
+
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text-light); margin-bottom:var(--space-lg);">
+      From Fermat&rsquo;s tangent lines to Adam&rsquo;s adaptive moments, calculus has always
+      been the mathematics of change. AI training is optimization &mdash; and optimization is
+      calculus.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Calculus Chain</span>
+      <div class="formula">
+        $$\text{Fermat} \to \text{Newton} \to \text{Chain Rule} \to \text{Gradient Descent} \to \text{Backpropagation} \to \text{Adam}$$
+      </div>
+      <span class="key-formula-caption">
+        400 years of calculus, now training every AI model on Earth.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <p style="font-size:0.95rem; line-height:1.7; color:var(--color-text-light);">
+      <a href="lecture-02.html" class="cross-ref">Lecture 2: Linear Algebra</a>
+      Backpropagation computes gradients through layers of matrix multiplications &mdash;
+      calculus and linear algebra are inseparable in neural network training.
+    </p>
+    <p style="font-size:0.95rem; line-height:1.7; color:var(--color-text-light);">
+      <a href="lecture-01.html" class="cross-ref">Lecture 1: Probability</a>
+      The loss function that gradient descent minimizes is cross-entropy &mdash; a quantity
+      rooted in probability theory and information theory.
+    </p>
+    <p style="font-size:0.95rem; line-height:1.7; color:var(--color-text-light);">
+      <a href="lecture-07.html" class="cross-ref">Lecture 7: Statistics &amp; Learning Theory</a>
+      Learning theory tells us when optimization on training data will generalize &mdash;
+      connecting the calculus of training to the statistics of prediction.
+    </p>
+
+
+    <!-- ========== LECTURE NAV ========== -->
+    <div class="lecture-nav">
+      <a href="lecture-02.html" class="lecture-nav-prev">Linear Algebra</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-04.html" class="lecture-nav-next">Logic &amp; Computation</a>
+    </div>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

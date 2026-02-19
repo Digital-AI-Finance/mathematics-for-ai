@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 8: Graph Theory &amp; Networks &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-07.html">&larr; Prev</a>
+      <a href="lecture-09.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">8</div>
+      <h1>Graph Theory &amp; Networks</h1>
+      <p class="subtitle lecture-subtitle">From Bridges to Transformers</p>
+      <div class="lecture-meta">
+        <span class="era-range">1736 &rarr; 2024</span>
+        <span class="badge lecture-tag">The Architecture of Intelligence</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      In 1736, Euler solved a puzzle about bridges and accidentally invented a new branch
+      of mathematics. Nearly 300 years later, that same mathematics describes the internet,
+      social networks, biological systems &mdash; and the architecture of every AI model.
+      Graph theory is the mathematics of connections, and intelligence is, at its core,
+      about making the right connections.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── M1: Euler & The Seven Bridges of Königsberg (1736) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">1736</span>
+          <h3 class="milestone-figure">Leonhard Euler</h3>
+          <div class="milestone-content">
+            <p>
+              Can you cross all seven bridges of K&ouml;nigsberg exactly once? Euler proved
+              it&rsquo;s impossible by abstracting the city into nodes (landmasses) and edges
+              (bridges). In doing so, he invented graph theory. The key insight: what matters
+              is not the shape of the bridges, but the pattern of connections. This abstraction
+              &mdash; from physical structure to connectivity &mdash; is exactly how neural
+              network architectures are designed.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="font-size:0.95rem; line-height:1.65; margin:0; text-align:center;">
+              Euler&rsquo;s criterion: A graph has an Eulerian path iff it has exactly 0 or 2
+              vertices of odd degree.
+            </p>
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Euler proved that the shape doesn&rsquo;t matter &mdash; only the connections do.
+              This is the founding insight of graph theory AND neural network architecture design.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M2: Cayley's Trees & Graph Enumeration (1857) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1857</span>
+          <h3 class="milestone-figure">Arthur Cayley</h3>
+          <div class="milestone-content">
+            <p>
+              Cayley&rsquo;s formula: the number of labeled trees on $n$ vertices is $n^{n-2}$.
+              Tree structures became fundamental in computer science &mdash; parse trees for
+              language, decision trees for classification, syntax trees for compilers. Every
+              time an NLP system parses a sentence&rsquo;s grammatical structure, it&rsquo;s
+              building a tree in the sense of Cayley.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$T_n = n^{n-2}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Parse trees represent sentence structure: &ldquo;The cat sat on the mat&rdquo;
+              has a tree showing subject, verb, and prepositional phrase. Before transformers,
+              NLP was built on trees.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M3: Erdős-Rényi Random Graphs (1959) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1959</span>
+          <h3 class="milestone-figure">Paul Erd&#337;s &amp; Alfr&eacute;d R&eacute;nyi</h3>
+          <div class="milestone-content">
+            <p>
+              What happens when you randomly connect nodes? Erd&#337;s and R&eacute;nyi
+              discovered phase transitions: below a critical threshold, the graph is fragmented;
+              above it, a giant connected component suddenly appears. This &ldquo;emergence&rdquo;
+              from random connections prefigures the emergent abilities of neural networks &mdash;
+              at some scale, new capabilities suddenly appear.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="font-size:0.95rem; line-height:1.65; margin:0; text-align:center;">
+              Giant component appears when edge probability $p > \frac{1}{n}$, i.e., average degree $> 1$.
+            </p>
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Phase transitions in random graphs mirror the &ldquo;emergent abilities&rdquo; of
+              LLMs: at some size, models suddenly gain capabilities (reasoning, translation,
+              coding) that smaller models completely lack.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M4: Small World Networks & Six Degrees (1998) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1998</span>
+          <h3 class="milestone-figure">Duncan Watts &amp; Steven Strogatz</h3>
+          <div class="milestone-content">
+            <p>
+              Watts and Strogatz showed that most real networks (social, biological,
+              technological) are &ldquo;small worlds&rdquo; &mdash; highly clustered locally,
+              but with short paths globally. Just 6 degrees separate any two people. This
+              structure &mdash; local clustering with global shortcuts &mdash; is remarkably
+              similar to how residual connections work in transformers: local processing with
+              skip connections that create shortcuts.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$L \sim \frac{\ln N}{\ln k}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Skip connections in ResNets and transformers create &ldquo;shortcuts&rdquo; through
+              the network &mdash; making them small-world networks where information can flow
+              quickly from any layer to any other.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M5: PageRank & Network Centrality (1998) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">1998</span>
+          <h3 class="milestone-figure">Larry Page &amp; Sergey Brin (Google)</h3>
+          <div class="milestone-content">
+            <p>
+              PageRank models the web as a graph and computes each page&rsquo;s importance by
+              the importance of pages linking to it. This recursive definition uses eigenvectors
+              of the link matrix &mdash; the same linear algebra as word embeddings. PageRank
+              was the first massive-scale AI application of graph theory, and it created the
+              most valuable company in the world.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$PR(p) = \frac{1-d}{N} + d \sum_{q \in B_p} \frac{PR(q)}{L(q)}$$
+          </div>
+          <p style="font-size:0.85rem; color:var(--color-text-light); text-align:center; margin-top:calc(-1 * var(--space-sm)); margin-bottom:var(--space-md);">
+            Where $d \approx 0.85$ is the damping factor, $B_p$ is pages linking to $p$,
+            and $L(q)$ is outgoing links from $q$.
+          </p>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Google&rsquo;s PageRank is a random walk on a graph &mdash; a Markov chain. It
+              computes the stationary distribution: &ldquo;If you randomly clicked links forever,
+              how often would you visit each page?&rdquo;
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M6: Neural Network Architectures as Graphs (2012–2017) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2012&ndash;2017</span>
+          <h3 class="milestone-figure">Various (AlexNet, VGG, ResNet, Inception)</h3>
+          <div class="milestone-content">
+            <p>
+              Every neural network IS a directed graph: nodes are neurons, edges are weighted
+              connections. The architecture revolution (2012&ndash;2017) was about graph topology:
+              deeper graphs (VGG), branching graphs (Inception), graphs with skip edges (ResNet).
+              The transformer is a specific graph: a complete bipartite graph where every input
+              node connects to every other via attention.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\mathbf{y} = F(\mathbf{x}) + \mathbf{x}$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              The transformer is a graph where every token attends to every other token &mdash;
+              it&rsquo;s a complete graph. This $O(n^2)$ connectivity is both its strength (any
+              word can relate to any other) and its weakness (quadratic memory cost).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M7: Knowledge Graphs & RAG (2012–2024) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2012&ndash;2024</span>
+          <h3 class="milestone-figure">Google Knowledge Graph, various</h3>
+          <div class="milestone-content">
+            <p>
+              Knowledge graphs represent facts as (entity, relation, entity) triples:
+              (Einstein, born_in, Germany). Google&rsquo;s Knowledge Graph (2012) contains
+              billions of facts. Retrieval-Augmented Generation (RAG) combines LLMs with
+              knowledge graphs: the LLM generates text while consulting a graph database for
+              factual accuracy. This hybrid approach addresses hallucination &mdash; one of the
+              biggest challenges in AI.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$(h, r, t) \in \mathcal{E} \times \mathcal{R} \times \mathcal{E}, \qquad f(h, r) \approx t$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              RAG is the most popular technique for making LLMs factually accurate. It works by
+              turning the LLM&rsquo;s query into a graph search, then injecting the results back
+              into the generation process.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M8: Graph Neural Networks & Graph Transformers (2020s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2020&ndash;2024</span>
+          <h3 class="milestone-figure">Various (GNN community)</h3>
+          <div class="milestone-content">
+            <p>
+              Graph Neural Networks generalize transformers to arbitrary graph structures.
+              Instead of attending to all tokens (complete graph), GNNs attend only to graph
+              neighbors. Graph Transformers combine the best of both: graph structure for
+              efficiency, attention for expressiveness. Applications span drug discovery
+              (molecular graphs), social network analysis, and improving LLMs themselves.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$h_v^{(l+1)} = \text{UPDATE}\!\left(h_v^{(l)},\; \text{AGGREGATE}\!\left(\{h_u^{(l)} : u \in \mathcal{N}(v)\}\right)\right)$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Drug discovery AI represents molecules as graphs (atoms = nodes, bonds = edges).
+              GNNs predict whether a molecule will be an effective drug &mdash; graph theory
+              saving lives.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      From bridges in K&ouml;nigsberg to transformer attention patterns, graph theory reveals
+      the architecture of intelligence. Connections matter more than the things being connected.
+      The topology of a neural network &mdash; which neurons connect to which &mdash; determines
+      what it can learn, just as the topology of a social network determines what information flows.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Graph Theory Chain</span>
+      <div class="formula">
+        $$\text{Euler} \to \text{Random Graphs} \to \text{Small Worlds} \to \text{PageRank} \to \text{Transformers} \to \text{GNNs}$$
+      </div>
+      <span class="key-formula-caption">
+        300 years of connection mathematics, now defining the architecture of AI.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-02.html" class="cross-ref">Lecture 2: Linear Algebra &amp; Transformations</a>
+        &mdash; Adjacency matrices and eigenvalues are the linear algebra of graphs; PageRank is an eigenvector problem.
+      </li>
+      <li>
+        <a href="lecture-05.html" class="cross-ref">Lecture 5: Geometry of High Dimensions</a>
+        &mdash; Graph embeddings map nodes into high-dimensional geometric spaces where distance encodes connectivity.
+      </li>
+      <li>
+        <a href="lecture-04.html" class="cross-ref">Lecture 4: Logic &amp; Computation</a>
+        &mdash; Computational complexity of graph problems (P vs NP) &mdash; many hard optimization problems are graph problems.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <nav class="lecture-nav">
+      <a href="lecture-07.html" class="lecture-nav-prev">Statistics &amp; Learning Theory</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-09.html" class="lecture-nav-next">Harmonic Analysis &amp; Signals</a>
+    </nav>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

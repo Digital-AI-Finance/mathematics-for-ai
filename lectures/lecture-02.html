@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 2: Linear Algebra — Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-01.html">&larr; Prev</a>
+      <a href="lecture-03.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-number-badge">2</div>
+    <h1>Linear Algebra &amp; Transformations</h1>
+    <p class="subtitle">From Ancient Systems to Attention</p>
+    <div class="lecture-meta">
+      <span class="badge era-range">2000 BCE &rarr; 2023</span>
+      <span class="badge">The Language of Neural Networks</span>
+    </div>
+  </header>
+
+  <!-- ========== CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- ---------- Introduction ---------- -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text-light); margin-bottom:var(--space-xl);">
+      When a language model reads your sentence and &ldquo;understands&rdquo; which words relate to which,
+      it&rsquo;s performing millions of matrix multiplications per second &mdash; using a branch of
+      mathematics that began with ancient Babylonian scribes solving systems of equations on clay tablets.
+    </p>
+
+    <!-- ========== TIMELINE ========== -->
+    <div class="lecture-timeline">
+      <div class="timeline-line"></div>
+
+      <!-- ~~~~~ M1: Ancient Systems of Equations ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">2000 BCE</span>
+          <div class="milestone-figure">Babylonian &amp; Chinese Mathematicians</div>
+          <span class="milestone-type milestone-type-origin">Origin</span>
+
+          <div class="milestone-content">
+            Babylonian clay tablets show systems of linear equations solved 4&thinsp;000 years ago.
+            The Chinese text <em>Nine Chapters on the Mathematical Art</em> (200&nbsp;BCE) described
+            what we now call Gaussian elimination &mdash; 2&thinsp;000 years before Gauss.
+          </div>
+
+          <div class="milestone-formula">
+            $$\begin{cases} 3x + 2y = 7 \\ x + 4y = 9 \end{cases}$$
+          </div>
+
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              The same idea &mdash; organizing numbers into rows and columns to solve for unknowns &mdash;
+              is exactly what a matrix is.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M2: The Birth of Matrices ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">1855</span>
+          <div class="milestone-figure">Arthur Cayley &amp; James Joseph Sylvester</div>
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+
+          <div class="milestone-content">
+            Cayley formalized matrices as mathematical objects with their own algebra.
+            Sylvester coined the word &ldquo;matrix&rdquo; (Latin for &ldquo;womb&rdquo;) because
+            matrices generate determinants. Cayley proved that matrices could be added, multiplied,
+            and inverted &mdash; creating a complete algebraic system for transformations.
+          </div>
+
+          <div class="milestone-formula">
+            $$\mathbf{AB} = \begin{pmatrix} a & b \\ c & d \end{pmatrix}\begin{pmatrix} e & f \\ g & h \end{pmatrix} = \begin{pmatrix} ae+bg & af+bh \\ ce+dg & cf+dh \end{pmatrix}$$
+          </div>
+
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Matrix multiplication is NOT commutative: $\mathbf{AB} \neq \mathbf{BA}$.
+              This asymmetry is essential for neural networks, where the order of operations matters.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M3: Eigenvalues & Eigenvectors ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">1904</span>
+          <div class="milestone-figure">David Hilbert</div>
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+
+          <div class="milestone-content">
+            Hilbert generalized eigenvalue theory to infinite dimensions. Eigenvalues reveal
+            the fundamental modes of a transformation &mdash; the directions that don&rsquo;t change,
+            only scale. In data science, this became Principal Component Analysis (PCA), the first
+            dimensionality reduction technique.
+          </div>
+
+          <div class="milestone-formula">
+            $$\mathbf{A}\vec{v} = \lambda \vec{v}$$
+          </div>
+
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              An eigenvector $\vec{v}$ is a direction that a matrix only stretches, never rotates.
+              The eigenvalue $\lambda$ is the stretch factor. This is how PCA finds the most
+              important directions in data.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M4: Singular Value Decomposition ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">1936</span>
+          <div class="milestone-figure">Carl Eckart &amp; Gale Young</div>
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+
+          <div class="milestone-content">
+            SVD factorizes any matrix into three simpler matrices, revealing its fundamental
+            structure. It&rsquo;s the mathematical Swiss Army knife: used in data compression,
+            noise reduction, recommendation systems, and &mdash; critically &mdash; the low-rank
+            approximations that make LLMs computationally feasible (LoRA fine-tuning).
+          </div>
+
+          <div class="milestone-formula">
+            $$\mathbf{A} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^T$$
+          </div>
+
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Netflix&rsquo;s recommendation algorithm was built on SVD. LoRA fine-tuning, which
+              adapts LLMs cheaply, is also built on low-rank matrix decomposition.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M5: Vector Spaces & the Dot Product ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">1940s</span>
+          <div class="milestone-figure">Stefan Banach, John von Neumann</div>
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+
+          <div class="milestone-content">
+            The dot product measures similarity between vectors. Two vectors pointing the same
+            direction have a large positive dot product; perpendicular vectors have zero. This
+            simple operation became the foundation of word embeddings &mdash; representing words
+            as vectors where similar meanings have similar directions.
+          </div>
+
+          <div class="milestone-formula">
+            $$\vec{a} \cdot \vec{b} = \sum_{i} a_i b_i = \|\vec{a}\|\,\|\vec{b}\|\cos\theta$$
+          </div>
+
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              The cosine similarity between word vectors:
+              \(\text{king} - \text{man} + \text{woman} \approx \text{queen}\).
+              This is just the dot product, normalized.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M6: Word Embeddings & Word2Vec ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">2013</span>
+          <div class="milestone-figure">Tomas Mikolov (Google)</div>
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+
+          <div class="milestone-content">
+            Word2Vec mapped every word to a point in 300-dimensional space, trained so that words
+            in similar contexts land in similar locations. &ldquo;King&rdquo; and &ldquo;queen&rdquo;
+            are close; &ldquo;king&rdquo; and &ldquo;banana&rdquo; are far apart. The entire
+            vocabulary becomes a matrix &mdash; each row is a word, each column is a dimension of meaning.
+          </div>
+
+          <div class="milestone-formula">
+            $$\mathbf{E} \in \mathbb{R}^{V \times d}$$
+          </div>
+          <p style="font-size:0.82rem; color:var(--color-text-light); text-align:center; margin-top:var(--space-xs); font-style:italic;">
+            Where $V$ is vocabulary size and $d$ is embedding dimension (e.g., 300 or 768)
+          </p>
+
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Every LLM starts by converting each input token to a vector using an embedding matrix.
+              GPT-4&rsquo;s embedding matrix has roughly 100,000 rows &times; 12,288 columns.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M7: The Attention Mechanism ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">2017</span>
+          <div class="milestone-figure">Vaswani et al. (&ldquo;Attention Is All You Need&rdquo;)</div>
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+
+          <div class="milestone-content">
+            The transformer&rsquo;s self-attention is pure linear algebra. Each word generates three
+            vectors: Query (what am I looking for?), Key (what do I contain?), and Value (what
+            information do I carry?). Attention scores are computed by matrix-multiplying Queries with
+            Keys, then using those scores to weight the Values.
+          </div>
+
+          <div class="milestone-formula">
+            $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+          </div>
+
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              This single equation IS the transformer. Every word attends to every other word through
+              matrix multiplication. The $\sqrt{d_k}$ scaling prevents dot products from getting too
+              large &mdash; a linear algebra insight.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M8: Multi-Head Attention & Modern Scale ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-era">2020&ndash;2024</span>
+          <div class="milestone-figure">GPT-4, Claude, Llama</div>
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+
+          <div class="milestone-content">
+            Modern LLMs use multi-head attention: the same QKV computation repeated with different
+            projection matrices, then concatenated. GPT-4 reportedly has 120 attention heads across
+            120 layers. Each forward pass involves trillions of matrix multiplications. The entire
+            intelligence of LLMs is stored in their weight matrices.
+          </div>
+
+          <div class="milestone-formula">
+            $$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\,\mathbf{W}^O$$
+          </div>
+
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              When Claude reads your question, it performs billions of matrix multiplications &mdash;
+              each one a descendant of those ancient Babylonian systems of equations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">Culmination</h2>
+
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text-light); margin-bottom:var(--space-lg);">
+      From clay tablets to attention heads, the thread is continuous: organize numbers in grids,
+      transform them, find the essential patterns. Linear algebra is not just a tool for AI &mdash;
+      it IS the medium in which AI thinks.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Thread of Linear Algebra</span>
+      <div class="formula">
+        $$\text{Babylon} \to \text{Matrices} \to \text{Eigenvalues} \to \text{SVD} \to \text{Embeddings} \to \text{Attention}$$
+      </div>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <p style="font-size:0.95rem; line-height:1.7; color:var(--color-text-light);">
+      <a href="lecture-01.html" class="cross-ref">Lecture 1: Probability</a>
+      The softmax function in the attention formula converts raw dot-product scores into
+      probabilities &mdash; a direct bridge from linear algebra to probability theory.
+    </p>
+    <p style="font-size:0.95rem; line-height:1.7; color:var(--color-text-light);">
+      <a href="lecture-03.html" class="cross-ref">Lecture 3: Calculus</a>
+      Gradient descent is the algorithm that trains these weight matrices &mdash; calculus
+      tells each matrix element which direction to move.
+    </p>
+    <p style="font-size:0.95rem; line-height:1.7; color:var(--color-text-light);">
+      <a href="lecture-05.html" class="cross-ref">Lecture 5: Geometry</a>
+      Word embeddings live in high-dimensional vector spaces &mdash; the geometry of those
+      spaces determines what &ldquo;similarity&rdquo; means for AI.
+    </p>
+
+
+    <!-- ========== LECTURE NAV ========== -->
+    <div class="lecture-nav">
+      <a href="lecture-01.html" class="lecture-nav-prev">Probability</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-03.html" class="lecture-nav-next">Calculus</a>
+    </div>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

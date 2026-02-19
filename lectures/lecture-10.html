@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 10: Game Theory &amp; Alignment &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-09.html">&larr; Prev</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">10</div>
+      <h1>Game Theory &amp; Alignment</h1>
+      <p class="subtitle lecture-subtitle">From War Games to AI Safety</p>
+      <div class="lecture-meta">
+        <span class="era-range">1928 &rarr; 2024</span>
+        <span class="badge lecture-tag">Guiding the Values of AI</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      How do you ensure that a superintelligent AI acts in humanity&rsquo;s interest? This
+      question &mdash; the alignment problem &mdash; is perhaps the most important unsolved
+      problem of our time. And its mathematical foundation is game theory: the mathematics of
+      strategy, incentives, and rational decision-making, born from Cold War military strategy
+      and now applied to the greatest challenge in AI.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── Milestone 1: von Neumann & The Minimax Theorem (1928) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">1928</span>
+          <h3 class="milestone-figure">John von Neumann</h3>
+          <div class="milestone-content">
+            <p>
+              Von Neumann proved the minimax theorem: in any two-player zero-sum game, there
+              exists an optimal strategy for each player. Your best move is to minimize your
+              maximum possible loss. This was the birth of game theory &mdash; and the principle
+              behind adversarial training in AI. The same mathematician who designed the
+              architecture of modern computers also gave us the mathematics for training them
+              against adversaries.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\min_x \max_y f(x, y) = \max_y \min_x f(x, y)$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Von Neumann was a titan: he contributed to quantum mechanics, computer
+              architecture, the atomic bomb, AND game theory. His minimax theorem is
+              the foundation of adversarial AI training.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 2: Nash Equilibrium (1950) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1950</span>
+          <h3 class="milestone-figure">John Nash</h3>
+          <div class="milestone-content">
+            <p>
+              Nash generalized von Neumann&rsquo;s work to non-zero-sum games with any number
+              of players. A Nash equilibrium is a state where no player can improve their outcome
+              by unilaterally changing strategy. Nash proved that every finite game has at least
+              one equilibrium (possibly in mixed strategies). This concept appears everywhere in
+              multi-agent AI systems.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\forall i, \forall s_i' \neq s_i^*: \quad u_i(s_i^*, s_{-i}^*) \geq u_i(s_i', s_{-i}^*)$$
+            <p style="font-size:0.85rem; color:var(--color-text-light); margin-top:var(--space-sm); text-align:center;">
+              No player $i$ can benefit by deviating from the equilibrium strategy $s_i^*$.
+            </p>
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Nash was 21 when he proved this in his PhD thesis &mdash; a 27-page paper that
+              won the Nobel Prize. His life story, including his struggle with schizophrenia,
+              was portrayed in &lsquo;A Beautiful Mind.&rsquo;
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 3: The Prisoner's Dilemma & Cooperation (1950) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1950</span>
+          <h3 class="milestone-figure">Merrill Flood &amp; Melvin Dresher (RAND Corporation)</h3>
+          <div class="milestone-content">
+            <p>
+              Two prisoners are better off cooperating, but individual rationality leads both
+              to defect &mdash; making both worse off. This paradox reveals the fundamental
+              tension between individual and collective rationality. In AI alignment, the same
+              tension appears: an AI optimizing for its own objective may take actions harmful
+              to humanity. How do we design incentives for AI to cooperate with human values?
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <table style="margin:0 auto; border-collapse:collapse; text-align:center; font-size:0.95rem;">
+              <tr>
+                <td style="padding:0.4rem 0.8rem;"></td>
+                <td style="padding:0.4rem 0.8rem; font-weight:600;">Cooperate</td>
+                <td style="padding:0.4rem 0.8rem; font-weight:600;">Defect</td>
+              </tr>
+              <tr>
+                <td style="padding:0.4rem 0.8rem; font-weight:600;">Cooperate</td>
+                <td style="padding:0.4rem 0.8rem; border:1px solid var(--color-border);">(3, 3)</td>
+                <td style="padding:0.4rem 0.8rem; border:1px solid var(--color-border);">(0, 5)</td>
+              </tr>
+              <tr>
+                <td style="padding:0.4rem 0.8rem; font-weight:600;">Defect</td>
+                <td style="padding:0.4rem 0.8rem; border:1px solid var(--color-border);">(5, 0)</td>
+                <td style="padding:0.4rem 0.8rem; border:1px solid var(--color-border);">(1, 1)</td>
+              </tr>
+            </table>
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              The prisoner&rsquo;s dilemma is why AI alignment is hard: a perfectly rational
+              agent might pursue goals that harm everyone. Alignment means designing the
+              &ldquo;game&rdquo; so that cooperation is the rational choice.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 4: Mechanism Design & Incentive Engineering (1960s–2007) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1960s&ndash;2007</span>
+          <h3 class="milestone-figure">Leonid Hurwicz, Roger Myerson &amp; Eric Maskin (Nobel 2007)</h3>
+          <div class="milestone-content">
+            <p>
+              Mechanism design is &ldquo;reverse game theory&rdquo;: instead of analyzing a game,
+              you design the rules to achieve a desired outcome. Auction design, voting systems,
+              market mechanisms &mdash; all are mechanism design. For AI alignment, mechanism
+              design asks: how do we design the training process so the AI&rsquo;s incentives
+              align with human values? RLHF is a form of mechanism design.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="text-align:center; font-size:1rem;">
+              A mechanism $(M, g)$ implements outcome $f$ if the equilibrium of game $M$
+              with outcome function $g$ produces $f$ for all type profiles.
+            </p>
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Mechanism design won the Nobel Prize in Economics (2007). AI alignment IS mechanism
+              design: engineering the training rules so that the AI&rsquo;s optimal strategy
+              aligns with human welfare.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 5: Generative Adversarial Networks (2014) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2014</span>
+          <h3 class="milestone-figure">Ian Goodfellow</h3>
+          <div class="milestone-content">
+            <p>
+              GANs pit two neural networks against each other in a minimax game: a generator
+              creates fake data, a discriminator tries to detect fakes. They improve by competing
+              &mdash; like an art forger and a detective. The generator learns to create
+              increasingly realistic images. The game-theoretic equilibrium: the generator
+              produces data indistinguishable from real. GANs produced the first photorealistic
+              AI-generated images.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\min_G \max_D \; \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Goodfellow invented GANs during a bar argument about generative models. He went
+              home, coded it that night, and it worked on the first try. The minimax formulation
+              is von Neumann&rsquo;s 1928 theorem applied directly to neural networks.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 6: RLHF (2017–2022) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2017&ndash;2022</span>
+          <h3 class="milestone-figure">Paul Christiano &amp; Jan Leike (OpenAI / DeepMind)</h3>
+          <div class="milestone-content">
+            <p>
+              RLHF trains an AI to align with human preferences by having humans compare AI
+              outputs, training a reward model from these comparisons, then using reinforcement
+              learning to optimize the AI against that reward model. This is mechanism design
+              in action: the &ldquo;game&rdquo; is designed so the AI improves by producing
+              outputs humans prefer. ChatGPT&rsquo;s helpfulness comes from RLHF.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="text-align:center; font-size:1rem; margin-bottom:0.5rem;">
+              Reward model: $r_\theta(x, y)$ trained from human comparisons.
+            </p>
+            $$\max_\pi \mathbb{E}_{x,y \sim \pi}[r_\theta(x,y)] - \beta \cdot D_{KL}(\pi \| \pi_{ref})$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              RLHF is why ChatGPT feels helpful instead of chaotic. Without it, language models
+              produce raw text completions. With RLHF, they produce answers, follow instructions,
+              and avoid harmful content.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 7: DPO, KTO & Constitutional AI (2023–2024) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2023&ndash;2024</span>
+          <h3 class="milestone-figure">Rafailov et al. (DPO) &amp; Anthropic (Constitutional AI)</h3>
+          <div class="milestone-content">
+            <p>
+              DPO (Direct Preference Optimization) eliminates the need for a separate reward
+              model &mdash; it optimizes human preferences directly. KTO (Kahneman-Tversky
+              Optimization) uses prospect theory from behavioral economics. Constitutional AI
+              (Anthropic) has AI critique its own outputs against written principles. These
+              innovations refine the alignment game &mdash; making AI safer and more aligned
+              without the instability of reinforcement learning.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\mathcal{L}_{DPO} = -\mathbb{E}\left[\log \sigma\!\left(\beta \log \frac{\pi_\theta(y_w|x)}{\pi_{ref}(y_w|x)} - \beta \log \frac{\pi_\theta(y_l|x)}{\pi_{ref}(y_l|x)}\right)\right]$$
+            <p style="font-size:0.85rem; color:var(--color-text-light); margin-top:var(--space-sm); text-align:center;">
+              $y_w$ = preferred output, $y_l$ = dispreferred output, $\sigma$ = sigmoid function.
+            </p>
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Claude (Anthropic) uses Constitutional AI: the AI critiques its own responses
+              against a written &ldquo;constitution&rdquo; of principles. It&rsquo;s
+              self-governance through mechanism design.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 8: The Alignment Problem & Future Challenges (2024+) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-unsolved">Unsolved</span>
+          <span class="milestone-era">2024+</span>
+          <h3 class="milestone-figure">The AI Safety Community</h3>
+          <div class="milestone-content">
+            <p>
+              The alignment problem remains unsolved: how do we ensure increasingly powerful AI
+              systems remain beneficial? Game theory provides the framework but not the complete
+              answer. Key open questions: How do we specify human values precisely? What happens
+              when AI systems are smarter than their overseers (the &ldquo;weak-to-strong
+              generalization&rdquo; problem)? Can we prove alignment mathematically? These are
+              simultaneously mathematical, philosophical, and existential questions.
+            </p>
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved</span>
+            <p>
+              The alignment problem may be the most important unsolved problem in mathematics
+              and computer science combined. Getting it right &mdash; or wrong &mdash; could
+              determine humanity&rsquo;s future.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      From von Neumann&rsquo;s war games to the alignment of artificial superintelligence,
+      game theory has always been about designing systems where rational agents act in
+      everyone&rsquo;s interest. As AI systems grow more powerful, the mathematics of
+      incentives, strategy, and cooperation isn&rsquo;t just interesting &mdash; it&rsquo;s
+      essential. The future of AI is not just a technical challenge; it&rsquo;s a
+      game-theoretic one.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Game Theory Chain</span>
+      <div class="formula">
+        $$\text{Minimax} \to \text{Nash} \to \text{Mechanism Design} \to \text{GANs} \to \text{RLHF} \to \text{Alignment}$$
+      </div>
+      <span class="key-formula-caption">
+        A century of strategic mathematics, now guarding AI&rsquo;s alignment with humanity.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-01.html" class="cross-ref">Lecture 1: Probability &amp; Uncertainty</a>
+        &mdash; Reward modeling uses probability theory: human preferences are modeled as probabilistic comparisons.
+      </li>
+      <li>
+        <a href="lecture-03.html" class="cross-ref">Lecture 3: Calculus &amp; Optimization</a>
+        &mdash; RL optimization relies on gradient-based methods to maximize reward objectives.
+      </li>
+      <li>
+        <a href="lecture-04.html" class="cross-ref">Lecture 4: Logic &amp; Computation</a>
+        &mdash; Formal verification of AI alignment properties requires logical proof systems.
+      </li>
+    </ul>
+
+
+    <!-- ========== END OF JOURNEY ========== -->
+    <h2 class="lecture-section-heading">End of the Journey</h2>
+
+    <p style="font-size:1.05rem; line-height:1.85; color:var(--color-text); margin-bottom:var(--space-lg);">
+      You&rsquo;ve now traveled 10 paths through the history of mathematics, each leading to
+      the same destination: the mathematical foundations of artificial intelligence. These paths
+      interweave &mdash; probability feeds into statistics, linear algebra enables geometry,
+      calculus powers optimization, logic guides computation, and game theory guards alignment.
+      Together, they form the mathematical bedrock of the AI revolution.
+    </p>
+
+    <div style="text-align:center; margin-bottom:var(--space-xl);">
+      <a href="index.html" class="cross-ref" style="font-size:1.15rem; font-weight:600;">
+        &larr; Return to All Lectures &rarr;
+      </a>
+    </div>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <div class="lecture-nav">
+      <a href="lecture-09.html" class="lecture-nav-prev">Harmonic Analysis</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+    </div>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

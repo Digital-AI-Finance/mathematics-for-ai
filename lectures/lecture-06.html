@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 6: Number Theory &amp; Encoding &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-05.html">&larr; Prev</a>
+      <a href="lecture-07.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">6</div>
+      <h1>Number Theory &amp; Encoding</h1>
+      <p class="subtitle lecture-subtitle">From Prime Numbers to Tokens</p>
+      <div class="lecture-meta">
+        <span class="era-range">300 BCE &rarr; 2024</span>
+        <span class="badge lecture-tag">How AI Reads</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- ---------- Introduction ---------- -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      Number theory was once called &ldquo;the purest mathematics&rdquo; &mdash; beautiful but useless.
+      Then it became the foundation of cryptography, the internet, and digital security. Now it
+      underpins how AI reads and writes: from the encoding of text into numbers, to the positional
+      encodings that tell a transformer where each word sits in a sentence.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ~~~~~ M1: Euclid & The Infinity of Primes (300 BCE) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">300 BCE</span>
+          <h3 class="milestone-figure">Euclid of Alexandria</h3>
+
+          <div class="milestone-content">
+            <p>
+              Euclid&rsquo;s proof that there are infinitely many prime numbers is one of
+              the most elegant in all of mathematics. Assume finitely many primes, multiply
+              them all together, add 1 &mdash; the result is divisible by none of the assumed
+              primes, contradiction. This proof-by-contradiction technique is still used in
+              computer science today.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$\text{If } p_1, p_2, \ldots, p_n \text{ are all primes, then } p_1 \cdot p_2 \cdots p_n + 1 \text{ has a prime factor not in the list.}$$
+          </div>
+
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Euclid&rsquo;s proof is 2,300 years old and still taught in every mathematics
+              program. The concept of prime factorization underlies both cryptography and
+              hashing algorithms used in AI systems.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M2: Fermat, Euler & Modular Arithmetic (1640-1763) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1640&ndash;1763</span>
+          <h3 class="milestone-figure">Pierre de Fermat &amp; Leonhard Euler</h3>
+
+          <div class="milestone-content">
+            <p>
+              Fermat&rsquo;s Little Theorem: if $p$ is prime and $a$ is not divisible by
+              $p$, then $a^{p-1} \equiv 1 \pmod{p}$. Euler generalized this with his
+              totient function. Modular arithmetic &mdash; &ldquo;clock arithmetic&rdquo; where
+              numbers wrap around &mdash; became the foundation of cryptography, hash functions,
+              and the positional encodings in transformers.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$a^{p-1} \equiv 1 \pmod{p}$$
+          </div>
+
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Modular arithmetic is &ldquo;clock math&rdquo;: after 12 comes 1 again.
+              Transformers use sinusoidal functions &mdash; essentially continuous clocks &mdash;
+              for positional encoding.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M3: The Fundamental Theorem of Arithmetic ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1801</span>
+          <h3 class="milestone-figure">Carl Friedrich Gauss</h3>
+
+          <div class="milestone-content">
+            <p>
+              Every integer greater than 1 has a unique prime factorization. This uniqueness
+              is the bedrock of number theory &mdash; and of hash functions. Hash functions map
+              data to fixed-size numbers, and their security relies on the difficulty of reversing
+              the process (finding the prime factors of large numbers). Every AI system uses
+              hashing for data deduplication, caching, and retrieval.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$n = p_1^{a_1} \cdot p_2^{a_2} \cdots p_k^{a_k} \quad \text{(unique up to order)}$$
+          </div>
+
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Hash functions compress any data (a book, an image, an entire dataset) into a
+              fixed-size fingerprint. This uniqueness property comes from number theory.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M4: Shannon's Source Coding & Huffman Codes (1948-1952) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1948&ndash;1952</span>
+          <h3 class="milestone-figure">Claude Shannon &amp; David Huffman</h3>
+
+          <div class="milestone-content">
+            <p>
+              Shannon proved that data has a fundamental compression limit: the entropy.
+              Huffman (1952) found an optimal way to encode symbols using variable-length
+              codes &mdash; frequent symbols get short codes, rare symbols get long codes.
+              This is the ancestor of all text compression and directly inspired subword
+              tokenization for LLMs.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$L = \sum_i p_i \cdot l_i \;\geq\; H(X) = -\sum_i p_i \log_2 p_i$$
+          </div>
+          <p style="font-size:0.82rem; color:var(--color-text-light); text-align:center; margin-top:var(--space-xs); font-style:italic;">
+            Expected code length $L$ is bounded below by the entropy $H(X)$
+          </p>
+
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Huffman&rsquo;s key insight: assign shorter codes to common symbols. This is
+              exactly the principle behind BPE tokenization &mdash; common words get short tokens.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M5: ASCII, Unicode & Text as Numbers (1963-1991) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1963&ndash;1991</span>
+          <h3 class="milestone-figure">Bob Bemer (ASCII) &amp; Unicode Consortium</h3>
+
+          <div class="milestone-content">
+            <p>
+              ASCII (1963) mapped 128 characters to numbers (A=65, B=66, &hellip;). Unicode
+              (1991) extended this to 149,000+ characters covering every writing system. This
+              was the fundamental step: converting human text to numbers that computers &mdash;
+              and eventually AI &mdash; can process. Every LLM begins by converting text to
+              numerical representations.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$\text{ASCII: } \texttt{'A'} = 65 = 01000001_2, \quad \texttt{'a'} = 97 = 01100001_2$$
+          </div>
+
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Before AI can &ldquo;read,&rdquo; every character must become a number. Unicode
+              solved the encoding problem for all human languages.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M6: Byte Pair Encoding & Subword Tokenization (2015-2020) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2015&ndash;2020</span>
+          <h3 class="milestone-figure">Rico Sennrich (BPE for NLP) &amp; OpenAI (GPT tokenizer)</h3>
+
+          <div class="milestone-content">
+            <p>
+              BPE was originally a data compression algorithm (1994). Sennrich (2015) adapted
+              it for NLP: start with individual characters, repeatedly merge the most frequent
+              adjacent pairs. &ldquo;unhappiness&rdquo; becomes [&ldquo;un&rdquo;,
+              &ldquo;happiness&rdquo;]. This solves the vocabulary problem &mdash; the model
+              doesn&rsquo;t need to memorize every word, just common subword pieces. GPT-4 uses
+              ~100,000 BPE tokens.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$\text{Merge rule: if ``t'' + ``h'' is most frequent} \to \text{replace with ``th''}$$
+          </div>
+          <p style="font-size:0.82rem; color:var(--color-text-light); text-align:center; margin-top:var(--space-xs); font-style:italic;">
+            Then if &ldquo;th&rdquo; + &ldquo;e&rdquo; is most frequent &rarr; replace with &ldquo;the&rdquo;
+          </p>
+
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              GPT-4&rsquo;s tokenizer splits &ldquo;unhappiness&rdquo; into
+              [&ldquo;un&rdquo;, &ldquo;happiness&rdquo;]. Common English words get single tokens;
+              rare words are split into pieces. This is Huffman coding applied to language.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M7: Positional Encoding & Sinusoidal Functions (2017) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2017</span>
+          <h3 class="milestone-figure">Vaswani et al.</h3>
+
+          <div class="milestone-content">
+            <p>
+              Transformers process all words in parallel &mdash; so how does the model know
+              word order? The answer: add a unique positional encoding to each word. The
+              original transformer used sinusoidal functions at different frequencies, inspired
+              by Fourier series. Each position gets a unique &ldquo;fingerprint&rdquo; based
+              on sine and cosine waves &mdash; a direct application of number theory and
+              trigonometry.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$PE_{(pos, 2i)} = \sin\!\left(\frac{pos}{10000^{2i/d}}\right), \quad PE_{(pos, 2i+1)} = \cos\!\left(\frac{pos}{10000^{2i/d}}\right)$$
+          </div>
+
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              The base 10,000 in positional encoding creates a system like counting in
+              different number bases simultaneously &mdash; each dimension is a different
+              &ldquo;clock&rdquo; cycling at a different frequency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ~~~~~ M8: RoPE & Modern Position Encoding (2021-2024) ~~~~~ -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2021&ndash;2024</span>
+          <h3 class="milestone-figure">Jianlin Su (RoPE) &amp; Meta (Llama)</h3>
+
+          <div class="milestone-content">
+            <p>
+              Rotary Position Embedding (RoPE) represents positions as rotations in 2D
+              subspaces of the embedding. It uses Euler&rsquo;s formula
+              ($e^{i\theta} = \cos\theta + i\sin\theta$) to rotate query and key vectors
+              based on their position. This elegant number-theoretic approach allows LLMs to
+              generalize to longer sequences than they were trained on &mdash; a crucial
+              capability.
+            </p>
+          </div>
+
+          <div class="milestone-formula">
+            $$\text{RoPE}(x_m, m) = x_m \cdot e^{im\theta} \quad \text{where } \theta_j = 10000^{-2j/d}$$
+          </div>
+
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              RoPE uses complex number rotations &mdash; Euler&rsquo;s 18th-century formula &mdash;
+              to tell modern LLMs where words are. Llama, Mistral, and many other models rely
+              on this.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">Culmination</h2>
+
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      The journey from prime numbers to position encoding reveals number theory&rsquo;s hidden
+      power: the &ldquo;purest&rdquo; mathematics became the most practical. Every text you send
+      to an AI passes through layers of encoding &mdash; Unicode, tokenization, positional
+      encoding &mdash; each rooted in centuries of number-theoretic insight.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Number Theory Chain</span>
+      <div class="formula">
+        $$\text{Primes} \to \text{Modular Arithmetic} \to \text{Hashing} \to \text{Huffman} \to \text{BPE} \to \text{RoPE}$$
+      </div>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-01.html" class="cross-ref">Lecture 1: Probability &amp; Uncertainty</a>
+        &mdash; Shannon&rsquo;s entropy is the theoretical limit for compression, connecting
+        information theory to the Huffman and BPE encoding schemes in this lecture.
+      </li>
+      <li>
+        <a href="lecture-09.html" class="cross-ref">Lecture 9: Fourier Analysis</a>
+        &mdash; Sinusoidal positional encoding is a direct application of Fourier series;
+        each position is decomposed into a sum of sine and cosine waves at different frequencies.
+      </li>
+      <li>
+        <a href="lecture-02.html" class="cross-ref">Lecture 2: Linear Algebra &amp; Transformations</a>
+        &mdash; Embedding matrices convert tokens into vectors; the positional encodings
+        from this lecture are added to those vectors before attention begins.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <nav class="lecture-nav">
+      <a href="lecture-05.html" class="lecture-nav-prev">Geometry</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-07.html" class="lecture-nav-next">Statistics</a>
+    </nav>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

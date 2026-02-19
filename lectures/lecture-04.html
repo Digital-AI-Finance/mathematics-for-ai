@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 4: Logic &amp; Computation &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-03.html">&larr; Prev</a>
+      <a href="lecture-05.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">4</div>
+      <h1>Logic &amp; Computation</h1>
+      <p class="subtitle lecture-subtitle">From Syllogisms to Language Models</p>
+      <div class="lecture-meta">
+        <span class="era-range">350 BCE &rarr; 2024</span>
+        <span class="badge lecture-tag">Mechanizing Thought Itself</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      Can a machine think? This question, which seems so modern, has roots stretching
+      back 2,400 years. The path from Aristotle&rsquo;s logical syllogisms to today&rsquo;s
+      language models is one of humanity&rsquo;s greatest intellectual adventures &mdash;
+      and at every step, mathematics was the bridge between thought and mechanism.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── M1: Aristotle's Syllogisms (350 BCE) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">350 BCE</span>
+          <h3 class="milestone-figure">Aristotle</h3>
+          <div class="milestone-content">
+            <p>
+              Aristotle created the first formal system of logic &mdash; the syllogism.
+              &ldquo;All men are mortal. Socrates is a man. Therefore, Socrates is mortal.&rdquo;
+              He showed that valid reasoning follows patterns, independent of content. This was
+              the first hint that thinking could be reduced to rules.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\forall x: \text{Man}(x) \Rightarrow \text{Mortal}(x); \quad \text{Man}(\text{Socrates}); \quad \therefore \text{Mortal}(\text{Socrates})$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Aristotle&rsquo;s logic dominated Western thought for 2,000 years. It was the
+              first attempt to mechanize reasoning &mdash; to reduce thought to symbols and rules.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M2: Leibniz's Dream & Boolean Algebra (1666–1854) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1666&ndash;1854</span>
+          <h3 class="milestone-figure">Gottfried Leibniz &amp; George Boole</h3>
+          <div class="milestone-content">
+            <p>
+              Leibniz dreamed of a &ldquo;calculus of reasoning&rdquo; &mdash; a universal language
+              where disputes could be settled by calculation: &ldquo;Let us calculate!&rdquo;
+              Two centuries later, Boole made this real with Boolean algebra, showing that all
+              logic could be reduced to AND, OR, NOT operations on 0s and 1s. This became the
+              foundation of every computer.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$A \land B, \quad A \lor B, \quad \lnot A$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Every CPU on Earth runs on Boolean logic. Every neural network computation is
+              ultimately performed by Boolean gates &mdash; the legacy of Boole.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M3: Gödel's Incompleteness Theorems (1931) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-unsolved">Unsolved</span>
+          <span class="milestone-era">1931</span>
+          <h3 class="milestone-figure">Kurt G&ouml;del</h3>
+          <div class="milestone-content">
+            <p>
+              G&ouml;del shattered the dream of a complete, consistent mathematical system.
+              His First Incompleteness Theorem: any sufficiently powerful formal system contains
+              true statements it cannot prove. His Second: no such system can prove its own
+              consistency. These theorems revealed fundamental limits of formal reasoning &mdash;
+              limits that AI also faces.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="font-size:0.9rem; line-height:1.65; margin:0; text-align:left;">
+              The G&ouml;del sentence $G$ says: &ldquo;$G$ is not provable in this system.&rdquo;
+              If $G$ is provable, the system is inconsistent. If $G$ is not provable, the system
+              is incomplete.
+            </p>
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved</span>
+            <p>
+              Can an AI ever fully understand mathematics? G&ouml;del showed that even perfect
+              formal systems have blind spots. This remains one of the deepest unsolved questions in AI.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M4: Turing Machines & The Halting Problem (1936) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1936</span>
+          <h3 class="milestone-figure">Alan Turing</h3>
+          <div class="milestone-content">
+            <p>
+              Turing imagined the simplest possible computing device: a tape, a head, and a
+              table of rules. He proved that this simple machine could compute anything
+              computable &mdash; and that some things (like determining whether a program will
+              halt) are fundamentally undecidable. The Turing Machine became the theoretical
+              foundation of all computing.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{HALT}(P, I) = \begin{cases} \text{true} & \text{if } P \text{ halts on input } I \\ \text{false} & \text{otherwise} \end{cases} \text{ is undecidable.}$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Turing also proposed the Turing Test (1950): can a machine fool a human into
+              thinking it&rsquo;s human? LLMs are now routinely passing informal versions
+              of this test.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M5: Chomsky Hierarchy & Formal Grammars (1956) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1956</span>
+          <h3 class="milestone-figure">Noam Chomsky</h3>
+          <div class="milestone-content">
+            <p>
+              Chomsky classified languages into a hierarchy of complexity: regular &rarr;
+              context-free &rarr; context-sensitive &rarr; recursively enumerable. Each level
+              requires more computational power to parse. Natural language was believed to be
+              context-sensitive. This hierarchy shaped 50 years of Natural Language Processing
+              &mdash; until neural networks bypassed it entirely.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Chomsky&rsquo;s hierarchy says natural language needs sophisticated grammars.
+              Transformers seem to learn these grammars implicitly from data &mdash; without
+              being told the rules.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M6: The Perceptron & XOR Problem (1958–1969) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-unsolved">Unsolved</span>
+          <span class="milestone-era">1958&ndash;1969</span>
+          <h3 class="milestone-figure">Frank Rosenblatt &amp; Marvin Minsky</h3>
+          <div class="milestone-content">
+            <p>
+              Rosenblatt&rsquo;s Perceptron (1958) was the first neural network that could learn
+              from data. Minsky and Papert (1969) proved it couldn&rsquo;t learn the simple XOR
+              function &mdash; because a single layer can only learn linearly separable patterns.
+              This triggered the first &ldquo;AI Winter.&rdquo; The solution &mdash; multi-layer
+              networks &mdash; took 17 years to become practical.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{XOR}(x_1, x_2) = (x_1 \lor x_2) \land \lnot(x_1 \land x_2)$$
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved</span>
+            <p>
+              The XOR problem killed neural network research for over a decade. The solution
+              was so simple: add one more layer. But proving it worked required backpropagation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M7: The Transformer & Self-Attention (2017) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2017</span>
+          <h3 class="milestone-figure">Vaswani et al. (Google Brain)</h3>
+          <div class="milestone-content">
+            <p>
+              &ldquo;Attention Is All You Need&rdquo; replaced all previous NLP architectures
+              with a single elegant mechanism: self-attention. Unlike recurrent networks that
+              process words sequentially, transformers process all words in parallel, learning
+              which words relate to which. This is not rule-based logic &mdash; it&rsquo;s
+              learned, statistical, emergent reasoning.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{Output} = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              The transformer doesn&rsquo;t use Chomsky&rsquo;s grammar rules. Instead, it
+              learns its own implicit grammar from data. Whether this counts as &ldquo;true
+              understanding&rdquo; is philosophy&rsquo;s newest question.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── M8: LLMs as Reasoning Engines (2022–2024) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2022&ndash;2024</span>
+          <h3 class="milestone-figure">Chain-of-Thought, OpenAI o1, Claude</h3>
+          <div class="milestone-content">
+            <p>
+              Chain-of-thought prompting (Wei et al., 2022) showed that LLMs reason better when
+              they &ldquo;think step by step.&rdquo; OpenAI&rsquo;s o1 model (2024) takes this
+              further with explicit reasoning chains. Are LLMs truly reasoning, or merely pattern
+              matching? This is Leibniz&rsquo;s dream and G&ouml;del&rsquo;s limit colliding in
+              real-time &mdash; and the answer will reshape our understanding of intelligence.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$P(\text{answer} \mid \text{question}) \ll P(\text{answer} \mid \text{question}, \text{chain-of-thought steps})$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              When you ask Claude to &ldquo;think step by step,&rdquo; you&rsquo;re invoking a
+              technique rooted in 2,400 years of logical formalization &mdash; from Aristotle&rsquo;s
+              syllogisms to modern chain-of-thought reasoning.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      The journey from syllogisms to language models reveals a paradox: we spent 2,400 years
+      trying to reduce thought to formal rules, and then built thinking machines that learned
+      to reason without being given the rules. The dream of mechanized thought was achieved
+      &mdash; but not in the way anyone expected.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Logic Chain</span>
+      <div class="formula">
+        $$\text{Aristotle} \to \text{Boole} \to \text{G\"{o}del} \to \text{Turing} \to \text{Chomsky} \to \text{Transformer}$$
+      </div>
+      <span class="key-formula-caption">
+        2,400 years of mechanizing thought, from syllogisms to self-attention.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-01.html" class="cross-ref">Lecture 1: Probability &amp; Uncertainty</a>
+        &mdash; The statistical nature of LLM reasoning: transformers don&rsquo;t use formal logic, they use probability distributions over tokens.
+      </li>
+      <li>
+        <a href="lecture-06.html" class="cross-ref">Lecture 6: Number Theory &amp; Encoding</a>
+        &mdash; How encoding and representation turn language into numbers that machines can process &mdash; the bridge from Turing&rsquo;s tape to modern tokenization.
+      </li>
+      <li>
+        <a href="lecture-10.html" class="cross-ref">Lecture 10: Game Theory &amp; Alignment</a>
+        &mdash; How AI alignment builds on the tension between formal rules and emergent behavior that G&ouml;del and Turing first revealed.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <nav class="lecture-nav">
+      <a href="lecture-03.html" class="lecture-nav-prev">Calculus</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-05.html" class="lecture-nav-next">Geometry</a>
+    </nav>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

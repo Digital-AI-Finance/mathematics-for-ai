@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 9: Harmonic Analysis &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-08.html">&larr; Prev</a>
+      <a href="lecture-10.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">9</div>
+      <h1>Harmonic Analysis &amp; Signals</h1>
+      <p class="subtitle lecture-subtitle">From Vibrating Strings to Position Encoding</p>
+      <div class="lecture-meta">
+        <span class="era-range">550 BCE &rarr; 2024</span>
+        <span class="badge lecture-tag">The Mathematics of Waves</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      The discovery that music can be described by numbers is one of humanity&rsquo;s oldest
+      mathematical insights. From Pythagoras hearing harmony in hammers to Fourier decomposing
+      heat into waves, the mathematics of vibrations has an unbroken thread leading to how
+      modern AI encodes the position of words in a sentence &mdash; using the very same sine
+      and cosine functions that describe a vibrating guitar string.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── Milestone 1: Pythagoras & Musical Harmony (550 BCE) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">550 BCE</span>
+          <h3 class="milestone-figure">Pythagoras of Samos</h3>
+          <div class="milestone-content">
+            <p>
+              Legend says Pythagoras walked past a blacksmith and noticed that hammers of certain
+              weight ratios produced harmonious sounds. He discovered that harmony corresponds to
+              simple numerical ratios: octave (2:1), fifth (3:2), fourth (4:3). This was the first
+              discovery that nature obeys mathematical relationships &mdash; and specifically that
+              waves and vibrations have mathematical structure.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{Frequency ratios: Octave} = \frac{2}{1},\quad \text{Fifth} = \frac{3}{2},\quad \text{Fourth} = \frac{4}{3}$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Pythagoras showed that beauty (harmony) has mathematical structure. 2,500 years later,
+              we discovered that meaning (in language) also has mathematical structure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 2: The Vibrating String & d'Alembert's Wave Equation (1747) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1747</span>
+          <h3 class="milestone-figure">Jean le Rond d&rsquo;Alembert &amp; Daniel Bernoulli</h3>
+          <div class="milestone-content">
+            <p>
+              D&rsquo;Alembert derived the wave equation describing a vibrating string. Bernoulli
+              proposed that any vibration is a sum of simple harmonic modes (sines and cosines).
+              This was controversial &mdash; can every shape really be built from waves? The answer,
+              proven later by Fourier, was yes. This idea &mdash; decomposing complexity into simple
+              waves &mdash; is the foundation of signal processing and, surprisingly, transformer
+              position encoding.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Bernoulli&rsquo;s claim that any vibration is a sum of sines was rejected by Euler
+              and d&rsquo;Alembert. Fourier proved Bernoulli right 60 years later.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 3: Fourier Series & Transforms (1807) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1807</span>
+          <h3 class="milestone-figure">Joseph Fourier</h3>
+          <div class="milestone-content">
+            <p>
+              Fourier&rsquo;s radical claim: ANY periodic function can be decomposed into a sum
+              of sines and cosines. He developed this to study heat flow, but it became one of the
+              most important ideas in all of mathematics and engineering. Fourier analysis lets you
+              see any signal as a mixture of frequencies &mdash; and this frequency-domain view is
+              how transformers encode position.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left(a_n \cos\frac{2\pi nx}{T} + b_n \sin\frac{2\pi nx}{T}\right)$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Fourier&rsquo;s idea is everywhere: JPEG compression, audio processing, MRI machines,
+              telecommunications, and transformer position encoding all use Fourier decomposition.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 4: The Nyquist-Shannon Sampling Theorem (1928–1949) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1928&ndash;1949</span>
+          <h3 class="milestone-figure">Harry Nyquist &amp; Claude Shannon</h3>
+          <div class="milestone-content">
+            <p>
+              To perfectly reconstruct a continuous signal from discrete samples, you need at least
+              twice the highest frequency. This theorem governs all digital audio (CD quality:
+              44,100 samples/second for sounds up to 22,050 Hz), all digital images, and
+              fundamentally, how AI discretizes continuous information into tokens.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$f_s \geq 2 f_{\max} \quad \text{(Nyquist rate)}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Music CDs sample at 44.1 kHz because human hearing tops out at ~20 kHz. The Nyquist
+              theorem says 40 kHz suffices &mdash; CD quality adds a small margin.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 5: The Fast Fourier Transform (1965) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1965</span>
+          <h3 class="milestone-figure">James Cooley &amp; John Tukey</h3>
+          <div class="milestone-content">
+            <p>
+              The FFT algorithm computes the Discrete Fourier Transform in $O(n \log n)$ instead
+              of $O(n^2)$ &mdash; a speedup so dramatic it&rsquo;s been called one of the most
+              important algorithms of the 20th century. Without the FFT, modern signal processing,
+              telecommunications, and many AI applications would be computationally impractical.
+              It&rsquo;s also the inspiration behind efficient attention mechanisms.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$X_k = \sum_{n=0}^{N-1} x_n \cdot e^{-2\pi i\, kn/N}$$
+            <p style="text-align:center; font-size:0.95rem; color:var(--color-text-light); margin-top:0.5rem;">
+              FFT reduces this from $O(N^2)$ to $O(N \log N)$.
+            </p>
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              The FFT made the impossible practical. Transforming a million-point signal went from
+              $10^{12}$ operations to $2 \times 10^{7}$ &mdash; a 50,000&times; speedup.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 6: Wavelets & Multi-Resolution Analysis (1980s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1980s</span>
+          <h3 class="milestone-figure">Jean Morlet, Ingrid Daubechies &amp; St&eacute;phane Mallat</h3>
+          <div class="milestone-content">
+            <p>
+              Wavelets improved on Fourier by providing BOTH frequency AND time information
+              simultaneously. A Fourier transform tells you which frequencies are present, but not
+              when. Wavelets are localized waves that capture transient features. In AI, multi-scale
+              processing (like the hierarchical features learned by CNNs and the multi-head attention
+              of transformers) follows the wavelet philosophy: analyze at multiple resolutions.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$W_\psi f(a,b) = \frac{1}{\sqrt{|a|}} \int f(t)\, \psi^*\!\left(\frac{t-b}{a}\right)dt$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Multi-head attention in transformers operates at multiple &ldquo;scales&rdquo; &mdash;
+              each head can attend to different ranges of context, just like wavelets analyze at
+              multiple resolutions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 7: Sinusoidal Position Encoding (2017) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2017</span>
+          <h3 class="milestone-figure">Vaswani et al.</h3>
+          <div class="milestone-content">
+            <p>
+              Transformers process words in parallel &mdash; they need positional information
+              injected. The original solution: add sine and cosine waves at geometrically increasing
+              frequencies. Position 1 gets one pattern; position 2 gets a different pattern. Like a
+              Fourier basis, each position has a unique &ldquo;fingerprint.&rdquo; The brilliance:
+              the model can learn to compute relative positions because $\sin(a+b)$ can be expressed
+              in terms of $\sin(a)$ and $\sin(b)$.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$PE_{(pos,2i)} = \sin\!\left(\frac{pos}{10000^{2i/d}}\right),\quad PE_{(pos,2i+1)} = \cos\!\left(\frac{pos}{10000^{2i/d}}\right)$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Position encoding IS a Fourier basis. Each dimension is a sine/cosine wave at a
+              different frequency. The position of a word is encoded as a point in this frequency
+              space &mdash; Fourier analysis applied to language.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 8: Spectral Methods & Efficient Attention (2020s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2020&ndash;2024</span>
+          <h3 class="milestone-figure">Various Researchers</h3>
+          <div class="milestone-content">
+            <p>
+              Standard attention is $O(n^2)$ &mdash; quadratic in sequence length. Spectral methods
+              use the FFT to approximate attention in $O(n \log n)$, just as Cooley-Tukey
+              accelerated Fourier transforms. FNet (Google, 2021) replaced attention entirely with
+              Fourier transforms, achieving 92% of transformer quality at 7&times; the speed. Hyena
+              (2023) uses long convolutions in the frequency domain. The future of efficient AI may
+              be Fourier-based.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$y = \text{FFT}_{\text{seq}}\!\bigl(\text{FFT}_{\text{hidden}}(x)\bigr)$$
+            <p style="text-align:center; font-size:0.95rem; color:var(--color-text-light); margin-top:0.5rem;">
+              FNet layer: two FFTs replace self-attention.
+            </p>
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              FNet showed that replacing attention with simple Fourier transforms loses only 8%
+              accuracy but runs 7&times; faster. Fourier&rsquo;s 200-year-old idea may be the key
+              to efficient AI.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      From Pythagoras hearing harmony in hammers to FNet using Fourier transforms as attention,
+      the mathematics of waves has always been about decomposing complexity into simple,
+      understandable components. Position encoding, efficient attention, multi-scale
+      processing &mdash; all are descendants of the insight that any signal can be built
+      from waves.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Harmonic Analysis Chain</span>
+      <div class="formula">
+        $$\text{Pythagoras} \to \text{Fourier} \to \text{FFT} \to \text{Wavelets} \to \text{Position Encoding} \to \text{Spectral Attention}$$
+      </div>
+      <span class="key-formula-caption">
+        2,500 years of wave mathematics, now encoding meaning in every transformer.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-06.html" class="cross-ref">Lecture 6: Number Theory &amp; Encoding</a>
+        &mdash; Positional encoding and RoPE connect number-theoretic structure with harmonic functions.
+      </li>
+      <li>
+        <a href="lecture-02.html" class="cross-ref">Lecture 2: Linear Algebra &amp; Transformations</a>
+        &mdash; The FFT is a factorization of the DFT matrix; Fourier analysis is linear algebra in disguise.
+      </li>
+      <li>
+        <a href="lecture-03.html" class="cross-ref">Lecture 3: Calculus &amp; Optimization</a>
+        &mdash; The wave equation and PDEs that gave rise to Fourier analysis are calculus at its deepest.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <div class="lecture-nav">
+      <a href="lecture-08.html" class="lecture-nav-prev">Graph Theory &amp; Networks</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-10.html" class="lecture-nav-next">Game Theory &amp; Alignment</a>
+    </div>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

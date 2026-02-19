@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 1: Probability &amp; Uncertainty &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-02.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">1</div>
+      <h1>Probability &amp; Uncertainty</h1>
+      <p class="subtitle lecture-subtitle">From Pascal&rsquo;s Wager to Softmax</p>
+      <div class="lecture-meta">
+        <span class="era-range">1654 &rarr; 2024</span>
+        <span class="badge lecture-tag">Foundation of AI Confidence</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      Every time an AI says it&rsquo;s &ldquo;92% confident&rdquo; that your email is spam,
+      or a language model chooses the word &ldquo;the&rdquo; over &ldquo;a,&rdquo; it&rsquo;s
+      using probability theory &mdash; a branch of mathematics born from a 17th-century
+      gambling problem. This lecture traces the 370-year journey from a letter between
+      two French mathematicians to the softmax function running inside every large language
+      model on Earth.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── Milestone 1: The Gambling Problem (1654) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">1654</span>
+          <h3 class="milestone-figure">Blaise Pascal &amp; Pierre de Fermat</h3>
+          <div class="milestone-content">
+            <p>
+              The Problem of Points &mdash; two gamblers must stop a game early. How do you
+              fairly split the stakes? Pascal and Fermat&rsquo;s famous correspondence
+              invented probability theory itself. Pascal&rsquo;s approach was revolutionary in
+              its simplicity: enumerate all possible future outcomes and count the favorable ones.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$P(A) = \frac{\text{favorable outcomes}}{\text{total outcomes}}$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Before Pascal, probability didn&rsquo;t exist as mathematics. Games of chance
+              were considered the domain of fate, not numbers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 2: The Law of Large Numbers (1713) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1713</span>
+          <h3 class="milestone-figure">Jacob Bernoulli</h3>
+          <div class="milestone-content">
+            <p>
+              Published posthumously in <em>Ars Conjectandi</em>. Bernoulli proved that as you
+              repeat an experiment more times, the observed frequency converges to the true
+              probability. This was the first formal limit theorem &mdash; connecting finite
+              observations to infinite truth.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\lim_{n \to \infty} P\left(\left|\frac{S_n}{n} - p\right| > \varepsilon\right) = 0$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Bernoulli took 20 years to prove this. It bridges the gap between theory
+              and observation &mdash; the same gap AI must cross.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 3: Bayes' Theorem (1763) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1763</span>
+          <h3 class="milestone-figure">Thomas Bayes (published by Richard Price)</h3>
+          <div class="milestone-content">
+            <p>
+              An essay published posthumously. Bayes asked: if I observe evidence, how should
+              I update my beliefs? The answer inverts conditional probability. Ignored for
+              centuries, then became the foundation of spam filters, medical diagnosis AI, and
+              every Bayesian neural network.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              The Unsolved Debate: Bayesians vs. Frequentists raged for 200 years. Are
+              probabilities beliefs (Bayesian) or frequencies (Frequentist)? Machine learning
+              uses both.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 4: Normal Distribution & CLT (1809-1812) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1809</span>
+          <h3 class="milestone-figure">Carl Friedrich Gauss &amp; Pierre-Simon Laplace</h3>
+          <div class="milestone-content">
+            <p>
+              Gauss used the bell curve for astronomical observations. Laplace proved the
+              Central Limit Theorem: no matter what the original distribution, averages of
+              large samples are approximately normal. This is why the bell curve appears
+              everywhere &mdash; from weight initialization in neural networks to the noise in
+              diffusion models.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Neural network weights are initialized from Gaussian distributions. The CLT is
+              the reason this works so well.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 5: Markov Chains (1906) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1906</span>
+          <h3 class="milestone-figure">Andrey Markov</h3>
+          <div class="milestone-content">
+            <p>
+              Markov studied sequences where the next state depends only on the current state,
+              not the full history. He applied this to analyze the alternation of vowels and
+              consonants in Pushkin&rsquo;s <em>Eugene Onegin</em>. This &ldquo;memoryless&rdquo;
+              property became the foundation of language modeling &mdash; predicting the next
+              word from recent context.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$P(X_{n+1} = x \mid X_n, X_{n-1}, \ldots, X_0) = P(X_{n+1} = x \mid X_n)$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              The Markov property &mdash; &ldquo;the future depends only on the present,
+              not the past&rdquo; &mdash; is both the oldest and simplest language model.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 6: Information Theory & Entropy (1948) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1948</span>
+          <h3 class="milestone-figure">Claude Shannon</h3>
+          <div class="milestone-content">
+            <p>
+              Shannon&rsquo;s <em>A Mathematical Theory of Communication</em> defined
+              information as surprise. High-probability events carry little information;
+              low-probability events carry a lot. Shannon entropy measures the average
+              surprise in a probability distribution. This became the loss function for
+              training every language model.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Shannon used Markov chains to generate random English text in 1948. It was
+              arguably the first language model.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 7: Cross-Entropy & KL Divergence (1951) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1951</span>
+          <h3 class="milestone-figure">Solomon Kullback &amp; Richard Leibler</h3>
+          <div class="milestone-content">
+            <p>
+              KL divergence measures how one probability distribution differs from another.
+              Cross-entropy combines this with Shannon&rsquo;s entropy. When training an LLM,
+              cross-entropy loss measures how different the model&rsquo;s predicted word
+              probabilities are from the actual next word. Minimizing this loss IS the entire
+              training objective.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\mathcal{L} = -\sum_{i} p(x_i) \log q(x_i)$$
+            <p style="font-size:0.85rem; color:var(--color-text-light); margin-top:var(--space-sm); text-align:center;">
+              Where $p$ is the true distribution (actual next word) and $q$ is the model&rsquo;s prediction.
+            </p>
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Every LLM in existence &mdash; GPT-4, Claude, Gemini, Llama &mdash; is trained
+              by minimizing cross-entropy loss. This one equation drives the entire field.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 8: The Softmax Function & Temperature ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2017&ndash;2024</span>
+          <h3 class="milestone-figure">The Transformer Revolution</h3>
+          <div class="milestone-content">
+            <p>
+              The softmax function converts raw neural network outputs (logits) into a
+              probability distribution. Temperature controls how &ldquo;confident&rdquo; or
+              &ldquo;creative&rdquo; the model is. At temperature 0, the model always picks
+              the most likely word. At high temperature, it explores more creative choices.
+              This is pure probability theory applied to language generation.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{softmax}(z_i) = \frac{e^{z_i / T}}{\sum_j e^{z_j / T}}$$
+            <p style="font-size:0.85rem; color:var(--color-text-light); margin-top:var(--space-sm); text-align:center;">
+              Where $T$ is the temperature parameter. $T \to 0$: deterministic. $T \to \infty$: uniform random.
+            </p>
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              When you adjust the &ldquo;creativity&rdquo; slider in ChatGPT, you&rsquo;re
+              adjusting the temperature parameter in this 370-year-old probability equation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      This 370-year journey from a gambling problem to softmax temperature shows that
+      probability was always the mathematics of uncertainty &mdash; and AI is fundamentally
+      about managing uncertainty. Every milestone on this timeline tackled the same question
+      in a different way: <em>How do we make rational decisions when we don&rsquo;t know
+      what will happen next?</em> Pascal counted outcomes. Bayes updated beliefs. Shannon
+      measured surprise. And modern transformers convert all of it into the probability
+      distributions that power every AI system you use today.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Probability Chain</span>
+      <div class="formula">
+        $$\text{Pascal} \to \text{Bayes} \to \text{Markov} \to \text{Shannon} \to \text{Softmax}$$
+      </div>
+      <span class="key-formula-caption">
+        370 years of probability theory, now running in every AI prediction.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-06.html" class="cross-ref">Lecture 6: Number Theory &amp; Encoding</a>
+        &mdash; How tokenization converts text into the discrete symbols that probability distributions operate on.
+      </li>
+      <li>
+        <a href="lecture-07.html" class="cross-ref">Lecture 7: Statistics &amp; Learning Theory</a>
+        &mdash; How statistical learning theory proves that minimizing cross-entropy on training data generalizes to unseen data.
+      </li>
+      <li>
+        <a href="lecture-04.html" class="cross-ref">Lecture 4: Logic &amp; Computation</a>
+        &mdash; How Boolean logic and Turing machines provide the computational substrate on which probability calculations run.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <nav class="lecture-nav">
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-02.html" class="lecture-nav-next">Linear Algebra</a>
+    </nav>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematical History Paths — Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* ---- Page-specific styles for lectures/index.html ---- */
+
+    /* Back link */
+    .hub-back-link {
+      display: inline-block;
+      padding: var(--space-sm) var(--space-lg);
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      text-align: center;
+      width: 100%;
+    }
+
+    .hub-back-link:hover {
+      color: var(--color-accent);
+      background: var(--color-bg);
+    }
+
+    /* Intro paragraph below hero */
+    .hub-intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) 0;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--color-text-light);
+      line-height: 1.7;
+    }
+
+    /* Grid of 10 cards */
+    .lecture-hub-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      max-width: 1080px;
+      margin: var(--space-xl) auto var(--space-2xl);
+      padding: 0 var(--space-lg);
+    }
+
+    @media (min-width: 600px) {
+      .lecture-hub-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .lecture-hub-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+      }
+    }
+
+    /* Card */
+    .lecture-hub-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      padding: var(--space-lg);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lecture-hub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-secondary);
+      color: inherit;
+    }
+
+    /* Large number label */
+    .lecture-hub-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Card title */
+    .lecture-hub-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+      line-height: 1.25;
+    }
+
+    /* Era / subtitle line */
+    .lecture-hub-era {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Description */
+    .lecture-hub-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    /* Bottom link */
+    .lecture-hub-link {
+      display: inline-block;
+      margin-top: var(--space-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .lecture-hub-card:hover .lecture-hub-link {
+      color: var(--color-accent);
+    }
+
+    /* Staggered scroll-reveal delays for the grid */
+    .lecture-hub-card:nth-child(1)  { transition-delay: 0.05s; }
+    .lecture-hub-card:nth-child(2)  { transition-delay: 0.10s; }
+    .lecture-hub-card:nth-child(3)  { transition-delay: 0.15s; }
+    .lecture-hub-card:nth-child(4)  { transition-delay: 0.20s; }
+    .lecture-hub-card:nth-child(5)  { transition-delay: 0.25s; }
+    .lecture-hub-card:nth-child(6)  { transition-delay: 0.30s; }
+    .lecture-hub-card:nth-child(7)  { transition-delay: 0.35s; }
+    .lecture-hub-card:nth-child(8)  { transition-delay: 0.40s; }
+    .lecture-hub-card:nth-child(9)  { transition-delay: 0.45s; }
+    .lecture-hub-card:nth-child(10) { transition-delay: 0.50s; }
+
+    /* Footer strip */
+    .hub-footer {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+      border-top: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html#overview">Overview</a>
+      <a href="../index.html#sections">Sections</a>
+      <a href="../index.html#math-concepts">Math</a>
+      <a href="../index.html#history">History</a>
+      <a href="../index.html#visualizations">Visualizations</a>
+      <a href="../index.html#resources">Resources</a>
+      <a href="../lectures.html">Lecture Proposals</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="plan-hero">
+    <h1>10 Mathematical Journeys to AI</h1>
+    <p class="subtitle">From Ancient Origins to Large Language Models</p>
+    <div class="plan-meta">
+      <span class="badge">10 Lecture Paths</span>
+      <span class="badge">History &rarr; AI</span>
+      <span class="badge">Interactive</span>
+    </div>
+  </header>
+
+  <!-- ========== INTRO ========== -->
+  <p class="hub-intro">
+    Each lecture traces one mathematical thread through history &mdash; from its ancient origins,
+    through centuries of unsolved problems and brilliant breakthroughs, to its modern role powering
+    artificial intelligence and large language models.
+  </p>
+
+  <!-- ========== GRID ========== -->
+  <main>
+    <div class="lecture-hub-grid">
+
+      <!-- 1 -->
+      <a href="lecture-01.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 01</div>
+        <div class="lecture-hub-title">Probability &amp; Uncertainty</div>
+        <div class="lecture-hub-era">From Pascal&rsquo;s Wager to Softmax &mdash; 1654 &rarr; 2024</div>
+        <p class="lecture-hub-desc">How the mathematics of chance became the language of AI confidence</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 2 -->
+      <a href="lecture-02.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 02</div>
+        <div class="lecture-hub-title">Linear Algebra &amp; Transformations</div>
+        <div class="lecture-hub-era">From Ancient Systems to Attention &mdash; 2000 BCE &rarr; 2023</div>
+        <p class="lecture-hub-desc">How organizing numbers in grids led to machines that understand language</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 3 -->
+      <a href="lecture-03.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 03</div>
+        <div class="lecture-hub-title">Calculus &amp; Optimization</div>
+        <div class="lecture-hub-era">From Tangent Lines to Training Runs &mdash; 1629 &rarr; 2024</div>
+        <p class="lecture-hub-desc">How the mathematics of change teaches machines to learn</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 4 -->
+      <a href="lecture-04.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 04</div>
+        <div class="lecture-hub-title">Logic &amp; Computation</div>
+        <div class="lecture-hub-era">From Syllogisms to Language Models &mdash; 350 BCE &rarr; 2024</div>
+        <p class="lecture-hub-desc">How the quest to mechanize thought created thinking machines</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 5 -->
+      <a href="lecture-05.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 05</div>
+        <div class="lecture-hub-title">Geometry of High Dimensions</div>
+        <div class="lecture-hub-era">From Euclid to Latent Spaces &mdash; 300 BCE &rarr; 2024</div>
+        <p class="lecture-hub-desc">How our intuitions about shape extend to the geometry of meaning</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 6 -->
+      <a href="lecture-06.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 06</div>
+        <div class="lecture-hub-title">Number Theory &amp; Encoding</div>
+        <div class="lecture-hub-era">From Prime Numbers to Tokens &mdash; 300 BCE &rarr; 2024</div>
+        <p class="lecture-hub-desc">How the purest mathematics became the foundation of how AI reads</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 7 -->
+      <a href="lecture-07.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 07</div>
+        <div class="lecture-hub-title">Statistics &amp; Learning Theory</div>
+        <div class="lecture-hub-era">From Least Squares to Scaling Laws &mdash; 1805 &rarr; 2024</div>
+        <p class="lecture-hub-desc">How measuring uncertainty taught machines to generalize</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 8 -->
+      <a href="lecture-08.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 08</div>
+        <div class="lecture-hub-title">Graph Theory &amp; Networks</div>
+        <div class="lecture-hub-era">From Bridges to Transformers &mdash; 1736 &rarr; 2024</div>
+        <p class="lecture-hub-desc">How the mathematics of connections shaped the architecture of AI</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 9 -->
+      <a href="lecture-09.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 09</div>
+        <div class="lecture-hub-title">Harmonic Analysis &amp; Signals</div>
+        <div class="lecture-hub-era">From Vibrating Strings to Position Encoding &mdash; 550 BCE &rarr; 2024</div>
+        <p class="lecture-hub-desc">How decomposing waves taught AI to understand sequence</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+      <!-- 10 -->
+      <a href="lecture-10.html" class="lecture-hub-card scroll-reveal">
+        <div class="lecture-hub-number">Lecture 10</div>
+        <div class="lecture-hub-title">Game Theory &amp; Alignment</div>
+        <div class="lecture-hub-era">From War Games to AI Safety &mdash; 1928 &rarr; 2024</div>
+        <p class="lecture-hub-desc">How strategic mathematics guides the values of artificial minds</p>
+        <span class="lecture-hub-link">Explore &rarr;</span>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- ========== BACK LINK ========== -->
+  <a href="../index.html" class="hub-back-link">&larr; Back to Main Site</a>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="hub-footer">
+    <p>Mathematics for AI &mdash; Mathematical History Lecture Paths</p>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

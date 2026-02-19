@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 7: Statistics &amp; Learning Theory &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-06.html">&larr; Prev</a>
+      <a href="lecture-08.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">7</div>
+      <h1>Statistics &amp; Learning Theory</h1>
+      <p class="subtitle lecture-subtitle">From Least Squares to Scaling Laws</p>
+      <div class="lecture-meta">
+        <span class="era-range">1805 &rarr; 2024</span>
+        <span class="badge lecture-tag">Teaching Machines to Generalize</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      How does a machine learn from data without simply memorizing it? The answer lies in a
+      200-year statistical tradition: from Gauss fitting curves to astronomical data, to modern
+      scaling laws that predict how much data an LLM needs. Statistics is the science of learning
+      from limited observations &mdash; exactly what AI must do.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── Milestone 1: Gauss & The Method of Least Squares (1805) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">1805</span>
+          <h3 class="milestone-figure">Carl Friedrich Gauss &amp; Adrien-Marie Legendre</h3>
+          <div class="milestone-content">
+            <p>
+              Gauss used least squares to predict the orbit of the asteroid Ceres from just a few
+              observations &mdash; and was proven right when Ceres reappeared exactly where he
+              predicted. Least squares minimizes the sum of squared errors between predictions and
+              observations. It&rsquo;s the first machine learning algorithm, predating the term by
+              200 years.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\min_{\beta} \sum_{i=1}^{n} (y_i - \mathbf{x}_i^T \beta)^2$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Gauss was 24 when he predicted Ceres&rsquo; orbit. His method &mdash; minimize
+              squared errors &mdash; is still the loss function for linear regression, the
+              simplest machine learning model.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 2: Fisher & Maximum Likelihood (1912–1925) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1912&ndash;1925</span>
+          <h3 class="milestone-figure">Ronald A. Fisher</h3>
+          <div class="milestone-content">
+            <p>
+              Fisher asked: given observed data, what parameter values make the data most likely?
+              Maximum likelihood estimation (MLE) finds the parameters that maximize the
+              probability of seeing what we actually saw. This is exactly how neural networks are
+              trained: find the weights that make the training data most likely under the model.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\hat{\theta}_{MLE} = \arg\max_{\theta} \prod_{i=1}^{n} P(x_i | \theta) = \arg\max_{\theta} \sum_{i=1}^{n} \log P(x_i | \theta)$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Minimizing cross-entropy loss IS maximum likelihood estimation. Every LLM training
+              run is Fisher&rsquo;s MLE applied at massive scale.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 3: Neyman-Pearson & Hypothesis Testing (1933) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1933</span>
+          <h3 class="milestone-figure">Jerzy Neyman &amp; Egon Pearson</h3>
+          <div class="milestone-content">
+            <p>
+              How do you decide if a pattern in data is real or just random noise? Neyman and
+              Pearson formalized hypothesis testing with Type I errors (false positives) and
+              Type II errors (false negatives). This framework &mdash; balancing false alarms
+              against missed detections &mdash; directly maps to precision and recall in AI
+              classification, and to the false positive/negative tradeoffs in fraud detection.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="text-align:center; font-size:1rem;">
+              Type I: $P(\text{reject } H_0 | H_0 \text{ true}) = \alpha$
+              &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+              Type II: $P(\text{fail to reject } H_0 | H_0 \text{ false}) = \beta$
+            </p>
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              When an AI fraud detector flags a legitimate transaction (false positive) or misses
+              a fraudulent one (false negative), it&rsquo;s navigating the Neyman-Pearson tradeoff.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 4: The Bias-Variance Tradeoff (1960s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-unsolved">Unsolved</span>
+          <span class="milestone-era">1960s</span>
+          <h3 class="milestone-figure">Multiple Contributors</h3>
+          <div class="milestone-content">
+            <p>
+              A model that&rsquo;s too simple (high bias) misses real patterns. A model that&rsquo;s
+              too complex (high variance) memorizes noise. The bias-variance tradeoff says you
+              can&rsquo;t minimize both simultaneously. For decades, this limited model complexity.
+              Then deep learning shattered the tradeoff &mdash; enormous models with billions of
+              parameters somehow generalize well, a phenomenon called &ldquo;double descent.&rdquo;
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\text{Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise}$$
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved</span>
+            <p>
+              Classical statistics says more parameters = more overfitting. But GPT-4 has
+              1.8 trillion parameters and generalizes remarkably. The classical theory breaks
+              down at scale &mdash; and we don&rsquo;t fully understand why.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 5: VC Dimension & PAC Learning (1971–1984) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1971&ndash;1984</span>
+          <h3 class="milestone-figure">Vladimir Vapnik &amp; Leslie Valiant</h3>
+          <div class="milestone-content">
+            <p>
+              Vapnik&rsquo;s VC (Vapnik-Chervonenkis) dimension measures a model&rsquo;s
+              capacity &mdash; how complex a pattern it can learn. Valiant&rsquo;s PAC (Probably
+              Approximately Correct) framework asks: how much data do you need to learn a good
+              model with high probability? Together, they created computational learning theory
+              &mdash; the first rigorous theory of when and why machines can learn.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="text-align:center; font-size:1rem; margin-bottom:0.5rem;">
+              VC dimension: the largest set of points that can be shattered (correctly classified in all possible ways).
+            </p>
+            $$m \geq \frac{1}{\epsilon}\left(\ln\frac{1}{\delta} + d_{VC} \ln\frac{1}{\epsilon}\right)$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              VC theory says you need roughly as many training examples as you have parameters.
+              LLMs violate this by orders of magnitude &mdash; and still work. This is one of
+              the deepest puzzles in modern ML theory.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 6: Regularization & The Lasso (1996) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1996</span>
+          <h3 class="milestone-figure">Robert Tibshirani</h3>
+          <div class="milestone-content">
+            <p>
+              Regularization adds a penalty for model complexity, preventing overfitting. The
+              Lasso (L1 regularization) forces many parameters to exactly zero, performing
+              automatic feature selection. Weight decay (L2 regularization) keeps parameters
+              small. In LLMs, dropout (randomly zeroing neurons during training) and weight
+              decay are essential regularization techniques.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="text-align:center; font-size:1rem; margin-bottom:0.5rem;">
+              Lasso (L1): $\min_{\beta} \sum(y_i - \mathbf{x}_i^T\beta)^2 + \lambda\|\beta\|_1$
+            </p>
+            <p style="text-align:center; font-size:1rem;">
+              Ridge (L2): $\min_{\beta} \sum(y_i - \mathbf{x}_i^T\beta)^2 + \lambda\|\beta\|_2^2$
+            </p>
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Weight decay (a form of L2 regularization) is applied in every LLM training run.
+              AdamW &mdash; the optimizer behind GPT-4 and Claude &mdash; was created specifically
+              to correctly apply weight decay.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 7: Neural Scaling Laws (2020) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2020</span>
+          <h3 class="milestone-figure">Jared Kaplan et al. (OpenAI)</h3>
+          <div class="milestone-content">
+            <p>
+              Kaplan et al. discovered that LLM performance follows predictable power laws: loss
+              decreases as a power of model size, dataset size, and compute. This was revolutionary
+              &mdash; it meant you could predict how well a model would perform before training it,
+              just from its size. Scaling laws enabled the &ldquo;race to scale&rdquo; that
+              produced GPT-3, GPT-4, and beyond.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$L(N) \propto N^{-\alpha_N}, \quad L(D) \propto D^{-\alpha_D}, \quad L(C) \propto C^{-\alpha_C}$$
+            <p style="text-align:center; font-size:0.95rem; color:var(--color-text-light); margin-top:0.5rem;">
+              Where $N$ = parameters, $D$ = dataset size, $C$ = compute, and $\alpha$ values are empirical power-law exponents.
+            </p>
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Scaling laws are empirical statistical regularities. They predicted that GPT-4 would
+              be much better than GPT-3 before anyone trained it. This is statistics as prophecy.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 8: Chinchilla & Compute-Optimal Training (2022) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2022</span>
+          <h3 class="milestone-figure">Jordan Hoffmann et al. (DeepMind)</h3>
+          <div class="milestone-content">
+            <p>
+              The Chinchilla paper revealed that most LLMs were trained on too little data relative
+              to their size. The compute-optimal ratio: for a given compute budget, the number of
+              training tokens should scale roughly linearly with model parameters. This shifted the
+              field from &ldquo;bigger models&rdquo; to &ldquo;more data&rdquo; &mdash; leading to
+              the data-centric AI movement.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$N_{opt} \propto C^{0.5}, \quad D_{opt} \propto C^{0.5}$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Chinchilla (70B parameters, 1.4T tokens) outperformed the much larger Gopher
+              (280B parameters, 300B tokens). Statistics showed that data quality and quantity
+              matter as much as model size.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      From Gauss&rsquo;s asteroid prediction to Chinchilla&rsquo;s scaling laws, statistics has
+      always asked the same question: how do you learn reliable truths from limited data? AI is
+      the ultimate test of this question &mdash; and the answer keeps evolving.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Statistics Chain</span>
+      <div class="formula">
+        $$\text{Least Squares} \to \text{MLE} \to \text{VC Dimension} \to \text{Regularization} \to \text{Scaling Laws} \to \text{Chinchilla}$$
+      </div>
+      <span class="key-formula-caption">
+        200 years of statistics, now governing every AI training run.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-01.html" class="cross-ref">Lecture 1: Probability &amp; Uncertainty</a>
+        &mdash; Cross-entropy and maximum likelihood estimation bridge probability theory and statistical learning.
+      </li>
+      <li>
+        <a href="lecture-03.html" class="cross-ref">Lecture 3: Calculus &amp; Optimization</a>
+        &mdash; Gradient descent is the optimization engine that minimizes the loss functions statistics defines.
+      </li>
+      <li>
+        <a href="lecture-10.html" class="cross-ref">Lecture 10: Game Theory &amp; Strategic AI</a>
+        &mdash; RLHF uses statistical reward models to fine-tune LLMs through strategic interaction.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <div class="lecture-nav">
+      <a href="lecture-06.html" class="lecture-nav-prev">Number Theory &amp; Encoding</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-08.html" class="lecture-nav-next">Graph Theory &amp; Networks</a>
+    </div>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 5: Geometry of High Dimensions &mdash; Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar">
+    <div class="nav-brand">Math + AI + Finance</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html">Main Site</a>
+      <a href="index.html">All Lectures</a>
+      <a href="lecture-04.html">&larr; Prev</a>
+      <a href="lecture-06.html">Next &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="lecture-hero">
+    <div class="lecture-hero-content">
+      <div class="lecture-number-badge">5</div>
+      <h1>Geometry of High Dimensions</h1>
+      <p class="subtitle lecture-subtitle">From Euclid to Latent Spaces</p>
+      <div class="lecture-meta">
+        <span class="era-range">300 BCE &rarr; 2024</span>
+        <span class="badge lecture-tag">The Shape of Meaning</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="lecture-content">
+
+    <!-- Introduction -->
+    <p style="font-size:1.05rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-xl);">
+      We live in three dimensions, yet AI thinks in thousands. The geometry that Euclid
+      codified for flat planes extends into spaces with 768, 4096, even 12,288 dimensions
+      &mdash; and in those vast spaces, meaning itself has shape. The journey from ancient
+      geometry to modern latent spaces reveals that mathematics can describe worlds far
+      beyond what our eyes can see.
+    </p>
+
+
+    <!-- ========== TIMELINE ========== -->
+    <h2 class="lecture-section-heading">The Timeline</h2>
+
+    <div class="lecture-timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- ────────── Milestone 1: Euclid's Elements (300 BCE) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-origin">Origin</span>
+          <span class="milestone-era">300 BCE</span>
+          <h3 class="milestone-figure">Euclid of Alexandria</h3>
+          <div class="milestone-content">
+            <p>
+              Euclid&rsquo;s five postulates built all of geometry from the ground up. For
+              2,000 years, geometry meant Euclidean geometry. The fifth postulate &mdash; the
+              parallel postulate (through a point not on a line, exactly one parallel exists)
+              &mdash; seemed obvious. Attempts to prove it would eventually shatter our
+              understanding of space itself.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$
+          </div>
+          <div class="callout callout-origin">
+            <span class="callout-label">Origin</span>
+            <p>
+              Euclid&rsquo;s distance formula extends directly to any number of dimensions.
+              In 768-D space: $d = \sqrt{\sum_{i=1}^{768}(a_i - b_i)^2}$
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 2: Descartes & Coordinate Geometry (1637) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1637</span>
+          <h3 class="milestone-figure">Ren&eacute; Descartes</h3>
+          <div class="milestone-content">
+            <p>
+              Descartes merged algebra and geometry by introducing coordinates. Every geometric
+              shape became an equation; every equation became a shape. This union &mdash;
+              analytic geometry &mdash; made it possible to do geometry with numbers, which is
+              exactly what computers need.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$x^2 + y^2 = r^2 \qquad\qquad y = mx + b$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Descartes&rsquo; insight: geometry IS algebra with a different notation. This
+              duality is why neural networks (algebra) can learn geometric structures.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 3: Non-Euclidean Geometry (1830s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">1830s</span>
+          <h3 class="milestone-figure">J&aacute;nos Bolyai, Nikolai Lobachevsky, Carl Friedrich Gauss</h3>
+          <div class="milestone-content">
+            <p>
+              What if Euclid&rsquo;s parallel postulate is wrong? Lobachevsky and Bolyai
+              independently discovered consistent geometries where multiple parallels exist
+              (hyperbolic) or none exist (spherical/elliptic). Gauss had known secretly for
+              years. This shattered the belief that Euclidean geometry was the only geometry
+              &mdash; opening the door to curved spaces and, eventually, the geometry of
+              neural network loss landscapes.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            <p style="text-align:center; font-size:1rem;">
+              Euclidean: angles sum to $180°$. &nbsp; Hyperbolic: $&lt; 180°$. &nbsp; Spherical: $&gt; 180°$
+            </p>
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              Hyperbolic geometry is now used in AI: Poincar&eacute; embeddings represent
+              hierarchical data (like taxonomies) more efficiently than Euclidean space.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 4: Riemann & Manifolds (1854) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-breakthrough">Breakthrough</span>
+          <span class="milestone-era">1854</span>
+          <h3 class="milestone-figure">Bernhard Riemann</h3>
+          <div class="milestone-content">
+            <p>
+              In his legendary 1854 lecture, Riemann generalized geometry to spaces of any
+              dimension and any curvature. A manifold is a space that locally looks flat
+              (Euclidean) but globally can be curved. Riemann&rsquo;s work led to
+              Einstein&rsquo;s general relativity &mdash; and today, the manifold hypothesis
+              is central to understanding how AI organizes knowledge.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$ds^2 = \sum_{i,j} g_{ij}\,dx^i\,dx^j$$
+          </div>
+          <div class="callout callout-breakthrough">
+            <span class="callout-label">Breakthrough</span>
+            <p>
+              Riemann was 28 when he revolutionized geometry. Einstein used Riemannian
+              geometry 60 years later for general relativity. AI uses it 170 years later
+              for understanding data.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 5: The Curse of Dimensionality (1957) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-unsolved">Unsolved</span>
+          <span class="milestone-era">1957</span>
+          <h3 class="milestone-figure">Richard Bellman</h3>
+          <div class="milestone-content">
+            <p>
+              Bellman discovered that as dimensions increase, space becomes overwhelmingly
+              empty. In 100 dimensions, 99.99% of a hypercube&rsquo;s volume is in a thin
+              shell near the surface. Points that seem nearby in low dimensions are
+              astronomically far apart in high dimensions. Data becomes sparse, distance
+              becomes meaningless, and traditional algorithms fail catastrophically.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$V_d = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} \to 0 \text{ as } d \to \infty$$
+          </div>
+          <div class="callout callout-unsolved">
+            <span class="callout-label">Unsolved</span>
+            <p>
+              The curse of dimensionality says high-dimensional spaces are mostly empty.
+              Yet LLMs thrive in spaces with thousands of dimensions. How? The answer is
+              the manifold hypothesis.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 6: The Manifold Hypothesis (2000s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2000s</span>
+          <h3 class="milestone-figure">Yann LeCun, Geoffrey Hinton, Yoshua Bengio</h3>
+          <div class="milestone-content">
+            <p>
+              The manifold hypothesis proposes that real-world high-dimensional data (images,
+              text, speech) actually lies on or near a much lower-dimensional manifold. Think
+              of it like a crumpled sheet of paper in 3D &mdash; the paper itself is 2D.
+              Neural networks learn to &ldquo;uncrumple&rdquo; this manifold, finding the
+              true low-dimensional structure hidden in high-dimensional data.
+            </p>
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              A 512&times;512 image lives in a space of 786,432 dimensions. But the manifold
+              of &ldquo;natural images&rdquo; is estimated to have only ~100 true dimensions.
+              Neural networks learn this structure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 7: t-SNE, UMAP & Visualization (2008–2018) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-discovery">Discovery</span>
+          <span class="milestone-era">2008&ndash;2018</span>
+          <h3 class="milestone-figure">Laurens van der Maaten, Leland McInnes</h3>
+          <div class="milestone-content">
+            <p>
+              t-SNE (2008) and UMAP (2018) are dimensionality reduction algorithms that
+              project high-dimensional data into 2D or 3D for visualization, preserving the
+              manifold structure. They revealed that neural networks organize knowledge into
+              clusters, hierarchies, and continuous spectra &mdash; showing that AI&rsquo;s
+              internal representations have beautiful, meaningful geometric structure.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$q_{ij} = \frac{(1 + \|y_i - y_j\|^2)^{-1}}{\sum_{k \neq l}(1 + \|y_k - y_l\|^2)^{-1}}$$
+          </div>
+          <div class="callout callout-discovery">
+            <span class="callout-label">Discovery</span>
+            <p>
+              When you visualize what GPT &ldquo;sees&rdquo; internally, t-SNE and UMAP
+              reveal clusters: similar concepts group together, forming a geometric map
+              of knowledge.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────── Milestone 8: Latent Spaces & Representation Geometry (2020s) ────────── -->
+      <div class="timeline-milestone scroll-reveal">
+        <div class="milestone-card">
+          <span class="milestone-type milestone-type-ai-connection">AI Connection</span>
+          <span class="milestone-era">2020&ndash;2024</span>
+          <h3 class="milestone-figure">Modern LLM Research</h3>
+          <div class="milestone-content">
+            <p>
+              The internal representations of LLMs form rich geometric structures.
+              &ldquo;King - Man + Woman = Queen&rdquo; is a geometric operation in embedding
+              space. Researchers have found that concepts like truth/falsehood, past/future,
+              and positive/negative correspond to directions in the latent space. The geometry
+              of meaning is becoming a scientific discipline.
+            </p>
+          </div>
+          <div class="milestone-formula">
+            $$\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$$
+          </div>
+          <div class="callout callout-ai-connection">
+            <span class="callout-label">AI Connection</span>
+            <p>
+              Researchers at Anthropic discovered that Claude&rsquo;s internal representations
+              encode truthfulness as a linear direction in geometry &mdash; AI has a literal
+              &ldquo;compass for truth&rdquo; encoded in high-dimensional space.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.lecture-timeline -->
+
+
+    <!-- ========== CULMINATION ========== -->
+    <h2 class="lecture-section-heading">The Thread That Connects</h2>
+
+    <p style="font-size:1rem; line-height:1.75; color:var(--color-text); margin-bottom:var(--space-lg);">
+      From Euclid&rsquo;s flat plane to 12,288-dimensional latent spaces, geometry has
+      always been about understanding shape and structure. AI has revealed that meaning
+      itself has geometry &mdash; that words, concepts, and ideas occupy positions in vast
+      mathematical spaces where distance equals similarity and direction equals relationship.
+    </p>
+
+    <div class="key-formula">
+      <span class="key-formula-label">The Geometry Chain</span>
+      <div class="formula">
+        $$\text{Euclid} \to \text{Riemann} \to \text{Manifolds} \to \text{Curse} \to \text{Embeddings} \to \text{Latent Spaces}$$
+      </div>
+      <span class="key-formula-caption">
+        2,300 years of geometry, now shaping every AI representation.
+      </span>
+    </div>
+
+
+    <!-- ========== CROSS-REFERENCES ========== -->
+    <h2 class="lecture-section-heading">Connections to Other Lectures</h2>
+
+    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-xl);">
+      <li>
+        <a href="lecture-02.html" class="cross-ref">Lecture 2: Linear Algebra &amp; Transformations</a>
+        &mdash; Embeddings and dot products are the algebraic machinery that makes high-dimensional geometry computable.
+      </li>
+      <li>
+        <a href="lecture-09.html" class="cross-ref">Lecture 9: Harmonic Analysis &amp; Signals</a>
+        &mdash; Fourier methods provide spectral geometry &mdash; analyzing shape through frequencies rather than coordinates.
+      </li>
+      <li>
+        <a href="lecture-03.html" class="cross-ref">Lecture 3: Calculus &amp; Optimization</a>
+        &mdash; Loss landscapes are high-dimensional geometric surfaces that gradient descent navigates during training.
+      </li>
+    </ul>
+
+
+    <!-- ========== LECTURE NAVIGATION ========== -->
+    <div class="lecture-nav">
+      <a href="lecture-04.html" class="lecture-nav-prev">Logic &amp; Computation</a>
+      <a href="index.html" class="lecture-nav-hub">All Lectures</a>
+      <a href="lecture-06.html" class="lecture-nav-next">Number Theory &amp; Encoding</a>
+    </div>
+
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
