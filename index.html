@@ -36,6 +36,7 @@
       <a href="#overview">Overview</a>
       <a href="#sections">Sections</a>
       <a href="#math-concepts">Math</a>
+      <a href="#llm-stories">LLM Stories</a>
       <a href="#visualizations">Visualizations</a>
       <a href="#history">History</a>
       <a href="#bankbot">BankBot</a>
@@ -513,6 +514,465 @@
     </div>
   </section>
 
+  <!-- ========== LLM STORIES ========== -->
+  <section id="llm-stories">
+    <h2>The LLM Revolution: 14 Stories of Math That Changed the World</h2>
+    <p class="section-subtitle">Every story connects a real event to the mathematics behind Large Language Models</p>
+
+    <!-- Cluster 1: The Foundations -->
+    <div class="story-cluster">
+      <h3 class="cluster-title"><span class="cluster-number">I</span> The Foundations &mdash; How LLMs Work</h3>
+
+      <div class="stories-grid">
+
+        <!-- Story 1 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">1</span>
+            <div class="story-title-group">
+              <h4>&ldquo;Attention Is All You Need&rdquo;</h4>
+              <span class="story-year">2017</span>
+            </div>
+          </div>
+          <p class="story-narrative">Eight Google researchers&mdash;including a <strong>20-year-old intern</strong> named Aidan Gomez&mdash;published a 15-page paper with a Beatles-inspired title. It became the most cited AI paper in history. Six of the eight authors left Google within four years, founding companies worth billions (Cohere, Character.AI, Inceptive). Noam Shazeer, who designed the attention mechanism, quit in 2021 and was brought back in 2024 for <strong>$2.7 billion</strong>.</p>
+          <div class="story-math">
+            <h5>The Math: Self-Attention</h5>
+            <div class="formula">$$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right) V$$</div>
+            <p>Each word generates a Query (what am I looking for?), Key (what do I offer?), and Value (my content). The dot product Q&middot;K measures relevance. Softmax converts scores to probabilities summing to 1. The result: every word &ldquo;pays attention&rdquo; to every other word simultaneously&mdash;which is why GPUs can train transformers so fast.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> A 20-year-old intern co-wrote the paper that makes ChatGPT, Claude, and Gemini work. All of them run on this one formula.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Original paper (arXiv)</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Attention_Is_All_You_Need" target="_blank" rel="noopener">Wikipedia: Attention Is All You Need</a></li>
+              <li><a href="https://www.newsbytesapp.com/news/science/where-are-creators-of-google-s-transformer-architecture-now/story" target="_blank" rel="noopener">Where the 8 authors are now</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 2 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">2</span>
+            <div class="story-title-group">
+              <h4>King &minus; Man + Woman = Queen</h4>
+              <span class="story-year">2013</span>
+            </div>
+          </div>
+          <p class="story-narrative">Google researcher Tomas Mikolov submitted a paper that peer reviewers <strong>rejected</strong>&mdash;at a conference with a 70% acceptance rate. When Google finally open-sourced the code months later, it produced the most famous equation in AI: the arithmetic of words. A neural network trained on billions of words discovered that &ldquo;King &minus; Man + Woman&rdquo; lands near &ldquo;Queen&rdquo; in vector space. The same paper won the NeurIPS Test of Time Award a decade later.</p>
+          <div class="story-math">
+            <h5>The Math: Word Embeddings &amp; Cosine Similarity</h5>
+            <div class="formula">$$\vec{\text{King}} - \vec{\text{Man}} + \vec{\text{Woman}} \approx \vec{\text{Queen}}$$</div>
+            <div class="formula">$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| \cdot |\mathbf{B}|}$$</div>
+            <p>Every word becomes a vector of 300 numbers. Similar words cluster together. Relationships (gender, royalty, country&rarr;capital) appear as consistent directions. Cosine similarity measures how close two words are&mdash;the same formula from Section 8 of this talk.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> Rejected by reviewers, delayed by bureaucracy&mdash;then it changed everything. The math that lets AI &ldquo;understand&rdquo; meaning is the same linear algebra you study in school.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Original Word2Vec paper (arXiv)</a></li>
+              <li><a href="https://www.technologyreview.com/2015/09/17/166211/king-man-woman-queen-the-marvelous-mathematics-of-computational-linguistics/" target="_blank" rel="noopener">MIT Technology Review: The Marvelous Mathematics</a></li>
+              <li><a href="https://jalammar.github.io/illustrated-word2vec/" target="_blank" rel="noopener">Jay Alammar: The Illustrated Word2Vec</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">3</span>
+            <div class="story-title-group">
+              <h4>Shannon&rsquo;s 1948 Experiment</h4>
+              <span class="story-year">1948</span>
+            </div>
+          </div>
+          <p class="story-narrative">In 1951, a 35-year-old mathematician at Bell Labs named <strong>Claude Shannon</strong> ran a remarkable experiment: he asked people to predict the next letter of a text, one character at a time. If wrong, they were told the correct letter. By counting guesses, Shannon measured the statistical structure of English&mdash;finding it has only ~1.1 bits of entropy per character (out of a maximum 4.7). He had described exactly what ChatGPT does: minimize uncertainty about the next token. He did it <strong>74 years before ChatGPT existed</strong>.</p>
+          <div class="story-math">
+            <h5>The Math: Entropy &amp; Perplexity</h5>
+            <div class="formula">$$H = -\sum p(x) \log_2 p(x)$$</div>
+            <div class="formula">$$\text{Perplexity} = 2^H$$</div>
+            <p>Entropy measures average surprise per symbol. A perplexity of 10 means the model is as uncertain as choosing from 10 equally likely options. Training an LLM on the internet is extreme compression of human knowledge&mdash;to predict the next word, the model must learn facts, grammar, logic, and culture.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> The math designed to send telephone signals efficiently in 1948 turned out to be the exact training objective of the most powerful AI systems ever built.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://www.princeton.edu/~wbialek/rome/refs/shannon_51.pdf" target="_blank" rel="noopener">Shannon (1951): Prediction and Entropy of Printed English</a></li>
+              <li><a href="https://mbrenndoerfer.com/writing/history-shannon-ngram-language-model" target="_blank" rel="noopener">Shannon&rsquo;s N-gram model history</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 4 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">4</span>
+            <div class="story-title-group">
+              <h4>How LLMs Pick Their Next Word</h4>
+              <span class="story-year">Every second</span>
+            </div>
+          </div>
+          <p class="story-narrative">Every word ChatGPT types is the winner of a probability competition among <strong>100,000+ candidates</strong>. The model produces a raw score (logit) for every word, then softmax converts them into probabilities. &ldquo;The&rdquo; might get 32%, &ldquo;a&rdquo; gets 18%, and 100,000 others share the rest. A parameter called <strong>temperature</strong> controls randomness: at 0, the model always picks the top word (robotic). At 1, it samples proportionally (creative but risky). Every AI conversation is literally a sequence of weighted dice rolls.</p>
+          <div class="story-math">
+            <h5>The Math: Softmax &amp; Cross-Entropy Loss</h5>
+            <div class="formula">$$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$$</div>
+            <div class="formula">$$\mathcal{L} = -\log\, p(\text{correct token})$$</div>
+            <p>The exponential function amplifies differences: a small advantage in raw score becomes a large probability advantage. Cross-entropy loss penalizes the model when it assigns low probability to the actual next word. If p = 0.01, loss = 4.6 (harsh penalty). If p = 0.99, loss &asymp; 0.01 (almost no penalty).</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> &ldquo;Every word is a weighted die roll&rdquo; explains why AI can be wrong, creative, or inconsistent&mdash;and why no two conversations are identical.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://www.metriccoders.com/post/cross-entropy-loss-the-guiding-star-of-llm-training" target="_blank" rel="noopener">MetricCoders: Cross-Entropy Loss in LLM Training</a></li>
+              <li><a href="https://medium.com/thinking-sand/llm-sampling-explained-selecting-the-next-token-b897b5984833" target="_blank" rel="noopener">LLM Sampling Explained</a></li>
+            </ul>
+          </details>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Cluster 2: The Breakthroughs -->
+    <div class="story-cluster">
+      <h3 class="cluster-title"><span class="cluster-number">II</span> The Breakthroughs &mdash; What Changed Everything</h3>
+
+      <div class="stories-grid">
+
+        <!-- Story 5 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">5</span>
+            <div class="story-title-group">
+              <h4>Chinchilla: Bigger &ne; Smarter</h4>
+              <span class="story-year">2022</span>
+            </div>
+          </div>
+          <p class="story-narrative">In 2022, DeepMind proved that <strong>every major AI lab had the wrong formula</strong>. Everyone was building bigger models, assuming more parameters = better. DeepMind&rsquo;s Chinchilla&mdash;with 70B parameters, <em>half</em> the size of Gopher (280B)&mdash;outperformed it on almost every benchmark by training on <strong>4&times; more data</strong>. The secret was a simple power law: scale data and model size equally.</p>
+          <div class="story-math">
+            <h5>The Math: Compute-Optimal Scaling Laws</h5>
+            <div class="formula">$$N_{\text{opt}} \propto C^{0.5}, \qquad D_{\text{opt}} \propto C^{0.5}$$</div>
+            <p>For a fixed compute budget C, optimal model size N and training data D should both scale as the square root of compute. The earlier belief (Kaplan 2020) was N &propto; C<sup>0.73</sup>, over-weighting size. Performance follows power laws&mdash;the same y = ax<sup>b</sup> as Kepler&rsquo;s planetary laws.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> The most advanced AI lab in the world had the wrong formula for years. Science is self-correcting&mdash;and the sweet spot is an elegant mathematical optimum.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener">Chinchilla paper (arXiv)</a></li>
+              <li><a href="https://epoch.ai/publications/chinchilla-scaling-a-replication-attempt" target="_blank" rel="noopener">Epoch AI: Chinchilla Scaling Replication</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Neural_scaling_law" target="_blank" rel="noopener">Wikipedia: Neural Scaling Law</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 6 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">6</span>
+            <div class="story-title-group">
+              <h4>&ldquo;Let&rsquo;s Think Step by Step&rdquo;</h4>
+              <span class="story-year">2022&ndash;2024</span>
+            </div>
+          </div>
+          <p class="story-narrative">In 2022, Google Brain researchers discovered that simply adding <strong>four words</strong>&mdash;&ldquo;Let&rsquo;s think step by step&rdquo;&mdash;to any prompt dramatically improved LLM math performance. In 2024, OpenAI&rsquo;s <strong>o1</strong> model took this further: trained with reinforcement learning on reasoning traces, it generates thousands of hidden &ldquo;thinking tokens&rdquo; before answering. On the 2024 AIME (top 3% of US math students), GPT-4o scored 12%. o1 scored <strong>93%</strong>. More thinking time literally makes AI smarter.</p>
+          <div class="story-math">
+            <h5>The Math: Test-Time Compute Scaling</h5>
+            <p>Before o1, all compute went into training. Now performance also scales with compute spent at inference&mdash;how long the model &ldquo;thinks.&rdquo; Mathematically, this is tree search: each thinking step explores a node in a decision tree. More steps = larger tree = better chance of finding the optimal reasoning path. A third dimension of scaling beyond parameters and data.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> The same technique your math teacher tells you to do&mdash;show your work, think step by step&mdash;is literally the breakthrough that made AI a gold-medal mathematician.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">Chain-of-Thought Prompting paper (arXiv)</a></li>
+              <li><a href="https://openai.com/index/learning-to-reason-with-llms/" target="_blank" rel="noopener">OpenAI: Learning to Reason with LLMs</a></li>
+              <li><a href="https://arxiv.org/abs/2205.11916" target="_blank" rel="noopener">Zero-Shot Reasoners paper (arXiv)</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 7 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">7</span>
+            <div class="story-title-group">
+              <h4>DeepSeek: The $6M Challenge</h4>
+              <span class="story-year">2025</span>
+            </div>
+          </div>
+          <p class="story-narrative">In January 2025, a two-year-old Chinese company called <strong>DeepSeek</strong>&mdash;founded by hedge fund manager Liang Wenfeng&mdash;released model R1 for free. Training cost: <strong>$5.6 million</strong> (vs. GPT-4&rsquo;s estimated $100M+). One week later, it was the #1 app on the US App Store. The same day, <strong>Nvidia lost $589 billion</strong> in market cap&mdash;the largest single-day loss in stock market history. The entire AI investment thesis that you needed billions of dollars to compete was suddenly uncertain.</p>
+          <div class="story-math">
+            <h5>The Math: Mixture of Experts (MoE)</h5>
+            <div class="formula">$$\text{Active params} = K \times E \ll N \times E = \text{Total params}$$</div>
+            <p>DeepSeek V3 has 671B total parameters but only 37B are active per input (&lt;6%). A routing function selects which K of N specialist sub-networks (&ldquo;experts&rdquo;) handle each token. Result: knowledge capacity of 671B, compute cost of 37B. Plus, R1 learned reasoning through pure reinforcement learning&mdash;no human labels needed.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> David vs. Goliath with math. A $6M model challenged $100M+ models, crashed stock markets, and proved that mathematical efficiency beats brute-force spending.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noopener">DeepSeek R1 paper (arXiv)</a></li>
+              <li><a href="https://www.technologyreview.com/2025/01/24/1110526/china-deepseek-top-ai-despite-sanctions/" target="_blank" rel="noopener">MIT Tech Review: DeepSeek Despite Sanctions</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/DeepSeek" target="_blank" rel="noopener">Wikipedia: DeepSeek</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 8 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">8</span>
+            <div class="story-title-group">
+              <h4>Gradient Descent: The Blindfolded Hiker</h4>
+              <span class="story-year">1986&ndash;today</span>
+            </div>
+          </div>
+          <p class="story-narrative">Training a language model means adjusting <strong>hundreds of billions of numbers</strong> to reduce how wrong the model is. The algorithm is beautifully simple: imagine you&rsquo;re blindfolded on a mountain and want to reach the lowest valley. You feel the slope under your feet and take a small step downhill. Repeat billions of times. The math hasn&rsquo;t changed since Rumelhart, Hinton &amp; Williams formalized backpropagation in 1986. What changed: hardware, data, and the transformer architecture it&rsquo;s applied to.</p>
+          <div class="story-math">
+            <h5>The Math: Backpropagation &amp; the Chain Rule</h5>
+            <div class="formula">$$\theta \leftarrow \theta - \alpha \cdot \nabla_\theta \mathcal{L}(\theta)$$</div>
+            <p>The gradient &nabla;<sub>&theta;</sub> tells you: &ldquo;if I nudge this parameter, how much does the error change?&rdquo; Backpropagation uses the chain rule of calculus to compute gradients for billions of parameters in one backward pass. The learning rate &alpha; controls step size&mdash;too large and you overshoot, too small and you never arrive.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> If you&rsquo;re studying calculus, you&rsquo;re learning the exact tool that trains every AI on the planet. Derivatives are not abstract&mdash;they descend a billion-parameter mountain every second.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://developer.nvidia.com/blog/a-data-scientists-guide-to-gradient-descent-and-backpropagation-algorithms/" target="_blank" rel="noopener">NVIDIA: Gradient Descent &amp; Backpropagation Guide</a></li>
+              <li><a href="https://www.ibm.com/think/topics/backpropagation" target="_blank" rel="noopener">IBM: What Is Backpropagation?</a></li>
+            </ul>
+          </details>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Cluster 3: The Failures -->
+    <div class="story-cluster">
+      <h3 class="cluster-title"><span class="cluster-number">III</span> When Math Goes Wrong</h3>
+
+      <div class="stories-grid">
+
+        <!-- Story 9 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">9</span>
+            <div class="story-title-group">
+              <h4>The Strawberry Problem</h4>
+              <span class="story-year">2023&ndash;2024</span>
+            </div>
+          </div>
+          <p class="story-narrative">&ldquo;How many R&rsquo;s are in the word strawberry?&rdquo; AI answers: <strong>two</strong>. The correct answer is three. This became the most-shared LLM failure on the internet. The reason is purely mathematical: GPT-4&rsquo;s tokenizer splits &ldquo;strawberry&rdquo; into [str][aw][berry]. The model never sees individual characters&mdash;it sees three tokens. It can&rsquo;t count letters it can&rsquo;t see. <strong>Fix:</strong> ask the model to spell it out letter by letter first, then count. Forcing character-level tokens makes counting trivial.</p>
+          <div class="story-math">
+            <h5>The Math: Byte Pair Encoding (BPE)</h5>
+            <p>BPE (1994 compression algorithm) iteratively merges the most frequent character pairs until a target vocabulary is reached. GPT-4 has ~100,000 tokens. Each word gets split into subword chunks. The model reasons about tokens, not characters&mdash;explaining why LLMs struggle with letter counting, spelling backwards, and rhyming.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> Try it right now! Ask any AI to count R&rsquo;s in &ldquo;strawberry.&rdquo; The failure reveals how LLMs actually see language&mdash;not as letters, but as mathematical tokens.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://arxiv.org/html/2412.18626v1" target="_blank" rel="noopener">ArXiv: Why Do LLMs Struggle to Count Letters?</a></li>
+              <li><a href="https://huggingface.co/learn/llm-course/chapter6/5" target="_blank" rel="noopener">Hugging Face: Byte-Pair Encoding</a></li>
+              <li><a href="https://prompt.16x.engineer/blog/why-chatgpt-cant-count-rs-in-strawberry" target="_blank" rel="noopener">Why ChatGPT Can&rsquo;t Count R&rsquo;s</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 10 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">10</span>
+            <div class="story-title-group">
+              <h4>The Lawyer&rsquo;s Fake Cases</h4>
+              <span class="story-year">2023</span>
+            </div>
+          </div>
+          <p class="story-narrative">Attorney Steven Schwartz asked ChatGPT to find legal precedents for a case against Avianca airlines. ChatGPT cited &ldquo;Varghese v. China Southern Airlines,&rdquo; &ldquo;Shaboon v. Egyptair,&rdquo; and four more cases. When asked to confirm, it said: &ldquo;These cases indeed exist and can be found in reputable legal databases.&rdquo; <strong>None of them existed.</strong> The judge called the legal reasoning &ldquo;gibberish.&rdquo; Schwartz was fined <strong>$5,000</strong>. He had trusted a probability machine to fact-check itself.</p>
+          <div class="story-math">
+            <h5>The Math: Probability Chains &amp; Compounding Error</h5>
+            <div class="formula">$$P(\text{all correct}) = \prod_{i=1}^{n} p_i$$</div>
+            <p>If each token has a 99% chance of being locally plausible, a 100-token response has probability 0.99<sup>100</sup> = 0.366&mdash;a 63% chance of containing at least one error. The model has no truth oracle. &ldquo;Case name + airline + court&rdquo; is a high-probability pattern in legal text. Plausible &ne; true.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> The AI confidently verified its own fabrications. Understanding probability chains explains why &ldquo;sounds right&rdquo; and &ldquo;is right&rdquo; are mathematically different things.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc." target="_blank" rel="noopener">Wikipedia: Mata v. Avianca</a></li>
+              <li><a href="https://www.cnn.com/2023/05/27/business/chat-gpt-avianca-mata-lawyers" target="_blank" rel="noopener">CNN: Lawyer Apologizes for Fake Citations</a></li>
+              <li><a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener">OpenAI: Why Language Models Hallucinate</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 11 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">11</span>
+            <div class="story-title-group">
+              <h4>Hallucinations Are Mathematically Inevitable</h4>
+              <span class="story-year">2025</span>
+            </div>
+          </div>
+          <p class="story-narrative">In September 2025, <strong>OpenAI&rsquo;s own researchers</strong> published a paper proving that LLM hallucinations are not just engineering bugs&mdash;they are <strong>mathematically inevitable</strong>. Any system that generates text by sampling from a learned probability distribution will sometimes produce false statements. The fix (explicit confidence scoring for every claim) works in theory but is impractical: it would require the model to pause and verify each statement against a factual database, making responses extremely slow and expensive.</p>
+          <div class="story-math">
+            <h5>The Math: Information-Theoretic Impossibility</h5>
+            <p>The probability distribution over tokens spreads across incorrect possibilities. With ~100K vocabulary items and softmax normalization, there is always non-zero probability mass on wrong tokens. The chain rule of probability compounds: if each step has 1% error rate, a 100-word sentence has ~63% chance of at least one error. Perfect truthfulness requires external verification&mdash;something the architecture fundamentally lacks.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> &ldquo;ChatGPT is mathematically proven to always lie a little bit&rdquo;&mdash;the limits of technology are mathematical, not just engineering problems.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://www.computerworld.com/article/4059383/openai-admits-ai-hallucinations-are-mathematically-inevitable-not-just-engineering-flaws.html" target="_blank" rel="noopener">Computerworld: Hallucinations Mathematically Inevitable</a></li>
+              <li><a href="https://arxiv.org/html/2409.05746v1" target="_blank" rel="noopener">ArXiv: LLMs Will Always Hallucinate</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 12 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">12</span>
+            <div class="story-title-group">
+              <h4>The Apple Card Gender Bias</h4>
+              <span class="story-year">2019&ndash;2024</span>
+            </div>
+          </div>
+          <p class="story-narrative">Tech entrepreneur David Heinemeier Hansson discovered Apple Card gave him a credit limit <strong>20&times; higher than his wife&rsquo;s</strong>&mdash;despite her having a better credit score. Apple co-founder Steve Wozniak reported the same. The algorithm never explicitly used gender. But historical lending data reflected decades of discrimination, and the model learned the pattern perfectly. In 2024, the CFPB fined Apple $25M and Goldman Sachs $45M.</p>
+          <div class="story-math">
+            <h5>The Math: Proxy Variables &amp; Fairness Impossibility</h5>
+            <p>A &ldquo;proxy variable&rdquo; encodes a protected characteristic indirectly: zip code encodes race, shopping patterns encode gender. Chouldechova&rsquo;s Impossibility Theorem (2017) proves you <strong>cannot simultaneously</strong> satisfy equal false positive rates, equal false negative rates, and equal calibration. Fairness in AI requires choosing between mathematically incompatible definitions.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> An algorithm decided women were worth less. The bias wasn&rsquo;t programmed in&mdash;it was learned from data. Same math, different outcome depending on what data you train on.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://incidentdatabase.ai/cite/92/" target="_blank" rel="noopener">AI Incident Database: Apple Card Discrimination</a></li>
+              <li><a href="https://www.brookings.edu/articles/reducing-bias-in-ai-based-financial-services/" target="_blank" rel="noopener">Brookings: Reducing Bias in AI-Based Financial Services</a></li>
+              <li><a href="https://ainowinstitute.org/publications/in-the-outcry-over-the-apple-card-bias-is-a-feature-not-a-bug-2" target="_blank" rel="noopener">AI Now: Bias Is a Feature Not a Bug</a></li>
+            </ul>
+          </details>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Cluster 4: LLMs in Your World -->
+    <div class="story-cluster">
+      <h3 class="cluster-title"><span class="cluster-number">IV</span> LLMs in Your World &mdash; Finance &amp; Future</h3>
+
+      <div class="stories-grid">
+
+        <!-- Story 13 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">13</span>
+            <div class="story-title-group">
+              <h4>JPMorgan&rsquo;s AI Revolution</h4>
+              <span class="story-year">2024&ndash;2025</span>
+            </div>
+          </div>
+          <p class="story-narrative"><strong>200,000 employees</strong> at the world&rsquo;s largest bank now use an LLM daily. Their &ldquo;LLM Suite&rdquo; won Innovation of the Year. When markets swung sharply in April 2025, the AI tool Coach helped advisers find information <strong>95% faster</strong>. Investment bankers automate 40% of SEC filing analysis. AI-powered fraud detection prevents an estimated <strong>$1.5 billion in losses</strong> with 98% accuracy across 60+ countries. Total tech budget: <strong>$17 billion</strong> per year.</p>
+          <div class="story-math">
+            <h5>The Math: Embeddings + Retrieval</h5>
+            <p>JPMorgan&rsquo;s system uses Retrieval-Augmented Generation (RAG): financial documents are converted into embedding vectors (the same vectors from Story 2), stored in a database, and retrieved by cosine similarity when a query comes in. The LLM then generates answers grounded in actual documents&mdash;reducing hallucinations in high-stakes finance.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> Your future job in banking might involve talking to an AI colleague. The math you&rsquo;re learning (vectors, probability, optimization) is what makes it work.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://www.jpmorganchase.com/about/technology/news/llmsuite-ab-award" target="_blank" rel="noopener">JPMorgan: LLM Suite Innovation Award</a></li>
+              <li><a href="https://www.cnbc.com/2024/08/09/jpmorgan-chase-ai-artificial-intelligence-assistant-chatgpt-openai.html" target="_blank" rel="noopener">CNBC: JPMorgan AI Assistant</a></li>
+              <li><a href="https://aiexpert.network/ai-at-jpmorgan/" target="_blank" rel="noopener">AI Expert Network: JPMorgan AI Strategy</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Story 14 -->
+        <div class="story-card scroll-reveal">
+          <div class="story-header">
+            <span class="story-number">14</span>
+            <div class="story-title-group">
+              <h4>RLHF: Teaching AI Human Values</h4>
+              <span class="story-year">2022&ndash;today</span>
+            </div>
+          </div>
+          <p class="story-narrative">When ChatGPT launched, the underlying model was capable but sometimes offensive or dangerous. The fix: <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>. Humans rate pairs of responses (&ldquo;which is better?&rdquo;), training a reward model that scores helpfulness. The LLM is then fine-tuned to maximize that score. Result: harmful outputs dropped from 23% to 2.1% in adversarial tests. But researchers also found <strong>&ldquo;reward hacking&rdquo;</strong>&mdash;models learning to game the reward model rather than genuinely being helpful. A mathematical cat-and-mouse game.</p>
+          <div class="story-math">
+            <h5>The Math: Constrained Optimization</h5>
+            <div class="formula">$$\max_\pi \mathbb{E}\bigl[R(y)\bigr] - \beta \cdot D_{\text{KL}}(\pi \| \pi_{\text{ref}})$$</div>
+            <p>Maximize expected reward R while staying close to the original model (measured by KL-divergence D<sub>KL</sub>). This is the Lagrangian method from constrained optimization. &beta; controls the trade-off: too low and the model becomes sycophantic, too high and it ignores human preferences. &ldquo;Reward hacking&rdquo; is Goodhart&rsquo;s Law in action: when a measure becomes a target, it ceases to be a good measure.</p>
+          </div>
+          <div class="story-hook">
+            <strong>Why you should care:</strong> AI safety is a mathematical problem, not just an ethical one. &ldquo;How do you teach a machine to have values using numbers?&rdquo; is one of the deepest questions of our time.
+          </div>
+          <details class="story-sources">
+            <summary>Sources</summary>
+            <ul>
+              <li><a href="https://blog.ml.cmu.edu/2025/06/01/rlhf-101-a-technical-tutorial-on-reinforcement-learning-from-human-feedback/" target="_blank" rel="noopener">CMU ML Blog: RLHF 101</a></li>
+              <li><a href="https://rlhfbook.com/" target="_blank" rel="noopener">RLHF Book by Nathan Lambert</a></li>
+              <li><a href="https://proceedings.iclr.cc/paper_files/paper/2024/file/dd1577afd396928ed64216f3f1fd5556-Paper-Conference.pdf" target="_blank" rel="noopener">Safe RLHF (ICLR 2024)</a></li>
+            </ul>
+          </details>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bonus: IMO & Benchmarks callout -->
+    <div class="story-cluster">
+      <div class="llm-benchmark-callout scroll-reveal">
+        <h3>The Scoreboard: AI vs. Math Competitions (2024&ndash;2025)</h3>
+        <div class="benchmark-grid">
+          <div class="benchmark-item">
+            <span class="benchmark-label">IMO 2024</span>
+            <span class="benchmark-value">Silver Medal</span>
+            <span class="benchmark-detail">AlphaProof solved Problem 6 (only 5 humans did)</span>
+          </div>
+          <div class="benchmark-item">
+            <span class="benchmark-label">IMO 2025</span>
+            <span class="benchmark-value">Gold Medal</span>
+            <span class="benchmark-detail">Gemini Deep Think: 35/42 points</span>
+          </div>
+          <div class="benchmark-item">
+            <span class="benchmark-label">AIME 2024</span>
+            <span class="benchmark-value">93%</span>
+            <span class="benchmark-detail">OpenAI o1 &mdash; top 500 US students level</span>
+          </div>
+          <div class="benchmark-item">
+            <span class="benchmark-label">AIME 2025</span>
+            <span class="benchmark-value">100%</span>
+            <span class="benchmark-detail">GPT-5.2 &mdash; first-ever perfect score by AI</span>
+          </div>
+        </div>
+        <p class="benchmark-note">Sources: <a href="https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/" target="_blank" rel="noopener">DeepMind</a>, <a href="https://openai.com/index/learning-to-reason-with-llms/" target="_blank" rel="noopener">OpenAI</a>, <a href="https://huggingface.co/blog/rajkumarrawal/aiprl-lir-september-2025-mathematics-coding" target="_blank" rel="noopener">HuggingFace Sept 2025 Report</a></p>
+      </div>
+    </div>
+
+  </section>
+
   <!-- ========== HISTORY TIMELINE ========== -->
   <section id="history">
     <h2>The Mathematicians Behind AI</h2>
@@ -778,6 +1238,18 @@
         <h3>&ldquo;The Art of Statistics&rdquo;</h3>
         <p>By David Spiegelhalter &mdash; learn to make sense of data in everyday life. Accessible and brilliantly written.</p>
       </div>
+
+      <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#129504;</span>
+        <h3>The Illustrated Transformer</h3>
+        <p>Jay Alammar&rsquo;s visual walkthrough of the transformer architecture&mdash;the best visual explanation on the internet.</p>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <span class="resource-icon" aria-hidden="true">&#127916;</span>
+        <h3>3Blue1Brown: GPT Explained</h3>
+        <p>Grant Sanderson&rsquo;s visual deep dive into how GPT works&mdash;attention, embeddings, and training in one video.</p>
+      </a>
 
     </div>
   </section>
