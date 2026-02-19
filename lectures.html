@@ -183,7 +183,7 @@
 
   <header class="plan-hero">
     <h1>Lecture Proposals</h1>
-    <p class="subtitle">Nineteen lectures at the intersection of mathematics, AI, and finance &mdash; designed for the UAE&rsquo;s top young mathematicians</p>
+    <p class="subtitle">Twenty-nine lectures at the intersection of mathematics, AI, and finance &mdash; designed for the UAE&rsquo;s top young mathematicians</p>
     <span class="version-badge">UAE Math Talent Program 2026</span>
   </header>
 
@@ -678,6 +678,268 @@
               <li>Application: crash detection via correlation network topology</li>
               <li>Connection to algebraic topology: chain complexes, boundary operators</li>
               <li>TDA vs. traditional statistics: what topology sees that correlation misses</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== ACT IV: NARRATIVES (20-29) ==================== -->
+
+      <!-- ==================== LECTURE 20 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">20</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;How ChatGPT Learned to Talk: A Mathematical Odyssey from Counting Words to Understanding Them&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 2003, Yoshua Bengio published a paper with a radical idea: what if, instead of treating words as discrete symbols, we represented them as points in continuous space? His neural language model was slow, fragile, and could barely finish a sentence. Two decades later, GPT-4 writes poetry, passes bar exams, and debates philosophy. This lecture tells the mathematical story of how we got from there to here &mdash; not as a survey of technology, but as a narrative of human ideas building on human ideas, each one a leap of mathematical imagination.<br><br><strong>Act One: The Representation Problem.</strong> Language is discrete; mathematics is continuous. Bengio&rsquo;s breakthrough was to embed words into $\mathbb{R}^d$ &mdash; a continuous vector space where &ldquo;king minus man plus woman equals queen&rdquo; becomes literal vector arithmetic. We will derive why this works: the distributional hypothesis (words in similar contexts have similar meanings) creates a structure that linear algebra can exploit. We will see how word2vec&rsquo;s skip-gram model &mdash; published by Tomas Mikolov in 2013, a paper so influential it has over 40,000 citations &mdash; compresses co-occurrence statistics into dense vectors via a shallow neural network whose loss function is secretly doing matrix factorization (we will prove this equivalence).<br><br><strong>Act Two: The Architecture Revolution.</strong> For four years after word2vec, language models used recurrent neural networks that processed words one at a time, left to right, like reading through a keyhole. In June 2017, eight Google researchers published &ldquo;Attention Is All You Need.&rdquo; The transformer replaced recurrence with parallel attention &mdash; and you already know the mathematics from Lecture 8. But here we tell the <em>human</em> story: how Ashish Vaswani was trying to speed up translation, how the team almost did not publish it, how the name &ldquo;transformer&rdquo; was a last-minute choice. We will focus on the mathematical idea they introduced that Lecture 8 did not emphasize: the transformer as a universal sequence-to-sequence function approximator, and the theoretical results (from 2020&ndash;2024) proving that transformers can simulate Turing machines.<br><br><strong>Act Three: Scaling and Emergence.</strong> The strangest chapter. When GPT-2 (1.5 billion parameters) was trained, it learned to write coherent paragraphs. When GPT-3 (175 billion) was trained on essentially the same architecture, it learned to do arithmetic, translate languages it was never explicitly taught, and write code. These &ldquo;emergent abilities&rdquo; appeared at specific scale thresholds &mdash; and nobody knows why. We will examine the scaling laws (Kaplan et al. 2020, Hoffmann et al. 2022) as empirical power laws and ask: is there a mathematical theory that explains them? The honest answer is no &mdash; and this is one of the great open questions in AI.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Bengio&rsquo;s 2003 neural language model: the seed of an idea</li>
+              <li>Word2vec and the distributional hypothesis: linear algebra of meaning</li>
+              <li>The skip-gram to matrix factorization equivalence (proof)</li>
+              <li>The transformer story: human drama behind &ldquo;Attention Is All You Need&rdquo;</li>
+              <li>Transformers as universal approximators: theoretical results</li>
+              <li>Scaling laws as empirical power laws: what we know and what we do not</li>
+              <li>Emergent abilities and phase transitions: the great open question</li>
+              <li>From counting words to &ldquo;understanding&rdquo; them: what changed, mathematically?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 21 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">21</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Hallucination Problem: Why AI Confidently Says Things That Are Not True&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In June 2023, a lawyer submitted a legal brief to a New York court citing six precedent cases. None of them existed. ChatGPT had invented them &mdash; complete with case numbers, judges&rsquo; names, and plausible-sounding legal arguments. The lawyer was sanctioned. The AI was unapologetic. This is the hallucination problem, and it is not a bug that engineers will fix with the next update. It is a <em>mathematical</em> phenomenon rooted in how these models fundamentally work.<br><br><strong>The Story of Overconfidence.</strong> A language model is, at its core, a next-token probability distribution: $P(x_{t+1} \mid x_1, \ldots, x_t)$. It has been trained on billions of tokens to minimize cross-entropy loss. When it generates text, it samples from this distribution. But here is the mathematical trap: the training objective rewards <em>fluency</em> (high probability sequences), not <em>truth</em>. A perfectly fluent sentence about a nonexistent court case scores just as well as a true one during training. We will formalize this gap between calibration (does the model&rsquo;s confidence match reality?) and accuracy (is the output correct?), and prove that cross-entropy training does not guarantee calibration in the out-of-distribution regime.<br><br><strong>The Mathematics of Not Knowing.</strong> The deeper question: can we make AI <em>know when it does not know</em>? This turns out to be a rich mathematical problem. We will trace three approaches. First: Bayesian uncertainty, where instead of learning a single model, you maintain a distribution over models &mdash; the posterior predictive distribution naturally captures epistemic uncertainty, but computing it exactly is intractable. Second: conformal prediction &mdash; a framework that provides <em>distribution-free</em> prediction sets with guaranteed coverage: &ldquo;I am 95% confident the answer is in this set.&rdquo; We will derive the basic conformal guarantee (a beautiful application of exchangeability). Third: the information-theoretic approach &mdash; measuring surprise via the model&rsquo;s own entropy and detecting when the model is &ldquo;making things up.&rdquo;<br><br><strong>Why This Problem May Be Unsolvable.</strong> We close with a provocative argument: for any system that generates creative, open-ended text, perfect hallucination detection may be undecidable &mdash; a consequence of the fact that distinguishing &ldquo;plausible but false&rdquo; from &ldquo;plausible and true&rdquo; requires access to ground truth that the model, by construction, does not have. This connects back to G&ouml;del&rsquo;s limits from Lecture 15.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>The lawyer and the fake cases: a story that shocked the legal world</li>
+              <li>Language models as probability distributions: why fluency does not imply truth</li>
+              <li>Calibration vs. accuracy: formal definitions and the gap between them</li>
+              <li>Bayesian uncertainty: posterior predictive distributions and intractability</li>
+              <li>Conformal prediction: distribution-free guarantees from exchangeability</li>
+              <li>Attention entropy and perplexity as hallucination signals</li>
+              <li>The undecidability argument: fundamental limits on self-knowledge</li>
+              <li>Connections to G&ouml;del (Lecture 15) and the limits of formal systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 22 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">22</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Code That Won the War: Turing, Enigma, and the Birth of Computer Science&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In the winter of 1940, German U-boats were sinking Allied supply ships at a rate that would have starved Britain into surrender within months. The only hope was to break Enigma &mdash; the German cipher machine that produced $158,962,555,217,826,360,000$ possible settings each day. The person who broke it was a 27-year-old Cambridge mathematician named Alan Turing. This lecture tells the story of how pure mathematical logic defeated a military superpower &mdash; and, in doing so, created the theoretical foundations of every computer and every AI system that exists today.<br><br><strong>Act One: The Machine.</strong> We begin with Enigma itself &mdash; a cipher machine that implements a polyalphabetic substitution via rotors, a plugboard, and a reflector. We will formalize its operation as a composition of permutations in the symmetric group $S_{26}$, compute the size of the keyspace, and see why brute force was impossible even for an army of mathematicians. The genius of Enigma was not any single component but their <em>composition</em> &mdash; and we will show how group theory provides the natural language for analyzing composed permutations.<br><br><strong>Act Two: The Breakthrough.</strong> Turing&rsquo;s insight was not to try every key but to exploit a mathematical weakness: the reflector guaranteed that no letter could encrypt to itself. This single constraint &mdash; a fixed-point-free permutation &mdash; was enough to build the Bombe, an electromechanical device that used logical contradiction to eliminate impossible keys at astonishing speed. We will formalize Turing&rsquo;s method as a constraint satisfaction problem and prove why the fixed-point-free property reduces the search space exponentially. We will also tell the human story: Turing working in Hut 8 at Bletchley Park, the eccentric habits, the race against time.<br><br><strong>Act Three: The Legacy.</strong> Turing&rsquo;s wartime work was classified for decades. But before the war, in 1936, he had published something even more profound: the concept of a Turing machine &mdash; a mathematical abstraction that defines what &ldquo;computation&rdquo; means. We will construct a Turing machine, prove the existence of a universal Turing machine, and see why this single idea is the foundation of all of computer science. We close with Turing&rsquo;s tragic personal story and his posthumous pardon in 2013.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Enigma as permutation composition in $S_{26}$: the group theory of encryption</li>
+              <li>Keyspace computation: why brute force fails at $10^{20}$ scale</li>
+              <li>Turing&rsquo;s insight: fixed-point-free permutations and constraint propagation</li>
+              <li>The Bombe: logical contradiction as a search strategy</li>
+              <li>The human story: Bletchley Park, Hut 8, and the race against U-boats</li>
+              <li>Turing machines: what &ldquo;computation&rdquo; means, formally</li>
+              <li>Universal Turing machines and the Church-Turing thesis</li>
+              <li>Turing&rsquo;s legacy: from codebreaking to the foundations of AI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 23 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">23</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;From Al-Khwarizmi to Algorithms: The Mathematical Heritage That Runs the World&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">The word &ldquo;algorithm&rdquo; comes from the name of a 9th-century Persian mathematician: Muhammad ibn Musa al-Khwarizmi. The word &ldquo;algebra&rdquo; comes from the title of his book: <em>Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala</em>, written in Baghdad around 820 CE. Every time a search engine ranks results, every time an AI model trains, every time a GPS finds the shortest route &mdash; it is running an algorithm, a word that literally means &ldquo;in the manner of al-Khwarizmi.&rdquo; This lecture tells the story of the Islamic Golden Age&rsquo;s mathematical revolution and traces its unbroken line to the AI systems of today.<br><br><strong>The Baghdad Renaissance.</strong> Between roughly 750 and 1258 CE, Baghdad&rsquo;s House of Wisdom was the intellectual center of the world. We will meet al-Khwarizmi, who classified all six types of quadratic equations and provided geometric proofs for each. We will reconstruct his geometric proof that $x^2 + 10x = 39$ has solution $x = 3$ by literally completing a square &mdash; the origin of the technique you learned in school. We will meet Omar Khayyam, who solved cubic equations using the intersection of conic sections three centuries before Cardano.<br><br><strong>The Transmission.</strong> How did this mathematics reach Europe? Through translation. In 12th-century Toledo, scholars translated Arabic mathematical texts into Latin. Fibonacci learned the Hindu-Arabic numeral system from North African mathematicians and introduced it to Europe in 1202. We will show how the positional number system &mdash; where the symbol &ldquo;0&rdquo; makes place value possible &mdash; is itself a mathematical technology so profound that without it, neither calculus nor computation could exist.<br><br><strong>The Living Legacy.</strong> We will trace direct lines from Golden Age mathematics to modern AI. Al-Khwarizmi&rsquo;s &ldquo;recipe-based&rdquo; problem solving is the ancestor of every algorithm. The Islamic geometric tradition &mdash; the tessellations of the Alhambra, which encode all 17 wallpaper groups &mdash; connects to group theory, symmetry detection in computer vision, and the equivariance properties of modern neural networks. We close in the UAE, where this mathematical heritage is alive: Abu Dhabi&rsquo;s Louvre displays geometric patterns encoding the same group theory that powers the AI systems being built across the street at TII.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Al-Khwarizmi&rsquo;s classification of quadratic equations: geometric proofs reconstructed</li>
+              <li>Omar Khayyam&rsquo;s cubic solutions via conic intersections</li>
+              <li>The House of Wisdom: Baghdad as the world&rsquo;s intellectual center (750&ndash;1258 CE)</li>
+              <li>The transmission: Toledo translations, Fibonacci, and the Hindu-Arabic numerals</li>
+              <li>The story of zero: from India through Baghdad to the world</li>
+              <li>Islamic geometric art and the 17 wallpaper groups: symmetry before group theory</li>
+              <li>Al-Khalil&rsquo;s combinatorics: permutation enumeration as proto-computer science</li>
+              <li>Direct lines to modern AI: algorithms, symmetry, combinatorial optimization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 24 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">24</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Chaos, Butterflies, and the Death of Prediction: When Mathematics Discovered Uncertainty&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 1961, a meteorologist named Edward Lorenz was running a weather simulation on a Royal McBee computer. To save time, he restarted a run from the middle, typing in values rounded to three decimal places instead of the six stored internally. The difference was one part in ten thousand. The result was a completely different weather pattern. Lorenz had accidentally discovered chaos &mdash; and in doing so, killed the dream of perfect prediction that had sustained science since Newton.<br><br><strong>Act One: The Dream of Laplace.</strong> In 1814, Pierre-Simon Laplace articulated the ultimate scientific fantasy: a being that knew the position and velocity of every particle in the universe could predict the entire future. We will formalize this: given a system $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x})$ with known initial conditions, the solution is uniquely determined (Picard-Lindel&ouml;f theorem). So where does prediction fail?<br><br><strong>Act Two: Sensitive Dependence.</strong> Lorenz&rsquo;s system &mdash; three simple ODEs modeling atmospheric convection &mdash; is fully deterministic. Yet two solutions starting $10^{-4}$ apart diverge exponentially: $\|\delta\mathbf{x}(t)\| \sim \|\delta\mathbf{x}(0)\| e^{\lambda t}$, where $\lambda > 0$ is the Lyapunov exponent. We will compute $\lambda$ for the Lorenz system and show that this single number quantifies the &ldquo;butterfly effect.&rdquo; For Earth&rsquo;s atmosphere, this gives roughly 10&ndash;14 days &mdash; the fundamental limit of weather forecasting, no matter how powerful your computer. We will plot the Lorenz attractor and see its hauntingly beautiful butterfly shape.<br><br><strong>Act Three: Chaos Everywhere.</strong> The logistic map $x_{n+1} = rx_n(1-x_n)$ &mdash; a one-line equation producing period-doubling cascades and the universal Feigenbaum constant $\delta \approx 4.669$. Poincar&eacute;&rsquo;s proof that the three-body problem is chaotic. And the unresolved question: are financial markets stochastic or chaotic? We close with an open question: can neural networks extend prediction horizons beyond the theoretical Lyapunov limit?</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Lorenz&rsquo;s accidental discovery: the printout, the rounding, the divergence</li>
+              <li>Laplace&rsquo;s Demon and the Picard-Lindel&ouml;f theorem: determinism is not prediction</li>
+              <li>Lyapunov exponents: quantifying the butterfly effect</li>
+              <li>The Lorenz attractor: strange attractors and fractal dimension</li>
+              <li>The logistic map and Feigenbaum universality: chaos from one line</li>
+              <li>Poincar&eacute; and the three-body problem: why exact celestial mechanics died</li>
+              <li>Chaos in financial markets: testing for deterministic structure in prices</li>
+              <li>AI vs. chaos: can neural networks extend the prediction horizon?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 25 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">25</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Woman Who Invented the Future: Emmy Noether and the Hidden Architecture of Physics&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 1915, two of the greatest mathematicians alive &mdash; David Hilbert and Felix Klein &mdash; invited Emmy Noether to the University of G&ouml;ttingen to solve a problem that was defeating them both. Einstein&rsquo;s new general theory of relativity seemed to violate conservation of energy. Noether, then 33, solved it in a few months with a theorem so profound that physicists consider it one of the most important results in the history of science. Yet she was denied a faculty position because she was a woman, was paid nothing for years, and when she died at 53, Einstein wrote that she was &ldquo;the most significant creative mathematical genius thus far produced since the higher education of women began.&rdquo;<br><br><strong>The Theorem.</strong> Noether&rsquo;s theorem states: for every continuous symmetry of a physical system, there is a corresponding conserved quantity. Time symmetry gives conservation of energy. Spatial symmetry gives conservation of momentum. We will state and prove a simplified version using the calculus of variations: for a Lagrangian invariant under a one-parameter group of transformations, the corresponding Noether charge is conserved along solutions of the Euler-Lagrange equations.<br><br><strong>The Revolution in Algebra.</strong> Noether essentially invented modern abstract algebra. Before her, algebra was about solving equations. After her, algebra was about <em>structures</em>: rings, ideals, modules. Her ascending chain condition on ideals (Noetherian rings) unified vast territories of algebra and algebraic geometry under a single framework. Her approach &mdash; strip away specifics, find essential structure, prove at maximum generality &mdash; is the methodology modern mathematics runs on.<br><br><strong>The Living Legacy.</strong> Noether&rsquo;s ideas are everywhere in modern AI. The equivariance properties of convolutional neural networks and graph neural networks (Lecture 12) are applications of symmetry groups &mdash; Noether&rsquo;s intellectual territory. We draw the line from a woman denied a salary in 1915 to the cutting-edge AI architectures of 2026.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Emmy Noether&rsquo;s biography: prejudice, perseverance, and genius</li>
+              <li>Noether&rsquo;s theorem: symmetry implies conservation (proof via calculus of variations)</li>
+              <li>Time symmetry and energy, space symmetry and momentum: examples derived</li>
+              <li>The revolution in algebra: from solving equations to studying structures</li>
+              <li>Noetherian rings: the ascending chain condition and why it matters</li>
+              <li>The Noetherian methodology: abstraction as power</li>
+              <li>Symmetry in AI: equivariance in CNNs, GNNs, and gauge networks</li>
+              <li>The question of recognition: whose names mathematics remembers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 26 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">26</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Why Does Deep Learning Work? The Greatest Unsolved Problem in AI&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">Here is a scandal at the heart of artificial intelligence: the most powerful technology of our era works for reasons we do not fully understand. Deep learning <em>should not</em> work. Classical statistical theory says it should overfit catastrophically. It has more parameters than data points, its loss landscape defies visualization, and yet it generalizes spectacularly. This lecture tells the story of our attempts to understand why &mdash; and the mathematical mysteries that remain open.<br><br><strong>The Overfitting Paradox.</strong> Classical learning theory (Vapnik-Chervonenkis theory) says a model&rsquo;s test error is bounded by training error plus a complexity penalty that grows with parameter count. For a network with 175 billion parameters, this bound is vacuous &mdash; it predicts performance no better than random guessing. Yet GPT-4 generalizes beautifully. Something in the classical theory is fundamentally wrong. We will state the VC bound precisely and stare at the absurd gap between theory and practice.<br><br><strong>Double Descent.</strong> In 2019, researchers discovered that as model complexity increases past the interpolation threshold, test error <em>decreases again</em>. The classical U-shaped bias-variance tradeoff has a second phase. We will formalize this via minimum-norm interpolators and connect it to the implicit bias of gradient descent toward flat minima using PAC-Bayes bounds.<br><br><strong>The Lottery Ticket Hypothesis.</strong> Inside every trained network exists a tiny subnetwork (1&ndash;5% of the original) that achieves the same performance when trained in isolation. Overparameterization is not about using all parameters &mdash; it makes the optimization landscape navigable enough to <em>find</em> the good subnetwork.<br><br><strong>What We Still Do Not Know.</strong> Why does SGD find generalizing solutions? Why do large models exhibit &ldquo;grokking&rdquo; &mdash; memorizing data for thousands of epochs before suddenly learning the pattern? Why do neural scaling laws follow power laws? Each is a frontier research problem. The most successful technology in a generation is running ahead of our theoretical understanding.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>The scandal: deep learning works despite violating classical theory</li>
+              <li>VC dimension and the generalization bound: precise statement and vacuousness</li>
+              <li>Double descent: the death of the bias-variance tradeoff U-curve</li>
+              <li>Minimum-norm interpolation and implicit regularization by gradient descent</li>
+              <li>The lottery ticket hypothesis: sparse subnetworks and overparameterization</li>
+              <li>Grokking: delayed generalization after memorization</li>
+              <li>Neural scaling laws: empirical power laws without theoretical explanation</li>
+              <li>The great open question: why does deep learning generalize?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 27 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">27</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Information, Entropy, and the Arrow of Time: When Two Equations Turned Out to Be the Same&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 1948, Claude Shannon was trying to measure information. In 1877, Ludwig Boltzmann was trying to measure disorder in a gas. Working seventy years apart, in completely different fields, they wrote down the same equation: $H = -\sum p_i \log p_i$. The joke Shannon reportedly told &mdash; &ldquo;No one really knows what entropy is, so in a debate you will always have the advantage&rdquo; &mdash; hides a deep truth: information and thermodynamics <em>are</em> connected, and the connection runs far deeper than a shared formula.<br><br><strong>Act One: Boltzmann&rsquo;s Entropy.</strong> In the 1870s, Boltzmann proposed that the entropy of a gas was a <em>counting problem</em>: $S = k_B \ln W$, where $W$ is the number of microstates consistent with a macroscopic observation. This was radical: it reduced thermodynamics to combinatorics. We will derive the formula, show how Stirling&rsquo;s approximation transforms it into $S = -k_B \sum p_i \ln p_i$, and understand why entropy always increases &mdash; the Second Law as a statement about the overwhelming probability of disordered states.<br><br><strong>Act Two: Shannon&rsquo;s Entropy.</strong> Shannon needed a measure of &ldquo;surprise&rdquo; in a random variable. Starting from three axioms &mdash; continuity, monotonicity, and additivity for independent events &mdash; he proved the <em>unique</em> measure satisfying all three is $H = -\sum p_i \log_2 p_i$. We will reproduce Shannon&rsquo;s uniqueness proof (it uses the functional equation for logarithms and is surprisingly elegant).<br><br><strong>Act Three: The Deep Connection.</strong> In 1961, Rolf Landauer proved that erasing one bit of information <em>must</em> dissipate at least $k_B T \ln 2$ joules of heat. Information is physical. Maxwell&rsquo;s Demon is defeated by Landauer&rsquo;s principle: the demon must erase its memory, and that erasure produces entropy.<br><br><strong>The AI Connection.</strong> Cross-entropy loss, KL divergence, maximum entropy &mdash; Shannon&rsquo;s entropy is everywhere in modern AI. We close by noting that Landauer&rsquo;s principle sets the ultimate physical limit on computation &mdash; and we are nowhere near it, but the direction matters.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Boltzmann&rsquo;s entropy: reducing thermodynamics to combinatorics</li>
+              <li>The Second Law as a probability statement, not a physical law</li>
+              <li>Shannon&rsquo;s entropy: the uniqueness proof from three axioms</li>
+              <li>The bit: the fundamental unit of information</li>
+              <li>Landauer&rsquo;s principle: erasing information has thermodynamic cost</li>
+              <li>Maxwell&rsquo;s Demon: defeated by information theory</li>
+              <li>The deep connection: why the formulas are the same</li>
+              <li>Cross-entropy loss, KL divergence, maximum entropy in AI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 28 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">28</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Alignment Problem: Can We Mathematically Guarantee That AI Does What We Want?&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 2016, researchers at OpenAI trained a reinforcement learning agent to play a boat racing game. The agent discovered that instead of finishing the race, it could earn more points by driving in circles, hitting boost pads, and catching fire repeatedly. It maximized the reward function perfectly &mdash; and did not even try to win. This comical failure illustrates the most important unsolved problem in AI safety: the alignment problem.<br><br><strong>Act One: Goodhart&rsquo;s Law, Formalized.</strong> &ldquo;When a measure becomes a target, it ceases to be a good measure.&rdquo; Let $R^*$ be the true reward and $\hat{R}$ the proxy we specify. The regret $\sum_t [R^*(s_t, a_t) - \hat{R}(s_t, a_t)]$ can grow without bound even as $\hat{R}$ is maximized &mdash; and we will prove conditions under which this divergence is guaranteed. The boat racing agent is amusing. An AI managing a power grid is not.<br><br><strong>Act Two: RLHF.</strong> The current solution: learn rewards from human preferences. A human picks the better of two outputs. We fit a reward model via the Bradley-Terry model: $P(A \succ B) = \sigma(R(A) - R(B))$. We derive the loss function, prove Bradley-Terry consistency, and see PPO for fine-tuning. But RLHF has its own failure: reward hacking, where the policy exploits the reward model&rsquo;s errors.<br><br><strong>Act Three: The Deeper Problem.</strong> We cannot even <em>specify</em> what we want mathematically. Human values are inconsistent (Arrow&rsquo;s impossibility theorem, connecting to Lecture 6). And the most dangerous scenario &mdash; an AI smarter than its overseers &mdash; raises questions we do not know how to formalize. We examine mesa-optimization, deceptive alignment, and the mathematical frameworks (cooperative inverse RL, debate-based alignment) being developed to address these risks.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>The boat racing agent: reward hacking in action</li>
+              <li>Goodhart&rsquo;s Law formalized: proxy divergence under optimization pressure</li>
+              <li>RLHF: the Bradley-Terry model and its derivation</li>
+              <li>PPO for fine-tuning: how ChatGPT learns from human preferences</li>
+              <li>Reward hacking: when the learned reward model is exploited</li>
+              <li>Arrow&rsquo;s impossibility theorem: why specifying values is mathematically hard</li>
+              <li>Mesa-optimization and deceptive alignment: AI systems with hidden goals</li>
+              <li>Open question: can we ever mathematically guarantee alignment?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 29 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">29</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Music, Fourier, and the Mathematics of Everything You Hear&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 1807, Joseph Fourier submitted a paper to the French Academy of Sciences claiming that any function &mdash; no matter how wild, no matter how discontinuous &mdash; could be written as a sum of sines and cosines. The referees, who included Lagrange and Laplace, rejected it. Lagrange reportedly said it was &ldquo;impossible.&rdquo; They were wrong. Fourier was right. And his idea became arguably the most widely applied mathematical idea in all of science and engineering.<br><br><strong>Act One: The Vibrating String.</strong> A vibrating guitar string produces a fundamental frequency and overtones. We will derive the wave equation, solve it by separation of variables, and find that the solutions are $\sin(n\pi x/L)$ &mdash; the Fourier basis. The key insight: these functions are <em>orthogonal</em> under the inner product $\langle f, g \rangle = \int_0^L f(x)g(x)\,dx$, and orthogonality is what makes decomposition possible. This is the same linear algebra from Lecture 1, now applied to infinite-dimensional function spaces.<br><br><strong>Act Two: The Fourier Transform.</strong> From Fourier series to the Fourier transform: $\hat{f}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-2\pi i \omega t}\,dt$. We will prove Parseval&rsquo;s theorem (energy conservation between time and frequency) and derive Heisenberg&rsquo;s uncertainty principle in its mathematical form: $\Delta t \cdot \Delta \omega \geq \frac{1}{4\pi}$. This is not quantum mechanics &mdash; this is pure Fourier analysis.<br><br><strong>Act Three: From Vibrating Strings to Voice Assistants.</strong> The Fast Fourier Transform (Cooley-Tukey 1965, though Gauss had a version in 1805) computes the DFT in $O(n \log n)$ instead of $O(n^2)$. We will derive the butterfly structure of the FFT. Then we follow Fourier into AI: speech recognition converts sound to spectrograms via the Short-Time Fourier Transform, then feeds these to neural networks. MP3 compression uses the modified discrete cosine transform to discard frequencies your ear cannot perceive. We compute the compression ratio and see why a 50MB WAV becomes a 5MB MP3: the mathematics of human perception meets function decomposition.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Fourier&rsquo;s rejected paper: the story of an idea too radical for its time</li>
+              <li>The wave equation and separation of variables: deriving the Fourier basis</li>
+              <li>Orthogonality in function spaces: infinite-dimensional linear algebra</li>
+              <li>The Fourier transform: from series to integrals, Parseval&rsquo;s theorem</li>
+              <li>Heisenberg&rsquo;s uncertainty principle as a theorem about functions</li>
+              <li>The FFT algorithm: the butterfly structure and $O(n \log n)$ derivation</li>
+              <li>Spectrograms, speech recognition, and voice assistants: Fourier in AI</li>
+              <li>MP3 compression: discarding what you cannot hear</li>
             </ul>
           </div>
         </div>
