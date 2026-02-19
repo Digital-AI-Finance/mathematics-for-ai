@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Proposals -- Mathematics for AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Shared stylesheet (root-relative path) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ---- Page-specific styles for lectures.html ---- */
+
+    /* Version badge (not in shared CSS) */
+    .plan-hero .version-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Lectures grid */
+    .lectures-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      max-width: 1000px;
+      margin: var(--space-xl) auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* Lecture card */
+    .lecture-card {
+      display: flex;
+      gap: var(--space-lg);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      border: 1px solid var(--color-border);
+      border-left: 5px solid var(--color-primary);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .lecture-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Color cycling for left border */
+    .lecture-card:nth-child(7n+1) { border-left-color: var(--color-primary); }
+    .lecture-card:nth-child(7n+2) { border-left-color: var(--color-secondary); }
+    .lecture-card:nth-child(7n+3) { border-left-color: var(--color-accent); }
+    .lecture-card:nth-child(7n+4) { border-left-color: #5c6bc0; }
+    .lecture-card:nth-child(7n+5) { border-left-color: #26a69a; }
+    .lecture-card:nth-child(7n+6) { border-left-color: #ef6c00; }
+    .lecture-card:nth-child(7n+7) { border-left-color: #1565c0; }
+
+    /* Lecture number */
+    .lecture-number {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      background: var(--color-math-bg);
+      border-radius: 50%;
+    }
+
+    /* Lecture content area */
+    .lecture-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .lecture-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+
+    .lecture-meta {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .lecture-meta span {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .lecture-duration {
+      background: #e8eaf6;
+      color: var(--color-primary);
+    }
+
+    .lecture-level {
+      background: #e0f2f1;
+      color: var(--color-secondary);
+    }
+
+    .lecture-abstract {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      margin-bottom: var(--space-md);
+    }
+
+    .lecture-topics h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lecture-topics ul {
+      list-style: disc;
+      padding-left: 1.25em;
+    }
+
+    .lecture-topics li {
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+      line-height: 1.5;
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Responsive: on small screens, stack number above content */
+    @media (max-width: 600px) {
+      .lecture-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* Two-column grid on large screens */
+    @media (min-width: 1200px) {
+      .lectures-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">Math for AI</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#math-concepts">Math</a>
+      <a href="index.html#visualizations">Visualizations</a>
+      <a href="#lectures">Lectures</a>
+    </div>
+  </nav>
+
+  <header class="plan-hero">
+    <h1>Lecture Proposals</h1>
+    <p class="subtitle">Nineteen lectures at the intersection of mathematics, AI, and finance &mdash; designed for the UAE&rsquo;s top young mathematicians</p>
+    <span class="version-badge">UAE Math Talent Program 2026</span>
+  </header>
+
+  <section id="lectures" class="lecture-proposals">
+    <div class="lectures-grid">
+
+      <!-- ==================== LECTURE 1 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">1</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Geometry of Money: How Curved Spaces Hide Inside Your Bank&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">Every time you open a banking app, invisible geometry is at work. Not the flat Euclidean kind from textbooks &mdash; we mean the curved, high-dimensional kind that makes GPS satellites correct for relativity and helps Netflix guess your next binge.<br><br>In this lecture, we start from a question that sounds simple: &ldquo;How similar are two bank customers?&rdquo; The Euclidean answer &mdash; straight-line distance &mdash; fails spectacularly when your data lives in 200 dimensions. We will build, from first principles, the mathematical machinery that modern AI actually uses: cosine similarity on the unit hypersphere, Mahalanobis distance that respects correlations, and the surprising connection between portfolio optimization and Riemannian manifolds.<br><br>You will see why the covariance matrix is secretly a metric tensor, why eigenvalues tell you which financial risks are real and which are noise, and how gradient descent on curved surfaces is fundamentally different from the flat version. We will derive the key results ourselves &mdash; no hand-waving.<br><br>By the end, you will understand why Renaissance Technologies and Abu Dhabi&rsquo;s sovereign wealth funds hire differential geometers, and you will have the mathematical vocabulary to read their research papers.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Inner product spaces, cosine similarity, hypersphere geometry</li>
+              <li>Covariance matrices as metric tensors</li>
+              <li>Eigendecomposition and principal component analysis (PCA)</li>
+              <li>Riemannian gradient descent vs. Euclidean gradient descent</li>
+              <li>Mahalanobis distance and its derivation</li>
+              <li>Connections to Markowitz portfolio theory</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 2 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">2</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Beating the House: The Mathematics of Fair Pricing When the Future is Uncertain&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">Here is a number that controls trillions of dollars: the price of an option. Not a stock &mdash; an <em>option on</em> a stock. The right to buy or sell at a fixed price in the future. How do you price something whose value depends on an event that has not happened yet?<br><br>In 1973, Black, Scholes, and Merton answered this question and changed the world. Their formula &mdash; which earned a Nobel Prize &mdash; rests on an idea so elegant it should be taught in every math class: you can construct a portfolio that perfectly replicates any uncertain payoff, and therefore the price must equal the cost of that replication. No arbitrage. Pure logic.<br><br>We will derive the Black-Scholes equation from scratch, starting with nothing more than the normal distribution (which you already know) and the concept of a random walk. Along the way, we will encounter Ito&rsquo;s lemma &mdash; calculus for random processes &mdash; and see why the drift of a stock does not matter for pricing (a deeply counterintuitive result). We will connect this to how Dubai&rsquo;s NASDAQ and Abu Dhabi Securities Exchange price derivatives today, and why Islamic finance structures like sukuk require entirely different mathematical frameworks.<br><br>You leave with: the ability to price a European call option by hand and the conceptual foundation to understand every quantitative finance interview question.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Geometric Brownian motion as a modeling assumption (stated without proof; rigorous treatment in Lecture 7)</li>
+              <li>Ito&rsquo;s lemma (stochastic calculus core idea)</li>
+              <li>The Black-Scholes PDE: derivation via replicating portfolio</li>
+              <li>Risk-neutral pricing and why drift cancels</li>
+              <li>The Black-Scholes formula and the role of the normal CDF</li>
+              <li>Connection to heat equation (physics crossover)</li>
+              <li>Islamic finance constraints: profit-sharing vs. interest-bearing instruments</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 3 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">3</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Bayesian Detective: How AI Catches Criminals, Fraudsters, and Liars in Real Time&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">A transaction hits a Dubai bank&rsquo;s server. The AI has 50 milliseconds to decide: legitimate or fraud? The answer uses mathematics that a Presbyterian minister invented in 1763 to prove the existence of God.<br><br>Bayes&rsquo; theorem is the most powerful single equation in applied mathematics. In this lecture, we will go far beyond the textbook version. We start with the theorem itself and its proof (short and beautiful), then build upward through three levels of sophistication that real fraud detection systems use.<br><br>Level 1: Naive Bayes classifiers &mdash; why assuming independence is wrong but works anyway (and the precise conditions under which it fails). Level 2: Bayesian networks &mdash; directed acyclic graphs where conditional probabilities propagate through chains of evidence. You will construct one for transaction fraud and compute posterior probabilities by hand. Level 3: Markov Chain Monte Carlo &mdash; when exact Bayesian inference is computationally impossible, we sample instead. We will derive the Metropolis-Hastings algorithm and prove it converges to the correct posterior.<br><br>Real numbers: UAE banks process over 2 billion card transactions per year. At a 0.1% fraud rate, even 99.9% accuracy means tens of thousands of false alarms. We will quantify this tradeoff using ROC curves and signal detection theory.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Bayes&rsquo; theorem: derivation, prior/posterior/likelihood</li>
+              <li>Naive Bayes classifiers and the independence assumption</li>
+              <li>Bayesian networks and belief propagation on DAGs</li>
+              <li>Markov Chain Monte Carlo: Metropolis-Hastings derivation</li>
+              <li>Convergence proof sketch (detailed balance condition)</li>
+              <li>ROC curves, AUC, precision-recall tradeoffs</li>
+              <li>Signal detection theory and decision boundaries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 4 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">4</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Gradient Descent and the Loss Landscape: A Hiker&rsquo;s Guide to Training Neural Networks&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">Training a neural network is, at its core, an optimization problem. You have millions of parameters, a loss function that measures how wrong your network is, and one job: find the parameter values that make the loss as small as possible. Simple? The loss landscape of a modern network has more dimensions than there are atoms in the observable universe.<br><br>In this lecture, we will hike through that landscape together. We begin with vanilla gradient descent &mdash; computing partial derivatives by hand for a two-layer network, using nothing beyond the chain rule. Then we face the real problems: saddle points (far more common than local minima in high dimensions &mdash; we will prove why), vanishing and exploding gradients (a concrete eigenvalue argument), and the computational impossibility of full-batch gradient descent on large datasets.<br><br>Each problem demands a mathematical solution. Stochastic gradient descent introduces controlled randomness. Momentum adds a velocity term from physics. Adam combines moving averages of gradients and squared gradients &mdash; we will derive it and show why the bias correction term exists. For the mathematically ambitious: we will sketch why SGD implicitly regularizes toward flat minima, connecting optimization to generalization through the lens of information theory.<br><br>We will apply every concept to a financial example: training a network to predict credit default on a real (anonymized) UAE lending dataset.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Multivariable chain rule and backpropagation derivation</li>
+              <li>Gradient computation for a concrete two-layer network</li>
+              <li>Saddle points in high dimensions: why Hessian eigenvalue distribution matters</li>
+              <li>Stochastic gradient descent: convergence rate analysis</li>
+              <li>Momentum, RMSProp, Adam: derivation and bias correction</li>
+              <li>Vanishing/exploding gradients: eigenvalue argument</li>
+              <li>Implicit regularization and flat vs. sharp minima (overview)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 5 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">5</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Cryptography Meets Finance: The Number Theory Behind Digital Money&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">Every digital dirham, every Bitcoin, every bank transfer you have ever made rests on a single mathematical belief: that multiplying two large primes is easy, but factoring their product is hard. If someone proves this wrong tomorrow, the global financial system collapses overnight.<br><br>This lecture is about the number theory that makes digital finance possible &mdash; and the quantum computing threat that might break it. We begin with modular arithmetic and build up to RSA encryption: you will generate your own public-private key pair and encrypt a message by hand. We will prove why RSA works (Euler&rsquo;s theorem), estimate why it is hard to break (the prime number theorem and the difficulty of factoring), and see how every contactless payment in the UAE uses elliptic curve cryptography &mdash; a beautiful intersection of algebraic geometry and number theory.<br><br>Then we go deeper. Blockchain consensus mechanisms use hash functions as mathematical commitments. We will formalize what &ldquo;collision resistance&rdquo; means and why proof-of-stake (which the UAE&rsquo;s digital dirham exploration favors) requires different mathematical guarantees than proof-of-work. For the finale: Shor&rsquo;s algorithm &mdash; the quantum algorithm that factors integers in polynomial time. We will sketch its mathematical core (the quantum Fourier transform) and discuss what post-quantum cryptography looks like.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Modular arithmetic, Euler&rsquo;s totient function, Fermat&rsquo;s little theorem</li>
+              <li>RSA: key generation, encryption, decryption, correctness proof</li>
+              <li>Prime number theorem and factoring complexity</li>
+              <li>Elliptic curves over finite fields: group law and ECDSA</li>
+              <li>Hash functions: collision resistance, preimage resistance</li>
+              <li>Blockchain: Merkle trees, consensus mechanism mathematics</li>
+              <li>Shor&rsquo;s algorithm: quantum Fourier transform (conceptual sketch)</li>
+              <li>Post-quantum lattice-based cryptography (overview)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 6 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">6</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;When AI Decides Your Future: The Mathematics of Fairness, Bias, and Justice&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">An AI model denies a loan application. The applicant asks: &ldquo;Why?&rdquo; The bank says: &ldquo;The algorithm decided.&rdquo; Is that acceptable? More importantly &mdash; can mathematics itself tell us whether the decision was <em>fair</em>?<br><br>This lecture confronts one of the most important theorems in modern AI, and one of the most disturbing: it is mathematically <em>impossible</em> to satisfy all reasonable definitions of fairness simultaneously. We will prove this impossibility result rigorously. You will see that &ldquo;treat everyone equally&rdquo; (demographic parity), &ldquo;be equally accurate for all groups&rdquo; (equalized odds), and &ldquo;a positive prediction should mean the same thing for everyone&rdquo; (calibration) cannot all hold at once, except in trivial cases.<br><br>This is not philosophy &mdash; this is combinatorics and probability theory with real consequences. We will formalize each fairness criterion as a precise mathematical constraint, construct the proof by contradiction, and examine what tradeoffs real systems must make. We will analyze a credit scoring model and compute its fairness metrics across different demographic groups, using real statistical methods: conditional probability, Simpson&rsquo;s paradox (which we will derive), and causal inference via do-calculus.<br><br>In the UAE, where AI is being deployed in government services, banking, and healthcare at unprecedented scale, these mathematical constraints are not abstract. They determine who gets loans, jobs, and opportunities. You will leave understanding that fairness in AI is a mathematical design choice, not a default &mdash; and that mathematicians are the ones who must make it.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Formal definitions: demographic parity, equalized odds, calibration</li>
+              <li>Impossibility theorem: proof that these cannot simultaneously hold</li>
+              <li>Simpson&rsquo;s paradox: construction and proof</li>
+              <li>Conditional probability and conditional independence</li>
+              <li>Causal inference basics: do-calculus notation</li>
+              <li>Confusion matrix algebra: TPR, FPR, PPV relationships</li>
+              <li>Constrained optimization: fairness as optimization constraints</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 7 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">7</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;From Random Walks to Wall Street: The Stochastic Processes That Model Markets&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">In 1900, five years before Einstein published his paper on Brownian motion, a French PhD student named Louis Bachelier used the exact same mathematics to model stock prices. His thesis was ignored for sixty years. Today, his random walk model is the foundation of a $500 trillion derivatives market.<br><br>This lecture traces that mathematical journey. We start where Bachelier did: a symmetric random walk on the integers. We prove the key properties &mdash; expected value, variance growth, the arcsine law for last returns (one of the most counterintuitive results in probability). Then we take the continuum limit and arrive at Brownian motion, making rigorous the passage from discrete to continuous.<br><br>From Brownian motion, we build the tools that quantitative finance actually uses. The Ornstein-Uhlenbeck process models mean-reverting interest rates &mdash; critical for pricing sukuk and other Islamic fixed-income instruments. Geometric Brownian motion models stock prices (we will show why the logarithm matters). Poisson jump processes capture market crashes &mdash; rare events that Brownian motion misses entirely.<br><br>For the finale: we simulate a mini-portfolio of UAE stocks (Emaar, ADNOC, FAB) using each model, compare against real historical data, and see where the mathematics succeeds and where it fails. You will walk out able to spot when a financial model is lying to you &mdash; a skill worth more than any formula.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Symmetric random walk: expectation, variance, arcsine law</li>
+              <li>Central limit theorem and the continuum limit to Brownian motion</li>
+              <li>Brownian motion properties: continuity, non-differentiability, quadratic variation</li>
+              <li>Geometric Brownian motion: rigorous construction as exp(Wiener process with drift), log-normal distribution (this is the full derivation that Lecture 2 only assumed)</li>
+              <li>Ornstein-Uhlenbeck process: mean reversion and its SDE</li>
+              <li>Poisson jump-diffusion processes for crash modeling</li>
+              <li>Monte Carlo simulation: convergence and variance reduction</li>
+              <li>Model validation against real market data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 8 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">8</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Attention Equation: How Transformers Learned to Read, Write, and Price&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">In 2017, a paper titled &ldquo;Attention Is All You Need&rdquo; introduced eight equations that would reshape civilization. Today, every time ChatGPT writes a paragraph, every time Bloomberg Terminal summarizes earnings, every time a UAE bank&rsquo;s chatbot answers a customer query &mdash; those eight equations are running underneath. This lecture tears them apart, mathematically.<br><br>We begin with the core operation: scaled dot-product attention. You will derive it from first principles as a soft dictionary lookup &mdash; keys, queries, and values are just learned linear projections, and the softmax function turns inner products into a probability distribution over context. We will compute attention weights by hand for a toy sequence and see <em>why</em> $\frac{1}{\sqrt{d_k}}$ scaling prevents gradient saturation (a clean eigenvalue argument). Then multi-head attention: we prove it is equivalent to learning in multiple representation subspaces simultaneously, and show the dimensionality arithmetic that makes it work without increasing parameters.<br><br>From there, we build upward. Positional encoding &mdash; why sinusoidal functions form a basis that lets the model learn relative position. Layer normalization &mdash; why it stabilizes training (a variance argument). The residual stream &mdash; why skip connections create a sum over computational paths. Finally, we confront the deepest mathematical mystery of modern AI: scaling laws. We will examine Chinchilla&rsquo;s empirical power-law relationship between parameters, data, and loss &mdash; $L(N,D) \approx \left(\frac{N_c}{N}\right)^{\alpha_N} + \left(\frac{D_c}{D}\right)^{\alpha_D}$ &mdash; and discuss what, if anything, explains why it holds.<br><br>We close by connecting transformers to finance: how ADGM-regulated firms use fine-tuned language models for regulatory document parsing, and why the UAE&rsquo;s Falcon family of LLMs (built by TII in Abu Dhabi) represents a sovereign AI capability with mathematical infrastructure you now understand.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Scaled dot-product attention: derivation as soft dictionary lookup</li>
+              <li>Softmax function, temperature scaling, gradient saturation analysis</li>
+              <li>Multi-head attention: subspace decomposition and parameter efficiency proof</li>
+              <li>Positional encoding: Fourier basis representation and relative position</li>
+              <li>Layer normalization: variance stabilization argument</li>
+              <li>Residual connections as sum over computational paths</li>
+              <li>Scaling laws: Chinchilla power-law fits, compute-optimal training</li>
+              <li>Tokenization: byte-pair encoding as compression, vocabulary entropy</li>
+              <li>Connection to kernel methods: attention as kernel regression</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 9 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">9</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Noise Into Gold: How Diffusion Models Generate Financial Futures&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">Here is an idea that sounds like alchemy: start with pure random noise &mdash; Gaussian static &mdash; and systematically remove it, step by step, until a photorealistic image emerges. This is how DALL-E, Stable Diffusion, and Midjourney work. The mathematics behind it is a stochastic differential equation running <em>backward in time</em>. And in 2024&ndash;2025, financial engineers realized this same mathematics can generate thousands of realistic market scenarios for stress-testing portfolios.<br><br>We start where all diffusion models start: the forward process. Add Gaussian noise incrementally to your data until it becomes pure noise. This is an Ornstein-Uhlenbeck-like SDE (you met the OU process in Lecture 7 &mdash; now we run it in the opposite direction). The deep insight is that to reverse this process, you need the <em>score function</em> &mdash; the gradient of the log-probability density, $\nabla_x \log p_t(x)$. We will derive Anderson&rsquo;s reverse-time SDE and prove that knowledge of the score at every noise level is sufficient to generate perfect samples.<br><br>How do you learn the score? Score matching &mdash; a beautiful trick where you train a neural network to predict the noise that was added, and this turns out to be mathematically equivalent to learning $\nabla_x \log p_t(x)$. We will prove this equivalence rigorously (it is a two-line derivation using integration by parts and the chain rule &mdash; elegant enough for any mathematician).<br><br>Then we turn to finance. A Diffusion Factor Model (DFM) decomposes the score function into a <em>subspace score</em> capturing systemic risk from common market factors and a <em>complementary score</em> handling idiosyncratic noise. We will see how this generates correlated multi-asset return scenarios that respect the fat tails and regime switches that Gaussian copulas infamously missed in 2008. Dubai&rsquo;s DIFC Innovation Hub is funding startups applying exactly these techniques to Islamic finance portfolio stress-testing.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Forward diffusion as SDE: variance schedule, noise process</li>
+              <li>Reverse-time SDE (Anderson 1982): derivation and existence conditions</li>
+              <li>Score function: $\nabla_x \log p_t(x)$ and its geometric interpretation</li>
+              <li>Score matching: denoising score matching equivalence proof</li>
+              <li>Langevin dynamics: sampling via score function + noise</li>
+              <li>Diffusion Factor Models: subspace score decomposition for systemic vs. idiosyncratic risk</li>
+              <li>Connection to Fokker-Planck equation: probability flow ODE</li>
+              <li>Fat tails and regime switching: where Gaussian assumptions fail</li>
+              <li>ELBO and variational bounds for diffusion models</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 10 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">10</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Quantum Finance: When Superposition Meets the Stock Market&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">In Lecture 5, you met Shor&rsquo;s algorithm &mdash; the quantum threat to cryptography. Now we explore the constructive side: quantum algorithms that solve financial problems <em>faster than any classical computer can</em>. This is not science fiction. In 2025, Abu Dhabi&rsquo;s Technology Innovation Institute partnered with Quantinuum to access the world&rsquo;s highest-fidelity quantum processors, and their first target applications include financial optimization and risk simulation.<br><br>We begin with the mathematical framework of quantum computing itself. A qubit is a vector in $\mathbb{C}^2$. Two qubits live in $\mathbb{C}^2 \otimes \mathbb{C}^2 = \mathbb{C}^4$. Entanglement is a state that cannot be written as a tensor product &mdash; we will prove this for the Bell state using a rank argument on the coefficient matrix. Quantum gates are unitary matrices; measurement collapses superposition according to Born&rsquo;s rule (probability = squared modulus of amplitude). This is all linear algebra &mdash; the same linear algebra you already know, but over the complex numbers.<br><br>With this toolkit, we build three financial quantum algorithms. First: the Quantum Approximate Optimization Algorithm (QAOA) for portfolio optimization. Classical portfolio selection is NP-hard when you add integer constraints (you cannot buy 0.37 of a stock). QAOA maps this to finding the ground state of an Ising Hamiltonian &mdash; we will construct the cost Hamiltonian and the mixing Hamiltonian, and prove why alternating them explores the solution space. Second: Variational Quantum Eigensolver (VQE) for pricing complex derivatives &mdash; a hybrid classical-quantum loop where the quantum circuit evaluates a parameterized state and classical optimization updates the parameters. Third: quantum amplitude estimation for Monte Carlo acceleration &mdash; a quadratic speedup ($O(\sqrt{N})$ vs. $O(N)$) for computing expected values like Value-at-Risk.<br><br>We close with an honest assessment: what quantum advantage actually means in 2026, why current NISQ (noisy intermediate-scale quantum) devices require error mitigation, and why the UAE&rsquo;s investment in quantum infrastructure positions it at the frontier of computational finance.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Qubit formalism: $\mathbb{C}^2$, Bloch sphere, measurement postulates</li>
+              <li>Tensor products and entanglement: Bell states, Schmidt decomposition</li>
+              <li>Unitary evolution: quantum gates as $SU(2^n)$ matrices</li>
+              <li>QAOA: Ising Hamiltonian formulation, cost and mixing operators, variational principle</li>
+              <li>Portfolio optimization as quadratic unconstrained binary optimization (QUBO)</li>
+              <li>VQE: parameterized quantum circuits, classical-quantum optimization loop</li>
+              <li>Quantum amplitude estimation: quadratic speedup proof sketch</li>
+              <li>NISQ error mitigation: zero-noise extrapolation, probabilistic error cancellation</li>
+              <li>Comparison: quantum vs. classical complexity for financial problems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 11 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">11</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Trading Agent: Reinforcement Learning and the Mathematics of Sequential Decisions&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">A trading algorithm wakes up every morning with one question: given everything I know about the market right now, what should I do? Buy, sell, hold &mdash; and in what quantities? This is not a prediction problem (Lectures 3 and 4 handle prediction). This is a <em>decision</em> problem, where today&rsquo;s choice affects tomorrow&rsquo;s options. The mathematical framework for optimal sequential decisions under uncertainty is reinforcement learning, and its application to finance is exploding.<br><br>We begin with Markov Decision Processes &mdash; the formal language. A state (your current portfolio plus market conditions), an action space (all possible trades), a transition function (how the market evolves), and a reward (your risk-adjusted return). The Bellman equation emerges naturally: the value of being in state $s$ equals the immediate reward plus the discounted value of the best next state. We will derive it, prove it has a unique fixed point (Banach contraction theorem &mdash; one of the most beautiful proofs in analysis), and see why solving it exactly is computationally impossible for realistic state spaces.<br><br>This impossibility drives us to <em>approximate</em> methods. Deep Q-Networks (DQN) use neural networks to approximate the Bellman fixed point &mdash; we will derive the loss function and see why &ldquo;experience replay&rdquo; (training on shuffled past transitions) breaks temporal correlations that would otherwise destabilize learning. Policy gradient methods (REINFORCE, PPO) take a different approach: parameterize the policy directly and differentiate expected reward with respect to policy parameters. The policy gradient theorem is remarkable &mdash; we will prove it and see how it circumvents the need to model transitions at all.<br><br>For the financial application: we train a portfolio optimization agent on UAE market data (Emaar, ADNOC, FAB, du). The Sharpe ratio becomes the reward signal, but naively maximizing it causes catastrophic risk-taking. We will derive risk-adjusted reward functions that incorporate drawdown penalties and CVaR constraints, connecting reinforcement learning to the risk measures that DFSA and SCA regulators actually require.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Markov Decision Processes: states, actions, transitions, rewards</li>
+              <li>Bellman equation: derivation and uniqueness via Banach fixed-point theorem</li>
+              <li>Value iteration and policy iteration: convergence proofs</li>
+              <li>Deep Q-Networks: function approximation, target networks, experience replay</li>
+              <li>Policy gradient theorem: derivation via log-derivative trick</li>
+              <li>REINFORCE, Actor-Critic, Proximal Policy Optimization (PPO)</li>
+              <li>Sharpe ratio as reward signal: differentiability and optimization challenges</li>
+              <li>Risk constraints in RL: CVaR-constrained MDPs</li>
+              <li>Exploration vs. exploitation: epsilon-greedy, UCB, entropy regularization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 12 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">12</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Hidden Network: Graph Neural Networks and the Topology of Financial Contagion&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">When Lehman Brothers collapsed in 2008, it did not just fail &mdash; it <em>infected</em> the entire global financial system through a web of counterparty obligations that nobody fully understood. The mathematics of that contagion is graph theory, and the AI that now monitors these networks in real time uses Graph Neural Networks &mdash; the frontier where topology meets deep learning.<br><br>We begin with the mathematics of financial networks. Banks, funds, and corporations form nodes; loans, derivatives contracts, and payment flows form edges. The adjacency matrix $A$ encodes this structure, and its spectral properties reveal everything: the largest eigenvalue of $A$ determines epidemic thresholds for default cascading &mdash; we will derive this result using the spectral radius and Perron-Frobenius theory. The graph Laplacian $L = D - A$ (where $D$ is the degree matrix) governs diffusion on graphs; its second-smallest eigenvalue, the Fiedler value, measures how &ldquo;connected&rdquo; the financial system is &mdash; and therefore how vulnerable to contagion.<br><br>With this spectral foundation, we build Graph Neural Networks. The key operation is <em>message passing</em>: each node aggregates information from its neighbors, transforms it, and updates its own representation. We will derive the message-passing framework mathematically and show that it is equivalent to a learned polynomial filter on the graph Laplacian&rsquo;s eigenvalues &mdash; this is <em>spectral graph convolution</em>, and it directly extends the convolution theorem you know from Fourier analysis to arbitrary graph topologies.<br><br>For application: we construct a GNN that predicts systemic risk in a network of UAE financial institutions (ADCB, Mashreq, Emirates NBD, FAB, ADIA) modeled from public interbank data. The GNN learns <em>permutation-equivariant</em> representations &mdash; we will prove why this symmetry property is essential (a financial risk measure should not depend on how you label the banks). Recent research shows GNNs achieve 94% improvement over traditional ML methods for network-level risk prediction, precisely because they exploit the topological structure that tabular models ignore.<br><br>The Central Bank of the UAE is building exactly these monitoring systems. You will leave understanding both the mathematics and why graph-aware AI is the future of financial regulation.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Graph theory: adjacency matrix, degree matrix, graph Laplacian</li>
+              <li>Spectral graph theory: eigenvalues of $L$, Fiedler value, algebraic connectivity</li>
+              <li>Perron-Frobenius theorem and epidemic threshold for default cascading</li>
+              <li>Message-passing neural networks: aggregation, update, readout functions</li>
+              <li>Spectral graph convolution: polynomial filters on Laplacian eigenvalues</li>
+              <li>Graph Fourier transform: extending convolution theorem to irregular domains</li>
+              <li>Permutation equivariance: proof of GNN symmetry property</li>
+              <li>Graph attention networks: learned edge weights via attention</li>
+              <li>Systemic risk measures: DebtRank, contagion simulation on networks</li>
+              <li>Connection to random graph theory: Erdos-Renyi thresholds for network resilience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 13 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">13</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Mathematics in the Age of AI: Why the Best is Yet to Come&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In August 2025, something happened that would have been unthinkable a decade ago: an AI system called AlphaProof solved problems from the International Mathematical Olympiad at a silver-medal level. Headlines screamed that mathematics was over. They were spectacularly wrong.<br><br>This lecture is a love letter to the future of mathematics &mdash; and a roadmap for your place in it.<br><br>We will start with the honest question: what can AI actually do in mathematics today? We will look at what AlphaProof did (and, crucially, what it could not do). We will examine how large language models generate plausible-sounding proofs that are subtly, devastatingly wrong &mdash; and why detecting the error requires exactly the kind of structured reasoning you are training right now. We will see how AI tools like Lean 4 and Coq are not replacing mathematicians but amplifying them &mdash; the way the telescope amplified astronomers. The mathematicians who thrive in 2035 will not be those who compute fastest (AI already wins that race). They will be those who ask the deepest questions, who see connections across fields, who have the taste to distinguish an interesting conjecture from a trivial one.<br><br>Then we turn to you. The UAE is investing billions in AI infrastructure &mdash; from TII&rsquo;s Falcon foundation models to the 10-square-mile AI campus in Abu Dhabi. Every one of these systems needs mathematicians: people who understand convergence, stability, generalization, and the difference between a proof and a heuristic. The world is not producing enough of you. The demand for mathematical minds that can work alongside AI &mdash; guiding it, correcting it, asking it the right questions &mdash; has never been higher.<br><br>We will close with stories of mathematicians your age who are already using AI-assisted proof to make genuine discoveries. Not in twenty years. Now. The age of AI is not the end of mathematics. It is the beginning of the most exciting era mathematics has ever known.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>What AI can and cannot do in mathematics today (AlphaProof, Lean 4, limitations)</li>
+              <li>Why mathematical taste, intuition, and question-asking cannot be automated</li>
+              <li>The &ldquo;telescope analogy&rdquo;: AI as amplifier, not replacement</li>
+              <li>Career landscape: why demand for mathematicians is accelerating, not declining</li>
+              <li>UAE&rsquo;s AI infrastructure and where mathematicians fit in</li>
+              <li>Stories of young mathematicians making discoveries with AI tools</li>
+              <li>The difference between computation and understanding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 14 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">14</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Unreasonable Effectiveness of Mathematics: Why the Universe Speaks Algebra&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">In 1960, the physicist Eugene Wigner wrote an essay with a title that has haunted scientists ever since: &ldquo;The Unreasonable Effectiveness of Mathematics in the Natural Sciences.&rdquo; His question was simple and profound: why does mathematics &mdash; something invented by human minds playing with abstract symbols &mdash; describe the physical universe so perfectly? Why did Maxwell&rsquo;s equations, written on a single page, predict radio waves decades before anyone built a radio? Why did Dirac&rsquo;s equation, a piece of pure algebra, predict the existence of antimatter before any experiment found it?<br><br>This lecture explores the deepest question at the intersection of mathematics and reality &mdash; and we will discover that the mystery has only deepened in the age of AI.<br><br>We will trace four astonishing stories. First: how a 19th-century mathematician named Bernhard Riemann invented a geometry of curved spaces purely for intellectual pleasure, and how Einstein used exactly that geometry sixty years later to describe gravity. No one asked Riemann to be useful. He simply followed the mathematics, and the universe was waiting. Second: how the same matrix algebra used in quantum mechanics turned out to be the exact formalism needed for Google&rsquo;s PageRank algorithm and for the attention mechanism in ChatGPT. Third: how number theory &mdash; the &ldquo;purest&rdquo; branch of mathematics, studied for millennia with zero practical applications &mdash; suddenly became the foundation of all internet security when RSA encryption was invented. Fourth: how group theory, invented to study the symmetries of polynomial roots, now governs everything from particle physics to crystallography to error-correcting codes in your phone.<br><br>The pattern is unmistakable and unexplained: mathematics developed for its own beauty keeps turning out to be exactly what the universe, and now what AI, requires. We will ask why. Is mathematics discovered or invented? Is the universe fundamentally mathematical? These are not idle philosophical musings &mdash; they are questions that determine how you should think about your own education. Because if the pattern holds, then the &ldquo;useless&rdquo; pure mathematics you study today is the applied mathematics of tomorrow.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Wigner&rsquo;s essay and the central mystery: why does abstract math describe reality?</li>
+              <li>Riemann geometry to general relativity: beauty first, application later</li>
+              <li>Matrix algebra: from quantum mechanics to PageRank to transformers</li>
+              <li>Number theory to cryptography: pure to applied in one generation</li>
+              <li>Group theory: polynomial roots to particle physics to error-correcting codes</li>
+              <li>Is mathematics discovered or invented? The Platonism debate</li>
+              <li>Why studying &ldquo;useless&rdquo; pure math is the most practical thing you can do</li>
+              <li>Historical examples of mathematicians who followed curiosity and changed the world</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 15 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">15</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;Proof, Truth, and the Limits of Knowledge: What Mathematics Cannot Know&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">Mathematics is the one discipline where you can know something with absolute certainty. A proven theorem is true forever &mdash; no experiment can overturn it, no new data can invalidate it. Pythagoras was right in 500 BC and he is still right today. This makes mathematics unique among all human endeavors.<br><br>And then, in 1931, a quiet 25-year-old Austrian named Kurt G&ouml;del destroyed this paradise.<br><br>G&ouml;del proved &mdash; with mathematical certainty &mdash; that mathematics itself has limits. Any consistent mathematical system powerful enough to describe basic arithmetic must contain true statements that can never be proven within that system. Not &ldquo;have not been proven yet.&rdquo; Cannot be proven. Ever. By anyone. This is G&ouml;del&rsquo;s First Incompleteness Theorem, and it is one of the most stunning intellectual achievements in human history.<br><br>We will build the proof idea from scratch, using no prerequisites beyond logic and natural numbers. The core trick &mdash; G&ouml;del numbering, which encodes mathematical statements as numbers so that mathematics can talk about itself &mdash; is a stroke of genius you will never forget once you see it. We will then connect this to Alan Turing&rsquo;s 1936 proof that there exist problems no computer can ever solve (the Halting Problem), and to Gregory Chaitin&rsquo;s discovery of &Omega; &mdash; a specific real number that is perfectly well-defined but whose digits can never be computed.<br><br>But this lecture is not about despair. It is about intellectual courage. G&ouml;del, Turing, and Chaitin did not make mathematics weaker. They made it deeper. They showed that the landscape of mathematical truth is infinitely richer than any single formal system can capture. For AI, this has profound implications: every AI system is a formal system, and therefore every AI system has G&ouml;delian blind spots &mdash; truths it cannot discover. This is not a bug. It is a theorem.<br><br>You will leave this lecture understanding that the limits of knowledge are themselves a form of knowledge &mdash; and that pushing against those limits is what makes mathematics the most honest, the most humble, and the most audacious discipline that humans have ever created.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Why mathematical proof is unique: certainty that no other field can claim</li>
+              <li>G&ouml;del&rsquo;s First Incompleteness Theorem: the statement, the proof idea, the shock</li>
+              <li>G&ouml;del numbering: mathematics talking about itself</li>
+              <li>Turing&rsquo;s Halting Problem: undecidable problems and the limits of computation</li>
+              <li>Chaitin&rsquo;s &Omega;: a knowable number whose digits are unknowable</li>
+              <li>Implications for AI: every formal system has G&ouml;delian blind spots</li>
+              <li>The philosophy: limits of knowledge as knowledge itself</li>
+              <li>Why this makes mathematics more exciting, not less</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 16 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">16</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Billion-Dollar Equations: Five Formulas That Bent the Arc of History&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">Behind every revolution &mdash; industrial, digital, financial, scientific &mdash; there is usually a single equation. Not a textbook of equations. One. Written by one person, often in obscurity, often without any idea of what it would unleash.<br><br>This lecture tells five stories of equations that changed the world, and the human dramas behind them.<br><br><strong>Story One: Euler&rsquo;s Identity.</strong> In 1748, Leonhard Euler &mdash; the most prolific mathematician in history, who continued publishing after going blind &mdash; revealed that $e^{i\pi} + 1 = 0$. Five fundamental constants, three basic operations, one statement of impossible elegance. We will derive it using Taylor series and see why Richard Feynman called it &ldquo;the most remarkable formula in mathematics.&rdquo; More than beauty: this identity is the reason electrical engineering, quantum mechanics, and signal processing work. Every time your phone processes a voice call, Euler&rsquo;s formula is running.<br><br><strong>Story Two: Shannon&rsquo;s Entropy.</strong> In 1948, Claude Shannon, a 32-year-old engineer at Bell Labs, defined the fundamental limit of communication: $H = -\sum p_i \log p_i$. Before Shannon, &ldquo;information&rdquo; was a vague word. After Shannon, it was a precise mathematical quantity with units (bits). We will derive why this formula is the unique function satisfying three reasonable axioms. This equation is why you can stream 4K video on your phone. It is also the loss function (cross-entropy) used to train every large language model, including the ones generating AI text today.<br><br><strong>Story Three: Navier-Stokes.</strong> In the 1840s, Claude-Louis Navier and George Stokes wrote down the equations governing fluid flow. We still cannot prove whether their solutions always exist. The Clay Mathematics Institute offers one million dollars for a proof. We will state the problem precisely and see why it resists the best minds in mathematics &mdash; and why solving it would revolutionize weather prediction, aircraft design, and blood flow modeling.<br><br><strong>Story Four: Black-Scholes.</strong> You met this in Lecture 2. Here we tell the human story. Fischer Black was a physicist with no economics degree. Myron Scholes was told his PhD thesis was unpublishable. Their equation created the modern derivatives market &mdash; then, when Long-Term Capital Management used it without understanding its assumptions, nearly destroyed the global economy in 1998. The lesson: an equation is only as good as the wisdom of the person wielding it.<br><br><strong>Story Five: The Bellman Equation.</strong> Richard Bellman, working at the RAND Corporation during the Cold War, invented dynamic programming and named it deliberately to sound boring so the Pentagon would not cut his funding. His equation $V(s) = \max_a [R(s,a) + \gamma V(s')]$ is the mathematical backbone of every AI that learns from experience &mdash; from AlphaGo to autonomous vehicles to the trading agents in Lecture 11.<br><br>Each story follows the same arc: a person, an insight, an equation, and a world that never looked the same afterward. Mathematics is not a spectator sport. It is the engine of civilization. And the next equation on this list might be yours.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>Euler&rsquo;s identity: derivation, beauty, and engineering applications</li>
+              <li>Shannon&rsquo;s entropy: the birth of information theory, connection to AI loss functions</li>
+              <li>Navier-Stokes: a million-dollar unsolved problem, why existence proofs matter</li>
+              <li>Black-Scholes: the human story, the trillion-dollar market, the catastrophic failure</li>
+              <li>Bellman equation: Cold War origins, dynamic programming, foundation of modern RL</li>
+              <li>The common pattern: one person, one equation, world-changing consequences</li>
+              <li>Mathematics as the engine of civilization, not an academic exercise</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 17 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">17</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Last Great Problems: Unsolved Questions That Could Change Everything&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Keynote</span>
+          </div>
+          <p class="lecture-abstract">Right now, as you sit here, there exist mathematical problems so important that solving any one of them would make you immortal. Not famous. Immortal &mdash; your name alongside Euclid, Gauss, and Euler, spoken by mathematicians a thousand years from now.<br><br>Seven problems were designated as the Millennium Prize Problems in 2000 by the Clay Mathematics Institute. Each carries a one-million-dollar prize. Only one has been solved: the Poincar&eacute; Conjecture, by Grigori Perelman &mdash; a reclusive Russian mathematician who then refused the million dollars, refused the Fields Medal, and moved back in with his mother. We will tell his extraordinary story.<br><br>Then we will explore three of the remaining unsolved problems &mdash; not as distant curiosities, but as living challenges that intersect directly with the mathematics you already know.<br><br><strong>P vs NP.</strong> Every time you solve a puzzle, you exploit the fact that checking a solution is easy. Checking that a Sudoku is correct takes seconds. Finding the solution might take hours. Is this asymmetry fundamental, or could there be a shortcut we have not found? If P = NP, then every problem whose solution can be quickly checked can also be quickly solved. Cryptography collapses. Drug discovery becomes trivial. AI becomes omniscient. Most mathematicians believe P does not equal NP &mdash; but no one can prove it. We will formalize the question precisely and see why it is so resistant to attack.<br><br><strong>The Riemann Hypothesis.</strong> The distribution of prime numbers &mdash; those atoms of arithmetic &mdash; follows a mysterious pattern connected to the zeros of a function Riemann defined in 1859. If the hypothesis is true (and every computation ever performed suggests it is), then we understand primes with exquisite precision. If it is false, vast swaths of number theory collapse. We will see the zeta function, plot its zeros, and understand what the hypothesis actually claims.<br><br><strong>The Birch and Swinnerton-Dyer Conjecture.</strong> Elliptic curves &mdash; the same objects you met in Lecture 5 securing your bank transactions &mdash; hide a deep connection between their geometric shape and the behavior of a certain function at a single point. This conjecture links algebra, geometry, and analysis in a way no one fully understands.<br><br>We will close with an invitation. The people who will solve these problems are alive today. Some of them are your age. The history of mathematics is not a finished story. It is an ongoing adventure &mdash; and you are exactly the kind of mind it needs.</p>
+          <div class="lecture-topics">
+            <h4>Key Themes</h4>
+            <ul>
+              <li>The Millennium Prize Problems: what they are, why they matter</li>
+              <li>Grigori Perelman and the Poincar&eacute; Conjecture: the human story of the only solution</li>
+              <li>P vs NP: what it really asks, why it matters for cryptography and AI</li>
+              <li>The Riemann Hypothesis: prime numbers, the zeta function, 167 years of mystery</li>
+              <li>Birch and Swinnerton-Dyer: elliptic curves from Lecture 5 at the frontier of research</li>
+              <li>Mathematics as a living, unfinished adventure</li>
+              <li>The invitation: these problems are waiting for someone, and it could be you</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 18 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">18</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Mathematics of Games: Strategy, Equilibrium, and the Art of Outsmarting Everyone&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">Every negotiation you have ever had &mdash; from splitting dessert with a sibling to bidding on a house &mdash; is a game in the mathematical sense. Game theory gives us the rigorous language to analyze strategic interactions where your best move depends on what everyone else does. And in finance, where billions of dollars flow through auctions, trading floors, and regulatory frameworks, game theory is not optional &mdash; it is survival.<br><br>We begin with John Nash&rsquo;s thunderbolt: the Nash Equilibrium. We will prove its existence using Brouwer&rsquo;s fixed-point theorem &mdash; a topological result that says every continuous function from a disk to itself has a point that stays put. From this single theorem, an entire theory of strategic behavior unfolds. We will compute equilibria by hand for simple games, see why the Prisoner&rsquo;s Dilemma explains market collusion failures, and discover why Nash&rsquo;s Beautiful Mind earned both a Nobel Prize and a Hollywood film.<br><br>Then we go deeper: mechanism design &mdash; the &ldquo;inverse game theory&rdquo; that asks not &ldquo;what will players do?&rdquo; but &ldquo;what rules should we write so that selfish players produce good outcomes?&rdquo; We will derive the Vickrey auction (why bidding your true value is optimal in a second-price auction &mdash; a clean dominant-strategy proof) and see how the Dubai Financial Market uses mechanism design principles for IPO allocation. For the finale: the revelation principle, which proves that any outcome achievable by any mechanism can also be achieved by one where everyone simply tells the truth. This is a theorem so powerful it won the 2007 Nobel Prize.<br><br>You will leave understanding why the UAE&rsquo;s spectrum auctions, financial market microstructure, and even smart contract design on blockchain all rest on theorems proved by mathematicians who were just playing games.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Nash Equilibrium: definition, existence proof via Brouwer&rsquo;s fixed-point theorem</li>
+              <li>Pure vs. mixed strategies: the minimax theorem</li>
+              <li>Prisoner&rsquo;s Dilemma and repeated games: cooperation and defection dynamics</li>
+              <li>Mechanism design: the &ldquo;inverse game theory&rdquo; framework</li>
+              <li>Vickrey auctions: second-price sealed-bid, dominant strategy truthfulness proof</li>
+              <li>The Revelation Principle: formal statement and proof sketch</li>
+              <li>Auction theory: English, Dutch, first-price, second-price &mdash; revenue equivalence</li>
+              <li>Applications: market microstructure, spectrum auctions, smart contracts</li>
+              <li>Connection to evolutionary game theory: replicator dynamics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== LECTURE 19 ==================== -->
+      <div class="lecture-card">
+        <div class="lecture-number">19</div>
+        <div class="lecture-content">
+          <h3 class="lecture-title">&ldquo;The Shape of Data: How Topology Finds Hidden Structure in Financial Markets&rdquo;</h3>
+          <div class="lecture-meta">
+            <span class="lecture-duration">45 min</span>
+            <span class="lecture-level">Advanced</span>
+          </div>
+          <p class="lecture-abstract">What shape is a stock market crash? It sounds like a strange question &mdash; crashes are events, not shapes. But in the last decade, mathematicians discovered that treating financial data as a geometric object and studying its <em>topology</em> &mdash; holes, loops, and voids &mdash; reveals patterns that traditional statistics completely misses. This is Topological Data Analysis, and it is one of the most exciting frontiers in applied mathematics.<br><br>We begin with the fundamental insight: data has shape. A cloud of points in high-dimensional space &mdash; say, daily returns for 50 UAE stocks &mdash; is not just a cloud. It has clusters (connected components), loops (cyclical dependencies), and higher-dimensional voids. Topological Data Analysis (TDA) detects these features using a construction called a simplicial complex. We will build one from scratch: start with data points, draw edges between nearby points, fill in triangles, and watch a topological space emerge from raw numbers.<br><br>The key tool is persistent homology. As we vary the distance threshold for drawing edges, topological features are born and die. Features that persist across many thresholds are &ldquo;real&rdquo; structure; features that flicker briefly are noise. We will compute persistence diagrams by hand for a small dataset and prove that they are stable &mdash; small perturbations in data produce small changes in the diagram (a result that required deep algebraic topology to establish).<br><br>Then we turn to finance. Researchers at Oxford and TU Munich have shown that persistent homology detects early warning signals of market crashes &mdash; the topology of correlation networks changes <em>before</em> the crash happens, creating loops and higher-dimensional holes that vanish in calm markets. We will see this applied to UAE market data from the Abu Dhabi Securities Exchange, where topological signatures preceded the 2020 and 2022 market disruptions.<br><br>We close with the deep mathematical connection: TDA sits at the intersection of algebraic topology, computational geometry, and statistics. The Betti numbers ($\beta_0$ for connected components, $\beta_1$ for loops, $\beta_2$ for voids) quantify the shape of data at every scale. For a generation raised on AI, this is a powerful reminder: not all insight comes from neural networks. Sometimes the deepest patterns are not in the numbers themselves, but in the <em>shape</em> they make.</p>
+          <div class="lecture-topics">
+            <h4>Key Mathematics</h4>
+            <ul>
+              <li>Simplicial complexes: vertices, edges, triangles, higher simplices</li>
+              <li>Homology groups: $H_0$ (components), $H_1$ (loops), $H_2$ (voids)</li>
+              <li>Betti numbers: $\beta_k = \text{rank}(H_k)$ as topological invariants</li>
+              <li>Persistent homology: filtrations, birth-death pairs, persistence diagrams</li>
+              <li>Stability theorem: Lipschitz continuity of persistence diagrams</li>
+              <li>Vietoris-Rips and Cech complexes: two approaches to building topology from data</li>
+              <li>Application: crash detection via correlation network topology</li>
+              <li>Connection to algebraic topology: chain complexes, boundary operators</li>
+              <li>TDA vs. traditional statistics: what topology sees that correlation misses</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <p><a href="https://github.com/Digital-AI-Finance" target="_blank" rel="noopener noreferrer">Digital-AI-Finance</a></p>
+      <p>2026 &mdash; How Math Powers AI in Everyday Finance</p>
+    </div>
+  </footer>
+
+  <!-- KaTeX JS -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Shared JS (includes KaTeX auto-render initialization) -->
+  <script src="js/main.js"></script>
+</body>
+</html>
