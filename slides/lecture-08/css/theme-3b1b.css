@@ -1,0 +1,1401 @@
+/* ==========================================================================
+   theme-3b1b.css
+   3Blue1Brown-style dark theme for Reveal.js 5.1.0
+   Lecture 08: Graph Theory — "How Math Powers AI in Everyday Finance"
+   Overrides: reveal.js/dist/theme/black.css
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  /* --- Backgrounds --- */
+  --bg-dark:          #1b2631;   /* Primary slide background */
+  --bg-darker:        #0d1117;   /* Code blocks, deep contrast panels */
+  --bg-card:          #1e3044;   /* Card / box surface */
+
+  /* --- Text --- */
+  --text-primary:     #ecf0f1;   /* Main body text -- soft off-white */
+  --text-secondary:   #95a5a6;   /* Muted text, captions, metadata */
+
+  /* --- Brand Accents --- */
+  --blue:             #3498db;   /* Primary accent: math notation, links */
+  --yellow:           #f1c40f;   /* Highlight / key emphasis */
+  --green:            #2ecc71;   /* Positive, success, "yes" */
+  --teal:             #1abc9c;   /* Secondary accent, decorative */
+  --orange:           #e67e22;   /* Warnings, timeline origins */
+  --red:              #e74c3c;   /* Errors, negative, "no" */
+  --purple:           #9b59b6;   /* Special / rare emphasis */
+
+  /* --- Typography --- */
+  --font-heading:     'Inter', sans-serif;
+  --font-body:        'Inter', sans-serif;
+  --font-mono:        'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* --- Spacing --- */
+  --space-xs:         0.25rem;
+  --space-sm:         0.5rem;
+  --space-md:         1rem;
+  --space-lg:         2rem;
+  --space-xl:         3rem;
+
+  /* --- Shape --- */
+  --radius-sm:        6px;
+  --radius-md:        12px;
+  --radius-lg:        20px;
+
+  /* --- Shadows --- */
+  --shadow-blue:      0 0 40px rgba(52, 152, 219, 0.15);
+  --shadow-card:      0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow:      0 0 20px rgba(52, 152, 219, 0.25);
+}
+
+
+/* ==========================================================================
+   2. REVEAL.JS BASE OVERRIDES
+   ========================================================================== */
+
+/* --- Root presentation container --- */
+.reveal {
+  font-family: var(--font-body);
+  font-size: 1.1em;
+  font-weight: 400;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+}
+
+/* --- Slide background --- */
+.reveal .backgrounds,
+.reveal .slide-background {
+  background-color: var(--bg-dark);
+}
+
+.reveal .slide-background-content {
+  background-color: var(--bg-dark);
+}
+
+/* --- Core slides wrapper --- */
+.reveal .slides {
+  text-align: left;
+}
+
+/* --- Individual section / slide --- */
+.reveal .slides section {
+  background: var(--bg-dark);
+  padding: 2rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Center-aligned utility (apply to section directly) */
+.reveal .slides section.center-layout {
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   3. TYPOGRAPHY — HEADINGS
+   ========================================================================== */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.75em 0;
+  text-shadow: none;
+  word-break: break-word;
+}
+
+.reveal h1 {
+  font-size: 2.4em;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Primary slide titles */
+.reveal h2 {
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+/* Sub-headings within slides */
+.reveal h3 {
+  font-size: 1.55em;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.reveal h4 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--teal);
+}
+
+.reveal h5 {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.reveal h6 {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   4. TYPOGRAPHY — BODY & LISTS
+   ========================================================================== */
+
+.reveal p {
+  font-family: var(--font-body);
+  font-size: 1.1em;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.65;
+  margin: 0 0 0.8em 0;
+}
+
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin: 0 0 1em 0;
+  padding-left: 1.4em;
+  line-height: 1.7;
+}
+
+.reveal ul {
+  list-style-type: disc;
+}
+
+.reveal ol {
+  list-style-type: decimal;
+}
+
+.reveal li {
+  font-size: 1.05em;
+  color: var(--text-primary);
+  margin-bottom: 0.4em;
+  line-height: 1.6;
+}
+
+/* Nested lists */
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ul,
+.reveal ol ol {
+  margin-top: 0.3em;
+  font-size: 0.92em;
+  color: var(--text-secondary);
+}
+
+/* Captions and muted notes */
+.reveal .caption,
+.reveal small,
+.reveal .muted {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Strong emphasis */
+.reveal strong {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+/* Italic emphasis */
+.reveal em {
+  color: var(--teal);
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   5. LINKS
+   ========================================================================== */
+
+.reveal a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.reveal a:hover {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+
+
+/* ==========================================================================
+   6. CODE BLOCKS
+   ========================================================================== */
+
+/* Inline code */
+.reveal code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--green);
+  background: var(--bg-darker);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+/* Block code */
+.reveal pre {
+  display: block;
+  background: var(--bg-darker);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  box-shadow: var(--shadow-card);
+  text-align: left;
+}
+
+.reveal pre code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--text-primary);
+  background: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* Syntax highlight accents for manual spans if used */
+.reveal pre .keyword   { color: var(--purple); }
+.reveal pre .string    { color: var(--green); }
+.reveal pre .comment   { color: var(--text-secondary); font-style: italic; }
+.reveal pre .number    { color: var(--orange); }
+.reveal pre .function  { color: var(--blue); }
+
+
+/* ==========================================================================
+   7. MATH — KATEX
+   ========================================================================== */
+
+/* Inline math: subtle blue tint */
+.reveal .katex {
+  color: var(--blue);
+  font-size: 1.05em;
+}
+
+/* Display math (block): yellow for emphasis, centered */
+.reveal .katex-display {
+  color: var(--yellow);
+  margin: 1.2em 0;
+  text-align: center;
+  font-size: 1.15em;
+}
+
+.reveal .katex-display > .katex {
+  color: var(--yellow);
+}
+
+/* KaTeX error state */
+.reveal .katex-error {
+  color: var(--red);
+}
+
+
+/* ==========================================================================
+   8. IMAGES & MEDIA
+   ========================================================================== */
+
+.reveal section img {
+  max-height: 65vh;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-blue);
+  border: none;
+}
+
+/* No shadow for icons / decorative SVG */
+.reveal section img.no-shadow {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Full-bleed images */
+.reveal section img.full-bleed {
+  max-height: 75vh;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Figure caption */
+.reveal figure {
+  margin: 0;
+  text-align: center;
+}
+
+.reveal figcaption {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   9. BLOCKQUOTES
+   ========================================================================== */
+
+.reveal blockquote {
+  display: block;
+  background: transparent;
+  border-left: 4px solid var(--yellow);
+  padding: 0.6em 1.2em;
+  margin: 1em 0;
+  font-style: italic;
+  color: var(--yellow);
+  font-size: 1.05em;
+  box-shadow: none;
+  width: auto;
+}
+
+.reveal blockquote p {
+  color: var(--yellow);
+  margin: 0;
+}
+
+.reveal blockquote cite {
+  display: block;
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  font-style: normal;
+  margin-top: 0.5em;
+}
+
+
+/* ==========================================================================
+   10. TABLES
+   ========================================================================== */
+
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  margin: 1em 0;
+}
+
+.reveal table th {
+  background: var(--bg-card);
+  color: var(--blue);
+  font-weight: 700;
+  padding: 0.65em 0.9em;
+  text-align: left;
+  border-bottom: 2px solid var(--blue);
+  letter-spacing: 0.03em;
+}
+
+.reveal table td {
+  padding: 0.55em 0.9em;
+  border-bottom: 1px solid rgba(236, 240, 241, 0.08);
+  color: var(--text-primary);
+  vertical-align: top;
+}
+
+.reveal table tr:nth-child(even) td {
+  background: rgba(30, 48, 68, 0.4);
+}
+
+.reveal table tr:hover td {
+  background: rgba(52, 152, 219, 0.08);
+  transition: background 0.2s ease;
+}
+
+
+/* ==========================================================================
+   11. SLIDE NUMBER
+   ========================================================================== */
+
+.reveal .slide-number {
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.7em;
+  padding: 0.3em 0.6em;
+  border-radius: var(--radius-sm);
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.reveal .slide-number a {
+  color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   12. PROGRESS BAR
+   ========================================================================== */
+
+.reveal .progress {
+  background: rgba(52, 152, 219, 0.15);
+  height: 3px;
+}
+
+.reveal .progress span {
+  background: var(--blue);
+  transition: width 0.4s ease;
+}
+
+
+/* ==========================================================================
+   13. CONTROLS (ARROW NAVIGATION)
+   ========================================================================== */
+
+.reveal .controls {
+  color: var(--blue);
+}
+
+.reveal .controls .controls-arrow {
+  color: var(--text-secondary);
+  opacity: 0.5;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.reveal .controls .controls-arrow:hover {
+  color: var(--blue);
+  opacity: 1;
+}
+
+
+/* ==========================================================================
+   14. SPEAKER NOTES (shown in speaker view)
+   ========================================================================== */
+
+.speaker-controls-notes .value,
+.notes-panel {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+  color: #d0d0d0 !important;
+  background: #111 !important;
+}
+
+
+/* ==========================================================================
+   15. FRAGMENT ANIMATIONS
+   ========================================================================== */
+
+/* --- fade-in (default) --- */
+.reveal .fragment {
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.5s ease;
+}
+
+.reveal .fragment.visible {
+  opacity: 1;
+}
+
+/* --- fade-in-then-semi-out --- */
+.reveal .fragment.fade-in-then-semi-out.visible:not(.current-fragment) {
+  opacity: 0.4;
+}
+
+/* --- highlight-yellow: color transition --- */
+.reveal .fragment.highlight-yellow {
+  opacity: 1;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.reveal .fragment.highlight-yellow.visible {
+  color: var(--yellow);
+}
+
+/* --- highlight-blue --- */
+.reveal .fragment.highlight-blue {
+  opacity: 1;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.reveal .fragment.highlight-blue.visible {
+  color: var(--blue);
+}
+
+/* --- grow: scale up --- */
+.reveal .fragment.grow {
+  opacity: 1;
+  transform: scale(0.8);
+  transition: transform 0.5s ease-out, opacity 0.3s ease;
+}
+
+.reveal .fragment.grow.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* --- shrink --- */
+.reveal .fragment.shrink.visible {
+  transform: scale(0.9);
+}
+
+/* --- fade-up: translate + fade --- */
+.reveal .fragment.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reveal .fragment.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- strike --- */
+.reveal .fragment.strike.visible {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* Staggered fragment delay helpers */
+.reveal .fragment[data-fragment-index="1"] { transition-delay: 0s; }
+.reveal .fragment[data-fragment-index="2"] { transition-delay: 0.05s; }
+.reveal .fragment[data-fragment-index="3"] { transition-delay: 0.1s; }
+.reveal .fragment[data-fragment-index="4"] { transition-delay: 0.15s; }
+.reveal .fragment[data-fragment-index="5"] { transition-delay: 0.2s; }
+
+
+/* ==========================================================================
+   16. SLIDE TRANSITIONS
+   (Reveal handles this via JS config: transition: 'slide', speed: 0.6s)
+   Only override timing here.
+   ========================================================================== */
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+
+/* ==========================================================================
+   17. LAYOUT UTILITIES
+   ========================================================================== */
+
+/* --- Max-width constraint --- */
+.reveal .content-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Centering utility --- */
+.reveal .center {
+  text-align: center;
+}
+
+.reveal .center img {
+  margin: 0 auto;
+}
+
+/* --- Two-column grid --- */
+.reveal .columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Three-column variant */
+.reveal .columns-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Weighted two-column: 60 / 40 */
+.reveal .columns-6040 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Weighted two-column: 40 / 60 */
+.reveal .columns-4060 {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Vertical centering within a column */
+.reveal .col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Full-height flex for section */
+.reveal .slides section.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+/* Horizontal spacer */
+.reveal .spacer {
+  height: 1.5rem;
+}
+
+.reveal .spacer-sm {
+  height: 0.75rem;
+}
+
+.reveal .spacer-lg {
+  height: 3rem;
+}
+
+
+/* ==========================================================================
+   18. CARD COMPONENT
+   ========================================================================== */
+
+.reveal .card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--blue);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1rem;
+}
+
+/* Color variants */
+.reveal .card-yellow {
+  border-left-color: var(--yellow);
+}
+
+.reveal .card-green {
+  border-left-color: var(--green);
+}
+
+.reveal .card-orange {
+  border-left-color: var(--orange);
+}
+
+.reveal .card-teal {
+  border-left-color: var(--teal);
+}
+
+.reveal .card-purple {
+  border-left-color: var(--purple);
+}
+
+.reveal .card-red {
+  border-left-color: var(--red);
+}
+
+/* Card heading */
+.reveal .card h3,
+.reveal .card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.reveal .card p:last-child,
+.reveal .card ul:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   19. BIG QUOTE COMPONENT
+   ========================================================================== */
+
+.reveal .big-quote {
+  font-size: 1.5em;
+  font-style: italic;
+  color: var(--yellow);
+  border-left: 4px solid var(--yellow);
+  padding: 0.5em 0 0.5em 1.5rem;
+  margin: 1.2em 0;
+  line-height: 1.4;
+}
+
+.reveal .big-quote .attribution {
+  display: block;
+  font-size: 0.55em;
+  font-style: normal;
+  color: var(--text-secondary);
+  margin-top: 0.6em;
+  letter-spacing: 0.02em;
+}
+
+
+/* ==========================================================================
+   20. FORMULA BOX
+   ========================================================================== */
+
+.reveal .formula-box {
+  background: var(--bg-darker);
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin: 1.2em 0;
+  box-shadow: var(--shadow-blue);
+}
+
+.reveal .formula-box .katex-display,
+.reveal .formula-box .katex {
+  color: var(--yellow);
+  font-size: 1.2em;
+}
+
+/* Optional label above the formula */
+.reveal .formula-box .formula-label {
+  font-size: 0.75em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75em;
+  display: block;
+}
+
+
+/* ==========================================================================
+   21. SECTION DIVIDER (Act title slides)
+   ========================================================================== */
+
+.reveal .section-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.reveal .section-divider .act-label {
+  font-size: 0.75em;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.reveal .section-divider h1,
+.reveal .section-divider h2 {
+  font-size: 3em;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.reveal .section-divider .act-subtitle {
+  font-size: 1.1em;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+  max-width: 600px;
+}
+
+/* Decorative accent line beneath divider title */
+.reveal .section-divider::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  border-radius: 2px;
+  margin-top: 2rem;
+}
+
+
+/* ==========================================================================
+   22. MILESTONE BADGES
+   ========================================================================== */
+
+/* Base badge */
+.reveal .milestone-badge {
+  display: inline-block;
+  font-size: 0.7em;
+  font-variant: small-caps;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.25em 0.75em;
+  border-radius: 20px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 0.5em;
+  line-height: 1.6;
+}
+
+/* Type variants */
+.reveal .milestone-origin {
+  background: rgba(230, 126, 34, 0.15);
+  color: var(--orange);
+  border: 1px solid rgba(230, 126, 34, 0.4);
+}
+
+.reveal .milestone-discovery {
+  background: rgba(46, 204, 113, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(46, 204, 113, 0.35);
+}
+
+.reveal .milestone-breakthrough {
+  background: rgba(241, 196, 15, 0.12);
+  color: var(--yellow);
+  border: 1px solid rgba(241, 196, 15, 0.35);
+}
+
+.reveal .milestone-ai-connection {
+  background: rgba(52, 152, 219, 0.12);
+  color: var(--blue);
+  border: 1px solid rgba(52, 152, 219, 0.35);
+}
+
+/* Timeline row with badge */
+.reveal .milestone-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  margin-bottom: 0.65em;
+  line-height: 1.5;
+}
+
+.reveal .milestone-year {
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  min-width: 2.8em;
+  flex-shrink: 0;
+}
+
+.reveal .milestone-text {
+  color: var(--text-primary);
+  font-size: 1em;
+}
+
+
+/* ==========================================================================
+   23. SUMMARY CARDS (Three-card row at act recaps)
+   ========================================================================== */
+
+.reveal .summary-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.reveal .summary-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  border-top: 3px solid var(--blue);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.reveal .summary-card:nth-child(2) {
+  border-top-color: var(--teal);
+}
+
+.reveal .summary-card:nth-child(3) {
+  border-top-color: var(--yellow);
+}
+
+.reveal .summary-card .card-icon {
+  font-size: 1.8em;
+  margin-bottom: 0.4em;
+  display: block;
+  line-height: 1;
+}
+
+.reveal .summary-card h4 {
+  font-size: 0.95em;
+  color: var(--text-primary);
+  margin: 0 0 0.4em 0;
+}
+
+.reveal .summary-card p {
+  font-size: 0.82em;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   24. INTERACTIVE CONTAINER (JS visualization slots)
+   ========================================================================== */
+
+.reveal .interactive-container {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-darker);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle grid texture for empty state */
+.reveal .interactive-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(52, 152, 219, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 152, 219, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Loading / placeholder text */
+.reveal .interactive-container .placeholder-text {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  font-style: italic;
+  z-index: 1;
+}
+
+/* Canvas and SVG inside */
+.reveal .interactive-container canvas,
+.reveal .interactive-container svg {
+  max-width: 100%;
+  max-height: 340px;
+  z-index: 1;
+}
+
+/* Taller variant for full-slide visuals */
+.reveal .interactive-container.tall {
+  min-height: 480px;
+}
+
+
+/* ==========================================================================
+   25. CAREER LIST (Final slide)
+   ========================================================================== */
+
+.reveal .career-list {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 2rem;
+}
+
+.reveal .career-list li {
+  font-size: 1em;
+  color: var(--text-primary);
+  padding-left: 1.4em;
+  position: relative;
+  line-height: 1.5;
+}
+
+.reveal .career-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* Single-column variant */
+.reveal .career-list.single-col {
+  grid-template-columns: 1fr;
+}
+
+
+/* ==========================================================================
+   26. HIGHLIGHT / CALLOUT UTILITIES
+   ========================================================================== */
+
+/* Inline color highlights */
+.reveal .hl-blue    { color: var(--blue); }
+.reveal .hl-yellow  { color: var(--yellow); }
+.reveal .hl-green   { color: var(--green); }
+.reveal .hl-teal    { color: var(--teal); }
+.reveal .hl-orange  { color: var(--orange); }
+.reveal .hl-red     { color: var(--red); }
+.reveal .hl-purple  { color: var(--purple); }
+.reveal .hl-muted   { color: var(--text-secondary); }
+
+/* Rounded pill highlight (inline) */
+.reveal .pill {
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  background: rgba(52, 152, 219, 0.15);
+  color: var(--blue);
+}
+
+/* Callout box (full-width) */
+.reveal .callout {
+  background: rgba(52, 152, 219, 0.08);
+  border: 1px solid rgba(52, 152, 219, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  margin: 0.8em 0;
+}
+
+.reveal .callout.callout-yellow {
+  background: rgba(241, 196, 15, 0.08);
+  border-color: rgba(241, 196, 15, 0.25);
+}
+
+.reveal .callout.callout-green {
+  background: rgba(46, 204, 113, 0.07);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+
+.reveal .callout.callout-orange {
+  background: rgba(230, 126, 34, 0.08);
+  border-color: rgba(230, 126, 34, 0.25);
+}
+
+/* Definition term */
+.reveal .def-term {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+/* Numeric / stat emphasis */
+.reveal .stat-number {
+  font-size: 2.5em;
+  font-weight: 800;
+  color: var(--blue);
+  line-height: 1;
+  display: block;
+}
+
+.reveal .stat-label {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* ==========================================================================
+   27. ICON ROW
+   ========================================================================== */
+
+/* Horizontal row of icon + text pairs */
+.reveal .icon-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 0.75em 0;
+}
+
+.reveal .icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4em;
+  flex: 1;
+  min-width: 80px;
+}
+
+.reveal .icon-item .icon-glyph {
+  font-size: 2em;
+  line-height: 1;
+}
+
+.reveal .icon-item .icon-label {
+  font-size: 0.78em;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+
+/* ==========================================================================
+   28. STEP / PROCESS LIST
+   ========================================================================== */
+
+.reveal .step-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5em 0;
+  counter-reset: step-counter;
+}
+
+.reveal .step-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  margin-bottom: 0.75em;
+  counter-increment: step-counter;
+}
+
+.reveal .step-list li::before {
+  content: counter(step-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8em;
+  height: 1.8em;
+  min-width: 1.8em;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.78em;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 0.05em;
+}
+
+.reveal .step-list li .step-body {
+  flex: 1;
+}
+
+.reveal .step-list li .step-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.2em;
+}
+
+.reveal .step-list li .step-desc {
+  font-size: 0.88em;
+  color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   29. COMPARISON TABLE UTILITY
+   ========================================================================== */
+
+/* Yes / No cells */
+.reveal td.yes { color: var(--green); font-weight: 600; }
+.reveal td.no  { color: var(--red);   font-weight: 600; }
+.reveal td.partial { color: var(--yellow); font-weight: 600; }
+
+
+/* ==========================================================================
+   30. RESPONSIVE OVERRIDES
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Single-column layouts on small screens */
+  .reveal .columns,
+  .reveal .columns-6040,
+  .reveal .columns-4060 {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .reveal .columns-3 {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .reveal .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .reveal .career-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Scale down type */
+  .reveal h1 { font-size: 1.8em; }
+  .reveal h2 { font-size: 1.55em; }
+  .reveal h3 { font-size: 1.25em; }
+  .reveal p,
+  .reveal li { font-size: 0.97em; }
+
+  /* Slide padding */
+  .reveal .slides section {
+    padding: 1.5rem 1.75rem;
+  }
+
+  /* Big quote */
+  .reveal .big-quote {
+    font-size: 1.2em;
+    padding-left: 1rem;
+  }
+
+  /* Section divider title */
+  .reveal .section-divider h1,
+  .reveal .section-divider h2 {
+    font-size: 2.2em;
+  }
+
+  /* Interactive container */
+  .reveal .interactive-container {
+    min-height: 260px;
+  }
+
+  .reveal .interactive-container.tall {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reveal h1 { font-size: 1.5em; }
+  .reveal h2 { font-size: 1.3em; }
+  .reveal h3 { font-size: 1.1em; }
+
+  .reveal .columns-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal .slides section {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
+
+/* ==========================================================================
+   31. PRINT / PDF EXPORT
+   ========================================================================== */
+
+@media print {
+  .reveal .slides section {
+    page-break-after: always;
+  }
+
+  .reveal,
+  .reveal .slide-background {
+    background-color: var(--bg-dark) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ensure fragments all show in print */
+  .reveal .fragment {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Hide controls, progress, slide number */
+  .reveal .controls,
+  .reveal .progress,
+  .reveal .slide-number {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   32. UTILITY CLASSES — MISC
+   ========================================================================== */
+
+/* Text size helpers */
+.reveal .text-xs   { font-size: 0.7em; }
+.reveal .text-sm   { font-size: 0.85em; }
+.reveal .text-base { font-size: 1em; }
+.reveal .text-lg   { font-size: 1.2em; }
+.reveal .text-xl   { font-size: 1.5em; }
+.reveal .text-2xl  { font-size: 2em; }
+
+/* Text alignment */
+.reveal .text-left   { text-align: left; }
+.reveal .text-center { text-align: center; }
+.reveal .text-right  { text-align: right; }
+
+/* Font weight */
+.reveal .font-bold   { font-weight: 700; }
+.reveal .font-normal { font-weight: 400; }
+
+/* Margin helpers */
+.reveal .mt-0  { margin-top: 0; }
+.reveal .mt-sm { margin-top: 0.5rem; }
+.reveal .mt-md { margin-top: 1rem; }
+.reveal .mt-lg { margin-top: 2rem; }
+.reveal .mb-0  { margin-bottom: 0; }
+.reveal .mb-sm { margin-bottom: 0.5rem; }
+.reveal .mb-md { margin-bottom: 1rem; }
+.reveal .mb-lg { margin-bottom: 2rem; }
+
+/* Opacity levels */
+.reveal .opacity-50 { opacity: 0.5; }
+.reveal .opacity-75 { opacity: 0.75; }
+
+/* Thin horizontal rule */
+.reveal hr.divider {
+  border: none;
+  border-top: 1px solid rgba(236, 240, 241, 0.1);
+  margin: 1.5rem 0;
+}
+
+/* Thin accent rule (blue) */
+.reveal hr.accent-rule {
+  border: none;
+  border-top: 2px solid var(--blue);
+  width: 60px;
+  margin: 1rem 0;
+}
+
+/* Subtle glass / frosted card variant */
+.reveal .glass-card {
+  background: rgba(30, 48, 68, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+/* Glow border for key callout moments */
+.reveal .glow-border {
+  border: 1px solid rgba(52, 152, 219, 0.5);
+  box-shadow: 0 0 18px rgba(52, 152, 219, 0.2), inset 0 0 18px rgba(52, 152, 219, 0.04);
+  border-radius: var(--radius-md);
+}
+
+/* Scrollable overflow for long content in a fixed-height container */
+.reveal .scroll-content {
+  overflow-y: auto;
+  max-height: 55vh;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-card) transparent;
+}
+
+.reveal .scroll-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.reveal .scroll-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.reveal .scroll-content::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 4px;
+}

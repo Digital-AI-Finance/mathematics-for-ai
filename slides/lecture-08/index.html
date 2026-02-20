@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 8: Graph Theory &amp; Networks &mdash; From Bridges to Transformers</title>
+
+  <!-- Reveal.js 5.x -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Custom 3B1B theme (overrides black.css) -->
+  <link rel="stylesheet" href="css/theme-3b1b.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================
+     SLIDE 1 — Title
+     ============================================================ -->
+<section class="center-layout">
+  <p><span class="milestone-badge milestone-ai-connection">Lecture 8</span></p>
+  <h1>Graph Theory &amp; Networks</h1>
+  <h3 class="hl-teal" style="font-weight:500;">From Bridges to Transformers</h3>
+  <p class="hl-muted text-sm mt-lg">The Mathematics of Connections &mdash; 1736 to Today</p>
+
+  <aside class="notes">
+    Welcome. Today we trace 300 years of one idea: that the connections between
+    things matter more than the things themselves. We will start in 1736 with a
+    puzzle about bridges, and end with the AI models you interact with every day.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 2 — The Question
+     ============================================================ -->
+<section class="flex-center center-layout">
+  <h2 class="text-2xl" style="line-height:1.3;">
+    Can you cross all <span class="hl-yellow">seven bridges</span> exactly once?
+  </h2>
+  <p class="fragment fade-up text-lg hl-teal mt-lg">
+    This question invented an entire branch of mathematics.
+  </p>
+
+  <aside class="notes">
+    In 1736, the citizens of Konigsberg had a puzzle. Their city was built on
+    a river with two islands, connected by seven bridges. On a Sunday stroll,
+    could you cross every single bridge exactly once and return home? Nobody
+    could manage it. But nobody could prove it was impossible&mdash;until a
+    mathematician named Euler stepped in.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 3 — Konigsberg Map
+     ============================================================ -->
+<section>
+  <h2>Konigsberg, 1736
+    <span class="milestone-badge milestone-origin">Origin</span>
+  </h2>
+  <figure>
+    <img src="images/01-konigsberg-map.png" alt="Map of Konigsberg showing four landmasses and seven bridges">
+    <figcaption>Konigsberg (now Kaliningrad, Russia), 1736</figcaption>
+  </figure>
+
+  <aside class="notes">
+    Four landmasses connected by seven bridges over the River Pregel. Two large
+    islands sit in the middle of the river; the north and south banks form the
+    other two landmasses. Citizens tried every possible route, but nobody could
+    cross all seven bridges without retracing their steps. This is the map that
+    started it all.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 4 — Euler's Insight (Two-Column)
+     ============================================================ -->
+<section>
+  <h2>Euler's Insight</h2>
+  <div class="columns">
+    <div class="fragment fade-in" data-fragment-index="1">
+      <img src="images/01-konigsberg-map.png" alt="Konigsberg map" style="max-height:45vh;">
+      <p class="text-sm hl-muted text-center">The map</p>
+    </div>
+    <div class="fragment fade-in" data-fragment-index="2">
+      <img src="images/02-konigsberg-graph.png" alt="Konigsberg graph abstraction" style="max-height:45vh;">
+      <p class="text-sm hl-muted text-center">The graph</p>
+    </div>
+  </div>
+  <p class="fragment fade-up big-quote" data-fragment-index="3" style="font-size:1.15em;">
+    "The shape doesn't matter. Only the connections do."
+  </p>
+
+  <aside class="notes">
+    Euler's genius was this abstraction. He stripped away every physical detail
+    &mdash; the river, the streets, the buildings &mdash; and kept only what
+    mattered: the landmasses became points, and the bridges became lines
+    connecting them. This was the birth of graph theory. We went from geography
+    to pure structure.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 5 — Graph Vocabulary
+     ============================================================ -->
+<section>
+  <h2>Graph Vocabulary</h2>
+  <div class="columns-4060">
+    <div>
+      <img src="images/02-konigsberg-graph.png" alt="Konigsberg graph with labeled nodes" style="max-height:40vh;">
+    </div>
+    <div>
+      <div class="card fragment fade-in" data-fragment-index="1">
+        <h4><span class="def-term">Vertex / Node</span></h4>
+        <p class="text-sm mb-0">A point in the graph &mdash; a thing.</p>
+      </div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="2">
+        <h4><span class="def-term" style="color:var(--teal);">Edge</span></h4>
+        <p class="text-sm mb-0">A connection between two nodes &mdash; a relationship.</p>
+      </div>
+      <div class="card card-green fragment fade-in" data-fragment-index="3">
+        <h4><span class="def-term" style="color:var(--green);">Degree</span></h4>
+        <p class="text-sm mb-0">How many edges touch a node. In Konigsberg: all nodes have odd degree.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    These circles are nodes, or vertices. Each line is an edge. The degree of a
+    node is how many edges connect to it. In the Konigsberg graph, landmass A
+    has degree 5, and the others have degree 3. All odd. Remember that &mdash;
+    it will matter in a moment.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 6 — Euler's Answer
+     ============================================================ -->
+<section>
+  <h2>Euler's Theorem
+    <span class="milestone-badge milestone-discovery">Discovery</span>
+  </h2>
+  <div class="fragment fade-in" data-fragment-index="1">
+    <img src="images/03-euler-path-rule.png" alt="Euler path rule with degree annotations" style="max-height:40vh;">
+  </div>
+  <div class="formula-box fragment fade-in" data-fragment-index="2">
+    <span class="formula-label">Euler's Criterion</span>
+    <p>An Eulerian path exists if and only if the graph has exactly <strong>0 or 2</strong> vertices of odd degree.</p>
+  </div>
+  <div class="callout callout-orange fragment fade-up" data-fragment-index="3">
+    <p class="mb-0">Konigsberg has <strong>4</strong> odd-degree vertices. Need 0 or 2. <span class="hl-red">Impossible.</span></p>
+  </div>
+
+  <aside class="notes">
+    Euler proved that you can only traverse every edge exactly once if the graph
+    has zero or two vertices of odd degree. Zero odd vertices means you can start
+    anywhere and return to your start. Two odd vertices means you must start at
+    one and end at the other. Konigsberg has four odd-degree vertices &mdash;
+    so no Eulerian path exists. The Sunday stroll is impossible, and now we know
+    why. Mathematics gave us certainty where trial-and-error could not.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 7 — Euler's Legacy (Big Quote)
+     ============================================================ -->
+<section class="flex-center">
+  <div class="big-quote">
+    "This solution bore little relationship to mathematics&hellip; yet I do not
+    know why you are not satisfied with it."
+    <span class="attribution">&mdash; Leonhard Euler, 1736</span>
+  </div>
+  <p class="fragment fade-up mt-lg">
+    Euler didn't just solve a puzzle. He invented a <strong>new way of thinking</strong> about structure.
+  </p>
+
+  <aside class="notes">
+    Even Euler was unsure whether this counted as "real" mathematics. It did not
+    use calculus or algebra in the traditional sense. He had invented something
+    entirely new: the study of position and connection, independent of
+    measurement. This qualitative approach &mdash; caring about structure, not
+    size &mdash; would eventually become one of the most important tools in
+    all of science and engineering.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 8 — Cayley's Trees (1857)
+     ============================================================ -->
+<section>
+  <h2>Cayley's Trees (1857)
+    <span class="milestone-badge milestone-discovery">Discovery</span>
+  </h2>
+  <p class="text-lg">How many different tree-shaped graphs can you make with $n$ labeled nodes?</p>
+  <figure class="fragment fade-in" data-fragment-index="1">
+    <img src="images/04-cayley-trees.png" alt="All labeled trees on 4 nodes">
+    <figcaption>All 16 labeled trees on 4 nodes</figcaption>
+  </figure>
+
+  <aside class="notes">
+    A century later, Arthur Cayley asked a counting question. A tree is a
+    connected graph with no cycles &mdash; the simplest kind of network. If
+    you label each node (give them names), how many distinct trees can you
+    build? For 3 nodes, the answer is 3. For 4 nodes, it is 16. The pattern
+    is not immediately obvious.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 9 — Cayley's Formula (with vertical deep-dive)
+     ============================================================ -->
+<section>
+  <!-- Main slide -->
+  <section>
+    <h2>Cayley's Formula</h2>
+    <div class="formula-box">
+      <span class="formula-label">Number of Labeled Trees</span>
+      $$T_n = n^{n-2}$$
+    </div>
+    <div class="columns-3 mt-lg">
+      <div class="card fragment fade-in" data-fragment-index="1">
+        <p class="stat-number">3</p>
+        <p class="stat-label">$T_3 = 3^1$</p>
+      </div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="2">
+        <p class="stat-number" style="color:var(--teal);">16</p>
+        <p class="stat-label">$T_4 = 4^2$</p>
+      </div>
+      <div class="card card-yellow fragment fade-in" data-fragment-index="3">
+        <p class="stat-number" style="color:var(--yellow);">10<sup style="font-size:0.5em;">8</sup></p>
+        <p class="stat-label">$T_{10} = 10^8$</p>
+      </div>
+    </div>
+    <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="4">&darr; Press down for proof sketch</p>
+
+    <aside class="notes">
+      Cayley's formula: the number of labeled trees on n nodes is n to the power
+      n minus 2. Elegant, surprising, and exact. Just 3 nodes give 3 trees. But
+      10 nodes give 100 million. The combinatorial explosion is dramatic. If you
+      are curious about how to prove this, press the down arrow for a bonus
+      sketch using Prufer sequences.
+    </aside>
+  </section>
+
+  <!-- Vertical sub-slide: Prufer sequence proof sketch -->
+  <section>
+    <h3>Proof Sketch: Prufer Sequences</h3>
+    <div class="card">
+      <p>A <span class="def-term">Prufer sequence</span> is a bijection between labeled trees on $n$ nodes and sequences of length $n-2$ drawn from $\{1, 2, \ldots, n\}$.</p>
+    </div>
+    <ol class="fragment fade-in">
+      <li>Repeatedly remove the leaf with the smallest label; record the label of its neighbor.</li>
+      <li>This yields a sequence of $n - 2$ numbers, each in $\{1, \ldots, n\}$.</li>
+      <li>The map is reversible: every sequence corresponds to exactly one tree.</li>
+      <li>There are $n^{n-2}$ such sequences &rarr; $T_n = n^{n-2}$. &check;</li>
+    </ol>
+
+    <aside class="notes">
+      The proof uses a clever encoding. You peel off leaves one at a time, always
+      choosing the smallest, and record the neighbor. This gives a sequence of
+      length n minus 2, and every possible sequence maps back to a unique tree.
+      Since each element can be any of n labels, the total is n to the n minus 2.
+      Beautiful, constructive, and completely elementary.
+    </aside>
+  </section>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 10 — Trees in Computer Science
+     ============================================================ -->
+<section>
+  <h2>Trees in Computer Science</h2>
+  <div class="columns">
+    <div>
+      <img src="images/05-parse-tree.png" alt="Parse tree diagram" style="max-height:42vh;">
+      <p class="text-sm hl-muted text-center">Parse tree: how a compiler reads your code</p>
+    </div>
+    <div class="col-center">
+      <div class="card fragment fade-in" data-fragment-index="1">
+        <h4>Parse Trees</h4>
+        <p class="text-sm mb-0">Compilers break code into tree structures to understand syntax.</p>
+      </div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="2">
+        <h4>Decision Trees</h4>
+        <p class="text-sm mb-0">ML models that split data by asking yes/no questions at each node.</p>
+      </div>
+      <div class="card card-yellow fragment fade-in" data-fragment-index="3">
+        <h4>File Systems</h4>
+        <p class="text-sm mb-0">Your folders and files form a tree rooted at <code>/</code> or <code>C:\</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Trees are everywhere in computer science. When a compiler reads your Python
+    code, it builds a parse tree. Machine learning uses decision trees to classify
+    data. Your file system is a tree. Even HTML is a tree &mdash; the DOM.
+    Cayley's abstract counting problem from 1857 turns out to describe structures
+    we use every single day.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 11 — Erdos-Renyi (1959)
+     ============================================================ -->
+<section>
+  <h2>Erdos &amp; Renyi (1959)
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+  <p class="text-lg">What happens when you <strong>randomly</strong> connect nodes?</p>
+  <div class="card card-orange fragment fade-up mt-md">
+    <h4 style="color:var(--orange);">Paul Erdos (1913&ndash;1996)</h4>
+    <p class="text-sm mb-0">
+      The most prolific mathematician in history: <strong>1,500+ papers</strong>,
+      500+ collaborators. He had no permanent home &mdash; just a suitcase and a
+      desire to do mathematics everywhere.
+    </p>
+  </div>
+  <p class="fragment fade-up text-sm hl-muted mt-md">
+    With Alfred Renyi, he asked: if we connect $n$ nodes randomly, each edge appearing with probability $p$, what structure emerges?
+  </p>
+
+  <aside class="notes">
+    Paul Erdos was the most prolific mathematician who ever lived. He wrote
+    over 1,500 papers with more than 500 co-authors. He lived out of a
+    suitcase, traveling from university to university. With Alfred Renyi, he
+    posed a deceptively simple question: start with n isolated nodes; connect
+    each pair with probability p. What happens?
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 12 — Random Graph Phase Transition
+     ============================================================ -->
+<section>
+  <h2>Phase Transition</h2>
+  <figure>
+    <img src="images/06-random-graph-phases.png" alt="Four phases of random graph evolution">
+  </figure>
+  <div class="columns-3 mt-sm">
+    <p class="fragment fade-in text-sm text-center" data-fragment-index="1">
+      <span class="hl-blue">Sparse:</span> isolated clusters
+    </p>
+    <p class="fragment fade-in text-sm text-center" data-fragment-index="2">
+      <span class="hl-yellow">Critical:</span> giant component forms
+    </p>
+    <p class="fragment fade-in text-sm text-center" data-fragment-index="3">
+      <span class="hl-green">Dense:</span> almost everything connected
+    </p>
+  </div>
+
+  <aside class="notes">
+    Watch what happens as we add more random edges. At first, you get isolated
+    pairs and tiny clusters. Then, at a critical threshold &mdash; when the
+    average degree reaches 1 &mdash; something dramatic happens. Suddenly, a
+    giant connected component appears, linking most of the graph. This is a
+    phase transition, like water turning to ice. It happens abruptly, not
+    gradually. The fourth panel shows a nearly complete graph.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 13 — Emergence: Graphs to AI
+     ============================================================ -->
+<section>
+  <h2>Emergence: Graphs &rarr; AI
+    <span class="milestone-badge milestone-ai-connection">AI Connection</span>
+  </h2>
+  <div class="columns">
+    <div class="card">
+      <h4>Random Graphs</h4>
+      <p class="text-sm">At a critical edge density, structure <strong>suddenly</strong> appears.</p>
+      <p class="text-sm mb-0 hl-muted">Small change in $p$ &rarr; qualitative leap.</p>
+    </div>
+    <div class="card card-yellow">
+      <h4 style="color:var(--yellow);">Large Language Models</h4>
+      <p class="text-sm">At a critical parameter count, new abilities <strong>suddenly</strong> emerge.</p>
+      <p class="text-sm mb-0 hl-muted">More parameters &rarr; reasoning, code, math.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up mt-lg text-center text-lg">
+    <strong>Phase transitions</strong> in random graphs mirror <strong>emergent abilities</strong> in LLMs.
+  </p>
+
+  <aside class="notes">
+    This idea of phase transition is exactly what we see in large language models.
+    GPT-2 could not do arithmetic. GPT-3, with more parameters, suddenly could.
+    Chain-of-thought reasoning, code generation &mdash; these abilities emerge
+    abruptly past a critical scale, just like the giant component in a random
+    graph. The mathematics of emergence applies across domains.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 14 — Act I Recap
+     ============================================================ -->
+<section>
+  <h2>Act I Recap: Foundations</h2>
+  <div class="summary-cards">
+    <div class="summary-card fragment fade-in" data-fragment-index="1">
+      <span class="card-icon">1736</span>
+      <h4>Euler</h4>
+      <p>Turned a bridge puzzle into a new branch of mathematics. Connections &gt; things.</p>
+    </div>
+    <div class="summary-card fragment fade-in" data-fragment-index="2">
+      <span class="card-icon">1857</span>
+      <h4>Cayley</h4>
+      <p>Counted trees: $T_n = n^{n-2}$. Combinatorics meets graph structure.</p>
+    </div>
+    <div class="summary-card fragment fade-in" data-fragment-index="3">
+      <span class="card-icon">1959</span>
+      <h4>Erdos &amp; Renyi</h4>
+      <p>Random graphs undergo phase transitions &mdash; structure from chaos.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Three ideas from three centuries. Euler taught us to abstract away
+    everything except connections. Cayley showed us the combinatorial richness
+    hiding in trees. Erdos and Renyi revealed that random connections can
+    produce sudden, dramatic structure. These foundations support everything
+    that comes next.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 15 — Act II Title (Section Divider)
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <p class="act-label">Act II</p>
+    <h2>The World Is a Graph</h2>
+    <p class="act-subtitle">Small worlds, big data, and a company worth trillions</p>
+  </div>
+
+  <aside class="notes">
+    We jump to 1998 and the real world. The internet is a graph. Social networks
+    are graphs. The question becomes: what can graph theory tell us about the
+    world we actually live in?
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 16 — Six Degrees of Separation
+     ============================================================ -->
+<section class="flex-center center-layout">
+  <h2>Six Degrees of Separation</h2>
+  <p class="text-xl mt-md">
+    How many people separate you from <strong>any other person</strong> on Earth?
+  </p>
+  <p class="fragment fade-up stat-number mt-lg" data-fragment-index="1" style="font-size:4em;">~6</p>
+  <p class="fragment fade-up hl-muted" data-fragment-index="1">Stanley Milgram's letter experiment, 1967</p>
+
+  <aside class="notes">
+    In 1967, Stanley Milgram ran a famous experiment. He asked people in Nebraska
+    to get a letter to a target person in Boston by passing it only to someone
+    they knew personally. On average, it took about six steps. Six handoffs to
+    reach a stranger across the country. The world is smaller than you think.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 17 — Small World Networks
+     ============================================================ -->
+<section>
+  <h2>Small-World Networks (1998)
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+  <figure>
+    <img src="images/07-small-world.png" alt="Three panels: regular, small-world, random network">
+  </figure>
+  <div class="callout fragment fade-up mt-sm">
+    <p class="mb-0"><strong>Small-world property:</strong> High clustering (friends of friends are friends) + short average path length (anyone reachable in few hops).</p>
+  </div>
+
+  <aside class="notes">
+    Watts and Strogatz figured out why six degrees works. In a regular lattice,
+    everyone knows their neighbors, but the path to distant nodes is long. In a
+    fully random graph, paths are short but there is no local structure. The
+    small-world model sits in between: mostly local connections, but a few
+    random long-range shortcuts. These shortcuts dramatically shrink the
+    diameter of the network. This is the model that explains social networks,
+    neural wiring in C. elegans, and power grids.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 18 — Small Worlds in AI
+     ============================================================ -->
+<section>
+  <h2>Small Worlds in AI
+    <span class="milestone-badge milestone-ai-connection">AI Connection</span>
+  </h2>
+  <p>Skip connections in <strong>ResNets</strong> and <strong>Transformers</strong> create small-world shortcuts.</p>
+  <div class="columns mt-md">
+    <div class="card fragment fade-in" data-fragment-index="1">
+      <h4>Without Skip Connections</h4>
+      <p class="text-sm">Information must travel through every layer sequentially. Gradients vanish over long paths.</p>
+      <p class="text-sm mb-0 hl-muted">Like a regular lattice &mdash; long path length.</p>
+    </div>
+    <div class="card card-green fragment fade-in" data-fragment-index="2">
+      <h4 style="color:var(--green);">With Skip Connections</h4>
+      <p class="text-sm">Information can jump across layers. Gradients flow freely.</p>
+      <p class="text-sm mb-0 hl-muted">Like a small-world network &mdash; short paths!</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    This exact same principle appears in modern neural networks. ResNets, which
+    won ImageNet in 2015, added skip connections &mdash; shortcuts that let
+    information jump over layers. Without them, deep networks could not train.
+    With them, you get the small-world property: high local structure plus short
+    global paths. Transformers do this too: the attention mechanism lets any
+    token directly connect to any other, creating the ultimate shortcut.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 19 — INTERACTIVE: Six Degrees
+     ============================================================ -->
+<section>
+  <h2>Interactive: Six Degrees Path Tracer</h2>
+  <p class="text-sm hl-muted">Click nodes to trace a path from <strong>You</strong> to <strong>Celebrity</strong>. How few steps can you find?</p>
+  <div id="interactive-six-degrees" class="interactive-container tall"></div>
+
+  <aside class="notes">
+    Let's try this ourselves. Starting from "You," click on connected nodes to
+    trace a path to "Celebrity." Try to find the shortest route. You can only
+    click nodes that are directly connected to your current position. When you
+    are done, click "Show Shortest" to see the optimal path. Notice how few
+    hops it takes even in this small network.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 20 — PageRank: Google's Graph
+     ============================================================ -->
+<section>
+  <h2>PageRank: Google's Graph
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+  <p class="text-lg">
+    <strong>1998:</strong> Two Stanford students turned the entire internet into a graph &mdash;
+    and created a <span class="hl-yellow">trillion-dollar company</span>.
+  </p>
+  <div class="card fragment fade-up mt-md">
+    <p class="text-sm mb-0">
+      <strong>Larry Page</strong> and <strong>Sergey Brin</strong> realized that the web is a
+      directed graph: pages are nodes, hyperlinks are edges. The question was not
+      "what does this page say?" but "who links to it, and how important are they?"
+    </p>
+  </div>
+
+  <aside class="notes">
+    Larry Page and Sergey Brin had a simple but powerful insight: the web is a
+    graph. Every page is a node. Every hyperlink is a directed edge. And if you
+    could figure out which nodes were "important" in this graph, you could
+    build a better search engine. That idea became PageRank, and PageRank
+    became Google.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 21 — How PageRank Works
+     ============================================================ -->
+<section>
+  <h2>How PageRank Works</h2>
+  <div class="columns-4060">
+    <div>
+      <img src="images/09-pagerank-web.png" alt="Web pages as a directed graph" style="max-height:45vh;">
+    </div>
+    <div>
+      <ul class="step-list">
+        <li class="fragment fade-in" data-fragment-index="1">
+          <div class="step-body">
+            <span class="step-title">Pages = Nodes</span>
+            <span class="step-desc">Every web page is a vertex in a giant directed graph.</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="2">
+          <div class="step-body">
+            <span class="step-title">Links = Votes</span>
+            <span class="step-desc">A link from page A to page B is a "vote" for B's importance.</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="3">
+          <div class="step-body">
+            <span class="step-title">Recursive Importance</span>
+            <span class="step-desc">A page is important if important pages link to it.</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="4">
+          <div class="step-body">
+            <span class="step-title">Random Surfer</span>
+            <span class="step-desc">Imagine clicking links at random. Where do you end up most often?</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    PageRank is elegantly recursive. A page is important if important pages link
+    to it. That sounds circular, but linear algebra resolves the circularity.
+    Think of it as a random surfer clicking links forever. The pages you visit
+    most often have the highest PageRank. The random surfer occasionally
+    teleports to a random page to avoid getting stuck in dead ends.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 22 — The PageRank Formula (with vertical deep-dive)
+     ============================================================ -->
+<section>
+  <!-- Main slide -->
+  <section>
+    <h2>The PageRank Formula</h2>
+    <div class="formula-box">
+      <span class="formula-label">PageRank Equation</span>
+      $$PR(p) = \frac{1-d}{N} + d \sum_{q \in B_p} \frac{PR(q)}{L(q)}$$
+    </div>
+    <div class="columns mt-md">
+      <div class="card card-orange fragment fade-in" data-fragment-index="1">
+        <h4 style="color:var(--orange);">$\frac{1-d}{N}$</h4>
+        <p class="text-sm mb-0">Teleportation: with probability $1-d$, jump to a random page.</p>
+      </div>
+      <div class="card fragment fade-in" data-fragment-index="2">
+        <h4>$d \sum \frac{PR(q)}{L(q)}$</h4>
+        <p class="text-sm mb-0">Link-following: with probability $d$, follow a random outgoing link.</p>
+      </div>
+    </div>
+    <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="3">&darr; Press down for the Markov chain interpretation</p>
+
+    <aside class="notes">
+      Here is the formula. Don't memorize it &mdash; understand it. The first
+      term is teleportation: with probability 1 minus d (usually d is 0.85),
+      the surfer jumps to any random page. The second term is link-following:
+      with probability d, the surfer follows a random link from the current page.
+      PR(q) divided by L(q) means each page distributes its rank equally among
+      its outgoing links.
+    </aside>
+  </section>
+
+  <!-- Vertical sub-slide: Markov chain -->
+  <section>
+    <h3>PageRank as a Markov Chain</h3>
+    <div class="card">
+      <p class="text-sm">The random surfer defines a <span class="def-term">Markov chain</span> on the web graph.</p>
+    </div>
+    <ul class="fragment fade-in">
+      <li>Transition matrix $M$: $M_{ij} = d/L(j)$ if $j \to i$, plus $\frac{1-d}{N}$ everywhere.</li>
+      <li>PageRank vector $\vec{r}$ satisfies $\vec{r} = M\vec{r}$ &mdash; it is the <strong>dominant eigenvector</strong>.</li>
+      <li>Compute by iterating: start with uniform $\vec{r}$, multiply by $M$, repeat until convergence.</li>
+      <li>The Perron&ndash;Frobenius theorem guarantees convergence.</li>
+    </ul>
+    <p class="fragment fade-up text-sm hl-muted mt-md">
+      Google's original algorithm did roughly 50&ndash;100 iterations over the entire web graph.
+    </p>
+
+    <aside class="notes">
+      PageRank computes the dominant eigenvector of the web's transition matrix.
+      The Perron-Frobenius theorem guarantees that a unique stationary
+      distribution exists because the teleportation term makes the matrix
+      irreducible and aperiodic. Google's original implementation ran about
+      50 to 100 power iterations on a matrix with billions of entries.
+    </aside>
+  </section>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 23 — INTERACTIVE: PageRank Ranking
+     ============================================================ -->
+<section>
+  <h2>Interactive: Rank by PageRank</h2>
+  <p class="text-sm hl-muted">Drag the node chips into ranking slots. Who has the most incoming links from important pages?</p>
+  <div id="interactive-pagerank" class="interactive-container tall"></div>
+
+  <aside class="notes">
+    Based on who links to whom in this small directed graph, rank the five nodes
+    from highest PageRank to lowest. Look at the arrows: which node receives
+    the most links from important nodes? Drag the chips into the slots, then
+    click "Check Answer" to see the true values. Node C should rank highest
+    because it receives links from almost every other node.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 24 — PageRank → Modern AI
+     ============================================================ -->
+<section>
+  <h2>PageRank &rarr; Modern AI
+    <span class="milestone-badge milestone-ai-connection">AI Connection</span>
+  </h2>
+  <p>PageRank uses the same <strong>linear algebra</strong> as word embeddings.</p>
+  <div class="columns mt-md">
+    <div class="formula-box">
+      <span class="formula-label">PageRank</span>
+      $$\vec{r} = M \vec{r}$$
+      <p class="text-sm hl-muted mt-sm mb-0">Eigenvector of web graph</p>
+    </div>
+    <div class="formula-box">
+      <span class="formula-label">Word2Vec</span>
+      $$W^T W \approx \text{PMI matrix}$$
+      <p class="text-sm hl-muted mt-sm mb-0">Eigenvectors of word co-occurrence</p>
+    </div>
+  </div>
+  <p class="fragment fade-up mt-md">
+    Both compute <strong>eigenvectors</strong> of a matrix built from a graph.
+    PageRank ranks web pages; Word2Vec positions words in meaning-space.
+  </p>
+
+  <aside class="notes">
+    PageRank computes an eigenvector of the web's adjacency matrix. Word2Vec
+    computes eigenvectors of the word co-occurrence matrix &mdash; which is
+    really a graph where words are nodes and co-occurrence frequencies are edge
+    weights. The math is the same: find the dominant directions in a matrix
+    derived from a graph. This is why linear algebra is the language of AI.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 25 — Social Network Analysis
+     ============================================================ -->
+<section>
+  <h2>Social Networks Are Graphs</h2>
+  <div class="columns-4060">
+    <div>
+      <img src="images/08-six-degrees.png" alt="Social network graph" style="max-height:45vh;">
+    </div>
+    <div>
+      <p>Every social media platform runs graph algorithms at scale:</p>
+      <ul>
+        <li class="fragment fade-in" data-fragment-index="1"><strong>Friend recommendations</strong> &mdash; triangle closure</li>
+        <li class="fragment fade-in" data-fragment-index="2"><strong>Influence scoring</strong> &mdash; centrality measures</li>
+        <li class="fragment fade-in" data-fragment-index="3"><strong>Community detection</strong> &mdash; graph clustering</li>
+        <li class="fragment fade-in" data-fragment-index="4"><strong>Viral spread prediction</strong> &mdash; diffusion on networks</li>
+      </ul>
+      <p class="fragment fade-up text-sm hl-muted mt-md" data-fragment-index="5">
+        Facebook's social graph: 3+ billion nodes, hundreds of billions of edges.
+      </p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Every social media platform runs graph algorithms at massive scale. Friend
+    recommendations use triangle closure: if A knows B and B knows C, suggest A
+    and C connect. Influence scoring uses centrality measures like PageRank.
+    Community detection partitions the graph into clusters. Viral spread models
+    treat information like a disease diffusing through the network. Facebook's
+    social graph alone has over 3 billion nodes.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 26 — Act II Recap
+     ============================================================ -->
+<section>
+  <h2>Act II Recap: The Real World</h2>
+  <div class="summary-cards">
+    <div class="summary-card fragment fade-in" data-fragment-index="1">
+      <span class="card-icon">1998</span>
+      <h4>Small Worlds</h4>
+      <p>High clustering + short paths. Why six degrees works.</p>
+    </div>
+    <div class="summary-card fragment fade-in" data-fragment-index="2">
+      <span class="card-icon">1998</span>
+      <h4>PageRank</h4>
+      <p>Eigenvectors of the web graph. A trillion-dollar algorithm.</p>
+    </div>
+    <div class="summary-card fragment fade-in" data-fragment-index="3">
+      <span class="card-icon">2004+</span>
+      <h4>Social Networks</h4>
+      <p>Billions of nodes, graph algorithms at planetary scale.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Act II showed that the real world runs on graphs. Small-world theory
+    explains why we are all so closely connected. PageRank turned that insight
+    into the most successful search engine in history. And social networks
+    showed that graph theory operates at a scale Euler could never have
+    imagined.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 27 — Act III Title (Section Divider)
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <p class="act-label">Act III</p>
+    <h2>Intelligence Is a Graph</h2>
+    <p class="act-subtitle">How graph theory became the architecture of AI</p>
+  </div>
+
+  <aside class="notes">
+    Now for the final act. Every neural network IS a graph. Every transformer
+    IS a graph algorithm. Graph theory is not just useful to AI &mdash; it is
+    the mathematical language in which AI is written.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 28 — Neural Networks as Graphs
+     ============================================================ -->
+<section>
+  <h2>Neural Networks <em>Are</em> Graphs</h2>
+  <figure>
+    <img src="images/11-nn-architectures.png" alt="Four neural network architectures shown as graphs">
+  </figure>
+  <p class="fragment fade-up mt-sm">
+    Every neural network is a <strong>directed graph</strong>: neurons are nodes, weights are edges.
+  </p>
+  <p class="fragment fade-up text-sm hl-muted">
+    The architecture revolution (2012&ndash;2017): from chains to grids to complete graphs.
+  </p>
+
+  <aside class="notes">
+    Look at these four architectures. A feedforward network is a chain of
+    layers. A CNN adds local grid connections. A recurrent network adds cycles.
+    And a transformer is essentially a complete graph where every token connects
+    to every other. The entire history of deep learning is a story about
+    choosing different graph topologies for the computation.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 29 — The Transformer as a Complete Graph
+     ============================================================ -->
+<section>
+  <h2>The Transformer: A Complete Graph</h2>
+  <figure>
+    <img src="images/12-attention-complete.png" alt="Attention pattern as a complete graph between tokens">
+  </figure>
+  <div class="callout callout-yellow fragment fade-up mt-sm">
+    <p class="mb-0"><strong>Every token attends to every other token.</strong>
+    The attention matrix is the adjacency matrix of a complete directed graph.</p>
+  </div>
+
+  <aside class="notes">
+    The transformer, the architecture behind GPT, BERT, and every modern
+    language model, is a complete graph. Every token in the input sequence
+    computes an attention weight to every other token. The attention matrix is
+    literally the weighted adjacency matrix of a complete directed graph.
+    This is why transformers are so powerful &mdash; and so computationally
+    expensive.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 30 — Attention is Graph Theory (with vertical deep-dive)
+     ============================================================ -->
+<section>
+  <!-- Main slide -->
+  <section>
+    <h2>Attention = Graph Theory</h2>
+    <div class="formula-box">
+      <span class="formula-label">Scaled Dot-Product Attention</span>
+      $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right) V$$
+    </div>
+    <div class="columns-3 mt-md">
+      <div class="card fragment fade-in" data-fragment-index="1">
+        <h4>$QK^T$</h4>
+        <p class="text-sm mb-0">= adjacency matrix</p>
+        <p class="text-sm mb-0 hl-muted">Edge weights between all token pairs.</p>
+      </div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="2">
+        <h4 style="color:var(--teal);">softmax</h4>
+        <p class="text-sm mb-0">= normalize edges</p>
+        <p class="text-sm mb-0 hl-muted">Turn raw scores into a probability distribution.</p>
+      </div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="3">
+        <h4 style="color:var(--orange);">$\times V$</h4>
+        <p class="text-sm mb-0">= message passing</p>
+        <p class="text-sm mb-0 hl-muted">Aggregate neighbor information along edges.</p>
+      </div>
+    </div>
+    <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="4">&darr; Press down for complexity analysis</p>
+
+    <aside class="notes">
+      If you look at attention through a graph theory lens, each component has
+      a clear role. Q times K-transpose computes a pairwise similarity matrix
+      &mdash; the adjacency matrix. Softmax normalizes each row so the edge
+      weights sum to 1. Multiplying by V is message passing: each node
+      aggregates information from its neighbors, weighted by attention.
+      This is exactly the framework of graph neural networks.
+    </aside>
+  </section>
+
+  <!-- Vertical sub-slide: Complexity -->
+  <section>
+    <h3>Attention Complexity: $O(n^2)$</h3>
+    <div class="card">
+      <p class="text-sm">Because every token attends to every other token, attention is <strong>quadratic</strong> in sequence length.</p>
+    </div>
+    <table class="fragment fade-in">
+      <thead>
+        <tr><th>Sequence Length</th><th>Attention Operations</th><th>Analogy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>512 tokens</td><td>262,144</td><td>A short email</td></tr>
+        <tr><td>4,096 tokens</td><td>16.8 million</td><td>A long article</td></tr>
+        <tr><td>100,000 tokens</td><td>10 billion</td><td>A novel</td></tr>
+      </tbody>
+    </table>
+    <p class="fragment fade-up text-sm hl-muted mt-md">
+      This is why researchers are developing <strong>sparse attention</strong> patterns &mdash; replacing the complete graph with a sparser one.
+    </p>
+
+    <aside class="notes">
+      The quadratic cost is the transformer's Achilles heel. For 512 tokens,
+      attention computes about 260,000 operations &mdash; fine. But for
+      100,000 tokens, it's 10 billion. This is why context windows were
+      historically limited, and why researchers develop sparse attention
+      mechanisms that replace the complete graph with a carefully chosen
+      sparse graph.
+    </aside>
+  </section>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 31 — Knowledge Graphs
+     ============================================================ -->
+<section>
+  <h2>Knowledge Graphs</h2>
+  <div class="columns-4060">
+    <div>
+      <img src="images/13-knowledge-graph.png" alt="Knowledge graph with entity-relation triples" style="max-height:45vh;">
+    </div>
+    <div>
+      <p>Knowledge graphs represent facts as <strong>triples</strong>:</p>
+      <div class="formula-box fragment fade-in" data-fragment-index="1" style="text-align:left;">
+        <p class="mb-0" style="font-size:1.1em;">
+          (<span class="hl-blue">Einstein</span>, <span class="hl-teal">born_in</span>, <span class="hl-orange">Ulm</span>)<br>
+          (<span class="hl-blue">Einstein</span>, <span class="hl-teal">developed</span>, <span class="hl-orange">Relativity</span>)<br>
+          (<span class="hl-blue">Relativity</span>, <span class="hl-teal">type_of</span>, <span class="hl-orange">Physics Theory</span>)
+        </p>
+      </div>
+      <p class="fragment fade-up text-sm mt-md" data-fragment-index="2">
+        <strong>Google Knowledge Graph:</strong> 500+ billion facts, 5+ billion entities.
+      </p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Knowledge graphs store facts as triples: subject, predicate, object. Each
+    entity is a node, each relationship is a labeled edge. Google's Knowledge
+    Graph powers those information boxes you see in search results. Wikidata,
+    DBpedia, and enterprise knowledge graphs all use this format. The graph
+    structure makes it easy to answer multi-hop questions: "Where was the
+    developer of relativity born?"
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 32 — RAG: Giving AI Memory
+     ============================================================ -->
+<section>
+  <h2>RAG: Giving AI a Memory</h2>
+  <figure>
+    <img src="images/14-rag-pipeline.png" alt="Retrieval-Augmented Generation pipeline" style="max-height:38vh;">
+  </figure>
+  <ul class="step-list mt-sm">
+    <li class="fragment fade-in" data-fragment-index="1">
+      <div class="step-body">
+        <span class="step-title">Query</span>
+        <span class="step-desc">User asks a question.</span>
+      </div>
+    </li>
+    <li class="fragment fade-in" data-fragment-index="2">
+      <div class="step-body">
+        <span class="step-title">Retrieve</span>
+        <span class="step-desc">Search a knowledge base for relevant documents/facts.</span>
+      </div>
+    </li>
+    <li class="fragment fade-in" data-fragment-index="3">
+      <div class="step-body">
+        <span class="step-title">Generate</span>
+        <span class="step-desc">Feed retrieved context + question into the LLM.</span>
+      </div>
+    </li>
+  </ul>
+  <p class="fragment fade-up callout callout-green mt-sm" data-fragment-index="4">
+    Result: <strong>less hallucination</strong>, more factual answers.
+  </p>
+
+  <aside class="notes">
+    RAG &mdash; Retrieval-Augmented Generation &mdash; is the most popular
+    technique for making AI factually accurate. Instead of relying solely on
+    what the model memorized during training, RAG retrieves relevant documents
+    at query time and feeds them into the prompt. The retrieval step is often
+    a graph search: traverse a knowledge graph or a vector-indexed document
+    graph to find the most relevant context.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 33 — GraphRAG: The Cutting Edge
+     ============================================================ -->
+<section>
+  <h2>GraphRAG: The Cutting Edge</h2>
+  <p>Microsoft's <strong>GraphRAG</strong> (2024) uses community detection on knowledge graphs to answer complex questions.</p>
+  <div class="columns mt-md">
+    <div class="card fragment fade-in" data-fragment-index="1">
+      <h4>Traditional RAG</h4>
+      <p class="text-sm">Retrieves individual text chunks. Works for factoid questions.</p>
+      <p class="text-sm mb-0 hl-muted">Struggles with "big picture" queries.</p>
+    </div>
+    <div class="card card-green fragment fade-in" data-fragment-index="2">
+      <h4 style="color:var(--green);">GraphRAG</h4>
+      <p class="text-sm">Builds a knowledge graph from text. Detects communities. Summarizes at multiple scales.</p>
+      <p class="text-sm mb-0 hl-muted">Answers thematic, synthesis questions.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up text-sm hl-muted mt-md">
+    Community detection (Louvain, Leiden) is the same graph algorithm used for social network analysis.
+  </p>
+
+  <aside class="notes">
+    The latest development is GraphRAG by Microsoft Research, published in 2024.
+    Traditional RAG retrieves text chunks &mdash; it works well for specific
+    factual questions but fails on broad thematic queries. GraphRAG first
+    extracts entities and relationships to build a knowledge graph, then runs
+    community detection algorithms to identify clusters of related concepts,
+    and finally summarizes each community. The same Louvain algorithm used to
+    find friend groups on Facebook now helps AI understand the big picture in
+    a corpus of documents.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 34 — Graph Neural Networks
+     ============================================================ -->
+<section>
+  <h2>Graph Neural Networks (GNNs)</h2>
+  <div class="columns-4060">
+    <div>
+      <img src="images/15-gnn-message.png" alt="GNN message passing illustration" style="max-height:45vh;">
+    </div>
+    <div>
+      <p><strong>GNNs:</strong> Neural networks that learn directly on graph-structured data.</p>
+      <div class="card fragment fade-in mt-md" data-fragment-index="1">
+        <h4>Message Passing</h4>
+        <ol class="text-sm">
+          <li class="fragment fade-in" data-fragment-index="2">Each node collects messages from its neighbors.</li>
+          <li class="fragment fade-in" data-fragment-index="3">Messages are aggregated (sum, mean, max).</li>
+          <li class="fragment fade-in" data-fragment-index="4">Node updates its representation.</li>
+          <li class="fragment fade-in" data-fragment-index="5">Repeat for $L$ rounds &mdash; information flows $L$ hops.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Graph Neural Networks generalize the transformer idea to arbitrary graph
+    structures. Instead of a complete graph of tokens, GNNs work on whatever
+    graph you give them &mdash; social networks, molecules, road maps. The
+    mechanism is message passing: each node gathers information from its
+    neighbors, aggregates it, and updates itself. After L rounds, each node
+    knows about its L-hop neighborhood. This is strikingly similar to
+    attention in transformers.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 35 — GNN Formula (with vertical deep-dive)
+     ============================================================ -->
+<section>
+  <!-- Main slide -->
+  <section>
+    <h2>The GNN Formula</h2>
+    <div class="formula-box">
+      <span class="formula-label">Message Passing Update Rule</span>
+      $$h_v^{(l+1)} = \text{UPDATE}\!\left(h_v^{(l)},\; \text{AGGREGATE}\!\left(\{h_u^{(l)} : u \in \mathcal{N}(v)\}\right)\right)$$
+    </div>
+    <div class="columns mt-md">
+      <div class="card card-teal fragment fade-in" data-fragment-index="1">
+        <h4 style="color:var(--teal);">AGGREGATE</h4>
+        <p class="text-sm mb-0">Collect neighbor features: sum, mean, or attention-weighted.</p>
+      </div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="2">
+        <h4 style="color:var(--orange);">UPDATE</h4>
+        <p class="text-sm mb-0">Combine own features with aggregated message. Apply a neural network.</p>
+      </div>
+    </div>
+    <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="3">&darr; Press down for expressiveness theory</p>
+
+    <aside class="notes">
+      The GNN formula is deceptively simple. For each node v, gather the
+      feature vectors of all neighbors, aggregate them, then combine with the
+      node's own features and pass through a neural network. This one equation
+      covers GCN, GraphSAGE, GAT, and most other GNN variants &mdash; they
+      differ only in how they implement AGGREGATE and UPDATE.
+    </aside>
+  </section>
+
+  <!-- Vertical sub-slide: WL test -->
+  <section>
+    <h3>GNN Expressiveness &amp; the WL Test</h3>
+    <div class="card">
+      <p class="text-sm">How powerful are GNNs? They are at most as powerful as the <span class="def-term">Weisfeiler-Leman (WL) graph isomorphism test</span>.</p>
+    </div>
+    <ul class="fragment fade-in">
+      <li>The 1-WL test iteratively refines node colors based on neighbor colors.</li>
+      <li>Standard message-passing GNNs are <strong>exactly as expressive</strong> as 1-WL (Xu et al., 2019).</li>
+      <li>Some graph pairs (e.g., non-isomorphic regular graphs) cannot be distinguished by 1-WL.</li>
+      <li>Higher-order GNNs (k-WL) trade expressiveness for computational cost.</li>
+    </ul>
+    <p class="fragment fade-up text-sm hl-muted mt-md">
+      Understanding these limits guides the design of more powerful architectures.
+    </p>
+
+    <aside class="notes">
+      Xu et al. proved in 2019 that standard message-passing GNNs are exactly
+      as powerful as the 1-dimensional Weisfeiler-Leman test. This means there
+      are pairs of non-isomorphic graphs that no standard GNN can distinguish.
+      For example, certain regular graphs look the same to 1-WL. Higher-order
+      GNNs can overcome this, but they are more expensive. This theoretical
+      result guides architecture design.
+    </aside>
+  </section>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 36 — Drug Discovery with GNNs
+     ============================================================ -->
+<section>
+  <h2>Drug Discovery with GNNs</h2>
+  <div class="columns-4060">
+    <div>
+      <img src="images/16-molecule-graph.png" alt="Molecule represented as a graph" style="max-height:45vh;">
+    </div>
+    <div>
+      <p>Molecules are graphs:</p>
+      <ul>
+        <li class="fragment fade-in" data-fragment-index="1"><strong>Atoms</strong> = nodes</li>
+        <li class="fragment fade-in" data-fragment-index="2"><strong>Bonds</strong> = edges</li>
+        <li class="fragment fade-in" data-fragment-index="3"><strong>Bond types</strong> = edge labels (single, double, aromatic)</li>
+      </ul>
+      <div class="card card-green fragment fade-up mt-md" data-fragment-index="4">
+        <h4 style="color:var(--green);">Why GNNs Excel</h4>
+        <p class="text-sm mb-0">
+          GNNs predict molecular properties (toxicity, binding affinity, solubility) directly
+          from the molecular graph &mdash; no hand-crafted features needed.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Drug discovery is one of the most exciting applications of graph neural
+    networks. A molecule is naturally a graph: atoms are nodes, bonds are edges.
+    Traditional approaches required chemists to hand-design molecular features.
+    GNNs learn directly from the graph structure, predicting properties like
+    toxicity, drug-target binding affinity, and solubility. This has accelerated
+    drug design pipelines from years to months.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 37 — INTERACTIVE: Design Your Architecture
+     ============================================================ -->
+<section>
+  <h2>Interactive: Design a Neural Network</h2>
+  <p class="text-sm hl-muted">Click two nodes to add/remove an edge. Then <strong>Analyze</strong> your architecture.</p>
+  <div id="interactive-architect" class="interactive-container tall"></div>
+
+  <aside class="notes">
+    You have input, hidden, and output nodes. Click any two nodes to draw an
+    edge between them; click again to remove it. Try different patterns: connect
+    only adjacent layers for a feedforward network, add skip connections for a
+    ResNet, or connect everything for a transformer-like architecture. Click
+    "Analyze" to see the density, whether you have skip connections, and how
+    your design is classified. Click "Random" for a random wiring.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 38 — Transformers vs GNNs
+     ============================================================ -->
+<section>
+  <h2>Transformers vs. GNNs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th><span class="hl-blue">Transformer</span></th>
+        <th><span class="hl-teal">GNN</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fragment fade-in" data-fragment-index="1">
+        <td>Graph type</td>
+        <td>Complete graph</td>
+        <td>Sparse / custom graph</td>
+      </tr>
+      <tr class="fragment fade-in" data-fragment-index="2">
+        <td>Complexity</td>
+        <td>$O(n^2)$</td>
+        <td>$O(|\mathcal{E}|)$ &mdash; edges only</td>
+      </tr>
+      <tr class="fragment fade-in" data-fragment-index="3">
+        <td>Best for</td>
+        <td>Language, vision, audio</td>
+        <td>Molecules, networks, maps</td>
+      </tr>
+      <tr class="fragment fade-in" data-fragment-index="4">
+        <td>Data assumption</td>
+        <td>Sequence / grid</td>
+        <td>Arbitrary graph</td>
+      </tr>
+      <tr class="fragment fade-in" data-fragment-index="5">
+        <td>Edge weights</td>
+        <td>Learned (attention)</td>
+        <td>Given or learned</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="fragment fade-up text-sm hl-muted mt-md">Both are message-passing on graphs &mdash; they differ in which graph they use.</p>
+
+  <aside class="notes">
+    Which is better? Neither &mdash; they serve different purposes. The
+    transformer builds a complete graph, which means every token can attend to
+    every other. This is powerful but quadratic. GNNs use the graph you give
+    them, which can be sparse, saving computation but requiring you to know the
+    structure in advance. Transformers dominate language and vision; GNNs
+    dominate molecules, social networks, and knowledge graphs. But at their
+    core, both are doing the same thing: message passing on a graph.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 39 — The Unifying Insight
+     ============================================================ -->
+<section class="flex-center center-layout">
+  <h2>The Unifying Insight</h2>
+  <p class="big-quote" style="border-left-color:var(--blue);">
+    Every AI architecture is a <span class="hl-yellow">choice of graph topology</span>.
+  </p>
+  <div class="columns-3 mt-lg">
+    <div class="card fragment fade-in" data-fragment-index="1">
+      <h4>Feedforward</h4>
+      <p class="text-sm mb-0 hl-muted">= chain graph</p>
+    </div>
+    <div class="card card-teal fragment fade-in" data-fragment-index="2">
+      <h4>CNN</h4>
+      <p class="text-sm mb-0 hl-muted">= grid / lattice graph</p>
+    </div>
+    <div class="card card-yellow fragment fade-in" data-fragment-index="3">
+      <h4>Transformer</h4>
+      <p class="text-sm mb-0 hl-muted">= complete graph</p>
+    </div>
+  </div>
+  <div class="columns-3 mt-sm">
+    <div class="card card-orange fragment fade-in" data-fragment-index="4">
+      <h4>RNN</h4>
+      <p class="text-sm mb-0 hl-muted">= chain with cycles</p>
+    </div>
+    <div class="card card-green fragment fade-in" data-fragment-index="5">
+      <h4>GNN</h4>
+      <p class="text-sm mb-0 hl-muted">= custom / data graph</p>
+    </div>
+    <div class="card card-purple fragment fade-in" data-fragment-index="6">
+      <h4>Mixture of Experts</h4>
+      <p class="text-sm mb-0 hl-muted">= sparse bipartite graph</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    When researchers design a new architecture, what they are really doing is
+    choosing a graph topology. A feedforward net is a chain. A CNN is a grid.
+    A transformer is a complete graph. An RNN is a chain with backward edges.
+    A GNN uses whatever graph the data provides. And Mixture of Experts, used
+    in models like GPT-4, is a sparse bipartite graph where tokens are routed
+    to a subset of expert subnetworks. Graph theory is the unifying language.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 40 — The 300-Year Chain
+     ============================================================ -->
+<section>
+  <h2>The 300-Year Chain</h2>
+  <figure>
+    <img src="images/17-timeline-chain.png" alt="Timeline from Euler 1736 to GNNs 2020s">
+  </figure>
+  <div class="columns-3 mt-sm text-sm text-center">
+    <p class="fragment fade-in" data-fragment-index="1">
+      <span class="hl-orange">1736</span> Euler<br>
+      <span class="hl-muted">1857</span> Cayley<br>
+      <span class="hl-muted">1959</span> Erdos-Renyi
+    </p>
+    <p class="fragment fade-in" data-fragment-index="2">
+      <span class="hl-blue">1967</span> Milgram<br>
+      <span class="hl-muted">1998</span> Watts-Strogatz<br>
+      <span class="hl-muted">1998</span> Page-Brin
+    </p>
+    <p class="fragment fade-in" data-fragment-index="3">
+      <span class="hl-green">2012</span> Deep Learning<br>
+      <span class="hl-muted">2017</span> Transformers<br>
+      <span class="hl-muted">2020s</span> GNNs &amp; GraphRAG
+    </p>
+  </div>
+
+  <aside class="notes">
+    300 years, one idea. Euler abstracted bridges into a graph. Cayley counted
+    trees. Erdos showed random graphs have phase transitions. Milgram proved
+    we live in a small world. Page and Brin ranked the web. And today,
+    transformers and GNNs are built on the same foundation: nodes, edges,
+    and the information flowing between them. Each discovery built directly
+    on the ones before it.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 41 — The Thread That Connects (Big Quote)
+     ============================================================ -->
+<section class="flex-center">
+  <div class="big-quote" style="font-size:1.7em;">
+    "What matters is not the things &mdash;<br>it is the connections between them."
+  </div>
+  <p class="fragment fade-up mt-lg text-lg">
+    This is the founding insight of graph theory.<br>
+    And it is the founding insight of AI.
+  </p>
+
+  <aside class="notes">
+    I want to leave you with this idea. Euler realized in 1736 that the shape
+    of the landmasses did not matter &mdash; only the bridges between them.
+    Today, neural networks learn by adjusting the weights on edges, not by
+    changing the neurons themselves. Intelligence, both biological and
+    artificial, lives in the connections. That is the deepest lesson of graph
+    theory.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 42 — What Comes Next (Careers)
+     ============================================================ -->
+<section>
+  <h2>What Comes Next</h2>
+  <p>Graph theory is one of the most <strong>in-demand</strong> skills in tech. Where can it take you?</p>
+  <ul class="career-list mt-lg">
+    <li class="fragment fade-in" data-fragment-index="1">AI / Machine Learning Engineer</li>
+    <li class="fragment fade-in" data-fragment-index="2">Data Scientist</li>
+    <li class="fragment fade-in" data-fragment-index="3">Computational Biologist</li>
+    <li class="fragment fade-in" data-fragment-index="4">Social Network Analyst</li>
+    <li class="fragment fade-in" data-fragment-index="5">Cybersecurity Specialist</li>
+    <li class="fragment fade-in" data-fragment-index="6">Drug Discovery Researcher</li>
+    <li class="fragment fade-in" data-fragment-index="7">Financial Network Analyst</li>
+  </ul>
+  <hr class="accent-rule mt-lg">
+  <p class="text-sm hl-muted text-center mt-md">
+    Thank you. Questions?
+  </p>
+
+  <aside class="notes">
+    Graph theory is one of the most in-demand skills in the tech industry today.
+    AI and ML engineers use graph neural networks. Data scientists run network
+    analysis. Computational biologists model protein interactions as graphs.
+    Social network analysts detect communities and influence. Cybersecurity
+    teams model attack graphs. Drug discovery researchers use GNNs to predict
+    molecular properties. And financial analysts model systemic risk through
+    network theory. Wherever there are connections, there is graph theory.
+    Thank you for your attention. I am happy to take questions.
+  </aside>
+</section>
+
+
+</div><!-- .slides -->
+</div><!-- .reveal -->
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="js/interactive.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    showSlideNumber: 'speaker',
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    width: 1920,
+    height: 1080,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes, RevealMath.KaTeX],
+    katex: {
+      local: false,
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    }
+  });
+</script>
+
+</body>
+</html>
