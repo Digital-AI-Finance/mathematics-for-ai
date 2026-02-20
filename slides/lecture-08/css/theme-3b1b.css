@@ -60,7 +60,7 @@
 /* --- Root presentation container --- */
 .reveal {
   font-family: var(--font-body);
-  font-size: 1.1em;
+  font-size: 1.3em;
   font-weight: 400;
   color: var(--text-primary);
   background-color: var(--bg-dark);
@@ -85,7 +85,7 @@
 .reveal .slides section {
   background: var(--bg-dark);
   padding: 2rem 3rem;
-  max-width: 900px;
+  max-width: 1500px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -295,7 +295,7 @@
 /* Inline math: subtle blue tint */
 .reveal .katex {
   color: var(--blue);
-  font-size: 1.05em;
+  font-size: 1.15em;
 }
 
 /* Display math (block): yellow for emphasis, centered */
@@ -303,7 +303,7 @@
   color: var(--yellow);
   margin: 1.2em 0;
   text-align: center;
-  font-size: 1.15em;
+  font-size: 1.25em;
 }
 
 .reveal .katex-display > .katex {
@@ -321,7 +321,7 @@
    ========================================================================== */
 
 .reveal section img {
-  max-height: 65vh;
+  max-height: 70vh;
   max-width: 100%;
   margin: 0 auto;
   display: block;
@@ -597,7 +597,7 @@
 
 /* --- Max-width constraint --- */
 .reveal .content-wrap {
-  max-width: 900px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -950,7 +950,7 @@
    ========================================================================== */
 
 .reveal .interactive-container {
-  min-height: 350px;
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -988,13 +988,13 @@
 .reveal .interactive-container canvas,
 .reveal .interactive-container svg {
   max-width: 100%;
-  max-height: 340px;
+  max-height: 450px;
   z-index: 1;
 }
 
 /* Taller variant for full-slide visuals */
 .reveal .interactive-container.tall {
-  min-height: 480px;
+  min-height: 550px;
 }
 
 
