@@ -37,6 +37,8 @@ SCRIPTS = [
     'gen_15_gnn_message',
     'gen_16_molecule',
     'gen_17_timeline',
+    'gen_18_milgram_letters',
+    'gen_19_graphrag_concept',
 ]
 
 

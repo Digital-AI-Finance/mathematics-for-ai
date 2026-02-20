@@ -105,6 +105,12 @@
   <p class="fragment fade-up text-lg hl-teal mt-lg">
     This question invented an entire branch of mathematics.
   </p>
+  <figure class="fragment fade-in mt-md" data-fragment-index="1">
+    <img src="images/portraits/konigsberg-merian-1652.jpg"
+         alt="Historical map of Königsberg showing the seven bridges"
+         style="max-height:35vh; border-radius:12px;">
+    <figcaption class="text-sm hl-muted">Königsberg (now Kaliningrad), Prussia</figcaption>
+  </figure>
 
   <aside class="notes">
     In 1736, the citizens of Konigsberg had a puzzle. Their city was built on
@@ -233,15 +239,25 @@
 <!-- ============================================================
      SLIDE 8 — Euler's Legacy (Big Quote)
      ============================================================ -->
-<section class="flex-center">
-  <div class="big-quote">
-    "This solution bore little relationship to mathematics&hellip; yet I do not
-    know why you are not satisfied with it."
-    <span class="attribution">&mdash; Leonhard Euler, 1736</span>
+<section>
+  <div class="columns-4060">
+    <div class="col-center" style="text-align:center;">
+      <img src="images/portraits/euler-handmann-1753.jpg"
+           alt="Leonhard Euler, portrait by Jakob Emanuel Handmann, 1753"
+           style="max-height:55vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+      <p class="text-sm hl-muted" style="margin-top:0.5rem;">Leonhard Euler (1707–1783)</p>
+    </div>
+    <div class="col-center">
+      <div class="big-quote" style="font-size:0.9em;">
+        "This solution bore little relationship to mathematics&hellip; yet I do not
+        know why you are not satisfied with it."
+        <span class="attribution">&mdash; Leonhard Euler, 1736</span>
+      </div>
+      <p class="fragment fade-up mt-lg">
+        Euler didn't just solve a puzzle. He invented a <strong>new way of thinking</strong> about structure.
+      </p>
+    </div>
   </div>
-  <p class="fragment fade-up mt-lg">
-    Euler didn't just solve a puzzle. He invented a <strong>new way of thinking</strong> about structure.
-  </p>
 
   <aside class="notes">
     Even Euler was unsure whether this counted as "real" mathematics. It did not
@@ -262,10 +278,18 @@
     <span class="milestone-badge milestone-discovery">Discovery</span>
   </h2>
   <p class="text-lg">How many different tree-shaped graphs can you make with $n$ labeled nodes?</p>
-  <figure class="fragment fade-in" data-fragment-index="1">
-    <img src="images/04-cayley-trees.png" alt="All labeled trees on 4 nodes">
-    <figcaption>All 16 labeled trees on 4 nodes</figcaption>
-  </figure>
+  <div class="columns-4060 mt-md">
+    <div style="text-align:center;">
+      <img src="images/portraits/cayley-engraving-1883.jpg"
+           alt="Arthur Cayley, engraving 1883"
+           style="max-height:40vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+      <p class="text-sm hl-muted" style="margin-top:0.3rem;">Arthur Cayley (1821–1895)</p>
+    </div>
+    <figure class="fragment fade-in" data-fragment-index="1">
+      <img src="images/04-cayley-trees.png" alt="All labeled trees on 4 nodes">
+      <figcaption>All 16 labeled trees on 4 nodes</figcaption>
+    </figure>
+  </div>
 
   <aside class="notes">
     A century later, Arthur Cayley asked a counting question. A tree is a
@@ -381,13 +405,21 @@
     <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
   </h2>
   <p class="text-lg">What happens when you <strong>randomly</strong> connect nodes?</p>
-  <div class="card card-orange fragment fade-up mt-md">
-    <h4 style="color:var(--orange);">Paul Erdos (1913&ndash;1996)</h4>
-    <p class="text-sm mb-0">
-      The most prolific mathematician in history: <strong>1,500+ papers</strong>,
-      500+ collaborators. He had no permanent home &mdash; just a suitcase and a
-      desire to do mathematics everywhere.
-    </p>
+  <div class="columns-4060 mt-md">
+    <div style="text-align:center;">
+      <img src="images/portraits/erdos-portrait.jpg"
+           alt="Paul Erdős"
+           style="max-height:40vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+      <p class="text-sm hl-muted" style="margin-top:0.5rem;">Paul Erdős (1913–1996)</p>
+    </div>
+    <div class="card card-orange fragment fade-up">
+      <h4 style="color:var(--orange);">The Most Prolific Mathematician</h4>
+      <p class="text-sm mb-0">
+        <strong>1,500+ papers</strong>, 500+ collaborators.
+        He had no permanent home &mdash; just a suitcase and a
+        desire to do mathematics everywhere.
+      </p>
+    </div>
   </div>
   <p class="fragment fade-up text-sm hl-muted mt-md">
     With Alfred Renyi, he asked: if we connect $n$ nodes randomly, each edge appearing with probability $p$, what structure emerges?
@@ -521,13 +553,18 @@
 <!-- ============================================================
      SLIDE 17 — Six Degrees of Separation
      ============================================================ -->
-<section class="flex-center center-layout">
+<section class="center-layout">
   <h2>Six Degrees of Separation</h2>
   <p class="text-xl mt-md">
     How many people separate you from <strong>any other person</strong> on Earth?
   </p>
   <p class="fragment fade-up stat-number mt-lg" data-fragment-index="1" style="font-size:4em;">~6</p>
   <p class="fragment fade-up hl-muted" data-fragment-index="1">Stanley Milgram's letter experiment, 1967</p>
+  <figure class="fragment fade-in mt-md" data-fragment-index="2">
+    <img src="images/18-milgram-letters.png"
+         alt="Chain of letters from Nebraska to Boston through 6 intermediaries"
+         style="max-height:30vh;">
+  </figure>
 
   <aside class="notes">
     In 1967, Stanley Milgram ran a famous experiment. He asked people in Nebraska
@@ -625,12 +662,28 @@
     <strong>1998:</strong> Two Stanford students turned the entire internet into a graph &mdash;
     and created a <span class="hl-yellow">trillion-dollar company</span>.
   </p>
-  <div class="card fragment fade-up mt-md">
-    <p class="text-sm mb-0">
-      <strong>Larry Page</strong> and <strong>Sergey Brin</strong> realized that the web is a
-      directed graph: pages are nodes, hyperlinks are edges. The question was not
-      "what does this page say?" but "who links to it, and how important are they?"
-    </p>
+  <div class="columns mt-md">
+    <div style="display:flex; gap:1rem; justify-content:center; align-items:flex-end;">
+      <div style="text-align:center;">
+        <img src="images/portraits/larry-page.jpg"
+             alt="Larry Page"
+             style="max-height:35vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        <p class="text-sm hl-muted" style="margin-top:0.3rem;">Larry Page</p>
+      </div>
+      <div style="text-align:center;">
+        <img src="images/portraits/sergey-brin.jpg"
+             alt="Sergey Brin"
+             style="max-height:35vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        <p class="text-sm hl-muted" style="margin-top:0.3rem;">Sergey Brin</p>
+      </div>
+    </div>
+    <div class="card fragment fade-up col-center">
+      <p class="text-sm mb-0">
+        <strong>Larry Page</strong> and <strong>Sergey Brin</strong> realized that the web is a
+        directed graph: pages are nodes, hyperlinks are edges. The question was not
+        "what does this page say?" but "who links to it, and how important are they?"
+      </p>
+    </div>
   </div>
 
   <aside class="notes">
@@ -1107,7 +1160,12 @@
       <p class="text-sm mb-0 hl-muted">Answers thematic, synthesis questions.</p>
     </div>
   </div>
-  <p class="fragment fade-up text-sm hl-muted mt-md">
+  <figure class="fragment fade-in mt-md" data-fragment-index="3">
+    <img src="images/19-graphrag-concept.png"
+         alt="GraphRAG pipeline: documents to knowledge graph to community detection to LLM synthesis"
+         style="max-height:30vh;">
+  </figure>
+  <p class="fragment fade-up text-sm hl-muted mt-md" data-fragment-index="4">
     Community detection (Louvain, Leiden) is the same graph algorithm used for social network analysis.
   </p>
 
@@ -1418,14 +1476,23 @@
 <!-- ============================================================
      SLIDE 42 — The Thread That Connects (Big Quote)
      ============================================================ -->
-<section class="flex-center">
-  <div class="big-quote" style="font-size:1.7em;">
-    "What matters is not the things &mdash;<br>it is the connections between them."
+<section>
+  <div class="columns-4060">
+    <div class="col-center" style="text-align:center;">
+      <img src="images/portraits/euler-handmann-1753.jpg"
+           alt="Leonhard Euler"
+           style="max-height:50vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+    </div>
+    <div class="col-center">
+      <div class="big-quote" style="font-size:1.5em;">
+        "What matters is not the things &mdash;<br>it is the connections between them."
+      </div>
+      <p class="fragment fade-up mt-lg text-lg">
+        This is the founding insight of graph theory.<br>
+        And it is the founding insight of AI.
+      </p>
+    </div>
   </div>
-  <p class="fragment fade-up mt-lg text-lg">
-    This is the founding insight of graph theory.<br>
-    And it is the founding insight of AI.
-  </p>
 
   <aside class="notes">
     I want to leave you with this idea. Euler realized in 1736 that the shape
@@ -1470,6 +1537,22 @@
   </aside>
 </section>
 
+
+<!-- ============================================================
+     SLIDE 44 — Image Credits
+     ============================================================ -->
+<section>
+  <h3>Image Credits</h3>
+  <ul class="text-sm" style="line-height:1.8;">
+    <li>Leonhard Euler portrait: Jakob Emanuel Handmann, 1753 — Public Domain</li>
+    <li>Arthur Cayley engraving: Wellcome Collection — CC BY 4.0</li>
+    <li>Paul Erdős photograph: Wikimedia Commons</li>
+    <li>Larry Page photograph: Wikimedia Commons — CC BY 2.0</li>
+    <li>Sergey Brin photograph: Wikimedia Commons — CC BY-SA 2.0</li>
+    <li>Königsberg map: Merian-Erben, 1652 — Public Domain</li>
+    <li>All generated diagrams: Original work for this lecture</li>
+  </ul>
+</section>
 
 </div><!-- .slides -->
 </div><!-- .reveal -->
