@@ -60,7 +60,7 @@
 /* --- Root presentation container --- */
 .reveal {
   font-family: var(--font-body);
-  font-size: 1.3em;
+  font-size: 1.8em;
   font-weight: 400;
   color: var(--text-primary);
   background-color: var(--bg-dark);
@@ -84,8 +84,9 @@
 /* --- Individual section / slide --- */
 .reveal .slides section {
   background: var(--bg-dark);
-  padding: 2rem 3rem;
-  max-width: 1500px;
+  padding: 1rem 2rem;
+  max-width: none;
+  width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -295,7 +296,7 @@
 /* Inline math: subtle blue tint */
 .reveal .katex {
   color: var(--blue);
-  font-size: 1.15em;
+  font-size: 1.2em;
 }
 
 /* Display math (block): yellow for emphasis, centered */
@@ -303,7 +304,7 @@
   color: var(--yellow);
   margin: 1.2em 0;
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1.4em;
 }
 
 .reveal .katex-display > .katex {
@@ -321,7 +322,7 @@
    ========================================================================== */
 
 .reveal section img {
-  max-height: 70vh;
+  max-height: 78vh;
   max-width: 100%;
   margin: 0 auto;
   display: block;
@@ -597,7 +598,8 @@
 
 /* --- Max-width constraint --- */
 .reveal .content-wrap {
-  max-width: 1500px;
+  max-width: none;
+  width: 100%;
   margin: 0 auto;
 }
 
