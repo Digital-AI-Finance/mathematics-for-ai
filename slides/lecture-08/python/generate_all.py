@@ -39,6 +39,11 @@ SCRIPTS = [
     'gen_17_timeline',
     'gen_18_milgram_letters',
     'gen_19_graphrag_concept',
+    'gen_20_attention_heatmap',
+    'gen_21_multihead_attention',
+    'gen_22_sparse_dense_attention',
+    'gen_23_gnn_vs_transformer',
+    'gen_24_emergence',
 ]
 
 

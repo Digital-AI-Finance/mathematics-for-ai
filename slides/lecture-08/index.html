@@ -94,6 +94,25 @@
   </aside>
 </section>
 
+<!-- ============================================================
+     SLIDE 2b — Watch: How LLMs Think
+     ============================================================ -->
+<section>
+  <h2>Watch: How LLMs Think</h2>
+  <iframe data-src="https://www.youtube.com/embed/LPZh9BOjkQs?start=0&end=180"
+          data-autoplay
+          width="1280" height="720"
+          allow="autoplay; fullscreen"
+          frameborder="0"
+          style="max-width:100%; max-height:70vh;">
+  </iframe>
+  <aside class="notes">
+    This 3-minute clip from 3Blue1Brown shows how LLMs predict the next token.
+    Watch how the probability distribution shifts as each word is processed —
+    this is the graph of connections between words that we will formalize today.
+  </aside>
+</section>
+
 
 <!-- ============================================================
      SLIDE 3 — The Question
@@ -118,6 +137,25 @@
     could you cross every single bridge exactly once and return home? Nobody
     could manage it. But nobody could prove it was impossible&mdash;until a
     mathematician named Euler stepped in.
+  </aside>
+</section>
+
+<!-- ============================================================
+     SLIDE 3b — Watch: The Bridge Problem
+     ============================================================ -->
+<section>
+  <h2>Watch: The Bridge Problem</h2>
+  <iframe data-src="https://www.youtube.com/embed/nZwSo4vfw6c"
+          data-autoplay
+          width="1280" height="720"
+          allow="autoplay; fullscreen"
+          frameborder="0"
+          style="max-width:100%; max-height:70vh;">
+  </iframe>
+  <aside class="notes">
+    This TED-Ed animation tells the full story of Euler and the Konigsberg bridges.
+    It covers exactly what we just introduced — let it run fully (4 minutes 19 seconds).
+    When it ends, we will formalize Euler's insight with the actual graph abstraction.
   </aside>
 </section>
 
@@ -485,6 +523,12 @@
       <p class="text-sm mb-0 hl-muted">More parameters &rarr; reasoning, code, math.</p>
     </div>
   </div>
+  <figure class="mt-sm" style="text-align:center;">
+    <img src="images/24-emergence-phase-transition.png"
+         alt="Dual panel showing LLM emergence sigmoid curves alongside Erdos-Renyi phase transition — same mathematical pattern"
+         style="max-height:30vh;">
+    <figcaption class="text-sm hl-muted">Same math, different systems</figcaption>
+  </figure>
   <p class="fragment fade-up mt-lg text-center text-lg">
     <strong>Phase transitions</strong> in random graphs mirror <strong>emergent abilities</strong> in LLMs.
   </p>
@@ -991,6 +1035,26 @@
   </aside>
 </section>
 
+<!-- ============================================================
+     SLIDE 30b — Watch: Attention in Action
+     ============================================================ -->
+<section>
+  <h2>Watch: Attention in Action</h2>
+  <iframe data-src="https://www.youtube.com/embed/eMlx5fFNoYc?start=150&end=300"
+          data-autoplay
+          width="1280" height="720"
+          allow="autoplay; fullscreen"
+          frameborder="0"
+          style="max-width:100%; max-height:70vh;">
+  </iframe>
+  <aside class="notes">
+    This 2.5-minute clip from 3Blue1Brown animates exactly what we just described:
+    the attention mechanism forming a complete graph between tokens. Watch how the
+    Q and K vectors produce dot products that become the adjacency matrix.
+    After this clip, we will break down the formula step by step.
+  </aside>
+</section>
+
 
 <!-- ============================================================
      SLIDE 31 — Attention is Graph Theory (with vertical deep-dive)
@@ -1020,7 +1084,13 @@
         <p class="text-sm mb-0 hl-muted">Aggregate neighbor information along edges.</p>
       </div>
     </div>
-    <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="4">&darr; Press down for complexity analysis</p>
+    <figure class="fragment fade-in mt-sm" data-fragment-index="4">
+      <img src="images/20-attention-heatmap.png"
+           alt="6x6 attention heatmap for The cat sat on the mat showing weighted connections between all token pairs"
+           style="max-height:30vh;">
+      <figcaption class="text-sm hl-muted">Attention weights = edge weights in the token graph</figcaption>
+    </figure>
+    <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="5">&darr; Press down for complexity analysis</p>
 
     <aside class="notes">
       If you look at attention through a graph theory lens, each component has
@@ -1048,6 +1118,12 @@
         <tr><td>100,000 tokens</td><td>10 billion</td><td>A novel</td></tr>
       </tbody>
     </table>
+    <figure class="fragment fade-in mt-sm">
+      <img src="images/22-sparse-dense-attention.png"
+           alt="Three 16x16 matrices comparing full attention, sliding window, and Longformer sparse attention patterns"
+           style="max-height:30vh;">
+      <figcaption class="text-sm hl-muted">Full attention (complete graph) vs. sparse patterns (sparse graphs)</figcaption>
+    </figure>
     <p class="fragment fade-up text-sm hl-muted mt-md">
       This is why researchers are developing <strong>sparse attention</strong> patterns &mdash; replacing the complete graph with a sparser one.
     </p>
@@ -1059,6 +1135,23 @@
       historically limited, and why researchers develop sparse attention
       mechanisms that replace the complete graph with a carefully chosen
       sparse graph.
+    </aside>
+  </section>
+
+  <!-- Vertical sub-slide: Multi-Head Attention -->
+  <section>
+    <h2>Multi-Head Attention: Parallel Graphs</h2>
+    <figure>
+      <img src="images/21-multihead-attention.png"
+           alt="Three attention heads showing different edge patterns on the same tokens"
+           style="max-height:55vh;">
+      <figcaption class="text-sm hl-muted">Each head discovers different connections — H heads = H parallel graphs</figcaption>
+    </figure>
+    <aside class="notes">
+      Each attention head learns to focus on different relationships. Head 1 might
+      capture positional patterns (adjacent words). Head 2 captures syntax
+      (articles and their nouns). Head 3 captures semantics (verbs and their objects).
+      Multi-head attention runs H parallel graphs on the same set of tokens.
     </aside>
   </section>
 </section>
@@ -1374,7 +1467,13 @@
       </tr>
     </tbody>
   </table>
-  <p class="fragment fade-up text-sm hl-muted mt-md">Both are message-passing on graphs &mdash; they differ in which graph they use.</p>
+  <figure class="fragment fade-in mt-sm" data-fragment-index="6">
+    <img src="images/23-gnn-vs-transformer.png"
+         alt="Side-by-side comparison: GNN message passing on sparse graph vs. Transformer attention on complete graph"
+         style="max-height:30vh;">
+    <figcaption class="text-sm hl-muted">Both architectures: message passing along graph edges</figcaption>
+  </figure>
+  <p class="fragment fade-up text-sm hl-muted mt-md" data-fragment-index="7">Both are message-passing on graphs &mdash; they differ in which graph they use.</p>
 
   <aside class="notes">
     Which is better? Neither &mdash; they serve different purposes. The
@@ -1551,6 +1650,9 @@
     <li>Sergey Brin photograph: Wikimedia Commons — CC BY-SA 2.0</li>
     <li>Königsberg map: Merian-Erben, 1652 — Public Domain</li>
     <li>All generated diagrams: Original work for this lecture</li>
+    <li>Video: "How the Königsberg bridge problem changed mathematics" — TED-Ed (YouTube)</li>
+    <li>Video: "Attention in transformers, step-by-step" — 3Blue1Brown (YouTube)</li>
+    <li>Video: "Large Language Models explained briefly" — 3Blue1Brown (YouTube)</li>
   </ul>
 </section>
 
