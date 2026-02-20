@@ -87,14 +87,14 @@ def main():
         total = N * N
         pct = edges / total * 100
 
-        ax.set_title(title, fontsize=22, fontweight='bold', color=accent, pad=14)
-        ax.set_xlabel(f'{edges} edges ({pct:.0f}%)', fontsize=16,
+        ax.set_title(title, fontsize=24, fontweight='bold', color=accent, pad=14)
+        ax.set_xlabel(f'{edges} edges ({pct:.0f}%)', fontsize=23,
                       color=TEXT, labelpad=10)
 
         # Tick styling
         ax.set_xticks(range(0, N, 4))
         ax.set_yticks(range(0, N, 4))
-        ax.tick_params(axis='both', colors=MUTED, labelsize=11, length=0)
+        ax.tick_params(axis='both', colors=MUTED, labelsize=23, length=0)
 
         # Subtle grid
         for k in range(N + 1):
@@ -106,7 +106,7 @@ def main():
 
     fig.text(0.5, 0.02,
              'Reducing edges from O(n\u00b2) to O(n) cuts compute while preserving key connections',
-             ha='center', fontsize=18, color=MUTED)
+             ha='center', fontsize=23, color=MUTED)
 
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
 

@@ -116,12 +116,12 @@ def main():
         im = ax.imshow(mat, cmap=cmap, vmin=0, vmax=1, aspect='equal')
 
         ax.set_xticks(range(N))
-        ax.set_xticklabels(WORDS, fontsize=14, fontweight='bold', color=TEXT)
+        ax.set_xticklabels(WORDS, fontsize=23, fontweight='bold', color=TEXT)
         ax.set_yticks(range(N))
-        ax.set_yticklabels(WORDS, fontsize=14, fontweight='bold', color=TEXT)
+        ax.set_yticklabels(WORDS, fontsize=23, fontweight='bold', color=TEXT)
         ax.tick_params(axis='both', length=0, pad=6)
 
-        ax.set_title(title, fontsize=20, fontweight='bold', color=accent, pad=14)
+        ax.set_title(title, fontsize=24, fontweight='bold', color=accent, pad=14)
 
         # Annotate cells
         for i in range(N):
@@ -129,14 +129,14 @@ def main():
                 val = mat[i, j]
                 txt_color = BG if val > 0.6 else TEXT
                 ax.text(j, i, f'{val:.1f}', ha='center', va='center',
-                        fontsize=11, fontweight='bold', color=txt_color)
+                        fontsize=23, fontweight='bold', color=txt_color)
 
     fig.suptitle('Multi-Head Attention: H Heads = H Parallel Graphs',
-                 fontsize=32, fontweight='bold', color=TEXT, y=0.97)
+                 fontsize=34, fontweight='bold', color=TEXT, y=0.97)
 
     fig.text(0.5, 0.02,
              'Each head learns a different relationship pattern over the same tokens',
-             ha='center', fontsize=18, color=MUTED)
+             ha='center', fontsize=23, color=MUTED)
 
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
 

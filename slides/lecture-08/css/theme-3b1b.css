@@ -84,7 +84,7 @@
 /* --- Individual section / slide --- */
 .reveal .slides section {
   background: var(--bg-dark);
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   max-width: none;
   width: 100%;
   margin: 0 auto;
@@ -111,7 +111,7 @@
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.25;
-  margin: 0 0 0.75em 0;
+  margin: 0 0 0.35em 0;
   text-shadow: none;
   word-break: break-word;
 }

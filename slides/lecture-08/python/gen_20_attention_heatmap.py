@@ -85,9 +85,9 @@ def main():
 
     # Axis labels
     ax.set_xticks(range(N))
-    ax.set_xticklabels(WORDS, fontsize=22, fontweight='bold', color=TEXT)
+    ax.set_xticklabels(WORDS, fontsize=24, fontweight='bold', color=TEXT)
     ax.set_yticks(range(N))
-    ax.set_yticklabels(WORDS, fontsize=22, fontweight='bold', color=TEXT)
+    ax.set_yticklabels(WORDS, fontsize=24, fontweight='bold', color=TEXT)
     ax.tick_params(axis='both', length=0, pad=10)
 
     # Move x-axis labels to top as well
@@ -101,12 +101,12 @@ def main():
             val = mat[i, j]
             txt_color = BG if val > 0.6 else TEXT
             ax.text(j, i, f'{val:.2f}', ha='center', va='center',
-                    fontsize=16, fontweight='bold', color=txt_color)
+                    fontsize=23, fontweight='bold', color=txt_color)
 
     # Colorbar
     cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    cbar.set_label('Attention Weight', fontsize=18, color=TEXT, labelpad=12)
-    cbar.ax.tick_params(labelsize=14, colors=TEXT)
+    cbar.set_label('Attention Weight', fontsize=23, color=TEXT, labelpad=12)
+    cbar.ax.tick_params(labelsize=23, colors=TEXT)
 
     # Title
     fig.suptitle('Attention Weights = Adjacency Matrix',
@@ -114,7 +114,7 @@ def main():
 
     # Subtitle
     ax.set_xlabel('"The cat sat on the mat" \u2014 each cell is an edge weight',
-                  fontsize=18, color=MUTED, labelpad=15)
+                  fontsize=23, color=MUTED, labelpad=15)
 
     plt.savefig(OUTPUT_PATH, dpi=200, bbox_inches='tight',
                 facecolor=BG, edgecolor='none')

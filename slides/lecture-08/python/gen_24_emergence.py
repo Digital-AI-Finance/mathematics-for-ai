@@ -57,16 +57,16 @@ def draw_llm_panel(ax):
     ax.set_xscale('log')
     ax.set_xlim(1e8, 1e12)
     ax.set_ylim(-5, 105)
-    ax.set_xlabel('Model Parameters', fontsize=18, color=TEXT, labelpad=10)
-    ax.set_ylabel('Task Accuracy (%)', fontsize=18, color=TEXT, labelpad=10)
-    ax.set_title('LLM Emergent Abilities', fontsize=24, fontweight='bold',
+    ax.set_xlabel('Model Parameters', fontsize=23, color=TEXT, labelpad=10)
+    ax.set_ylabel('Task Accuracy (%)', fontsize=23, color=TEXT, labelpad=10)
+    ax.set_title('LLM Emergent Abilities', fontsize=26, fontweight='bold',
                  color=YELLOW, pad=14)
-    ax.legend(fontsize=15, loc='upper left', frameon=False, labelcolor=TEXT)
-    ax.tick_params(colors=MUTED, labelsize=13)
+    ax.legend(fontsize=23, loc='upper left', frameon=False, labelcolor=TEXT)
+    ax.tick_params(colors=MUTED, labelsize=23)
     ax.grid(True, alpha=0.15, color=MUTED)
 
     # Annotation at critical region
-    ax.annotate('Critical\nthreshold', xy=(1e10, 50), fontsize=14,
+    ax.annotate('Critical\nthreshold', xy=(1e10, 50), fontsize=23,
                 color=MUTED, ha='center', va='bottom',
                 style='italic')
 
@@ -91,19 +91,19 @@ def draw_er_panel(ax):
 
     # Labels for phases
     ax.text(0.004, 15, 'Many small\ncomponents',
-            fontsize=15, color=MUTED, ha='center', style='italic')
+            fontsize=23, color=MUTED, ha='center', style='italic')
     ax.text(0.018, 85, 'Giant component\nemerges',
-            fontsize=15, color=BLUE, ha='center', fontweight='bold')
+            fontsize=23, color=BLUE, ha='center', fontweight='bold')
 
     ax.set_xlim(0, 0.025)
     ax.set_ylim(-5, 105)
-    ax.set_xlabel('Edge Probability $p$', fontsize=18, color=TEXT, labelpad=10)
-    ax.set_ylabel('Giant Component Fraction (%)', fontsize=18, color=TEXT,
+    ax.set_xlabel('Edge Probability $p$', fontsize=23, color=TEXT, labelpad=10)
+    ax.set_ylabel('Giant Component Fraction (%)', fontsize=23, color=TEXT,
                   labelpad=10)
     ax.set_title('Erd\u0151s\u2013R\u00e9nyi Phase Transition',
-                 fontsize=24, fontweight='bold', color=BLUE, pad=14)
-    ax.legend(fontsize=15, loc='upper left', frameon=False, labelcolor=TEXT)
-    ax.tick_params(colors=MUTED, labelsize=13)
+                 fontsize=26, fontweight='bold', color=BLUE, pad=14)
+    ax.legend(fontsize=23, loc='upper left', frameon=False, labelcolor=TEXT)
+    ax.tick_params(colors=MUTED, labelsize=23)
     ax.grid(True, alpha=0.15, color=MUTED)
 
 
@@ -123,7 +123,7 @@ def main():
 
     fig.text(0.5, 0.02,
              'Phase transitions explain why abilities "suddenly" appear at scale',
-             ha='center', fontsize=18, color=MUTED)
+             ha='center', fontsize=23, color=MUTED)
 
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
 

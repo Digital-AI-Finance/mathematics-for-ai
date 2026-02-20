@@ -73,16 +73,16 @@ def draw_gnn_panel(ax):
                            edgecolors='white', linewidths=2.5)
 
     # Labels
-    nx.draw_networkx_labels(G, pos, ax=ax, font_size=18, font_weight='bold',
+    nx.draw_networkx_labels(G, pos, ax=ax, font_size=23, font_weight='bold',
                             font_color=BG)
 
-    ax.set_title('GNN: Message Passing', fontsize=24, fontweight='bold',
+    ax.set_title('GNN: Message Passing', fontsize=26, fontweight='bold',
                  color=TEAL, pad=18)
 
     # Formula below graph
     ax.text(0.5, -0.08,
             r'$h_v^{(l+1)} = \sigma\!\left(\sum_{u \in N(v)} W\, h_u^{(l)}\right)$',
-            transform=ax.transAxes, fontsize=18, color=TEXT,
+            transform=ax.transAxes, fontsize=23, color=TEXT,
             ha='center', va='top',
             bbox=dict(boxstyle='round,pad=0.4', facecolor='#1e3044',
                       edgecolor=TEAL, alpha=0.9))
@@ -123,16 +123,16 @@ def draw_transformer_panel(ax):
                            node_color=[BLUE] * 5, node_size=900,
                            edgecolors='white', linewidths=2.5)
 
-    nx.draw_networkx_labels(G, pos, ax=ax, font_size=18, font_weight='bold',
+    nx.draw_networkx_labels(G, pos, ax=ax, font_size=23, font_weight='bold',
                             font_color=BG)
 
-    ax.set_title('Transformer: Attention', fontsize=24, fontweight='bold',
+    ax.set_title('Transformer: Attention', fontsize=26, fontweight='bold',
                  color=YELLOW, pad=18)
 
     # Formula
     ax.text(0.5, -0.08,
             r'$\mathrm{Attn}(Q,K,V) = \mathrm{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)\!V$',
-            transform=ax.transAxes, fontsize=18, color=TEXT,
+            transform=ax.transAxes, fontsize=23, color=TEXT,
             ha='center', va='top',
             bbox=dict(boxstyle='round,pad=0.4', facecolor='#1e3044',
                       edgecolor=YELLOW, alpha=0.9))
@@ -158,7 +158,7 @@ def main():
 
     fig.text(0.5, 0.02,
              'Sparse neighbors (GNN) vs. full attention (Transformer) \u2014 same update rule, different graphs',
-             ha='center', fontsize=18, color=MUTED)
+             ha='center', fontsize=23, color=MUTED)
 
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
 
