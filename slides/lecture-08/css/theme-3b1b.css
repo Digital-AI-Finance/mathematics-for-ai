@@ -60,7 +60,7 @@
 /* --- Root presentation container --- */
 .reveal {
   font-family: var(--font-body);
-  font-size: 1.8em;
+  font-size: 1.2em;
   font-weight: 400;
   color: var(--text-primary);
   background-color: var(--bg-dark);
@@ -117,32 +117,32 @@
 }
 
 .reveal h1 {
-  font-size: 2.4em;
+  font-size: 1.6em;
   font-weight: 800;
   line-height: 1.1;
 }
 
 /* Primary slide titles */
 .reveal h2 {
-  font-size: 2.2em;
+  font-size: 1.3em;
   font-weight: 700;
 }
 
 /* Sub-headings within slides */
 .reveal h3 {
-  font-size: 1.55em;
+  font-size: 0.95em;
   font-weight: 600;
   color: var(--blue);
 }
 
 .reveal h4 {
-  font-size: 1.2em;
+  font-size: 0.75em;
   font-weight: 600;
   color: var(--teal);
 }
 
 .reveal h5 {
-  font-size: 1em;
+  font-size: 0.65em;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -322,7 +322,7 @@
    ========================================================================== */
 
 .reveal section img {
-  max-height: 78vh;
+  max-height: 26vh;
   max-width: 100%;
   margin: 0 auto;
   display: block;
@@ -339,7 +339,7 @@
 
 /* Full-bleed images */
 .reveal section img.full-bleed {
-  max-height: 75vh;
+  max-height: 25vh;
   border-radius: 0;
   box-shadow: none;
 }
@@ -790,7 +790,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 60vh;
+  min-height: 20vh;
 }
 
 .reveal .section-divider .act-label {
@@ -1383,7 +1383,7 @@
 /* Scrollable overflow for long content in a fixed-height container */
 .reveal .scroll-content {
   overflow-y: auto;
-  max-height: 55vh;
+  max-height: 18vh;
   padding-right: 0.5rem;
   scrollbar-width: thin;
   scrollbar-color: var(--bg-card) transparent;
