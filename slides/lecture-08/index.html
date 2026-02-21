@@ -46,11 +46,11 @@
 <section class="center-layout">
   <h2>The Biggest Breakthrough in AI History</h2>
 
-  <p class="fragment fade-in text-lg" data-fragment-index="1" style="margin-top:1rem;">
+  <p class="fragment fade-in text-lg" data-fragment-index="1" style="margin-top:0.3rem;">
     ChatGPT. Claude. Gemini. &mdash; You use them every day.
   </p>
 
-  <div class="columns-3" style="margin-top:1.5rem;">
+  <div class="columns-3" style="margin-top:0.5rem;">
     <div class="card card-teal fragment fade-in" data-fragment-index="2">
       <h4 style="color:var(--teal);">Attention = Complete Graph</h4>
       <p class="text-sm mb-0">Every word in a sentence connects to every other word. That is a <strong>graph</strong> &mdash; and it is the core idea behind every LLM.</p>
@@ -526,12 +526,9 @@
   <figure class="mt-sm" style="text-align:center;">
     <img src="images/24-emergence-phase-transition.png"
          alt="Dual panel showing LLM emergence sigmoid curves alongside Erdos-Renyi phase transition — same mathematical pattern"
-         style="max-height:23vh; max-width:98%;">
+         style="max-height:16vh; max-width:98%;">
     <figcaption class="text-sm hl-muted">Same math, different systems</figcaption>
   </figure>
-  <p class="fragment fade-up mt-lg text-center text-lg">
-    <strong>Phase transitions</strong> in random graphs mirror <strong>emergent abilities</strong> in LLMs.
-  </p>
 
   <aside class="notes">
     This idea of phase transition is exactly what we see in large language models.
@@ -1198,7 +1195,7 @@
 <section>
   <h2>RAG: Giving AI a Memory</h2>
   <figure>
-    <img src="images/14-rag-pipeline.png" alt="Retrieval-Augmented Generation pipeline" style="max-height:20vh;">
+    <img src="images/14-rag-pipeline.png" alt="Retrieval-Augmented Generation pipeline" style="max-height:16vh;">
   </figure>
   <ul class="step-list mt-sm">
     <li class="fragment fade-in" data-fragment-index="1">
@@ -1319,7 +1316,7 @@
     <h2>The GNN Formula</h2>
     <div class="formula-box">
       <span class="formula-label">Message Passing Update Rule</span>
-      $$h_v^{(l+1)} = \text{UPDATE}\!\left(h_v^{(l)},\; \text{AGGREGATE}\!\left(\{h_u^{(l)} : u \in \mathcal{N}(v)\}\right)\right)$$
+      $$h_v^{(l+1)} = \text{UPDATE}\Big(h_v^{(l)},\; \text{AGG}\big(\{h_u^{(l)} : u \in \mathcal{N}(v)\}\big)\Big)$$
     </div>
     <div class="columns mt-md">
       <div class="card card-teal fragment fade-in" data-fragment-index="1">

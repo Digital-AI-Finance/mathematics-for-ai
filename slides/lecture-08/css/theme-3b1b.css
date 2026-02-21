@@ -111,7 +111,7 @@
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.25;
-  margin: 0 0 0.35em 0;
+  margin: 0 0 0.2em 0;
   text-shadow: none;
   word-break: break-word;
 }
@@ -165,14 +165,14 @@
   font-size: 1.1em;
   font-weight: 400;
   color: var(--text-primary);
-  line-height: 1.65;
-  margin: 0 0 0.8em 0;
+  line-height: 1.45;
+  margin: 0 0 0.4em 0;
 }
 
 .reveal ul,
 .reveal ol {
   display: block;
-  margin: 0 0 1em 0;
+  margin: 0 0 0.5em 0;
   padding-left: 1.4em;
   line-height: 1.7;
 }
@@ -188,7 +188,7 @@
 .reveal li {
   font-size: 1.05em;
   color: var(--text-primary);
-  margin-bottom: 0.4em;
+  margin-bottom: 0.2em;
   line-height: 1.6;
 }
 
@@ -302,7 +302,7 @@
 /* Display math (block): yellow for emphasis, centered */
 .reveal .katex-display {
   color: var(--yellow);
-  margin: 1.2em 0;
+  margin: 0.6em 0;
   text-align: center;
   font-size: 1.4em;
 }
@@ -367,7 +367,7 @@
   background: transparent;
   border-left: 4px solid var(--yellow);
   padding: 0.6em 1.2em;
-  margin: 1em 0;
+  margin: 0.5em 0;
   font-style: italic;
   color: var(--yellow);
   font-size: 1.05em;
@@ -397,21 +397,21 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95em;
-  margin: 1em 0;
+  margin: 0.5em 0;
 }
 
 .reveal table th {
   background: var(--bg-card);
   color: var(--blue);
   font-weight: 700;
-  padding: 0.65em 0.9em;
+  padding: 0.45em 0.7em;
   text-align: left;
   border-bottom: 2px solid var(--blue);
   letter-spacing: 0.03em;
 }
 
 .reveal table td {
-  padding: 0.55em 0.9em;
+  padding: 0.4em 0.7em;
   border-bottom: 1px solid rgba(236, 240, 241, 0.08);
   color: var(--text-primary);
   vertical-align: top;
@@ -681,10 +681,10 @@
 .reveal .card {
   background: var(--bg-card);
   border-radius: var(--radius-md);
-  padding: 1.5rem 2rem;
+  padding: 0.8rem 1.2rem;
   border-left: 4px solid var(--blue);
   box-shadow: var(--shadow-card);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Color variants */
@@ -757,16 +757,16 @@
   background: var(--bg-darker);
   border: 1px solid rgba(52, 152, 219, 0.3);
   border-radius: var(--radius-md);
-  padding: 1.5rem 2rem;
+  padding: 0.8rem 1.2rem;
   text-align: center;
-  margin: 1.2em 0;
+  margin: 0.6em 0;
   box-shadow: var(--shadow-blue);
 }
 
 .reveal .formula-box .katex-display,
 .reveal .formula-box .katex {
   color: var(--yellow);
-  font-size: 1.2em;
+  font-size: 1.0em;
 }
 
 /* Optional label above the formula */
@@ -952,7 +952,7 @@
    ========================================================================== */
 
 .reveal .interactive-container {
-  min-height: 420px;
+  min-height: 294px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -990,13 +990,13 @@
 .reveal .interactive-container canvas,
 .reveal .interactive-container svg {
   max-width: 100%;
-  max-height: 450px;
+  max-height: 315px;
   z-index: 1;
 }
 
 /* Taller variant for full-slide visuals */
 .reveal .interactive-container.tall {
-  min-height: 550px;
+  min-height: 385px;
 }
 
 
@@ -1258,11 +1258,11 @@
 
   /* Interactive container */
   .reveal .interactive-container {
-    min-height: 260px;
+    min-height: 182px;
   }
 
   .reveal .interactive-container.tall {
-    min-height: 340px;
+    min-height: 238px;
   }
 }
 
@@ -1335,13 +1335,13 @@
 
 /* Margin helpers */
 .reveal .mt-0  { margin-top: 0; }
-.reveal .mt-sm { margin-top: 0.5rem; }
-.reveal .mt-md { margin-top: 1rem; }
-.reveal .mt-lg { margin-top: 2rem; }
+.reveal .mt-sm { margin-top: 0.3rem; }
+.reveal .mt-md { margin-top: 0.5rem; }
+.reveal .mt-lg { margin-top: 0.8rem; }
 .reveal .mb-0  { margin-bottom: 0; }
-.reveal .mb-sm { margin-bottom: 0.5rem; }
-.reveal .mb-md { margin-bottom: 1rem; }
-.reveal .mb-lg { margin-bottom: 2rem; }
+.reveal .mb-sm { margin-bottom: 0.3rem; }
+.reveal .mb-md { margin-bottom: 0.5rem; }
+.reveal .mb-lg { margin-bottom: 0.8rem; }
 
 /* Opacity levels */
 .reveal .opacity-50 { opacity: 0.5; }
@@ -1369,7 +1369,7 @@
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-md);
-  padding: 1.5rem 2rem;
+  padding: 0.8rem 1.2rem;
   box-shadow: var(--shadow-card);
 }
 
