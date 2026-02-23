@@ -44,6 +44,11 @@ SCRIPTS = [
     'gen_22_sparse_dense_attention',
     'gen_23_gnn_vs_transformer',
     'gen_24_emergence',
+    'gen_25_math_constellation',
+    'gen_26_attention_derivation',
+    'gen_27_llm_cross_section',
+    'gen_28_scaling_laws',
+    'gen_29_five_pillars',
 ]
 
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lecture 8: Graph Theory &amp; Networks &mdash; From Bridges to Transformers</title>
+  <title>Lecture 8: The Code of the Universe &mdash; From Classical Mathematics to Large Language Models</title>
 
   <!-- Reveal.js 5.x -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
@@ -28,14 +28,18 @@
      ============================================================ -->
 <section class="center-layout">
   <p><span class="milestone-badge milestone-ai-connection">Lecture 8</span></p>
-  <h1>Graph Theory &amp; Networks</h1>
-  <h3 class="hl-teal" style="font-weight:500;">From Bridges to Transformers</h3>
-  <p class="hl-muted text-sm mt-lg">The Mathematics of Connections &mdash; 1736 to Today</p>
+  <h1>The Code of the Universe</h1>
+  <h3 class="hl-teal" style="font-weight:500;">From Classical Mathematics to Large Language Models</h3>
+  <p class="hl-muted text-sm mt-lg">How 300 Years of Pure Mathematics Built the AI You Use Every Day</p>
 
   <aside class="notes">
-    Welcome. Today we trace 300 years of one idea: that the connections between
-    things matter more than the things themselves. We will start in 1736 with a
-    puzzle about bridges, and end with the AI models you interact with every day.
+    Today we trace how three centuries of pure mathematics converged into the
+    architecture of large language models. The central thread is graph theory
+    &mdash; from Euler&rsquo;s 1736 proof on K&ouml;nigsberg to the attention
+    mechanism in modern transformers. Linear algebra, probability, and information
+    theory each enter the story at precise points, and by the final slide you
+    will see all three branches meet in a single equation. This is another line
+    of the code of the universe &mdash; written in the language of connections.
   </aside>
 </section>
 
@@ -47,50 +51,63 @@
   <h2>The Biggest Breakthrough in AI History</h2>
 
   <p class="fragment fade-in text-lg" data-fragment-index="1" style="margin-top:0.3rem;">
-    ChatGPT. Claude. Gemini. &mdash; You use them every day.
+    ChatGPT. Claude. Gemini. &mdash; Built from <strong>three branches</strong> of pure mathematics.
   </p>
 
   <div class="columns-3" style="margin-top:0.5rem;">
     <div class="card card-teal fragment fade-in" data-fragment-index="2">
-      <h4 style="color:var(--teal);">Attention = Complete Graph</h4>
-      <p class="text-sm mb-0">Every word in a sentence connects to every other word. That is a <strong>graph</strong> &mdash; and it is the core idea behind every LLM.</p>
+      <h4 style="color:var(--teal);">Graph Theory</h4>
+      <p class="text-sm mb-0">Euler, 1736 &mdash; <em>The mathematics of connections.</em><br>Every LLM is a graph processor: attention creates a complete graph over tokens.</p>
     </div>
     <div class="card card-yellow fragment fade-in" data-fragment-index="3">
-      <h4 style="color:var(--yellow);">Transformers = Graph Networks</h4>
-      <p class="text-sm mb-0">The 2017 &ldquo;Attention Is All You Need&rdquo; paper built a neural network that <em>is</em> a graph processor. It changed everything.</p>
+      <h4 style="color:var(--yellow);">Linear Algebra</h4>
+      <p class="text-sm mb-0">Cayley, Sylvester &mdash; <em>The mathematics of transformation.</em><br>Embeddings, projections, the QKV matrices &mdash; linear algebra is the engine.</p>
     </div>
     <div class="card card-green fragment fade-in" data-fragment-index="4">
-      <h4 style="color:var(--green);">Knowledge Graphs = AI Memory</h4>
-      <p class="text-sm mb-0">When AI retrieves facts, it searches a <strong>knowledge graph</strong> &mdash; billions of nodes and edges encoding human knowledge.</p>
+      <h4 style="color:var(--green);">Information Theory</h4>
+      <p class="text-sm mb-0">Shannon, 1948 &mdash; <em>The mathematics of meaning.</em><br>Cross-entropy loss, tokenization, compression &mdash; how models learn from data.</p>
     </div>
   </div>
 
   <p class="fragment fade-up hl-yellow text-lg mt-lg" data-fragment-index="5">
-    Graph theory is the mathematics of the AI revolution.
+    Today we trace one deep thread &mdash; <strong>graph theory</strong> &mdash; and watch all three converge in a single equation.
   </p>
 
   <aside class="notes">
-    Let me start with something you already know: ChatGPT, Claude, Gemini -- the
-    AI tools you probably use for homework, coding, or just chatting. These are
-    Large Language Models, and they represent the biggest breakthrough in AI
-    history. Here is the secret nobody tells you: they run on graph theory.
+    Three branches of mathematics converge here. Graph theory supplies the
+    architecture: self-attention constructs a complete weighted digraph over
+    tokens at every layer. Linear algebra supplies the engine: the QKV
+    projections are learned linear maps in $\mathbb{R}^{d \times d_k}$.
+    Information theory supplies the loss: cross-entropy measures the
+    Kullback&ndash;Leibler divergence between the model&rsquo;s predicted
+    distribution and the empirical next-token distribution. Today we follow
+    the graph-theory thread end to end, and by the final equation you will
+    see exactly where the other two branches enter.
+  </aside>
+</section>
 
-    The core mechanism is called "attention." When an LLM reads your sentence, it
-    builds a complete graph -- every word is a node, and every word connects to
-    every other word with a weighted edge. The model learns which connections
-    matter most. That IS graph theory.
+<!-- ============================================================
+     SLIDE 2c — The Mathematical Constellation
+     ============================================================ -->
+<section class="center-layout">
+  <h2>The Mathematical Universe of AI</h2>
+  <figure>
+    <img src="images/25-math-constellation.png"
+         alt="Constellation of mathematical branches feeding into LLMs"
+         style="max-height:22vh; max-width:98%;">
+  </figure>
+  <p class="fragment fade-up text-lg mt-sm">
+    Each branch deserves its own lecture. Today we follow <span class="hl-yellow">one thread</span> all the way through.
+  </p>
 
-    The transformer architecture from Google's 2017 paper "Attention Is All You
-    Need" is literally a graph neural network -- it processes information by
-    passing messages along edges of a graph, exactly like the algorithms we will
-    study today.
-
-    And when people talk about AI having "knowledge" -- that knowledge is stored
-    in massive knowledge graphs with billions of entities connected by
-    relationships. When ChatGPT retrieves a fact, it is traversing a graph.
-
-    So when you learn graph theory today, you are learning the mathematics that
-    powers the most transformative technology of your lifetime. Let us begin.
+  <aside class="notes">
+    This diagram maps the mathematical landscape behind modern AI: graph
+    theory, linear algebra, probability, multivariate calculus, information
+    theory, and topology. Each branch is necessary; none is sufficient alone.
+    Today we isolate graph theory as our thread and trace it from Euler
+    through Cayley, Erd&#337;s, PageRank, and finally the attention equation.
+    The other branches will appear naturally at the points where the code of
+    the universe demands them.
   </aside>
 </section>
 
@@ -107,9 +124,13 @@
           style="max-width:100%; max-height:23vh;">
   </iframe>
   <aside class="notes">
-    This 3-minute clip from 3Blue1Brown shows how LLMs predict the next token.
-    Watch how the probability distribution shifts as each word is processed —
-    this is the graph of connections between words that we will formalize today.
+    This 3-minute clip from 3Blue1Brown visualizes next-token prediction.
+    Pay attention to the softmax distribution shifting as each token is
+    processed &mdash; what you are seeing is the output of a complete
+    weighted digraph recomputed at every layer. The attention weights form
+    an adjacency matrix; the softmax normalizes each row into a stochastic
+    vector. We will formalize this graph-theoretic interpretation precisely
+    when we reach the attention equation.
   </aside>
 </section>
 
@@ -132,11 +153,13 @@
   </figure>
 
   <aside class="notes">
-    In 1736, the citizens of Konigsberg had a puzzle. Their city was built on
-    a river with two islands, connected by seven bridges. On a Sunday stroll,
-    could you cross every single bridge exactly once and return home? Nobody
-    could manage it. But nobody could prove it was impossible&mdash;until a
-    mathematician named Euler stepped in.
+    K&ouml;nigsberg, 1736: four landmasses, seven bridges, and a question no
+    one could settle empirically. Can you traverse every bridge exactly once?
+    Exhaustive search over all possible routes is combinatorially prohibitive.
+    Euler&rsquo;s breakthrough was to prove impossibility by reduction to an
+    abstract structure &mdash; the first recorded use of what we now call a
+    graph. This is where the code of the universe begins its graph-theory
+    chapter.
   </aside>
 </section>
 
@@ -153,9 +176,12 @@
           style="max-width:100%; max-height:23vh;">
   </iframe>
   <aside class="notes">
-    This TED-Ed animation tells the full story of Euler and the Konigsberg bridges.
-    It covers exactly what we just introduced — let it run fully (4 minutes 19 seconds).
-    When it ends, we will formalize Euler's insight with the actual graph abstraction.
+    Let this TED-Ed animation run in full (4 min 19 sec). It covers the
+    historical context and Euler&rsquo;s abstraction. When it finishes, we
+    formalize the key idea: Euler reduced a geographic problem to a multigraph
+    with four vertices and seven edges, then derived a necessary condition on
+    vertex degrees. That step &mdash; stripping away geometry to expose
+    combinatorial structure &mdash; is the founding move of graph theory.
   </aside>
 </section>
 
@@ -173,11 +199,12 @@
   </figure>
 
   <aside class="notes">
-    Four landmasses connected by seven bridges over the River Pregel. Two large
-    islands sit in the middle of the river; the north and south banks form the
-    other two landmasses. Citizens tried every possible route, but nobody could
-    cross all seven bridges without retracing their steps. This is the map that
-    started it all.
+    The Pregel River divides K&ouml;nigsberg into four landmasses connected by
+    seven bridges. Modeled as a multigraph $G = (V, E)$ with $|V| = 4$ and
+    $|E| = 7$. The degree sequence is $(5, 3, 3, 3)$ &mdash; all vertices
+    have odd degree. No brute-force enumeration of routes could resolve the
+    question; what was needed was a structural argument. Euler supplied exactly
+    that, and in doing so created the first theorem in graph theory.
   </aside>
 </section>
 
@@ -202,11 +229,13 @@
   </p>
 
   <aside class="notes">
-    Euler's genius was this abstraction. He stripped away every physical detail
-    &mdash; the river, the streets, the buildings &mdash; and kept only what
-    mattered: the landmasses became points, and the bridges became lines
-    connecting them. This was the birth of graph theory. We went from geography
-    to pure structure.
+    Euler&rsquo;s decisive move was abstraction: discard metric information
+    (distances, angles, curvature) and retain only incidence structure. Landmasses
+    become vertices; bridges become edges. This is the same move that later
+    gave rise to topology &mdash; Euler himself laid groundwork for both fields.
+    The K&ouml;nigsberg problem is often cited as the origin of both graph theory
+    and combinatorial topology. Here the mathematical thread connects the
+    study of discrete structures to the study of continuous ones.
   </aside>
 </section>
 
@@ -237,40 +266,75 @@
   </div>
 
   <aside class="notes">
-    These circles are nodes, or vertices. Each line is an edge. The degree of a
-    node is how many edges connect to it. In the Konigsberg graph, landmass A
-    has degree 5, and the others have degree 3. All odd. Remember that &mdash;
-    it will matter in a moment.
+    Formally: a graph $G = (V, E)$ with vertex set $V$ and edge set
+    $E \subseteq \binom{V}{2}$ (or a multiset for multigraphs like K&ouml;nigsberg).
+    The degree $\deg(v)$ counts edges incident to $v$. Here the degree sequence
+    is $(5, 3, 3, 3)$. By the Handshaking Lemma, $\sum_v \deg(v) = 2|E| = 14$,
+    so the number of odd-degree vertices is necessarily even. K&ouml;nigsberg
+    has four such vertices &mdash; already a signal that Euler&rsquo;s theorem
+    will yield impossibility.
   </aside>
 </section>
 
 
 <!-- ============================================================
-     SLIDE 7 — Euler's Answer
+     SLIDE 7 — Euler's Answer (with vertical proof)
      ============================================================ -->
 <section>
-  <h2>Euler's Theorem
-    <span class="milestone-badge milestone-discovery">Discovery</span>
-  </h2>
-  <div class="fragment fade-in" data-fragment-index="1">
-    <img src="images/03-euler-path-rule.png" alt="Euler path rule with degree annotations" style="max-height:20vh;">
-  </div>
-  <div class="formula-box fragment fade-in" data-fragment-index="2">
-    <span class="formula-label">Euler's Criterion</span>
-    <p>An Eulerian path exists if and only if the graph has exactly <strong>0 or 2</strong> vertices of odd degree.</p>
-  </div>
-  <div class="callout callout-orange fragment fade-up" data-fragment-index="3">
-    <p class="mb-0">Konigsberg has <strong>4</strong> odd-degree vertices. Need 0 or 2. <span class="hl-red">Impossible.</span></p>
-  </div>
+  <!-- Main Euler's Theorem slide -->
+  <section>
+    <h2>Euler's Theorem
+      <span class="milestone-badge milestone-discovery">Discovery</span>
+    </h2>
+    <div class="fragment fade-in" data-fragment-index="1">
+      <img src="images/03-euler-path-rule.png" alt="Euler path rule with degree annotations" style="max-height:20vh;">
+    </div>
+    <div class="formula-box fragment fade-in" data-fragment-index="2">
+      <span class="formula-label">Euler's Criterion</span>
+      <p>An Eulerian path exists if and only if the graph has exactly <strong>0 or 2</strong> vertices of odd degree.</p>
+    </div>
+    <div class="callout callout-orange fragment fade-up" data-fragment-index="3">
+      <p class="mb-0">Konigsberg has <strong>4</strong> odd-degree vertices. Need 0 or 2. <span class="hl-red">Impossible.</span></p>
+    </div>
+    <p class="text-sm hl-muted fragment fade-up mt-sm" data-fragment-index="4">&darr; Press down for the proof</p>
 
-  <aside class="notes">
-    Euler proved that you can only traverse every edge exactly once if the graph
-    has zero or two vertices of odd degree. Zero odd vertices means you can start
-    anywhere and return to your start. Two odd vertices means you must start at
-    one and end at the other. Konigsberg has four odd-degree vertices &mdash;
-    so no Eulerian path exists. The Sunday stroll is impossible, and now we know
-    why. Mathematics gave us certainty where trial-and-error could not.
-  </aside>
+    <aside class="notes">
+      Euler&rsquo;s theorem: a connected multigraph admits an Eulerian circuit
+      iff every vertex has even degree; it admits an Eulerian path (non-closed)
+      iff exactly two vertices have odd degree. K&ouml;nigsberg has four
+      odd-degree vertices, so neither exists. The proof uses only the
+      Handshaking Lemma and a parity argument &mdash; press down for the
+      details. This is the first impossibility proof in combinatorics and the
+      first theorem of graph theory.
+    </aside>
+  </section>
+
+  <!-- Vertical: Proof -->
+  <section>
+    <h3>Why It Works: Proof of Euler's Criterion</h3>
+    <div class="card">
+      <p><strong>Handshaking Lemma:</strong> $\sum_{v \in V} \deg(v) = 2|E|$</p>
+      <p class="text-sm mb-0 hl-muted">Every edge contributes 2 to the total degree. So the number of odd-degree vertices is always even.</p>
+    </div>
+    <ol class="fragment fade-in text-sm" style="line-height:1.5;">
+      <li>Traversing an edge uses one &ldquo;entry&rdquo; and one &ldquo;exit&rdquo; at each interior vertex &mdash; consuming 2 edges per visit.</li>
+      <li>Interior vertices must have <strong>even degree</strong> (each visit uses a pair).</li>
+      <li>Start/end vertices may have odd degree (one unpaired entry or exit).</li>
+      <li>Therefore: <strong>0 odd vertices</strong> (circuit) or <strong>2 odd vertices</strong> (path). &check;</li>
+    </ol>
+
+    <aside class="notes">
+      The Handshaking Lemma ($\sum_v \deg(v) = 2|E|$) implies the number of
+      odd-degree vertices is even. For the Eulerian criterion: each transit
+      through an interior vertex consumes one entering edge and one leaving
+      edge &mdash; a matched pair &mdash; so interior vertices require even
+      degree. Only the endpoints of the trail may have odd degree (one unmatched
+      edge each). Hence: 0 odd-degree vertices yields a circuit, 2 yields a
+      trail, and any other even count (like 4) yields impossibility. The
+      sufficiency direction uses a constructive algorithm (Hierholzer&rsquo;s,
+      1873). Euler stated necessity; the full iff was completed later.
+    </aside>
+  </section>
 </section>
 
 
@@ -298,12 +362,14 @@
   </div>
 
   <aside class="notes">
-    Even Euler was unsure whether this counted as "real" mathematics. It did not
-    use calculus or algebra in the traditional sense. He had invented something
-    entirely new: the study of position and connection, independent of
-    measurement. This qualitative approach &mdash; caring about structure, not
-    size &mdash; would eventually become one of the most important tools in
-    all of science and engineering.
+    Euler himself classified this as &ldquo;geometria situs&rdquo; &mdash;
+    geometry of position &mdash; distinct from the calculus and algebra of his
+    day. That concept became the seed of topology: the study of properties
+    invariant under continuous deformation. Euler&rsquo;s polyhedron formula
+    $V - E + F = 2$ (1758) is another line of the same code, linking graph
+    theory to topological invariants. His K&ouml;nigsberg proof inaugurated
+    the principle that structure, not magnitude, can be the decisive
+    mathematical quantity.
   </aside>
 </section>
 
@@ -330,11 +396,13 @@
   </div>
 
   <aside class="notes">
-    A century later, Arthur Cayley asked a counting question. A tree is a
-    connected graph with no cycles &mdash; the simplest kind of network. If
-    you label each node (give them names), how many distinct trees can you
-    build? For 3 nodes, the answer is 3. For 4 nodes, it is 16. The pattern
-    is not immediately obvious.
+    Cayley posed a fundamental enumerative question: how many spanning trees
+    exist on $n$ labeled vertices? A tree on $n$ vertices has exactly $n-1$
+    edges and is the unique minimal connected graph on those vertices. For
+    $n = 3$: three trees. For $n = 4$: sixteen. The growth rate is
+    super-exponential, and the closed form is not obvious from small cases.
+    This is another line of the code &mdash; combinatorics meeting graph
+    structure.
   </aside>
 </section>
 
@@ -367,11 +435,12 @@
     <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="4">&darr; Press down for proof sketch</p>
 
     <aside class="notes">
-      Cayley's formula: the number of labeled trees on n nodes is n to the power
-      n minus 2. Elegant, surprising, and exact. Just 3 nodes give 3 trees. But
-      10 nodes give 100 million. The combinatorial explosion is dramatic. If you
-      are curious about how to prove this, press the down arrow for a bonus
-      sketch using Prufer sequences.
+      Cayley&rsquo;s formula: $T_n = n^{n-2}$. The Pr&uuml;fer bijection gives
+      an elementary proof &mdash; it establishes a bijection between labeled
+      trees on $[n]$ and sequences of length $n-2$ over the alphabet $[n]$,
+      so the count is $n^{n-2}$. The growth is super-exponential: $T_{10} = 10^8$.
+      Press down for the Pr&uuml;fer construction and for Kirchhoff&rsquo;s
+      Matrix-Tree Theorem, which recovers the same count via linear algebra.
     </aside>
   </section>
 
@@ -389,11 +458,44 @@
     </ol>
 
     <aside class="notes">
-      The proof uses a clever encoding. You peel off leaves one at a time, always
-      choosing the smallest, and record the neighbor. This gives a sequence of
-      length n minus 2, and every possible sequence maps back to a unique tree.
-      Since each element can be any of n labels, the total is n to the n minus 2.
-      Beautiful, constructive, and completely elementary.
+      The Pr&uuml;fer bijection: iteratively remove the leaf with the smallest
+      label and record its neighbor. This encodes any labeled tree on $[n]$ as a
+      unique sequence in $[n]^{n-2}$, and the inverse map reconstructs the tree
+      from the sequence. Both directions run in $O(n \log n)$. Since there are
+      $n^{n-2}$ such sequences, Cayley&rsquo;s formula follows immediately.
+      The proof is constructive, combinatorial, and entirely elementary &mdash;
+      no algebra or calculus required.
+    </aside>
+  </section>
+
+  <!-- Vertical sub-slide: Kirchhoff's Matrix-Tree Theorem -->
+  <section>
+    <h3>The Matrix-Tree Theorem (Kirchhoff, 1847)</h3>
+    <div class="formula-box">
+      <span class="formula-label">Graph Laplacian</span>
+      $$L = D - A$$
+    </div>
+    <div class="columns mt-sm">
+      <div class="card text-sm">
+        <p class="mb-0">$D$ = degree matrix (diagonal)<br>$A$ = adjacency matrix</p>
+      </div>
+      <div class="card card-teal text-sm">
+        <p class="mb-0">The number of spanning trees = any cofactor of $L$</p>
+      </div>
+    </div>
+    <p class="fragment fade-up text-sm hl-muted mt-sm">
+      This connects trees to <strong>linear algebra</strong> &mdash; the Laplacian reappears in PageRank, GNNs, and spectral clustering.
+    </p>
+
+    <aside class="notes">
+      Kirchhoff&rsquo;s Matrix-Tree Theorem (1847): the number of spanning trees
+      of $G$ equals any cofactor of the graph Laplacian $L = D - A$. For the
+      complete graph $K_n$, the Laplacian has eigenvalues $0$ (once) and $n$
+      (with multiplicity $n-1$), so the cofactor is $n^{n-2}$ &mdash; recovering
+      Cayley&rsquo;s formula. Here the mathematical thread connects combinatorics
+      to linear algebra. The Laplacian reappears in spectral clustering, in
+      PageRank, and in the propagation rule of graph neural networks. It is one
+      of the most important matrices in all of applied mathematics.
     </aside>
   </section>
 </section>
@@ -426,11 +528,14 @@
   </div>
 
   <aside class="notes">
-    Trees are everywhere in computer science. When a compiler reads your Python
-    code, it builds a parse tree. Machine learning uses decision trees to classify
-    data. Your file system is a tree. Even HTML is a tree &mdash; the DOM.
-    Cayley's abstract counting problem from 1857 turns out to describe structures
-    we use every single day.
+    Trees are the canonical data structure in computer science. Compilers parse
+    source code into abstract syntax trees (ASTs). Balanced binary search trees
+    give $O(\log n)$ lookup, insertion, and deletion. Decision trees partition
+    feature space by recursive binary splits &mdash; the basis of random forests
+    and gradient-boosted methods like XGBoost. File systems are rooted trees.
+    The DOM is a tree. Cayley&rsquo;s 1857 abstraction permeates every layer
+    of the computational stack, from hardware routing trees to ML model
+    architectures.
   </aside>
 </section>
 
@@ -464,11 +569,14 @@
   </p>
 
   <aside class="notes">
-    Paul Erdos was the most prolific mathematician who ever lived. He wrote
-    over 1,500 papers with more than 500 co-authors. He lived out of a
-    suitcase, traveling from university to university. With Alfred Renyi, he
-    posed a deceptively simple question: start with n isolated nodes; connect
-    each pair with probability p. What happens?
+    Erd&#337;s published over 1,500 papers with 500+ co-authors &mdash; the
+    highest Erd&#337;s number is still a measure of collaborative distance in
+    mathematics. With R&eacute;nyi, he introduced the random graph model
+    $G(n, p)$: start with $n$ isolated vertices and include each of the
+    $\binom{n}{2}$ possible edges independently with probability $p$. The
+    central question: as $p$ increases from 0 to 1, when does qualitative
+    structure emerge? The answer involves a sharp phase transition that we
+    examine on the next slide.
   </aside>
 </section>
 
@@ -492,14 +600,21 @@
       <span class="hl-green">Dense:</span> almost everything connected
     </p>
   </div>
+  <div class="formula-box fragment fade-in mt-sm" data-fragment-index="4">
+    <span class="formula-label">Critical Threshold</span>
+    <p class="mb-0">$G(n,p)$ with $p = c/n$: giant component emerges when $c > 1$ (average degree $> 1$)</p>
+  </div>
 
   <aside class="notes">
-    Watch what happens as we add more random edges. At first, you get isolated
-    pairs and tiny clusters. Then, at a critical threshold &mdash; when the
-    average degree reaches 1 &mdash; something dramatic happens. Suddenly, a
-    giant connected component appears, linking most of the graph. This is a
-    phase transition, like water turning to ice. It happens abruptly, not
-    gradually. The fourth panel shows a nearly complete graph.
+    The precise threshold statement: in $G(n, p)$ with $p = c/n$, for $c &lt; 1$
+    the largest component has size $O(\log n)$ almost surely. At $c = 1$ the
+    largest component is $\Theta(n^{2/3})$. For $c &gt; 1$ a unique giant
+    component of size $\Theta(n)$ emerges, containing a fraction
+    $1 - T(c)/c$ of all vertices, where $T$ is the tree function satisfying
+    $T = ce^{-T}$. This is a genuine phase transition &mdash; a discontinuity
+    in the order parameter analogous to percolation on a lattice. The
+    mathematical thread here connects discrete probability to statistical
+    physics.
   </aside>
 </section>
 
@@ -531,11 +646,15 @@
   </figure>
 
   <aside class="notes">
-    This idea of phase transition is exactly what we see in large language models.
-    GPT-2 could not do arithmetic. GPT-3, with more parameters, suddenly could.
-    Chain-of-thought reasoning, code generation &mdash; these abilities emerge
-    abruptly past a critical scale, just like the giant component in a random
-    graph. The mathematics of emergence applies across domains.
+    The Erd&#337;s&ndash;R&eacute;nyi phase transition has a direct analogue in
+    deep learning. Kaplan et al.&rsquo;s scaling laws (2020) show that test loss
+    follows a power law in model size, but certain capabilities &mdash;
+    arithmetic, chain-of-thought reasoning, code generation &mdash; emerge
+    abruptly past critical parameter counts, resembling a sigmoid step
+    function rather than gradual improvement. Whether this constitutes a true
+    phase transition in the statistical-physics sense is an active research
+    question, but the phenomenology mirrors graph percolation: a quantitative
+    increase triggers a qualitative leap.
   </aside>
 </section>
 
@@ -564,11 +683,13 @@
   </div>
 
   <aside class="notes">
-    Three ideas from three centuries. Euler taught us to abstract away
-    everything except connections. Cayley showed us the combinatorial richness
-    hiding in trees. Erdos and Renyi revealed that random connections can
-    produce sudden, dramatic structure. These foundations support everything
-    that comes next.
+    Three foundational results across two centuries. Euler (1736): abstraction
+    to incidence structure and the first impossibility proof via degree parity.
+    Cayley (1857): the enumeration $T_n = n^{n-2}$ via the Pr&uuml;fer
+    bijection, later deepened by Kirchhoff&rsquo;s spectral approach. Erd&#337;s
+    &amp; R&eacute;nyi (1959): a sharp phase transition in $G(n, c/n)$ at
+    $c = 1$. Each result layers onto the last, building the combinatorial and
+    probabilistic toolkit that Act II will apply to real-world networks.
   </aside>
 </section>
 
@@ -584,9 +705,11 @@
   </div>
 
   <aside class="notes">
-    We jump to 1998 and the real world. The internet is a graph. Social networks
-    are graphs. The question becomes: what can graph theory tell us about the
-    world we actually live in?
+    Act II bridges pure mathematics and applied network science. The internet
+    is a directed graph with billions of vertices. Social networks are
+    undirected graphs with power-law degree distributions. The key question
+    shifts from existence and enumeration to structure and computation: given
+    a massive real-world graph, what can we efficiently extract from it?
   </aside>
 </section>
 
@@ -608,10 +731,15 @@
   </figure>
 
   <aside class="notes">
-    In 1967, Stanley Milgram ran a famous experiment. He asked people in Nebraska
-    to get a letter to a target person in Boston by passing it only to someone
-    they knew personally. On average, it took about six steps. Six handoffs to
-    reach a stranger across the country. The world is smaller than you think.
+    Milgram&rsquo;s 1967 experiment measured average path length in the social
+    graph: letters forwarded person-to-person from Nebraska to a target in
+    Boston required a median of about 6 intermediaries. Distinguish this from
+    the graph diameter, which is the maximum shortest-path distance &mdash;
+    necessarily larger. Facebook&rsquo;s 2016 study of 1.59 billion users found
+    an average path length of 3.57 and an estimated diameter around 41. The
+    &ldquo;six degrees&rdquo; phenomenon refers to the average, not the worst
+    case. This is another line of the code &mdash; the small-world property
+    of real networks.
   </aside>
 </section>
 
@@ -631,13 +759,15 @@
   </div>
 
   <aside class="notes">
-    Watts and Strogatz figured out why six degrees works. In a regular lattice,
-    everyone knows their neighbors, but the path to distant nodes is long. In a
-    fully random graph, paths are short but there is no local structure. The
-    small-world model sits in between: mostly local connections, but a few
-    random long-range shortcuts. These shortcuts dramatically shrink the
-    diameter of the network. This is the model that explains social networks,
-    neural wiring in C. elegans, and power grids.
+    Watts &amp; Strogatz (1998) formalized the small-world property with two
+    metrics: high clustering coefficient $C$ (probability that two neighbors
+    of a vertex are themselves adjacent) and low average shortest-path length
+    $L$ (scaling as $O(\log n)$). Their model starts from a ring lattice and
+    rewires each edge with probability $p$. Even a small $p$ collapses $L$
+    toward the random-graph value while $C$ remains near the lattice value.
+    Empirical examples include C. elegans neural wiring ($C = 0.28$,
+    $L = 2.65$) and the Western US power grid. The small-world property
+    explains why Milgram&rsquo;s letters needed so few hops.
   </aside>
 </section>
 
@@ -664,12 +794,15 @@
   </div>
 
   <aside class="notes">
-    This exact same principle appears in modern neural networks. ResNets, which
-    won ImageNet in 2015, added skip connections &mdash; shortcuts that let
-    information jump over layers. Without them, deep networks could not train.
-    With them, you get the small-world property: high local structure plus short
-    global paths. Transformers do this too: the attention mechanism lets any
-    token directly connect to any other, creating the ultimate shortcut.
+    ResNets (He et al., 2015) introduced skip connections: identity mappings
+    that bypass one or more layers. From a graph-theory perspective, these are
+    long-range edges that reduce the effective diameter of the computational
+    graph, mirroring the Watts&ndash;Strogatz rewiring. Without them, gradients
+    attenuate exponentially with depth (the vanishing gradient problem).
+    Transformers take this further: self-attention gives every token a direct
+    edge to every other token, making the computational graph a complete
+    digraph &mdash; diameter 1. Here the mathematical thread connects network
+    science to deep learning architecture design.
   </aside>
 </section>
 
@@ -683,11 +816,13 @@
   <div id="interactive-six-degrees" class="interactive-container tall"></div>
 
   <aside class="notes">
-    Let's try this ourselves. Starting from "You," click on connected nodes to
-    trace a path to "Celebrity." Try to find the shortest route. You can only
-    click nodes that are directly connected to your current position. When you
-    are done, click "Show Shortest" to see the optimal path. Notice how few
-    hops it takes even in this small network.
+    This interactive demonstrates BFS shortest-path computation on a small
+    graph. Starting from &ldquo;You,&rdquo; click adjacent vertices to extend
+    your path toward &ldquo;Celebrity.&rdquo; The &ldquo;Show Shortest&rdquo;
+    button runs BFS and displays the optimal path. In this graph, the shortest
+    path is typically 3&ndash;4 edges &mdash; illustrating the small-world
+    property even in a network with only a dozen vertices. BFS finds shortest
+    paths in $O(|V| + |E|)$ time.
   </aside>
 </section>
 
@@ -728,11 +863,14 @@
   </div>
 
   <aside class="notes">
-    Larry Page and Sergey Brin had a simple but powerful insight: the web is a
-    graph. Every page is a node. Every hyperlink is a directed edge. And if you
-    could figure out which nodes were "important" in this graph, you could
-    build a better search engine. That idea became PageRank, and PageRank
-    became Google.
+    Page and Brin modeled the web as a directed graph $G = (V, E)$ where
+    $V$ is the set of web pages and $(u, v) \in E$ iff page $u$ hyperlinks
+    to page $v$. Their key insight: importance is not intrinsic to a page
+    but determined by the graph&rsquo;s link structure. A page is important
+    if it receives edges from other important pages &mdash; a recursive
+    definition that linear algebra resolves via eigenvector computation.
+    That idea, formalized as PageRank, became the foundation of a
+    trillion-dollar company.
   </aside>
 </section>
 
@@ -777,11 +915,15 @@
   </div>
 
   <aside class="notes">
-    PageRank is elegantly recursive. A page is important if important pages link
-    to it. That sounds circular, but linear algebra resolves the circularity.
-    Think of it as a random surfer clicking links forever. The pages you visit
-    most often have the highest PageRank. The random surfer occasionally
-    teleports to a random page to avoid getting stuck in dead ends.
+    The recursive definition &mdash; a page is important if important pages
+    link to it &mdash; is resolved by formulating the web&rsquo;s link
+    structure as a column-stochastic matrix $M$. Each column $j$ distributes
+    node $j$&rsquo;s rank uniformly among its out-neighbors. The PageRank
+    vector is the stationary distribution of the Markov chain defined by the
+    &ldquo;random surfer&rdquo;: with probability $d$ follow a random outlink,
+    with probability $1-d$ teleport uniformly. The teleportation term ensures
+    $M$ is irreducible and aperiodic &mdash; the conditions for the
+    Perron&ndash;Frobenius theorem to guarantee a unique stationary distribution.
   </aside>
 </section>
 
@@ -810,12 +952,16 @@
     <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="3">&darr; Press down for the Markov chain interpretation</p>
 
     <aside class="notes">
-      Here is the formula. Don't memorize it &mdash; understand it. The first
-      term is teleportation: with probability 1 minus d (usually d is 0.85),
-      the surfer jumps to any random page. The second term is link-following:
-      with probability d, the surfer follows a random link from the current page.
-      PR(q) divided by L(q) means each page distributes its rank equally among
-      its outgoing links.
+      Parse the formula term by term. The $(1-d)/N$ term is a uniform
+      teleportation probability &mdash; it makes the transition matrix
+      primitive (positive entries everywhere). The damping factor $d$ is
+      typically 0.85. The summation $\sum_{q \in B_p} PR(q)/L(q)$ aggregates
+      rank from each in-neighbor $q$, divided by $q$&rsquo;s out-degree
+      $L(q)$ &mdash; this is the column-stochastic contribution. Together,
+      the formula defines a convex combination: with probability $d$ follow
+      a link, with probability $1-d$ teleport. Convergence of the power
+      iteration is guaranteed by Perron&ndash;Frobenius because the matrix
+      is stochastic and primitive.
     </aside>
   </section>
 
@@ -836,11 +982,47 @@
     </p>
 
     <aside class="notes">
-      PageRank computes the dominant eigenvector of the web's transition matrix.
-      The Perron-Frobenius theorem guarantees that a unique stationary
-      distribution exists because the teleportation term makes the matrix
-      irreducible and aperiodic. Google's original implementation ran about
-      50 to 100 power iterations on a matrix with billions of entries.
+      Formally, the PageRank vector $\vec{r}$ is the dominant left eigenvector
+      of the stochastic matrix $M = dS + (1-d)\frac{1}{N}\mathbf{1}\mathbf{1}^T$,
+      where $S$ is the column-normalized adjacency matrix. The
+      Perron&ndash;Frobenius theorem guarantees a unique eigenvector with
+      eigenvalue 1 because $M$ is irreducible (the teleportation term connects
+      every pair) and aperiodic (self-loops via teleportation). The power
+      method converges geometrically at rate $d$ &mdash; with $d = 0.85$,
+      roughly 50&ndash;100 iterations suffice. Google ran this on a matrix
+      with billions of nonzero entries.
+    </aside>
+  </section>
+
+  <!-- Vertical: Worked 4-node Example -->
+  <section>
+    <h3>Worked Example: 4-Node PageRank</h3>
+    <p class="text-sm">Transition matrix $M$ and power iteration $\vec{r}_{t+1} = M\,\vec{r}_t$:</p>
+    <div class="columns mt-sm">
+      <div class="text-sm">
+        $$M = \begin{pmatrix} 0 & \frac{1}{2} & 0 & 0 \\ \frac{1}{3} & 0 & 0 & \frac{1}{2} \\ \frac{1}{3} & \frac{1}{2} & 0 & \frac{1}{2} \\ \frac{1}{3} & 0 & 1 & 0 \end{pmatrix}$$
+      </div>
+      <div>
+        <div class="card text-sm">
+          <p class="mb-0"><strong>After 1 iteration:</strong> $\vec{r}_1 = (0.21, 0.21, 0.33, 0.25)$</p>
+        </div>
+        <div class="card card-teal text-sm">
+          <p class="mb-0"><strong>Converged:</strong> $\vec{r}_\infty = (0.12, 0.17, 0.31, 0.40)$</p>
+        </div>
+        <p class="text-sm hl-muted">Node D wins &mdash; it is linked by the highest-ranked node.</p>
+      </div>
+    </div>
+
+    <aside class="notes">
+      This 4-node example illustrates the power method concretely. Column $j$
+      of $M$ distributes node $j$&rsquo;s rank uniformly among its out-neighbors.
+      Starting from $\vec{r}_0 = (0.25, 0.25, 0.25, 0.25)$, repeated
+      multiplication by $M$ converges to the stationary distribution
+      $\vec{r}_\infty \approx (0.12, 0.17, 0.31, 0.40)$. Node D dominates
+      because it is the sole out-neighbor of node C, which itself has high rank
+      &mdash; the recursive structure at work. This is the power method for
+      computing the dominant eigenvector of a nonnegative matrix, a fundamental
+      algorithm in numerical linear algebra.
     </aside>
   </section>
 </section>
@@ -855,11 +1037,12 @@
   <div id="interactive-pagerank" class="interactive-container tall"></div>
 
   <aside class="notes">
-    Based on who links to whom in this small directed graph, rank the five nodes
-    from highest PageRank to lowest. Look at the arrows: which node receives
-    the most links from important nodes? Drag the chips into the slots, then
-    click "Check Answer" to see the true values. Node C should rank highest
-    because it receives links from almost every other node.
+    Rank the five nodes by estimated stationary distribution. The key insight
+    is that in-degree alone does not determine PageRank &mdash; the rank of
+    the linking nodes matters. A single edge from a high-rank node contributes
+    more than many edges from low-rank nodes. Drag the chips, then check
+    against the power-method solution. Node C typically dominates because it
+    is an in-neighbor of nearly every other vertex in this particular graph.
   </aside>
 </section>
 
@@ -871,30 +1054,38 @@
   <h2>PageRank &rarr; Modern AI
     <span class="milestone-badge milestone-ai-connection">AI Connection</span>
   </h2>
-  <p>PageRank uses the same <strong>linear algebra</strong> as word embeddings.</p>
-  <div class="columns mt-md">
-    <div class="formula-box">
-      <span class="formula-label">PageRank</span>
-      $$\vec{r} = M \vec{r}$$
-      <p class="text-sm hl-muted mt-sm mb-0">Eigenvector of web graph</p>
+  <p>Three instances of the same idea: <strong>learn structure from a matrix derived from connections.</strong></p>
+  <div class="columns-3 mt-md">
+    <div class="card fragment fade-in" data-fragment-index="1">
+      <h4>PageRank</h4>
+      <p class="text-sm mb-0">Eigenvector of the web graph's transition matrix</p>
+      <p class="text-sm mb-0 hl-muted">$$\vec{r} = M \vec{r}$$</p>
     </div>
-    <div class="formula-box">
-      <span class="formula-label">Word2Vec</span>
-      $$W^T W \approx \text{PMI matrix}$$
-      <p class="text-sm hl-muted mt-sm mb-0">Eigenvectors of word co-occurrence</p>
+    <div class="card card-teal fragment fade-in" data-fragment-index="2">
+      <h4 style="color:var(--teal);">Word2Vec</h4>
+      <p class="text-sm mb-0">Eigenvectors of the word co-occurrence matrix</p>
+      <p class="text-sm mb-0 hl-muted">$\text{PMI}(w_i, w_j) = \log \frac{P(w_i, w_j)}{P(w_i)P(w_j)}$</p>
+    </div>
+    <div class="card card-yellow fragment fade-in" data-fragment-index="3">
+      <h4 style="color:var(--yellow);">Attention</h4>
+      <p class="text-sm mb-0">Softmax of the token similarity matrix</p>
+      <p class="text-sm mb-0 hl-muted">$QK^T / \sqrt{d_k}$</p>
     </div>
   </div>
-  <p class="fragment fade-up mt-md">
-    Both compute <strong>eigenvectors</strong> of a matrix built from a graph.
-    PageRank ranks web pages; Word2Vec positions words in meaning-space.
+  <p class="fragment fade-up mt-md hl-teal">
+    Three eras, one principle: <strong>learn structure from a matrix derived from connections.</strong>
   </p>
 
   <aside class="notes">
-    PageRank computes an eigenvector of the web's adjacency matrix. Word2Vec
-    computes eigenvectors of the word co-occurrence matrix &mdash; which is
-    really a graph where words are nodes and co-occurrence frequencies are edge
-    weights. The math is the same: find the dominant directions in a matrix
-    derived from a graph. This is why linear algebra is the language of AI.
+    Three eras, one principle. PageRank: the dominant eigenvector of a
+    stochastic transition matrix derived from the web graph. Word2Vec (2013):
+    Levy &amp; Goldberg showed that Skip-gram with negative sampling implicitly
+    factorizes the PMI matrix of word co-occurrences &mdash; effectively the
+    weighted adjacency matrix of a word-context graph. Attention (2017): the
+    softmax of $QK^T/\sqrt{d_k}$ is a row-stochastic matrix &mdash; a
+    normalized adjacency matrix of a complete token graph. In each case, the
+    algorithm builds a matrix from connections and extracts structure via
+    linear-algebraic operations. This is the unifying mathematical thread.
   </aside>
 </section>
 
@@ -923,12 +1114,16 @@
   </div>
 
   <aside class="notes">
-    Every social media platform runs graph algorithms at massive scale. Friend
-    recommendations use triangle closure: if A knows B and B knows C, suggest A
-    and C connect. Influence scoring uses centrality measures like PageRank.
-    Community detection partitions the graph into clusters. Viral spread models
-    treat information like a disease diffusing through the network. Facebook's
-    social graph alone has over 3 billion nodes.
+    Social platforms deploy graph algorithms at planetary scale. Friend
+    recommendation exploits triangle closure (triadic closure principle):
+    if $\{A, B\}$ and $\{B, C\}$ are edges, propose $\{A, C\}$. Influence
+    scoring uses centrality measures &mdash; degree, betweenness, eigenvector
+    (of which PageRank is a variant). Community detection algorithms like the
+    Louvain method optimize modularity $Q = \frac{1}{2m}\sum_{ij}[A_{ij} -
+    \frac{k_i k_j}{2m}]\delta(c_i, c_j)$ to partition the graph into dense
+    clusters. Viral-spread models apply SIR/SIS epidemic dynamics on the graph.
+    Facebook&rsquo;s graph exceeds 3 billion vertices and hundreds of billions
+    of edges.
   </aside>
 </section>
 
@@ -957,11 +1152,14 @@
   </div>
 
   <aside class="notes">
-    Act II showed that the real world runs on graphs. Small-world theory
-    explains why we are all so closely connected. PageRank turned that insight
-    into the most successful search engine in history. And social networks
-    showed that graph theory operates at a scale Euler could never have
-    imagined.
+    Act II applied the pure-math foundations to real networks. Watts&ndash;Strogatz
+    (1998) characterized the small-world property via clustering coefficient and
+    average path length. PageRank (1998) cast web search as an eigenvector
+    problem on a stochastic matrix, with convergence guaranteed by
+    Perron&ndash;Frobenius. Social network analysis at scale deployed community
+    detection, centrality, and epidemic models on graphs with billions of
+    vertices. The code of the universe scales from Euler&rsquo;s 4-node
+    multigraph to Facebook&rsquo;s 3-billion-node social graph.
   </aside>
 </section>
 
@@ -977,9 +1175,12 @@
   </div>
 
   <aside class="notes">
-    Now for the final act. Every neural network IS a graph. Every transformer
-    IS a graph algorithm. Graph theory is not just useful to AI &mdash; it is
-    the mathematical language in which AI is written.
+    Act III reveals the deepest connection: every neural network is a
+    directed acyclic graph (or cyclic, for RNNs), and every transformer
+    layer is a message-passing operation on a complete graph. Graph theory
+    is not merely useful to AI &mdash; it is the structural language in
+    which neural architectures are defined. The code of the universe now
+    writes itself in computation graphs and adjacency matrices.
   </aside>
 </section>
 
@@ -1000,11 +1201,16 @@
   </p>
 
   <aside class="notes">
-    Look at these four architectures. A feedforward network is a chain of
-    layers. A CNN adds local grid connections. A recurrent network adds cycles.
-    And a transformer is essentially a complete graph where every token connects
-    to every other. The entire history of deep learning is a story about
-    choosing different graph topologies for the computation.
+    Every neural network defines a computational graph: a DAG whose vertices
+    are operations (matmul, activation, softmax) and whose edges carry tensor
+    data. Backpropagation is reverse-mode automatic differentiation on this
+    DAG &mdash; it computes gradients by traversing edges in reverse
+    topological order, applying the chain rule at each vertex. A feedforward
+    net is a path graph. A CNN is a grid-structured graph with weight-sharing
+    (translation equivariance). An RNN adds back-edges, making the graph
+    cyclic. A transformer is a complete graph at every attention layer.
+    The architecture revolution from 2012 to 2017 was a progression through
+    graph topologies.
   </aside>
 </section>
 
@@ -1023,12 +1229,14 @@
   </div>
 
   <aside class="notes">
-    The transformer, the architecture behind GPT, BERT, and every modern
-    language model, is a complete graph. Every token in the input sequence
-    computes an attention weight to every other token. The attention matrix is
-    literally the weighted adjacency matrix of a complete directed graph.
-    This is why transformers are so powerful &mdash; and so computationally
-    expensive.
+    The transformer (Vaswani et al., 2017) instantiates self-attention as a
+    complete weighted digraph $K_n$ over $n$ tokens. The attention matrix
+    $A \in \mathbb{R}^{n \times n}$ is the row-stochastic adjacency matrix
+    of this graph. Because every pair of tokens is connected, computing $A$
+    requires $O(n^2)$ time and memory &mdash; the fundamental bottleneck
+    of the architecture. For a 100k-token context, that is $10^{10}$
+    operations per layer. This quadratic cost drives the entire research
+    program on sparse attention, linear attention, and efficient transformers.
   </aside>
 </section>
 
@@ -1045,10 +1253,13 @@
           style="max-width:100%; max-height:23vh;">
   </iframe>
   <aside class="notes">
-    This 2.5-minute clip from 3Blue1Brown animates exactly what we just described:
-    the attention mechanism forming a complete graph between tokens. Watch how the
-    Q and K vectors produce dot products that become the adjacency matrix.
-    After this clip, we will break down the formula step by step.
+    This 2.5-minute clip from 3Blue1Brown animates the attention mechanism.
+    Watch the $Q$ and $K$ projections: their dot product $QK^T$ produces the
+    $n \times n$ score matrix &mdash; the raw adjacency matrix of the
+    complete token graph. Softmax normalizes each row into a probability
+    distribution. Multiplication by $V$ then computes a weighted average
+    along edges. After the clip, we formalize each step and derive the
+    scaling factor $\sqrt{d_k}$.
   </aside>
 </section>
 
@@ -1090,12 +1301,16 @@
     <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="5">&darr; Press down for complexity analysis</p>
 
     <aside class="notes">
-      If you look at attention through a graph theory lens, each component has
-      a clear role. Q times K-transpose computes a pairwise similarity matrix
-      &mdash; the adjacency matrix. Softmax normalizes each row so the edge
-      weights sum to 1. Multiplying by V is message passing: each node
-      aggregates information from its neighbors, weighted by attention.
-      This is exactly the framework of graph neural networks.
+      Decompose the attention equation graph-theoretically. $QK^T \in
+      \mathbb{R}^{n \times n}$: a weighted adjacency matrix of the complete
+      digraph on $n$ tokens. The scaling by $\sqrt{d_k}$ controls gradient
+      flow through the softmax &mdash; without it, $\text{Var}(q \cdot k) = d_k$
+      for independent unit-variance entries, pushing softmax into saturation
+      where gradients vanish. Softmax normalizes each row into a stochastic
+      vector (outgoing edge weights sum to 1). Multiplication by $V$ is
+      message passing: each token computes a convex combination of its
+      neighbors&rsquo; value vectors. This is precisely the MPNN framework
+      (Gilmer et al., 2017) on a complete graph.
     </aside>
   </section>
 
@@ -1126,12 +1341,15 @@
     </p>
 
     <aside class="notes">
-      The quadratic cost is the transformer's Achilles heel. For 512 tokens,
-      attention computes about 260,000 operations &mdash; fine. But for
-      100,000 tokens, it's 10 billion. This is why context windows were
-      historically limited, and why researchers develop sparse attention
-      mechanisms that replace the complete graph with a carefully chosen
-      sparse graph.
+      Self-attention has time and space complexity $O(n^2 d)$ where $n$ is
+      the sequence length and $d$ is the head dimension. For $n = 512$,
+      $n^2 \approx 2.6 \times 10^5$; for $n = 100{,}000$, $n^2 = 10^{10}$.
+      This quadratic bottleneck drove the development of sparse attention
+      variants: Longformer (sliding window + global tokens), BigBird
+      (random + window + global), and linear-attention methods like Performer
+      that approximate $\text{softmax}(QK^T)$ via random feature maps in
+      $O(n)$. Each variant replaces the complete graph with a carefully
+      designed sparse graph that trades off expressiveness for efficiency.
     </aside>
   </section>
 
@@ -1145,12 +1363,122 @@
       <figcaption class="text-sm hl-muted">Each head discovers different connections — H heads = H parallel graphs</figcaption>
     </figure>
     <aside class="notes">
-      Each attention head learns to focus on different relationships. Head 1 might
-      capture positional patterns (adjacent words). Head 2 captures syntax
-      (articles and their nouns). Head 3 captures semantics (verbs and their objects).
-      Multi-head attention runs H parallel graphs on the same set of tokens.
+      Multi-head attention runs $H$ independent attention operations in parallel,
+      each with its own learned projections $W_Q^{(h)}, W_K^{(h)}, W_V^{(h)}$.
+      Each head constructs a distinct complete graph with different edge weights,
+      capturing different relational patterns: positional adjacency, syntactic
+      dependencies (determiners to nouns), semantic roles (verbs to objects).
+      The outputs are concatenated and projected: $\text{MultiHead} =
+      \text{Concat}(\text{head}_1, \ldots, \text{head}_H) W_O$. This is
+      equivalent to $H$ parallel message-passing rounds on the same vertex set
+      with different edge-weight functions.
     </aside>
   </section>
+
+  <!-- Vertical: Full Attention Derivation -->
+  <section>
+    <h3>The Full Derivation (Step by Step)</h3>
+    <div class="text-sm" style="line-height:1.5;">
+      <p><strong>1.</strong> Input: $X \in \mathbb{R}^{n \times d}$ &nbsp;($n$ tokens, $d$ dimensions)</p>
+      <p><strong>2.</strong> Project: $Q = XW_Q,\; K = XW_K,\; V = XW_V$ &nbsp;where $W \in \mathbb{R}^{d \times d_k}$</p>
+      <p><strong>3.</strong> Scores: $S = QK^T \in \mathbb{R}^{n \times n}$ &nbsp;&mdash; <em>this IS the adjacency matrix</em></p>
+      <p><strong>4.</strong> Scale: $S / \sqrt{d_k}$ &nbsp;&mdash; because $\text{Var}(q \cdot k) = d_k$ for unit-variance entries</p>
+      <p><strong>5.</strong> Normalize: $A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_k \exp(S_{ik}/\sqrt{d_k})}$ &nbsp;&mdash; softmax &rarr; probability</p>
+      <p><strong>6.</strong> Output: $\text{Attn} = AV$ &nbsp;&mdash; weighted average of value vectors</p>
+    </div>
+
+    <aside class="notes">
+      Step-by-step derivation. (1) Input $X \in \mathbb{R}^{n \times d}$:
+      each row is a token embedding. (2) Learned projections $Q = XW_Q$,
+      $K = XW_K$, $V = XW_V$ with $W \in \mathbb{R}^{d \times d_k}$. (3)
+      Score matrix $S = QK^T \in \mathbb{R}^{n \times n}$ &mdash; the
+      weighted adjacency matrix of $K_n$. (4) Scaling: $S / \sqrt{d_k}$.
+      Why? For entries with zero mean and unit variance, $\text{Var}(q_i
+      \cdot k_j) = d_k$, so dividing by $\sqrt{d_k}$ restores unit variance
+      and prevents softmax saturation. (5) Softmax row-normalizes into a
+      stochastic matrix: $A_{ij} = \exp(S_{ij}/\sqrt{d_k}) / \sum_k
+      \exp(S_{ik}/\sqrt{d_k})$. (6) Output $= AV$: a weighted average of
+      value vectors &mdash; message passing on the complete graph. The
+      entire computation fuses graph theory with linear algebra.
+    </aside>
+  </section>
+</section>
+
+
+<!-- ============================================================
+     SLIDE — The Mathematics Inside an LLM
+     ============================================================ -->
+<section>
+  <h2>The Mathematics Inside an LLM</h2>
+  <figure>
+    <img src="images/27-llm-cross-section.png"
+         alt="LLM architecture cross-section with mathematical labels at each layer"
+         style="max-height:22vh; max-width:98%;">
+  </figure>
+  <div class="columns-3 mt-sm text-sm">
+    <div class="card fragment fade-in" data-fragment-index="1">
+      <h4 style="color:var(--teal);">Embedding</h4>
+      <p class="mb-0">Linear algebra<br>(high-dim geometry)</p>
+    </div>
+    <div class="card card-yellow fragment fade-in" data-fragment-index="2">
+      <h4 style="color:var(--yellow);">Attention</h4>
+      <p class="mb-0">Graph theory +<br>linear algebra</p>
+    </div>
+    <div class="card card-orange fragment fade-in" data-fragment-index="3">
+      <h4 style="color:var(--orange);">Training</h4>
+      <p class="mb-0">Calculus + probability<br>(gradient descent, cross-entropy)</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Cross-section of an LLM, layer by layer. Embedding: a lookup table
+    $E \in \mathbb{R}^{|V| \times d}$ mapping tokens to vectors in
+    high-dimensional space &mdash; pure linear algebra. Attention: constructs
+    and reads a complete-graph adjacency matrix per head &mdash; graph theory
+    meets linear algebra. Feed-forward: two-layer MLP with nonlinearity,
+    invoking the universal approximation theorem. Layer normalization:
+    standardizes activations, stabilizing gradient flow. Training: gradient
+    descent on cross-entropy loss $\mathcal{L} = -\sum_t \log p(x_t | x_{&lt;t})$
+    &mdash; calculus and probability. Every layer is a different chapter of
+    the code of the universe, working in concert.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE — Why Does Scaling Work?
+     ============================================================ -->
+<section>
+  <h2>Why Does Scaling Work?</h2>
+  <div class="columns">
+    <div class="card">
+      <h4>Erdos-Renyi (1959)</h4>
+      <p class="text-sm mb-0">Giant component at $p > 1/n$</p>
+      <p class="text-sm mb-0 hl-muted">A quantitative change &rarr; qualitative leap.</p>
+    </div>
+    <div class="card card-yellow">
+      <h4 style="color:var(--yellow);">Kaplan et al. (2020)</h4>
+      <p class="text-sm mb-0">$L(N) \approx (N_c / N)^{\alpha_N}$, &nbsp; $\alpha_N \approx 0.076$</p>
+      <p class="text-sm mb-0 hl-muted">Loss follows a power law with model size.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up text-lg hl-teal mt-sm">
+    Same pattern: <strong>scale past a critical threshold</strong> and new capabilities emerge.
+  </p>
+
+  <aside class="notes">
+    Kaplan et al. (2020) established empirical scaling laws: test loss
+    $L(N) \approx (N_c / N)^{\alpha_N}$ with $\alpha_N \approx 0.076$
+    for model size $N$. This smooth power-law decay coexists with sharp
+    capability thresholds &mdash; arithmetic, chain-of-thought, code
+    generation &mdash; that appear suddenly at critical scales. Compare
+    with the Erd&#337;s&ndash;R&eacute;nyi threshold: for $c &lt; 1$
+    the graph is fragmented; for $c &gt; 1$ a giant component emerges
+    discontinuously. Whether LLM emergence is a true phase transition
+    or an artifact of metric choice (Schaeffer, 2023) is debated, but
+    the mathematical analogy is precise: a quantitative increase in a
+    control parameter triggers a qualitative structural change.
+  </aside>
 </section>
 
 
@@ -1179,95 +1507,51 @@
   </div>
 
   <aside class="notes">
-    Knowledge graphs store facts as triples: subject, predicate, object. Each
-    entity is a node, each relationship is a labeled edge. Google's Knowledge
-    Graph powers those information boxes you see in search results. Wikidata,
-    DBpedia, and enterprise knowledge graphs all use this format. The graph
-    structure makes it easy to answer multi-hop questions: "Where was the
-    developer of relativity born?"
+    A knowledge graph is a labeled directed multigraph where vertices are
+    entities and edges are typed relations, stored as (subject, predicate,
+    object) triples. Google&rsquo;s Knowledge Graph contains 500+ billion
+    facts over 5+ billion entities. Formally, multi-hop queries reduce to
+    path-finding in this graph: &ldquo;Where was the developer of relativity
+    born?&rdquo; is a 2-hop traversal (Einstein) $\xrightarrow{\text{developed}}$
+    (Relativity) $\xleftarrow{\text{born\_in}}$ (Ulm). Knowledge graph
+    embeddings (TransE, RotatE) learn low-dimensional vector representations
+    that preserve this relational structure.
   </aside>
 </section>
 
 
 <!-- ============================================================
-     SLIDE 33 — RAG: Giving AI Memory
+     SLIDE — RAG & GraphRAG
      ============================================================ -->
 <section>
-  <h2>RAG: Giving AI a Memory</h2>
-  <figure>
-    <img src="images/14-rag-pipeline.png" alt="Retrieval-Augmented Generation pipeline" style="max-height:16vh;">
-  </figure>
-  <ul class="step-list mt-sm">
-    <li class="fragment fade-in" data-fragment-index="1">
-      <div class="step-body">
-        <span class="step-title">Query</span>
-        <span class="step-desc">User asks a question.</span>
-      </div>
-    </li>
-    <li class="fragment fade-in" data-fragment-index="2">
-      <div class="step-body">
-        <span class="step-title">Retrieve</span>
-        <span class="step-desc">Search a knowledge base for relevant documents/facts.</span>
-      </div>
-    </li>
-    <li class="fragment fade-in" data-fragment-index="3">
-      <div class="step-body">
-        <span class="step-title">Generate</span>
-        <span class="step-desc">Feed retrieved context + question into the LLM.</span>
-      </div>
-    </li>
-  </ul>
-  <p class="fragment fade-up callout callout-green mt-sm" data-fragment-index="4">
-    Result: <strong>less hallucination</strong>, more factual answers.
-  </p>
-
-  <aside class="notes">
-    RAG &mdash; Retrieval-Augmented Generation &mdash; is the most popular
-    technique for making AI factually accurate. Instead of relying solely on
-    what the model memorized during training, RAG retrieves relevant documents
-    at query time and feeds them into the prompt. The retrieval step is often
-    a graph search: traverse a knowledge graph or a vector-indexed document
-    graph to find the most relevant context.
-  </aside>
-</section>
-
-
-<!-- ============================================================
-     SLIDE 34 — GraphRAG: The Cutting Edge
-     ============================================================ -->
-<section>
-  <h2>GraphRAG: The Cutting Edge</h2>
-  <p>Microsoft's <strong>GraphRAG</strong> (2024) uses community detection on knowledge graphs to answer complex questions.</p>
-  <div class="columns mt-md">
-    <div class="card fragment fade-in" data-fragment-index="1">
-      <h4>Traditional RAG</h4>
-      <p class="text-sm">Retrieves individual text chunks. Works for factoid questions.</p>
-      <p class="text-sm mb-0 hl-muted">Struggles with "big picture" queries.</p>
+  <h2>RAG &amp; GraphRAG: Giving AI a Memory</h2>
+  <div class="columns">
+    <div>
+      <img src="images/14-rag-pipeline.png" alt="RAG pipeline" style="max-height:16vh;">
+      <p class="text-sm hl-muted text-center">Retrieval-Augmented Generation</p>
     </div>
-    <div class="card card-green fragment fade-in" data-fragment-index="2">
-      <h4 style="color:var(--green);">GraphRAG</h4>
-      <p class="text-sm">Builds a knowledge graph from text. Detects communities. Summarizes at multiple scales.</p>
-      <p class="text-sm mb-0 hl-muted">Answers thematic, synthesis questions.</p>
+    <div>
+      <div class="card fragment fade-in" data-fragment-index="1">
+        <h4>RAG</h4>
+        <p class="text-sm mb-0">Query a knowledge base &rarr; feed retrieved facts into the LLM &rarr; less hallucination.</p>
+      </div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="2">
+        <h4 style="color:var(--teal);">GraphRAG (2024)</h4>
+        <p class="text-sm mb-0">Replace flat retrieval with <strong>graph traversal</strong>: community detection on knowledge graphs enables multi-hop reasoning.</p>
+      </div>
     </div>
   </div>
-  <figure class="fragment fade-in mt-md" data-fragment-index="3">
-    <img src="images/19-graphrag-concept.png"
-         alt="GraphRAG pipeline: documents to knowledge graph to community detection to LLM synthesis"
-         style="max-height:10vh;">
-  </figure>
-  <p class="fragment fade-up text-sm hl-muted mt-md" data-fragment-index="4">
-    Community detection (Louvain, Leiden) is the same graph algorithm used for social network analysis.
-  </p>
 
   <aside class="notes">
-    The latest development is GraphRAG by Microsoft Research, published in 2024.
-    Traditional RAG retrieves text chunks &mdash; it works well for specific
-    factual questions but fails on broad thematic queries. GraphRAG first
-    extracts entities and relationships to build a knowledge graph, then runs
-    community detection algorithms to identify clusters of related concepts,
-    and finally summarizes each community. The same Louvain algorithm used to
-    find friend groups on Facebook now helps AI understand the big picture in
-    a corpus of documents.
+    RAG (Lewis et al., 2020) grounds generation in retrieved evidence,
+    reducing hallucination. Standard RAG uses vector similarity for retrieval
+    &mdash; essentially nearest-neighbor search in embedding space. GraphRAG
+    (Microsoft, 2024) replaces flat retrieval with graph traversal: it builds
+    a knowledge graph from source documents, runs community detection (e.g.,
+    Leiden algorithm) to identify topical clusters, and retrieves subgraph
+    neighborhoods relevant to the query. This enables multi-hop reasoning
+    that flat retrieval cannot support. Here the mathematical thread connects
+    community detection algorithms to LLM reliability.
   </aside>
 </section>
 
@@ -1296,13 +1580,15 @@
   </div>
 
   <aside class="notes">
-    Graph Neural Networks generalize the transformer idea to arbitrary graph
-    structures. Instead of a complete graph of tokens, GNNs work on whatever
-    graph you give them &mdash; social networks, molecules, road maps. The
-    mechanism is message passing: each node gathers information from its
-    neighbors, aggregates it, and updates itself. After L rounds, each node
-    knows about its L-hop neighborhood. This is strikingly similar to
-    attention in transformers.
+    GNNs generalize transformers to arbitrary graph topologies. The unifying
+    abstraction is the Message Passing Neural Network (MPNN) framework
+    (Gilmer et al., 2017): each vertex $v$ aggregates messages from its
+    neighborhood $\mathcal{N}(v)$, then updates its hidden state. After $L$
+    message-passing rounds, each vertex&rsquo;s representation encodes
+    information from its $L$-hop neighborhood. GCN, GraphSAGE, and GAT are
+    all special cases of MPNN with different aggregation functions. The key
+    difference from transformers: GNNs operate on whatever graph structure
+    the data provides, rather than constructing a complete graph.
   </aside>
 </section>
 
@@ -1331,11 +1617,14 @@
     <p class="text-sm hl-muted fragment fade-up mt-md" data-fragment-index="3">&darr; Press down for expressiveness theory</p>
 
     <aside class="notes">
-      The GNN formula is deceptively simple. For each node v, gather the
-      feature vectors of all neighbors, aggregate them, then combine with the
-      node's own features and pass through a neural network. This one equation
-      covers GCN, GraphSAGE, GAT, and most other GNN variants &mdash; they
-      differ only in how they implement AGGREGATE and UPDATE.
+      This is the MPNN update rule in its general form. AGG collects neighbor
+      representations &mdash; sum for GCN, mean or LSTM for GraphSAGE,
+      attention-weighted for GAT. UPDATE combines the aggregated message with
+      the node&rsquo;s own representation and applies a learned transformation
+      (typically an MLP with nonlinearity). The formula is permutation-invariant
+      over neighbors, which is essential since graphs have no canonical node
+      ordering. This single equation subsumes virtually all spatial-domain
+      GNN variants; they differ only in the choice of AGG and UPDATE.
     </aside>
   </section>
 
@@ -1356,12 +1645,16 @@
     </p>
 
     <aside class="notes">
-      Xu et al. proved in 2019 that standard message-passing GNNs are exactly
-      as powerful as the 1-dimensional Weisfeiler-Leman test. This means there
-      are pairs of non-isomorphic graphs that no standard GNN can distinguish.
-      For example, certain regular graphs look the same to 1-WL. Higher-order
-      GNNs can overcome this, but they are more expensive. This theoretical
-      result guides architecture design.
+      Xu et al. (GIN, 2019) proved that message-passing GNNs are at most as
+      powerful as the 1-WL (color refinement) isomorphism test, and that GIN
+      (Graph Isomorphism Network) achieves this upper bound. Consequence:
+      there exist pairs of non-isomorphic graphs &mdash; e.g., certain
+      $k$-regular graphs &mdash; that 1-WL (and hence any standard MPNN)
+      cannot distinguish. Higher-order $k$-WL tests (and corresponding
+      $k$-GNNs) are strictly more powerful but have complexity $O(n^k)$.
+      This expressiveness hierarchy is an active research frontier and
+      directly guides architecture design for molecular and combinatorial
+      domains.
     </aside>
   </section>
 </section>
@@ -1372,34 +1665,27 @@
      ============================================================ -->
 <section>
   <h2>Drug Discovery with GNNs</h2>
-  <div class="columns-4060">
+  <div class="columns">
     <div>
-      <img src="images/16-molecule-graph.png" alt="Molecule represented as a graph" style="max-height:22vh;">
+      <img src="images/16-molecule-graph.png" alt="Molecule represented as a graph" style="max-height:20vh;">
     </div>
-    <div>
-      <p>Molecules are graphs:</p>
-      <ul>
-        <li class="fragment fade-in" data-fragment-index="1"><strong>Atoms</strong> = nodes</li>
-        <li class="fragment fade-in" data-fragment-index="2"><strong>Bonds</strong> = edges</li>
-        <li class="fragment fade-in" data-fragment-index="3"><strong>Bond types</strong> = edge labels (single, double, aromatic)</li>
-      </ul>
-      <div class="card card-green fragment fade-up mt-md" data-fragment-index="4">
-        <h4 style="color:var(--green);">Why GNNs Excel</h4>
-        <p class="text-sm mb-0">
-          GNNs predict molecular properties (toxicity, binding affinity, solubility) directly
-          from the molecular graph &mdash; no hand-crafted features needed.
-        </p>
+    <div class="col-center">
+      <p class="text-sm"><strong>Atoms</strong> = nodes, <strong>Bonds</strong> = edges, <strong>Bond types</strong> = edge labels</p>
+      <div class="card card-green fragment fade-up" data-fragment-index="1">
+        <p class="text-sm mb-0">GNNs predict toxicity, binding affinity, and solubility directly from the molecular graph &mdash; accelerating drug design from years to months.</p>
       </div>
     </div>
   </div>
 
   <aside class="notes">
-    Drug discovery is one of the most exciting applications of graph neural
-    networks. A molecule is naturally a graph: atoms are nodes, bonds are edges.
-    Traditional approaches required chemists to hand-design molecular features.
-    GNNs learn directly from the graph structure, predicting properties like
-    toxicity, drug-target binding affinity, and solubility. This has accelerated
-    drug design pipelines from years to months.
+    A molecule is naturally a labeled graph: atoms are vertices (with features
+    like atomic number and charge), bonds are edges (with type: single, double,
+    aromatic). GNNs learn molecular representations via message passing on
+    this graph, predicting properties like toxicity, binding affinity, and
+    solubility directly from structure &mdash; no hand-crafted descriptors
+    needed. DeepMind&rsquo;s GNoME (2023) used GNNs to discover 2.2 million
+    new stable crystal structures. The code of the universe encodes chemistry
+    as graph theory.
   </aside>
 </section>
 
@@ -1413,12 +1699,13 @@
   <div id="interactive-architect" class="interactive-container tall"></div>
 
   <aside class="notes">
-    You have input, hidden, and output nodes. Click any two nodes to draw an
-    edge between them; click again to remove it. Try different patterns: connect
-    only adjacent layers for a feedforward network, add skip connections for a
-    ResNet, or connect everything for a transformer-like architecture. Click
-    "Analyze" to see the density, whether you have skip connections, and how
-    your design is classified. Click "Random" for a random wiring.
+    This interactive lets you construct a neural architecture as a graph.
+    Click two vertices to toggle an edge. Try building: (1) a layered DAG
+    (feedforward), (2) a layered DAG with skip edges (ResNet), (3) a
+    complete graph (transformer-like). The &ldquo;Analyze&rdquo; button
+    reports edge density $|E| / \binom{|V|}{2}$, presence of skip connections,
+    and architecture classification. Notice how graph density directly
+    determines computational cost and information-flow properties.
   </aside>
 </section>
 
@@ -1473,13 +1760,16 @@
   <p class="fragment fade-up text-sm hl-muted mt-md" data-fragment-index="7">Both are message-passing on graphs &mdash; they differ in which graph they use.</p>
 
   <aside class="notes">
-    Which is better? Neither &mdash; they serve different purposes. The
-    transformer builds a complete graph, which means every token can attend to
-    every other. This is powerful but quadratic. GNNs use the graph you give
-    them, which can be sparse, saving computation but requiring you to know the
-    structure in advance. Transformers dominate language and vision; GNNs
-    dominate molecules, social networks, and knowledge graphs. But at their
-    core, both are doing the same thing: message passing on a graph.
+    The key insight: a transformer IS a GNN on the complete graph $K_n$.
+    Self-attention computes attention-weighted message passing where every
+    vertex is a neighbor of every other &mdash; $O(n^2)$. A GNN on a sparse
+    graph with $|E| \ll n^2$ runs in $O(|E|)$ per layer but requires the
+    graph structure as input. Joshi et al. (2020) and others have formalized
+    this: transformers are a special case of the MPNN framework where the
+    underlying graph is complete and edge weights are learned via the QKV
+    mechanism. Transformers dominate sequence and grid data; GNNs dominate
+    molecular, social, and relational data. Both are message passing &mdash;
+    they differ only in which graph they operate on.
   </aside>
 </section>
 
@@ -1522,12 +1812,14 @@
   </div>
 
   <aside class="notes">
-    When researchers design a new architecture, what they are really doing is
-    choosing a graph topology. A feedforward net is a chain. A CNN is a grid.
-    A transformer is a complete graph. An RNN is a chain with backward edges.
-    A GNN uses whatever graph the data provides. And Mixture of Experts, used
-    in models like GPT-4, is a sparse bipartite graph where tokens are routed
-    to a subset of expert subnetworks. Graph theory is the unifying language.
+    Every architecture is a choice of graph topology for the computational
+    graph. Feedforward: directed path graph. CNN: grid/lattice with local
+    receptive fields and weight sharing. RNN: directed path with back-edges
+    (cycles). Transformer: complete digraph per layer. GNN: data-defined
+    graph. Mixture of Experts (e.g., Mixtral): sparse bipartite graph where
+    a routing function selects $k$ of $N$ experts per token. This is the
+    unifying insight of the lecture &mdash; the code of the universe writes
+    AI architectures as graph topologies.
   </aside>
 </section>
 
@@ -1542,29 +1834,34 @@
   </figure>
   <div class="columns-3 mt-sm text-sm text-center">
     <p class="fragment fade-in" data-fragment-index="1">
-      <span class="hl-orange">1736</span> Euler<br>
-      <span class="hl-muted">1857</span> Cayley<br>
-      <span class="hl-muted">1959</span> Erdos-Renyi
+      <span class="hl-orange">1736</span> Euler &mdash; <em>abstraction</em><br>
+      <span class="hl-muted">1847</span> Kirchhoff &mdash; <em>Laplacian</em><br>
+      <span class="hl-muted">1857</span> Cayley &mdash; <em>counting</em><br>
+      <span class="hl-muted">1959</span> Erdos &mdash; <em>randomness</em>
     </p>
     <p class="fragment fade-in" data-fragment-index="2">
-      <span class="hl-blue">1967</span> Milgram<br>
-      <span class="hl-muted">1998</span> Watts-Strogatz<br>
-      <span class="hl-muted">1998</span> Page-Brin
+      <span class="hl-blue">1967</span> Milgram &mdash; <em>experiment</em><br>
+      <span class="hl-muted">1998</span> Watts-Strogatz &mdash; <em>models</em><br>
+      <span class="hl-muted">1998</span> Page &amp; Brin &mdash; <em>eigenvectors</em>
     </p>
     <p class="fragment fade-in" data-fragment-index="3">
-      <span class="hl-green">2012</span> Deep Learning<br>
-      <span class="hl-muted">2017</span> Transformers<br>
-      <span class="hl-muted">2020s</span> GNNs &amp; GraphRAG
+      <span class="hl-green">2017</span> Vaswani &mdash; <em>attention</em><br>
+      <span class="hl-muted">2020</span> Kaplan &mdash; <em>scaling laws</em><br>
+      <span class="hl-muted">2024</span> GNNs &amp; GraphRAG
     </p>
   </div>
 
   <aside class="notes">
-    300 years, one idea. Euler abstracted bridges into a graph. Cayley counted
-    trees. Erdos showed random graphs have phase transitions. Milgram proved
-    we live in a small world. Page and Brin ranked the web. And today,
-    transformers and GNNs are built on the same foundation: nodes, edges,
-    and the information flowing between them. Each discovery built directly
-    on the ones before it.
+    The full arc: Euler (1736) &mdash; incidence abstraction and degree-parity
+    criterion. Kirchhoff (1847) &mdash; the graph Laplacian and spectral
+    counting. Cayley (1857) &mdash; the Pr&uuml;fer bijection and $n^{n-2}$.
+    Erd&#337;s &amp; R&eacute;nyi (1959) &mdash; random graphs and phase
+    transitions. Milgram (1967) &mdash; empirical small-world property.
+    Watts &amp; Strogatz (1998) &mdash; small-world models. Page &amp; Brin
+    (1998) &mdash; eigenvector centrality on the web graph. Vaswani et al.
+    (2017) &mdash; self-attention as complete-graph message passing. Each
+    result built directly on its predecessors. Three centuries, one
+    continuous mathematical thread.
   </aside>
 </section>
 
@@ -1580,23 +1877,77 @@
            style="max-height:17vh; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
     </div>
     <div class="col-center">
-      <div class="big-quote" style="font-size:1.5em;">
-        "What matters is not the things &mdash;<br>it is the connections between them."
+      <div class="big-quote" style="font-size:1.3em;">
+        "Mathematics is the language in which God has written the universe."
+        <span class="attribution">&mdash; Galileo Galilei, <em>Il Saggiatore</em>, 1623</span>
       </div>
-      <p class="fragment fade-up mt-lg text-lg">
-        This is the founding insight of graph theory.<br>
-        And it is the founding insight of AI.
+      <p class="fragment fade-up mt-md text-lg">
+        Euler decoded the language of connections.<br>
+        Three hundred years later, we taught machines to read it.
       </p>
     </div>
   </div>
 
   <aside class="notes">
-    I want to leave you with this idea. Euler realized in 1736 that the shape
-    of the landmasses did not matter &mdash; only the bridges between them.
-    Today, neural networks learn by adjusting the weights on edges, not by
-    changing the neurons themselves. Intelligence, both biological and
-    artificial, lives in the connections. That is the deepest lesson of graph
-    theory.
+    Galileo&rsquo;s claim from 1623 is vindicated across four centuries.
+    Euler decoded the language of discrete structure in 1736. Cayley,
+    Kirchhoff, and Erd&#337;s extended the vocabulary with enumeration,
+    spectral methods, and probabilistic models. In the 21st century, we
+    taught machines to read this language &mdash; to construct adjacency
+    matrices, compute eigenvectors, and learn representations by message
+    passing on graphs. The mathematics came first; the AI followed. The
+    code of the universe was always there, waiting to be compiled.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE — The Five Pillars
+     ============================================================ -->
+<section>
+  <h2>The Five Mathematical Pillars of AI</h2>
+  <p class="text-sm hl-muted">Today you traced one thread. Here are the others:</p>
+  <div class="columns-3 mt-sm text-sm">
+    <div class="card card-yellow">
+      <h4 style="color:var(--yellow);">Graph Theory</h4>
+      <p class="mb-0 hl-muted">Today's thread &check;</p>
+    </div>
+    <div class="card fragment fade-in" data-fragment-index="1">
+      <h4>Linear Algebra</h4>
+      <p class="mb-0 hl-muted">Why does king &minus; man + woman = queen?</p>
+    </div>
+    <div class="card card-teal fragment fade-in" data-fragment-index="2">
+      <h4 style="color:var(--teal);">Probability</h4>
+      <p class="mb-0 hl-muted">Why does training on text produce reasoning?</p>
+    </div>
+  </div>
+  <div class="columns-3 mt-sm text-sm">
+    <div class="card card-orange fragment fade-in" data-fragment-index="3">
+      <h4 style="color:var(--orange);">Calculus</h4>
+      <p class="mb-0 hl-muted">How do 175B parameters converge to useful behavior?</p>
+    </div>
+    <div class="card card-green fragment fade-in" data-fragment-index="4">
+      <h4 style="color:var(--green);">Information Theory</h4>
+      <p class="mb-0 hl-muted">What is the entropy of English?</p>
+    </div>
+    <div class="card card-purple fragment fade-in" data-fragment-index="5">
+      <h4 style="color:var(--purple);">Topology</h4>
+      <p class="mb-0 hl-muted">Why do neural nets learn on manifolds?</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Today covered one of six mathematical pillars. Linear algebra: word
+    embeddings live in $\mathbb{R}^d$ and semantic analogies emerge as vector
+    arithmetic &mdash; why? Probability: autoregressive training on
+    $P(x_t | x_{&lt;t})$ produces emergent reasoning &mdash; how?
+    Calculus: stochastic gradient descent over $10^{11}$ parameters converges
+    to useful minima &mdash; what loss landscape geometry enables this?
+    Information theory: Shannon entropy of English is roughly 1.0&ndash;1.5
+    bits per character &mdash; how does this constrain and enable compression?
+    Topology: learned representations concentrate on low-dimensional manifolds
+    &mdash; what is the intrinsic dimension? Each is a research frontier and
+    each deserves its own lecture.
   </aside>
 </section>
 
@@ -1608,13 +1959,12 @@
   <h2>What Comes Next</h2>
   <p>Graph theory is one of the most <strong>in-demand</strong> skills in tech. Where can it take you?</p>
   <ul class="career-list mt-lg">
-    <li class="fragment fade-in" data-fragment-index="1">AI / Machine Learning Engineer</li>
-    <li class="fragment fade-in" data-fragment-index="2">Data Scientist</li>
-    <li class="fragment fade-in" data-fragment-index="3">Computational Biologist</li>
-    <li class="fragment fade-in" data-fragment-index="4">Social Network Analyst</li>
-    <li class="fragment fade-in" data-fragment-index="5">Cybersecurity Specialist</li>
-    <li class="fragment fade-in" data-fragment-index="6">Drug Discovery Researcher</li>
-    <li class="fragment fade-in" data-fragment-index="7">Financial Network Analyst</li>
+    <li class="fragment fade-in" data-fragment-index="1">AI / Machine Learning Engineer &mdash; <span class="hl-muted text-sm">linear algebra, optimization, graph theory</span></li>
+    <li class="fragment fade-in" data-fragment-index="2">Data Scientist &mdash; <span class="hl-muted text-sm">statistics, probability, network analysis</span></li>
+    <li class="fragment fade-in" data-fragment-index="3">Quantitative Researcher &mdash; <span class="hl-muted text-sm">stochastic calculus, number theory</span></li>
+    <li class="fragment fade-in" data-fragment-index="4">Computational Biologist &mdash; <span class="hl-muted text-sm">graph algorithms, dynamical systems</span></li>
+    <li class="fragment fade-in" data-fragment-index="5">Research Mathematician &mdash; <span class="hl-muted text-sm">topology, algebra, analysis (AI is hiring you)</span></li>
+    <li class="fragment fade-in" data-fragment-index="6">Cybersecurity Analyst &mdash; <span class="hl-muted text-sm">graph theory, cryptography</span></li>
   </ul>
   <hr class="accent-rule mt-lg">
   <p class="text-sm hl-muted text-center mt-md">
@@ -1622,14 +1972,16 @@
   </p>
 
   <aside class="notes">
-    Graph theory is one of the most in-demand skills in the tech industry today.
-    AI and ML engineers use graph neural networks. Data scientists run network
-    analysis. Computational biologists model protein interactions as graphs.
-    Social network analysts detect communities and influence. Cybersecurity
-    teams model attack graphs. Drug discovery researchers use GNNs to predict
-    molecular properties. And financial analysts model systemic risk through
-    network theory. Wherever there are connections, there is graph theory.
-    Thank you for your attention. I am happy to take questions.
+    Graph theory is a foundation for multiple career paths. ML engineers deploy
+    GNNs and transformer architectures. Data scientists run spectral clustering
+    and network analysis at scale. Quantitative researchers model financial
+    contagion via network theory and stochastic calculus. Computational
+    biologists apply GNNs to protein interaction networks and molecular
+    property prediction. Cybersecurity analysts model attack surfaces as
+    directed graphs. Research mathematicians work on expressiveness theory,
+    spectral graph theory, and topological data analysis &mdash; all in
+    high demand at AI labs. Wherever there are connections, graph theory
+    is the language. Thank you. Questions welcome.
   </aside>
 </section>
 
@@ -1647,6 +1999,8 @@
     <li>Sergey Brin photograph: Wikimedia Commons — CC BY-SA 2.0</li>
     <li>Königsberg map: Merian-Erben, 1652 — Public Domain</li>
     <li>All generated diagrams: Original work for this lecture</li>
+    <li>Mathematical constellation diagram: Original work for this lecture</li>
+    <li>LLM architecture cross-section: Original work for this lecture</li>
     <li>Video: "How the Königsberg bridge problem changed mathematics" — TED-Ed (YouTube)</li>
     <li>Video: "Attention in transformers, step-by-step" — 3Blue1Brown (YouTube)</li>
     <li>Video: "Large Language Models explained briefly" — 3Blue1Brown (YouTube)</li>
