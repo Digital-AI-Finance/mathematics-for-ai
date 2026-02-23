@@ -830,6 +830,30 @@
   margin-top: 2rem;
 }
 
+/* Watermark icon behind section divider text */
+.reveal .section-divider .divider-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80%;
+  max-width: 80%;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.reveal .section-divider {
+  position: relative;
+}
+
+.reveal .section-divider .act-label,
+.reveal .section-divider h2,
+.reveal .section-divider .act-subtitle {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ==========================================================================
    22. MILESTONE BADGES

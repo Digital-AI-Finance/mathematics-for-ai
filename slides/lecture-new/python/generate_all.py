@@ -34,6 +34,12 @@ SCRIPTS = [
     'gen_12_embedding_space',
     'gen_13_loss_curve',
     'gen_14_attention_heatmap',
+    'gen_15_hero_neural_net',
+    'gen_16_token_pipeline',
+    'gen_17_matrix_multiply',
+    'gen_18_backprop_flow',
+    'gen_19_radar_pillars',
+    'gen_20_section_icons',
 ]
 
 

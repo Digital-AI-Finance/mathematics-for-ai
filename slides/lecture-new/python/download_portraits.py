@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 download_portraits.py
-Downloads 8 public domain portraits from Wikimedia Commons for the
+Downloads 11 public domain portraits from Wikimedia Commons for the
 Five Pillars presentation.
 
 Usage:
@@ -18,43 +18,58 @@ PORTRAITS_DIR = os.path.join(SCRIPT_DIR, '..', 'images', 'portraits')
 PORTRAITS = [
     (
         'grassmann-1860.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hermann_Grassmann.jpg/440px-Hermann_Grassmann.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/5/59/Hermann_Grassmann.jpg',
         'Hermann Grassmann portrait',
     ),
     (
         'pascal-1663.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Blaise_Pascal_Versailles.JPG/440px-Blaise_Pascal_Versailles.JPG',
+        'https://upload.wikimedia.org/wikipedia/commons/9/98/Blaise_Pascal_Versailles.JPG',
         'Blaise Pascal (Versailles portrait by Quesnel)',
     ),
     (
         'newton-1689.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/GodfreyKneller-IsaacNewton-1689.jpg/440px-GodfreyKneller-IsaacNewton-1689.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/3/3b/GodfreyKneller-IsaacNewton-1689.jpg',
         'Isaac Newton (Kneller 1689)',
     ),
     (
         'leibniz-1695.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Gottfried_Wilhelm_von_Leibniz.jpg/440px-Gottfried_Wilhelm_von_Leibniz.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/6/6a/Gottfried_Wilhelm_von_Leibniz.jpg',
         'Gottfried Leibniz (Francke portrait)',
     ),
     (
         'shannon-1963.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/ClaudeShannon_MFO3807.jpg/440px-ClaudeShannon_MFO3807.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/9/9b/ClaudeShannon_MFO3807.jpg',
         'Claude Shannon at Bell Labs',
     ),
     (
         'hinton-2024.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Geoffrey_Hinton_Royal_Society.jpg/440px-Geoffrey_Hinton_Royal_Society.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/8/8a/Geoffrey_Hinton_Royal_Society.jpg',
         'Geoffrey Hinton (Nobel laureate)',
     ),
     (
         'cayley-1883.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Arthur_Cayley.jpg/440px-Arthur_Cayley.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/a/a8/Arthur_Cayley.jpg',
         'Arthur Cayley engraving',
     ),
     (
         'bayes.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Thomas_Bayes.gif/440px-Thomas_Bayes.gif',
+        'https://upload.wikimedia.org/wikipedia/commons/d/d4/Thomas_Bayes.gif',
         'Thomas Bayes (disputed portrait)',
+    ),
+    (
+        'kolmogorov.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/4/43/Andrej_Nikolajewitsch_Kolmogorov.jpg',
+        'Andrey Kolmogorov portrait',
+    ),
+    (
+        'fermat.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/f/f3/Pierre_de_Fermat.jpg',
+        'Pierre de Fermat portrait',
+    ),
+    (
+        'cauchy.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/d/d3/Augustin-Louis_Cauchy_1901.jpg',
+        'Augustin-Louis Cauchy portrait',
     ),
 ]
 
@@ -64,7 +79,7 @@ def download_portrait(filename: str, url: str, description: str, dest_dir: str) 
     dest_path = os.path.join(dest_dir, filename)
     try:
         print(f'  Downloading {filename} ({description}) ...')
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        req = urllib.request.Request(url, headers={'User-Agent': 'MathForAI-Slides/1.0 (educational presentation)'})
         with urllib.request.urlopen(req, timeout=30) as response:
             data = response.read()
         with open(dest_path, 'wb') as f:

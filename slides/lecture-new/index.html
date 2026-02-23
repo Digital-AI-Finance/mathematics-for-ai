@@ -27,6 +27,11 @@
      SLIDE 1 — Title
      ============================================================ -->
 <section class="center-layout">
+  <figure class="mt-0 mb-0">
+    <img src="images/15-hero-neural-net.png"
+         alt="Neural network visualization"
+         style="max-height:12vh; max-width:60%; opacity:0.7;">
+  </figure>
   <p><span class="milestone-badge milestone-ai-connection">The Five Pillars</span></p>
   <h1>The Code of the Universe</h1>
   <h3 class="hl-teal" style="font-weight:500;">From Classical Mathematics to Large Language Models</h3>
@@ -47,6 +52,12 @@
      ============================================================ -->
 <section class="center-layout">
   <h2>What Happens When You Ask ChatGPT a Question?</h2>
+
+  <figure class="mb-0">
+    <img src="images/16-token-pipeline.png"
+         alt="LLM token processing pipeline"
+         style="max-height:10vh; max-width:95%;">
+  </figure>
 
   <p class="fragment fade-in" data-fragment-index="1">
     <span class="hl-blue">1. Your words become numbers</span> &mdash; Linear Algebra
@@ -88,6 +99,12 @@
          style="max-height:22vh; max-width:98%;">
   </figure>
 
+  <figure class="fragment fade-in" data-fragment-index="0">
+    <img src="images/11-timeline.png"
+         alt="Mathematical timeline from 100 BCE to 2024"
+         style="max-height:6vh; max-width:85%; opacity:0.85;">
+  </figure>
+
   <p class="fragment fade-up mt-sm">
     Each pillar was developed by brilliant minds who had no idea their work would power AI.
   </p>
@@ -107,6 +124,7 @@
      ============================================================ -->
 <section>
   <div class="section-divider">
+    <img src="images/20a-icon-linalg.png" alt="" class="divider-watermark">
     <p class="act-label" style="color:var(--blue);">PILLAR 1</p>
     <h2 style="color:var(--blue);">Linear Algebra</h2>
     <p class="act-subtitle">The Skeleton of AI</p>
@@ -150,6 +168,12 @@
         <span class="milestone-year">1858</span>
         <span class="milestone-text">Cayley invents matrix theory &mdash; while working as a lawyer</span>
       </div>
+      <figure class="fragment fade-in" data-fragment-index="3" style="margin-top:0.3rem;">
+        <img src="images/portraits/cayley-1883.jpg"
+             alt="Arthur Cayley, 1883"
+             style="max-height:8vh; display:inline-block;">
+        <figcaption>Arthur Cayley</figcaption>
+      </figure>
     </div>
   </div>
 
@@ -186,6 +210,12 @@
     $$\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$$
   </div>
 
+  <figure class="fragment fade-up" data-fragment-index="0">
+    <img src="images/12-embedding-space.png"
+         alt="2D word embedding scatter plot showing semantic clusters"
+         style="max-height:8vh; max-width:60%;">
+  </figure>
+
   <p class="fragment fade-up text-sm hl-muted mt-sm">
     Mikolov et al., 2013 &mdash; Word2Vec: meaning encoded as geometry.
   </p>
@@ -211,6 +241,12 @@
   <div class="formula-box">
     $$\text{output} = W \cdot \vec{x} + \vec{b}$$
   </div>
+
+  <figure class="mb-0">
+    <img src="images/17-matrix-multiply.png"
+         alt="Annotated matrix multiplication"
+         style="max-height:12vh; max-width:90%;">
+  </figure>
 
   <div class="card fragment fade-in mt-sm" data-fragment-index="1">
     <p class="mb-0">Every layer: multiply input vector by weight matrix</p>
@@ -243,6 +279,12 @@
     $$\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)\!V$$
   </div>
 
+  <figure class="mb-0">
+    <img src="images/14-attention-heatmap.png"
+         alt="Attention weight heatmap"
+         style="max-height:10vh; max-width:80%;">
+  </figure>
+
   <p class="fragment fade-up mt-sm">
     Three matrices. That&rsquo;s all attention is. Cayley&rsquo;s invention, applied to language.
   </p>
@@ -265,6 +307,7 @@
      ============================================================ -->
 <section>
   <div class="section-divider">
+    <img src="images/20b-icon-prob.png" alt="" class="divider-watermark">
     <p class="act-label" style="color:var(--green);">PILLAR 2</p>
     <h2 style="color:var(--green);">Probability &amp; Statistics</h2>
     <p class="act-subtitle">The Language of Uncertainty</p>
@@ -310,6 +353,24 @@
              style="max-height:18vh;">
         <figcaption>Blaise Pascal</figcaption>
       </figure>
+      <figure class="fragment fade-in" data-fragment-index="1" style="margin-top:0.2rem;">
+        <img src="images/portraits/fermat.jpg"
+             alt="Pierre de Fermat"
+             style="max-height:6vh;">
+        <figcaption class="text-xs">Fermat</figcaption>
+      </figure>
+      <figure class="fragment fade-in" data-fragment-index="2" style="margin-top:0.2rem;">
+        <img src="images/portraits/bayes.jpg"
+             alt="Thomas Bayes"
+             style="max-height:6vh;">
+        <figcaption class="text-xs">Bayes</figcaption>
+      </figure>
+      <figure class="fragment fade-in" data-fragment-index="3" style="margin-top:0.2rem;">
+        <img src="images/portraits/kolmogorov.jpg"
+             alt="Andrey Kolmogorov"
+             style="max-height:6vh;">
+        <figcaption class="text-xs">Kolmogorov</figcaption>
+      </figure>
     </div>
   </div>
 
@@ -347,6 +408,13 @@
   <p class="fragment fade-up text-sm hl-muted mt-sm">
     50,000+ words. One probability each. Kolmogorov&rsquo;s axioms in action.
   </p>
+
+  <figure class="fragment fade-up" data-fragment-index="1" style="margin-top:0.2rem;">
+    <img src="images/external/xkcd-frequentists-bayesians.png"
+         alt="XKCD #1132: Frequentists vs Bayesians"
+         style="max-height:5vh; opacity:0.75;">
+    <figcaption class="text-xs">xkcd.com/1132 (CC BY-NC 2.5)</figcaption>
+  </figure>
 
   <aside class="notes">
     After the model processes your input through dozens of attention layers, it
@@ -400,6 +468,7 @@
      ============================================================ -->
 <section>
   <div class="section-divider">
+    <img src="images/20c-icon-calc.png" alt="" class="divider-watermark">
     <p class="act-label" style="color:var(--orange);">PILLAR 3</p>
     <h2 style="color:var(--orange);">Calculus &amp; Optimization</h2>
     <p class="act-subtitle">The Teacher</p>
@@ -438,6 +507,13 @@
     </figure>
   </div>
 
+  <figure class="fragment fade-up mt-sm" data-fragment-index="1" style="margin-top:0.2rem;">
+    <img src="images/external/principia-title-page.jpg"
+         alt="Title page of Newton's Principia Mathematica, 1713 edition"
+         style="max-height:8vh; opacity:0.85;">
+    <figcaption class="text-xs">Principia Mathematica, 1713 ed.</figcaption>
+  </figure>
+
   <p class="fragment fade-up mt-sm">
     Both invented calculus independently. We use Leibniz&rsquo;s notation: $\frac{dy}{dx}$
   </p>
@@ -462,11 +538,19 @@
 <section class="center-layout">
   <h2>Gradient Descent: How AI Learns</h2>
 
-  <figure>
-    <img src="images/05-gradient-descent.png"
-         alt="Ball rolling downhill on a loss surface toward the minimum"
-         style="max-height:18vh;">
-  </figure>
+  <div class="columns-6040">
+    <figure>
+      <img src="images/05-gradient-descent.png"
+           alt="Ball rolling downhill on a loss surface toward the minimum"
+           style="max-height:16vh;">
+    </figure>
+    <figure class="col-center">
+      <img src="images/portraits/cauchy.jpg"
+           alt="Augustin-Louis Cauchy"
+           style="max-height:12vh;">
+      <figcaption>Cauchy (1847)</figcaption>
+    </figure>
+  </div>
 
   <p class="fragment fade-up mt-sm">
     Cauchy invented this in 1847 &mdash; for tracking planetary orbits.
@@ -495,6 +579,20 @@
 
   <div class="formula-box">
     $$\frac{\partial L}{\partial w} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial w}$$
+  </div>
+
+  <div class="columns-6040 mt-sm">
+    <figure>
+      <img src="images/18-backprop-flow.png"
+           alt="Computation graph: forward pass in green, backward gradients in orange"
+           style="max-height:10vh;">
+    </figure>
+    <figure class="col-center">
+      <img src="images/portraits/hinton-2024.jpg"
+           alt="Geoffrey Hinton, 2024 Nobel laureate"
+           style="max-height:8vh;">
+      <figcaption>Hinton (Nobel 2024)</figcaption>
+    </figure>
   </div>
 
   <div class="card card-orange fragment fade-in mt-sm" data-fragment-index="1">
@@ -526,6 +624,7 @@
      ============================================================ -->
 <section>
   <div class="section-divider">
+    <img src="images/20d-icon-info.png" alt="" class="divider-watermark">
     <p class="act-label" style="color:var(--teal);">PILLAR 4</p>
     <h2 style="color:var(--teal);">Information Theory</h2>
     <p class="act-subtitle">The Objective Function</p>
@@ -610,6 +709,13 @@
     Shannon&rsquo;s 1948 formula IS the training objective of every LLM.
   </p>
 
+  <figure class="fragment fade-up mt-sm" data-fragment-index="1">
+    <img src="images/13-loss-curve.png"
+         alt="Training loss curve decreasing over epochs"
+         style="max-height:6vh; max-width:40%; opacity:0.8;">
+    <figcaption class="text-xs">Training loss decreasing over time</figcaption>
+  </figure>
+
   <aside class="notes">
     Cross-entropy measures how &ldquo;surprised&rdquo; the model is by the correct
     answer. P is the true distribution (the actual next word), Q is the model&rsquo;s
@@ -658,6 +764,7 @@
      ============================================================ -->
 <section>
   <div class="section-divider">
+    <img src="images/20e-icon-optim.png" alt="" class="divider-watermark">
     <p class="act-label" style="color:var(--yellow);">PILLAR 5</p>
     <h2 style="color:var(--yellow);">Numerical Optimization</h2>
     <p class="act-subtitle">Training at Scale</p>
@@ -698,6 +805,13 @@
     <span class="hl-green">2014:</span> Kingma &amp; Ba create Adam &mdash; <strong>200,000+ citations</strong>
   </p>
 
+  <figure class="fragment fade-in" data-fragment-index="4" style="margin-top:0.2rem; text-align:right;">
+    <img src="images/external/xkcd-machine-learning.png"
+         alt="XKCD #1838: Pour data into linear algebra, stir"
+         style="max-height:5vh; opacity:0.75; border-radius:4px;">
+    <figcaption class="text-xs" style="text-align:right;">xkcd.com/1838 (CC BY-NC 2.5)</figcaption>
+  </figure>
+
   <aside class="notes">
     Stochastic Gradient Descent (SGD) was invented by Robbins and Monro in 1951.
     Instead of computing the gradient over the entire dataset, you estimate it
@@ -733,6 +847,13 @@
   <p class="fragment fade-up text-sm hl-muted mt-sm">
     Kaplan et al., 2020 &mdash; why companies spend billions on bigger models.
   </p>
+
+  <figure class="fragment fade-up" data-fragment-index="1" style="margin-top:0.2rem; text-align:right;">
+    <img src="images/external/xkcd-curve-fitting.png"
+         alt="XKCD #2048: Curve Fitting"
+         style="max-height:5vh; opacity:0.75; border-radius:4px;">
+    <figcaption class="text-xs" style="text-align:right;">xkcd.com/2048 (CC BY-NC 2.5)</figcaption>
+  </figure>
 
   <aside class="notes">
     In 2020, Jared Kaplan and colleagues at OpenAI discovered that LLM performance
@@ -786,6 +907,12 @@
      ============================================================ -->
 <section class="center-layout">
   <h2>The Code Is Still Being Written</h2>
+
+  <figure class="mb-0">
+    <img src="images/19-radar-pillars.png"
+         alt="Radar chart showing all five mathematical pillars converging in modern AI"
+         style="max-height:8vh; max-width:60%;">
+  </figure>
 
   <ul class="career-list fragment fade-in" data-fragment-index="1">
     <li>AI / ML Engineer</li>
