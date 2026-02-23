@@ -923,6 +923,100 @@
 
 
 /* ==========================================================================
+   22a. PILLAR TAG (small colored indicator on content slides)
+   ========================================================================== */
+
+/* Container: small pill in the top-left of the slide title area */
+.reveal .pillar-tag {
+  display: inline-block;
+  font-size: 0.5em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15em 0.6em;
+  border-radius: 12px;
+  vertical-align: middle;
+  margin-right: 0.4em;
+  opacity: 0.9;
+}
+
+/* Color variants matching the five pillars */
+.reveal .pillar-tag-blue {
+  background: rgba(52, 152, 219, 0.15);
+  color: var(--blue);
+  border: 1px solid rgba(52, 152, 219, 0.35);
+}
+
+.reveal .pillar-tag-green {
+  background: rgba(46, 204, 113, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(46, 204, 113, 0.35);
+}
+
+.reveal .pillar-tag-orange {
+  background: rgba(230, 126, 34, 0.12);
+  color: var(--orange);
+  border: 1px solid rgba(230, 126, 34, 0.35);
+}
+
+.reveal .pillar-tag-teal {
+  background: rgba(26, 188, 156, 0.12);
+  color: var(--teal);
+  border: 1px solid rgba(26, 188, 156, 0.35);
+}
+
+.reveal .pillar-tag-yellow {
+  background: rgba(241, 196, 15, 0.12);
+  color: var(--yellow);
+  border: 1px solid rgba(241, 196, 15, 0.35);
+}
+
+/* Pillar-colored title: apply to h2 on content slides */
+.reveal h2.pillar-title-blue   { color: var(--blue); }
+.reveal h2.pillar-title-green  { color: var(--green); }
+.reveal h2.pillar-title-orange { color: var(--orange); }
+.reveal h2.pillar-title-teal   { color: var(--teal); }
+.reveal h2.pillar-title-yellow { color: var(--yellow); }
+
+/* Convergence pillar list */
+.reveal .pillar-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.5em 0;
+  font-size: 0.85em;
+}
+
+.reveal .pillar-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.25em 0.5em;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+}
+
+.reveal .pillar-summary-item .pillar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.reveal .pillar-summary-item .pillar-name {
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.reveal .pillar-summary-item .pillar-role {
+  font-size: 0.75em;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+
+/* ==========================================================================
    23. SUMMARY CARDS (Three-card row at act recaps)
    ========================================================================== */
 

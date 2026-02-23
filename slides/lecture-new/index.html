@@ -60,29 +60,30 @@
   </figure>
 
   <p class="fragment fade-in" data-fragment-index="1">
-    <span class="hl-blue">1. Your words become numbers</span> &mdash; Linear Algebra
+    <span class="hl-blue">1. Your words become vectors, then giant matrices multiply</span> &mdash; Linear Algebra
   </p>
   <p class="fragment fade-in" data-fragment-index="2">
-    <span class="hl-blue">2. The model multiplies giant matrices</span> &mdash; Linear Algebra
+    <span class="hl-green">2. It computes probabilities for every possible next word</span> &mdash; Probability
   </p>
   <p class="fragment fade-in" data-fragment-index="3">
-    <span class="hl-green">3. It computes probabilities for every possible next word</span> &mdash; Probability
+    <span class="hl-orange">3. It learned from trillions of examples using derivatives</span> &mdash; Calculus
   </p>
   <p class="fragment fade-in" data-fragment-index="4">
-    <span class="hl-orange">4. It learned from trillions of examples using derivatives</span> &mdash; Calculus
+    <span class="hl-teal">4. The goal: minimize surprise (cross-entropy)</span> &mdash; Information Theory
   </p>
   <p class="fragment fade-in" data-fragment-index="5">
-    <span class="hl-teal">5. The goal: minimize surprise (cross-entropy)</span> &mdash; Information Theory
+    <span class="hl-yellow">5. Optimizers like Adam make trillion-parameter training possible</span> &mdash; Optimization
   </p>
 
   <aside class="notes">
     Every single step involves a different branch of mathematics. Words become
-    vectors (linear algebra). Matrices transform those vectors layer by layer.
-    Softmax converts raw scores into probabilities (Kolmogorov&rsquo;s axioms).
+    vectors and matrices transform them layer by layer (linear algebra).
+    Softmax converts raw scores into probabilities (probability theory).
     Backpropagation uses Leibniz&rsquo;s chain rule to compute gradients (calculus).
-    And the training objective &mdash; cross-entropy &mdash; comes straight from
-    Shannon&rsquo;s 1948 paper (information theory). Five pillars, all running
-    simultaneously, billions of times per second.
+    The training objective &mdash; cross-entropy &mdash; comes straight from
+    Shannon&rsquo;s 1948 paper (information theory). And optimizers like Adam
+    make it feasible to train trillions of parameters (numerical optimization).
+    Five pillars, all running simultaneously, billions of times per second.
   </aside>
 </section>
 
@@ -143,7 +144,7 @@
      SLIDE 5 — Origins of Linear Algebra
      ============================================================ -->
 <section>
-  <h2>2000 Years of Linear Algebra</h2>
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>2000 Years of Linear Algebra</h2>
 
   <div class="columns-4060">
     <div class="col-center">
@@ -196,7 +197,7 @@
      SLIDE 6 — Word Embeddings
      ============================================================ -->
 <section class="center-layout">
-  <h2>Words as Vectors
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>Words as Vectors
     <span class="milestone-badge milestone-ai-connection">AI Connection</span>
   </h2>
 
@@ -236,7 +237,7 @@
      SLIDE 7 — Matrix Multiply
      ============================================================ -->
 <section class="center-layout">
-  <h2>The Engine: Matrix Multiplication</h2>
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>The Engine: Matrix Multiplication</h2>
 
   <div class="formula-box">
     $$\text{output} = W \cdot \vec{x} + \vec{b}$$
@@ -270,7 +271,7 @@
      SLIDE 8 — QKV Attention
      ============================================================ -->
 <section class="center-layout">
-  <h2>Attention = Three Matrix Multiplies
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>Attention = Three Matrix Multiplies
     <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
   </h2>
 
@@ -328,7 +329,7 @@
      SLIDE 10 — Origins of Probability
      ============================================================ -->
 <section>
-  <h2>Born from Gambling</h2>
+  <h2 class="pillar-title-green"><span class="pillar-tag pillar-tag-green">P2</span>Born from Gambling</h2>
 
   <div class="columns-6040">
     <div>
@@ -393,7 +394,7 @@
      SLIDE 11 — Softmax
      ============================================================ -->
 <section class="center-layout">
-  <h2>Turning Scores into Probabilities</h2>
+  <h2 class="pillar-title-green"><span class="pillar-tag pillar-tag-green">P2</span>Turning Scores into Probabilities</h2>
 
   <figure>
     <img src="images/03-softmax.png"
@@ -433,7 +434,7 @@
      SLIDE 12 — Galton Board
      ============================================================ -->
 <section>
-  <h2>Randomness Creates Order</h2>
+  <h2 class="pillar-title-green"><span class="pillar-tag pillar-tag-green">P2</span>Randomness Creates Order</h2>
 
   <div class="columns-4060">
     <div class="col-center">
@@ -488,7 +489,7 @@
      SLIDE 14 — Newton vs Leibniz
      ============================================================ -->
 <section class="center-layout">
-  <h2>The Calculus Wars
+  <h2 class="pillar-title-orange"><span class="pillar-tag pillar-tag-orange">P3</span>The Calculus Wars
     <span class="milestone-badge milestone-origin">Origin</span>
   </h2>
 
@@ -536,7 +537,7 @@
      SLIDE 15 — Gradient Descent
      ============================================================ -->
 <section class="center-layout">
-  <h2>Gradient Descent: How AI Learns</h2>
+  <h2 class="pillar-title-orange"><span class="pillar-tag pillar-tag-orange">P3</span>Gradient Descent: How AI Learns</h2>
 
   <div class="columns-6040">
     <figure>
@@ -573,7 +574,7 @@
      SLIDE 16 — Backpropagation
      ============================================================ -->
 <section class="center-layout">
-  <h2>Backpropagation = The Chain Rule
+  <h2 class="pillar-title-orange"><span class="pillar-tag pillar-tag-orange">P3</span>Backpropagation = The Chain Rule
     <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
   </h2>
 
@@ -645,7 +646,7 @@
      SLIDE 18 — Claude Shannon
      ============================================================ -->
 <section>
-  <h2>Shannon: Father of Information Theory
+  <h2 class="pillar-title-teal"><span class="pillar-tag pillar-tag-teal">P4</span>Shannon: Father of Information Theory
     <span class="milestone-badge milestone-origin">Origin</span>
   </h2>
 
@@ -691,7 +692,7 @@
      SLIDE 19 — Cross-Entropy
      ============================================================ -->
 <section class="center-layout">
-  <h2>Cross-Entropy: The LLM Loss Function
+  <h2 class="pillar-title-teal"><span class="pillar-tag pillar-tag-teal">P4</span>Cross-Entropy: The LLM Loss Function
     <span class="milestone-badge milestone-ai-connection">AI Connection</span>
   </h2>
 
@@ -733,7 +734,7 @@
      SLIDE 20 — Shannon's Communication Diagram
      ============================================================ -->
 <section class="center-layout">
-  <h2>Shannon&rsquo;s Model &rarr; The LLM Pipeline</h2>
+  <h2 class="pillar-title-teal"><span class="pillar-tag pillar-tag-teal">P4</span>Shannon&rsquo;s Model &rarr; The LLM Pipeline</h2>
 
   <figure>
     <img src="images/07-shannon-diagram.png"
@@ -785,7 +786,7 @@
      SLIDE 22 — SGD to Adam
      ============================================================ -->
 <section class="center-layout">
-  <h2>The Evolution of Optimizers
+  <h2 class="pillar-title-yellow"><span class="pillar-tag pillar-tag-yellow">P5</span>The Evolution of Optimizers
     <span class="milestone-badge milestone-discovery">Discovery</span>
   </h2>
 
@@ -830,7 +831,7 @@
      SLIDE 23 — Scaling Laws
      ============================================================ -->
 <section class="center-layout">
-  <h2>More Math, Better AI
+  <h2 class="pillar-title-yellow"><span class="pillar-tag pillar-tag-yellow">P5</span>More Math, Better AI
     <span class="milestone-badge milestone-ai-connection">AI Connection</span>
   </h2>
 
@@ -878,10 +879,38 @@
   <figure>
     <img src="images/10-convergence.png"
          alt="Diagram showing all five mathematical pillars converging in a transformer"
-         style="max-height:18vh;">
+         style="max-height:14vh;">
   </figure>
 
-  <p class="fragment fade-up mt-sm">
+  <div class="pillar-summary fragment fade-in" data-fragment-index="0">
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--blue);"></span>
+      <span class="pillar-name hl-blue">Linear Algebra</span>
+      <span class="pillar-role">Skeleton</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--green);"></span>
+      <span class="pillar-name hl-green">Probability</span>
+      <span class="pillar-role">Language</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--orange);"></span>
+      <span class="pillar-name hl-orange">Calculus</span>
+      <span class="pillar-role">Teacher</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--teal);"></span>
+      <span class="pillar-name hl-teal">Info Theory</span>
+      <span class="pillar-role">Objective</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--yellow);"></span>
+      <span class="pillar-name hl-yellow">Optimization</span>
+      <span class="pillar-role">Scale</span>
+    </div>
+  </div>
+
+  <p class="fragment fade-up mt-sm" data-fragment-index="1">
     Five branches of pure mathematics, developed over 2000 years,
     all running simultaneously in a single forward-backward pass.
   </p>
