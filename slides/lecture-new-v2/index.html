@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Code of the Universe &mdash; Five Pillars of AI Mathematics</title>
+
+  <!-- Reveal.js 5.x -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Custom 3B1B theme (overrides black.css) -->
+  <link rel="stylesheet" href="css/theme-3b1b.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================
+     SLIDE 1 — Title
+     ============================================================ -->
+<section class="center-layout">
+  <figure class="mt-0 mb-0">
+    <img src="images/15-hero-neural-net.png"
+         alt="Neural network visualization"
+         style="max-height:12vh; max-width:60%; opacity:0.7;">
+  </figure>
+  <p><span class="milestone-badge milestone-ai-connection">The Five Pillars</span></p>
+  <h1>The Code of the Universe</h1>
+  <h3 class="hl-teal" style="font-weight:500;">From Classical Mathematics to Large Language Models</h3>
+  <p class="hl-muted text-sm mt-lg">The Five Mathematical Ideas Inside Every AI You Use</p>
+
+  <aside class="notes">
+    Welcome. Today we trace five mathematical ideas &mdash; some over 2000 years
+    old &mdash; and show how each one is literally running inside ChatGPT, Claude,
+    and every LLM right now. Each pillar was developed by brilliant minds who had
+    no idea their work would power artificial intelligence. By the end, you will
+    see all five converge in a single forward-backward pass through a transformer.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 2 — LLM Token Processing Pipeline (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>LLM Token Processing Pipeline</h2>
+  <figure>
+    <img src="images/16-token-pipeline.png"
+         alt="LLM token processing pipeline"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 3 — The Hook
+     ============================================================ -->
+<section class="center-layout">
+  <h2>What Happens When You Ask ChatGPT a Question?</h2>
+
+  <figure class="mb-0">
+    <img src="images/16-token-pipeline.png"
+         alt="LLM token processing pipeline"
+         style="max-height:10vh; max-width:95%;">
+  </figure>
+
+  <p class="fragment fade-in" data-fragment-index="1">
+    <span class="hl-blue">1. Your words become vectors, then giant matrices multiply</span> &mdash; Linear Algebra
+  </p>
+  <p class="fragment fade-in" data-fragment-index="2">
+    <span class="hl-green">2. It computes probabilities for every possible next word</span> &mdash; Probability
+  </p>
+  <p class="fragment fade-in" data-fragment-index="3">
+    <span class="hl-orange">3. It learned from trillions of examples using derivatives</span> &mdash; Calculus
+  </p>
+  <p class="fragment fade-in" data-fragment-index="4">
+    <span class="hl-teal">4. The goal: minimize surprise (cross-entropy)</span> &mdash; Information Theory
+  </p>
+  <p class="fragment fade-in" data-fragment-index="5">
+    <span class="hl-yellow">5. Optimizers like Adam make trillion-parameter training possible</span> &mdash; Optimization
+  </p>
+
+  <aside class="notes">
+    Every single step involves a different branch of mathematics. Words become
+    vectors and matrices transform them layer by layer (linear algebra).
+    Softmax converts raw scores into probabilities (probability theory).
+    Backpropagation uses Leibniz&rsquo;s chain rule to compute gradients (calculus).
+    The training objective &mdash; cross-entropy &mdash; comes straight from
+    Shannon&rsquo;s 1948 paper (information theory). And optimizers like Adam
+    make it feasible to train trillions of parameters (numerical optimization).
+    Five pillars, all running simultaneously, billions of times per second.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 4 — The Five Pillars of AI Mathematics (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>The Five Pillars of AI Mathematics</h2>
+  <figure>
+    <img src="images/01-five-pillars-overview.png"
+         alt="Five pillars of AI mathematics: Linear Algebra, Probability, Calculus, Information Theory, Optimization"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 5 — Mathematical Timeline: 100 BCE to 2024 (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Mathematical Timeline: 100 BCE to 2024</h2>
+  <figure>
+    <img src="images/11-timeline.png"
+         alt="Mathematical timeline from 100 BCE to 2024"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 6 — Five Pillars Overview
+     ============================================================ -->
+<section class="center-layout">
+  <h2>The Five Pillars</h2>
+
+  <figure>
+    <img src="images/01-five-pillars-overview.png"
+         alt="Five pillars of AI mathematics: Linear Algebra, Probability, Calculus, Information Theory, Optimization"
+         style="max-height:28vh; max-width:98%;">
+  </figure>
+
+  <figure class="fragment fade-in" data-fragment-index="0">
+    <img src="images/11-timeline.png"
+         alt="Mathematical timeline from 100 BCE to 2024"
+         style="max-height:14vh; max-width:85%; opacity:0.85;">
+  </figure>
+
+  <p class="fragment fade-up mt-sm">
+    Each pillar was developed by brilliant minds who had no idea their work would power AI.
+  </p>
+
+  <aside class="notes">
+    Here is the roadmap. Five pillars: Linear Algebra (the skeleton), Probability
+    (the language of uncertainty), Calculus (the teacher), Information Theory (the
+    objective function), and Numerical Optimization (training at scale). We will
+    visit each one, meet the mathematicians who built it, and then show exactly
+    where it appears inside a modern LLM. Let us begin with the skeleton.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 7 — Section Divider: Linear Algebra
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <img src="images/20a-icon-linalg.png" alt="" class="divider-watermark">
+    <p class="act-label" style="color:var(--blue);">PILLAR 1</p>
+    <h2 style="color:var(--blue);">Linear Algebra</h2>
+    <p class="act-subtitle">The Skeleton of AI</p>
+  </div>
+
+  <aside class="notes">
+    Linear algebra is the skeleton of every neural network. Every piece of data
+    &mdash; text, images, audio &mdash; gets converted into vectors and matrices
+    before the model can touch it. The operations are simple: multiply, add,
+    project. But at scale, those simple operations produce intelligence.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 8 — Origins of Linear Algebra
+     ============================================================ -->
+<section>
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>2000 Years of Linear Algebra</h2>
+
+  <div class="columns-4060">
+    <div class="col-center">
+      <figure>
+        <img src="images/portraits/grassmann-1860.jpg"
+             alt="Hermann Grassmann, 1860"
+             style="max-height:18vh;">
+        <figcaption>Hermann Grassmann</figcaption>
+      </figure>
+    </div>
+    <div>
+      <div class="milestone-row fragment fade-in" data-fragment-index="1">
+        <span class="milestone-year">~100 BCE</span>
+        <span class="milestone-text">Chinese <em>Fangcheng</em> &mdash; solving systems with counting rods
+          <span class="milestone-badge milestone-origin">Origin</span></span>
+      </div>
+      <div class="milestone-row fragment fade-in" data-fragment-index="2">
+        <span class="milestone-year">1844</span>
+        <span class="milestone-text">Grassmann publishes vector spaces &mdash; universally ignored</span>
+      </div>
+      <div class="milestone-row fragment fade-in" data-fragment-index="3">
+        <span class="milestone-year">1858</span>
+        <span class="milestone-text">Cayley invents matrix theory &mdash; while working as a lawyer</span>
+      </div>
+      <figure class="fragment fade-in" data-fragment-index="3" style="margin-top:0.3rem;">
+        <img src="images/portraits/cayley-1883.jpg"
+             alt="Arthur Cayley, 1883"
+             style="max-height:10vh; display:inline-block;">
+        <figcaption>Arthur Cayley</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <aside class="notes">
+    The story begins around 100 BCE in China, where the Jiuzhang Suanshu (Nine
+    Chapters on the Mathematical Art) describes Gaussian elimination &mdash; 2000
+    years before Gauss. Then in 1844, Hermann Grassmann, a schoolteacher in
+    Stettin, publishes a book inventing vector spaces, exterior algebras, and
+    essentially all of modern linear algebra. Nobody reads it. He gives up
+    mathematics and becomes a famous Sanskrit scholar instead. Meanwhile, Arthur
+    Cayley, working as a London barrister because Cambridge would not pay him
+    enough, invents matrix algebra in 1858 as a way to organize linear
+    transformations. The notation he created is the exact notation running inside
+    every GPU today.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 9 — Word Vectors: King - Man + Woman = Queen (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Word Vectors: King − Man + Woman = Queen</h2>
+  <figure>
+    <img src="images/02-word-vectors.png"
+         alt="Word vectors in 2D space showing king-queen-man-woman analogy"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 10 — 2D Word Embedding Space (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>2D Word Embedding Space</h2>
+  <figure>
+    <img src="images/12-embedding-space.png"
+         alt="2D word embedding scatter plot showing semantic clusters"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 11 — Word Embeddings
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>Words as Vectors
+    <span class="milestone-badge milestone-ai-connection">AI Connection</span>
+  </h2>
+
+  <figure>
+    <img src="images/02-word-vectors.png"
+         alt="Word vectors in 2D space showing king-queen-man-woman analogy"
+         style="max-height:16vh;">
+  </figure>
+
+  <div class="formula-box mt-sm">
+    $$\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$$
+  </div>
+
+  <figure class="fragment fade-up" data-fragment-index="0">
+    <img src="images/12-embedding-space.png"
+         alt="2D word embedding scatter plot showing semantic clusters"
+         style="max-height:14vh; max-width:80%;">
+  </figure>
+
+  <p class="fragment fade-up text-sm hl-muted mt-sm">
+    Mikolov et al., 2013 &mdash; Word2Vec: meaning encoded as geometry.
+  </p>
+
+  <aside class="notes">
+    In 2013, Tomas Mikolov at Google showed that if you train a neural network
+    to predict words from context, the learned vectors capture semantic
+    relationships as linear directions. &ldquo;King minus man plus woman equals
+    queen&rdquo; is not a metaphor &mdash; it is a literal vector arithmetic
+    operation in 300-dimensional space. Modern LLMs use the same principle but
+    with far larger embeddings: GPT-4 uses vectors of dimension 12,288. Every
+    word you type becomes a point in that high-dimensional space.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 12 — Matrix Multiplication: The Core Operation (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Matrix Multiplication: The Core Operation</h2>
+  <figure>
+    <img src="images/17-matrix-multiply.png"
+         alt="Annotated matrix multiplication"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 13 — Matrix Multiply
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>The Engine: Matrix Multiplication</h2>
+
+  <div class="formula-box">
+    $$\text{output} = W \cdot \vec{x} + \vec{b}$$
+  </div>
+
+  <figure class="mb-0">
+    <img src="images/17-matrix-multiply.png"
+         alt="Annotated matrix multiplication"
+         style="max-height:18vh; max-width:90%;">
+  </figure>
+
+  <div class="card fragment fade-in mt-sm" data-fragment-index="1">
+    <p class="mb-0">Every layer: multiply input vector by weight matrix</p>
+  </div>
+  <div class="card fragment fade-in" data-fragment-index="2">
+    <p class="mb-0">GPT-4: ~1.8 trillion such multiplications per token</p>
+  </div>
+
+  <aside class="notes">
+    This is the single most important equation in deep learning. Take an input
+    vector, multiply by a weight matrix, add a bias. That is it. A neural network
+    is just this operation repeated hundreds of times with different matrices. The
+    matrices are learned during training. GPT-4 has roughly 1.8 trillion
+    parameters &mdash; each one is an entry in one of these weight matrices.
+    Cayley&rsquo;s 1858 notation is doing all the heavy lifting, 166 years later.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 14 — Attention Weight Heatmap (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Attention Weight Heatmap</h2>
+  <figure>
+    <img src="images/14-attention-heatmap.png"
+         alt="Attention weight heatmap"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 15 — QKV Attention
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-blue"><span class="pillar-tag pillar-tag-blue">P1</span>Attention = Three Matrix Multiplies
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+
+  <div class="formula-box">
+    $$Q = XW_Q, \quad K = XW_K, \quad V = XW_V$$
+    $$\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)\!V$$
+  </div>
+
+  <figure class="mb-0">
+    <img src="images/14-attention-heatmap.png"
+         alt="Attention weight heatmap"
+         style="max-height:16vh; max-width:80%;">
+  </figure>
+
+  <p class="fragment fade-up mt-sm">
+    Three matrices. That&rsquo;s all attention is. Cayley&rsquo;s invention, applied to language.
+  </p>
+
+  <aside class="notes">
+    The attention mechanism from &ldquo;Attention Is All You Need&rdquo; (Vaswani
+    et al., 2017) is built entirely from matrix multiplications. The input
+    sequence X is projected into three spaces: Queries, Keys, and Values. The
+    dot product of Q and K-transpose produces an attention matrix &mdash; which
+    tokens should attend to which. The softmax normalizes each row into a
+    probability distribution. Then we multiply by V to produce the output.
+    Three matrix multiplies. That is the entire mechanism that made transformers
+    revolutionary. Pure linear algebra.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 16 — Section Divider: Probability
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <img src="images/20b-icon-prob.png" alt="" class="divider-watermark">
+    <p class="act-label" style="color:var(--green);">PILLAR 2</p>
+    <h2 style="color:var(--green);">Probability &amp; Statistics</h2>
+    <p class="act-subtitle">The Language of Uncertainty</p>
+  </div>
+
+  <aside class="notes">
+    If linear algebra is the skeleton, probability is the language. Every
+    prediction an LLM makes is a probability distribution over the entire
+    vocabulary. The model never says &ldquo;the next word IS this.&rdquo; It says
+    &ldquo;the next word is probably this, with 23% confidence.&rdquo; That
+    uncertainty is not a weakness &mdash; it is the entire point. And it all
+    started with a gambling problem.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 17 — Origins of Probability
+     ============================================================ -->
+<section>
+  <h2 class="pillar-title-green"><span class="pillar-tag pillar-tag-green">P2</span>Born from Gambling</h2>
+
+  <div class="columns-6040">
+    <div>
+      <div class="milestone-row fragment fade-in" data-fragment-index="1">
+        <span class="milestone-year">1654</span>
+        <span class="milestone-text">Pascal &amp; Fermat exchange letters about a gambling problem
+          <span class="milestone-badge milestone-origin">Origin</span></span>
+      </div>
+      <div class="milestone-row fragment fade-in" data-fragment-index="2">
+        <span class="milestone-year">1763</span>
+        <span class="milestone-text">Bayes&rsquo; theorem published posthumously</span>
+      </div>
+      <div class="milestone-row fragment fade-in" data-fragment-index="3">
+        <span class="milestone-year">1933</span>
+        <span class="milestone-text">Kolmogorov writes the axioms &mdash; probability becomes rigorous</span>
+      </div>
+    </div>
+    <div class="col-center">
+      <figure>
+        <img src="images/portraits/pascal-1663.jpg"
+             alt="Blaise Pascal, 1663"
+             style="max-height:18vh;">
+        <figcaption>Blaise Pascal</figcaption>
+      </figure>
+      <figure class="fragment fade-in" data-fragment-index="1" style="margin-top:0.2rem;">
+        <img src="images/portraits/fermat.jpg"
+             alt="Pierre de Fermat"
+             style="max-height:10vh;">
+        <figcaption class="text-xs">Fermat</figcaption>
+      </figure>
+      <figure class="fragment fade-in" data-fragment-index="2" style="margin-top:0.2rem;">
+        <img src="images/portraits/bayes.jpg"
+             alt="Thomas Bayes"
+             style="max-height:10vh;">
+        <figcaption class="text-xs">Bayes</figcaption>
+      </figure>
+      <figure class="fragment fade-in" data-fragment-index="3" style="margin-top:0.2rem;">
+        <img src="images/portraits/kolmogorov.jpg"
+             alt="Andrey Kolmogorov"
+             style="max-height:10vh;">
+        <figcaption class="text-xs">Kolmogorov</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <aside class="notes">
+    The Chevalier de M&eacute;r&eacute;, a French gambler, was losing money and
+    could not figure out why. He asked Blaise Pascal, who wrote to Pierre de
+    Fermat. Their 1654 correspondence invented probability theory &mdash; because
+    a gambler wanted to win more. Then in 1763, Thomas Bayes' theorem was
+    published two years after his death by his friend Richard Price. Bayes showed
+    how to update beliefs with new evidence &mdash; the foundation of all machine
+    learning. Finally, in 1933, Andrey Kolmogorov gave probability its rigorous
+    axiomatic foundation: every probability is between 0 and 1, the certain event
+    has probability 1, and disjoint events add. Every softmax output in every LLM
+    satisfies Kolmogorov's axioms.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 18 — Softmax: From Logits to Probabilities (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Softmax: From Logits to Probabilities</h2>
+  <figure>
+    <img src="images/03-softmax.png"
+         alt="Softmax converting raw logits into a probability distribution over vocabulary"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 19 — Softmax
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-green"><span class="pillar-tag pillar-tag-green">P2</span>Turning Scores into Probabilities</h2>
+
+  <figure>
+    <img src="images/03-softmax.png"
+         alt="Softmax converting raw logits into a probability distribution over vocabulary"
+         style="max-height:14vh;">
+  </figure>
+
+  <div class="formula-box mt-sm">
+    $$P(w_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$$
+  </div>
+
+  <p class="fragment fade-up text-sm hl-muted mt-sm">
+    50,000+ words. One probability each. Kolmogorov&rsquo;s axioms in action.
+  </p>
+
+  <figure class="fragment fade-up" data-fragment-index="1" style="margin-top:0.2rem;">
+    <img src="images/external/xkcd-frequentists-bayesians.png"
+         alt="XKCD #1132: Frequentists vs Bayesians"
+         style="max-height:14vh; opacity:0.85;">
+    <figcaption class="text-xs">xkcd.com/1132 (CC BY-NC 2.5)</figcaption>
+  </figure>
+
+  <aside class="notes">
+    After the model processes your input through dozens of attention layers, it
+    produces a raw score (logit) for every word in its vocabulary &mdash; 50,000
+    or more. These scores can be any real number: positive, negative, huge, tiny.
+    The softmax function converts them into a valid probability distribution: all
+    positive, all sum to 1. The exponential ensures larger scores get
+    disproportionately more probability. This is Kolmogorov&rsquo;s axioms made
+    computational: the output is guaranteed to be a proper probability measure
+    over the discrete vocabulary space.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 20 — Galton Board
+     ============================================================ -->
+<section>
+  <h2 class="pillar-title-green"><span class="pillar-tag pillar-tag-green">P2</span>Randomness Creates Order</h2>
+
+  <div class="columns-4060">
+    <div class="col-center">
+      <figure>
+        <img src="images/04-galton-board.png"
+             alt="Galton board: balls falling through pegs into a bell-curve distribution"
+             style="max-height:24vh;">
+      </figure>
+    </div>
+    <div class="col-center">
+      <p>Individual events are random.</p>
+      <p>But the aggregate forms a pattern.</p>
+      <p class="fragment fade-up hl-teal">LLMs work the same way: each token is sampled randomly, but the sequence is coherent.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Francis Galton built this device in 1889. Each ball bounces randomly left or
+    right at every peg. Yet the aggregate always forms a bell curve &mdash; the
+    normal distribution. This is the Central Limit Theorem made physical. LLMs
+    exploit the same principle: each individual token is sampled from a probability
+    distribution (random), but the sequence of samples produces coherent text
+    (ordered). Randomness at the micro level, structure at the macro level. This
+    is why LLMs can give different answers to the same question &mdash; and why
+    those answers are almost always sensible.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 21 — Section Divider: Calculus
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <img src="images/20c-icon-calc.png" alt="" class="divider-watermark">
+    <p class="act-label" style="color:var(--orange);">PILLAR 3</p>
+    <h2 style="color:var(--orange);">Calculus &amp; Optimization</h2>
+    <p class="act-subtitle">The Teacher</p>
+  </div>
+
+  <aside class="notes">
+    Calculus is how AI learns. Without derivatives, a neural network is just a
+    random collection of numbers. The derivative tells the model: &ldquo;if you
+    nudge this weight slightly, here is how the error changes.&rdquo; That signal,
+    propagated backward through every layer, is the entire mechanism of learning.
+    And it all started with a bitter rivalry between two geniuses.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 22 — Newton vs Leibniz
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-orange"><span class="pillar-tag pillar-tag-orange">P3</span>The Calculus Wars
+    <span class="milestone-badge milestone-origin">Origin</span>
+  </h2>
+
+  <div class="columns">
+    <figure>
+      <img src="images/portraits/newton-1689.jpg"
+           alt="Isaac Newton, 1689"
+           style="max-height:16vh;">
+      <figcaption>Newton (1666)</figcaption>
+    </figure>
+    <figure>
+      <img src="images/portraits/leibniz-1695.jpg"
+           alt="Gottfried Wilhelm Leibniz, 1695"
+           style="max-height:16vh;">
+      <figcaption>Leibniz (1684)</figcaption>
+    </figure>
+  </div>
+
+  <figure class="fragment fade-up mt-sm" data-fragment-index="1" style="margin-top:0.2rem;">
+    <img src="images/external/principia-title-page.jpg"
+         alt="Title page of Newton's Principia Mathematica, 1713 edition"
+         style="max-height:14vh; opacity:0.85;">
+    <figcaption class="text-xs">Principia Mathematica, 1713 ed.</figcaption>
+  </figure>
+
+  <p class="fragment fade-up mt-sm">
+    Both invented calculus independently. We use Leibniz&rsquo;s notation: $\frac{dy}{dx}$
+  </p>
+
+  <aside class="notes">
+    The nastiest priority dispute in the history of science. Newton developed his
+    &ldquo;method of fluxions&rdquo; around 1666 but did not publish. Leibniz
+    published his version in 1684, with the notation we still use today. Newton
+    accused Leibniz of plagiarism, assembled a Royal Society committee to
+    investigate, and then secretly wrote the committee&rsquo;s report himself
+    &mdash; which, unsurprisingly, exonerated Newton. Modern historians agree
+    both invented calculus independently. But it is Leibniz&rsquo;s dy/dx
+    notation that survives in every calculus textbook and every backpropagation
+    implementation.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 23 — Gradient Descent on a Loss Surface (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Gradient Descent on a Loss Surface</h2>
+  <figure>
+    <img src="images/05-gradient-descent.png"
+         alt="Ball rolling downhill on a loss surface toward the minimum"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 24 — Gradient Descent
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-orange"><span class="pillar-tag pillar-tag-orange">P3</span>Gradient Descent: How AI Learns</h2>
+
+  <div class="columns-6040">
+    <figure>
+      <img src="images/05-gradient-descent.png"
+           alt="Ball rolling downhill on a loss surface toward the minimum"
+           style="max-height:20vh;">
+    </figure>
+    <figure class="col-center">
+      <img src="images/portraits/cauchy.jpg"
+           alt="Augustin-Louis Cauchy"
+           style="max-height:12vh;">
+      <figcaption>Cauchy (1847)</figcaption>
+    </figure>
+  </div>
+
+  <p class="fragment fade-up mt-sm">
+    Cauchy invented this in 1847 &mdash; for tracking planetary orbits.
+  </p>
+
+  <aside class="notes">
+    Imagine you are blindfolded on a hilly landscape and you want to find the
+    lowest point. Strategy: feel the slope under your feet and take a step
+    downhill. Repeat. That is gradient descent. Augustin-Louis Cauchy published
+    this algorithm in 1847 to solve systems of equations arising from planetary
+    orbit calculations. Today, the exact same algorithm &mdash; scaled to 1.8
+    trillion parameters &mdash; trains every large language model. The derivative
+    tells you which direction is downhill. The learning rate tells you how big a
+    step to take. Millions of steps later, the model has learned language.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 25 — Backpropagation: Forward and Backward Pass (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Backpropagation: Forward and Backward Pass</h2>
+  <figure>
+    <img src="images/18-backprop-flow.png"
+         alt="Computation graph: forward pass in green, backward gradients in orange"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 26 — Backpropagation
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-orange"><span class="pillar-tag pillar-tag-orange">P3</span>Backpropagation = The Chain Rule
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+
+  <div class="formula-box">
+    $$\frac{\partial L}{\partial w} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial w}$$
+  </div>
+
+  <div class="columns-6040 mt-sm">
+    <figure>
+      <img src="images/18-backprop-flow.png"
+           alt="Computation graph: forward pass in green, backward gradients in orange"
+           style="max-height:16vh;">
+    </figure>
+    <figure class="col-center">
+      <img src="images/portraits/hinton-2024.jpg"
+           alt="Geoffrey Hinton, 2024 Nobel laureate"
+           style="max-height:8vh;">
+      <figcaption>Hinton (Nobel 2024)</figcaption>
+    </figure>
+  </div>
+
+  <div class="card card-orange fragment fade-in mt-sm" data-fragment-index="1">
+    <p class="mb-0">The chain rule: derivatives flow backward through every layer</p>
+  </div>
+  <div class="card card-orange fragment fade-in" data-fragment-index="2">
+    <p class="mb-0">1986: Rumelhart, Hinton &amp; Williams publish in <em>Nature</em></p>
+  </div>
+  <div class="card card-yellow fragment fade-in" data-fragment-index="3">
+    <p class="mb-0">2024: Hinton wins the Nobel Prize in Physics</p>
+  </div>
+
+  <aside class="notes">
+    Backpropagation is just Leibniz&rsquo;s chain rule from 1676, applied
+    systematically. If you have a function composed of many nested functions
+    &mdash; which is exactly what a neural network is &mdash; the chain rule
+    tells you how to compute the derivative of the whole thing with respect to
+    any individual weight. Error signals flow backward from the output layer
+    through every hidden layer to the input. Rumelhart, Hinton, and Williams
+    published this in Nature in 1986. Nearly 40 years later, in 2024, Geoffrey
+    Hinton won the Nobel Prize in Physics for this work. Leibniz&rsquo;s 350-year-
+    old chain rule powers every AI system on Earth.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 27 — Section Divider: Information Theory
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <img src="images/20d-icon-info.png" alt="" class="divider-watermark">
+    <p class="act-label" style="color:var(--teal);">PILLAR 4</p>
+    <h2 style="color:var(--teal);">Information Theory</h2>
+    <p class="act-subtitle">The Objective Function</p>
+  </div>
+
+  <aside class="notes">
+    We have the skeleton (linear algebra), the language of uncertainty
+    (probability), and the learning mechanism (calculus). But learning toward
+    what? What is the goal? Information theory provides the answer: minimize
+    cross-entropy. The model tries to minimize its surprise about the next token.
+    And this objective comes from one of the most remarkable minds of the 20th
+    century.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 28 — Claude Shannon
+     ============================================================ -->
+<section>
+  <h2 class="pillar-title-teal"><span class="pillar-tag pillar-tag-teal">P4</span>Shannon: Father of Information Theory
+    <span class="milestone-badge milestone-origin">Origin</span>
+  </h2>
+
+  <div class="columns-6040">
+    <div>
+      <div class="big-quote">
+        &ldquo;Information is the resolution of uncertainty.&rdquo;
+        <span class="attribution">&mdash; Claude Shannon</span>
+      </div>
+      <p class="fragment fade-in text-sm" data-fragment-index="1">
+        <span class="hl-teal">1948:</span> &ldquo;A Mathematical Theory of Communication&rdquo; &mdash; invented the <strong>bit</strong>
+      </p>
+      <p class="fragment fade-in text-sm" data-fragment-index="2">
+        <span class="hl-teal">Fun fact:</span> Shannon juggled while riding a unicycle through Bell Labs
+      </p>
+    </div>
+    <div class="col-center">
+      <figure>
+        <img src="images/portraits/shannon-1963.jpg"
+             alt="Claude Shannon, 1963"
+             style="max-height:18vh;">
+        <figcaption>Claude Shannon</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Claude Shannon was a unicyclist, a juggler, a prankster, and the author of
+    arguably the most important paper of the 20th century. His 1948 &ldquo;A
+    Mathematical Theory of Communication&rdquo; invented the concept of the
+    &ldquo;bit&rdquo; as the fundamental unit of information, defined entropy as
+    a measure of uncertainty, and laid the theoretical foundation for everything
+    from zip files to 5G to LLMs. He also built a flame-throwing trumpet, a
+    robot mouse that could solve mazes, and a machine whose sole purpose was to
+    turn itself off. He is the reason we can measure information, compress it,
+    and transmit it &mdash; and his formula is the exact loss function used to
+    train every language model.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 29 — Cross-Entropy: Predicted vs True Distribution (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Cross-Entropy: Predicted vs True Distribution</h2>
+  <figure>
+    <img src="images/06-cross-entropy.png"
+         alt="Cross-entropy measuring distance between predicted and true distributions"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 30 — Training Loss Curve Over Time (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Training Loss Curve Over Time</h2>
+  <figure>
+    <img src="images/13-loss-curve.png"
+         alt="Training loss curve decreasing over epochs"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 31 — Cross-Entropy
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-teal"><span class="pillar-tag pillar-tag-teal">P4</span>Cross-Entropy: The LLM Loss Function
+    <span class="milestone-badge milestone-ai-connection">AI Connection</span>
+  </h2>
+
+  <figure>
+    <img src="images/06-cross-entropy.png"
+         alt="Cross-entropy measuring distance between predicted and true distributions"
+         style="max-height:14vh;">
+  </figure>
+
+  <div class="formula-box mt-sm">
+    $$H(P, Q) = -\sum_{x} P(x) \log Q(x)$$
+  </div>
+
+  <p class="fragment fade-up text-sm hl-muted mt-sm">
+    Shannon&rsquo;s 1948 formula IS the training objective of every LLM.
+  </p>
+
+  <figure class="fragment fade-up mt-sm" data-fragment-index="1">
+    <img src="images/13-loss-curve.png"
+         alt="Training loss curve decreasing over epochs"
+         style="max-height:14vh; max-width:60%; opacity:0.85;">
+    <figcaption class="text-xs">Training loss decreasing over time</figcaption>
+  </figure>
+
+  <aside class="notes">
+    Cross-entropy measures how &ldquo;surprised&rdquo; the model is by the correct
+    answer. P is the true distribution (the actual next word), Q is the model&rsquo;s
+    predicted distribution. When the model assigns high probability to the correct
+    word, cross-entropy is low. When the model is wrong, cross-entropy is high.
+    Training an LLM means minimizing this number over trillions of examples.
+    Shannon derived this formula in 1948 for analyzing communication channels.
+    Seventy-five years later, it is the single number that every LLM training run
+    tries to make as small as possible.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 32 — Shannon's Communication Model as LLM Pipeline (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Shannon's Communication Model as LLM Pipeline</h2>
+  <figure>
+    <img src="images/07-shannon-diagram.png"
+         alt="Shannon's communication model mapped to the LLM pipeline"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 33 — Shannon's Communication Diagram
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-teal"><span class="pillar-tag pillar-tag-teal">P4</span>Shannon&rsquo;s Model &rarr; The LLM Pipeline</h2>
+
+  <figure>
+    <img src="images/07-shannon-diagram.png"
+         alt="Shannon's communication model mapped to the LLM pipeline"
+         style="max-height:18vh;">
+  </figure>
+
+  <p class="fragment fade-up mt-sm">
+    Shannon designed this for telephone lines. 75 years later, it describes exactly how ChatGPT works.
+  </p>
+
+  <aside class="notes">
+    Shannon&rsquo;s 1948 diagram: Source produces a message. Encoder transforms
+    it for transmission. Channel introduces noise. Decoder reconstructs the
+    message. Destination receives it. Now map this to an LLM: the user (source)
+    types a prompt (message). The tokenizer (encoder) converts text to token IDs.
+    The transformer (channel) processes the sequence. The output layer (decoder)
+    produces probabilities. The generated text (destination) arrives as the
+    response. The parallel is not a metaphor &mdash; it is structurally exact.
+    Shannon built the theoretical framework; transformers are a concrete
+    implementation of it.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 34 — Section Divider: Numerical Optimization
+     ============================================================ -->
+<section>
+  <div class="section-divider">
+    <img src="images/20e-icon-optim.png" alt="" class="divider-watermark">
+    <p class="act-label" style="color:var(--yellow);">PILLAR 5</p>
+    <h2 style="color:var(--yellow);">Numerical Optimization</h2>
+    <p class="act-subtitle">Training at Scale</p>
+  </div>
+
+  <aside class="notes">
+    We know what to optimize (cross-entropy), we know the mechanism (gradient
+    descent via backpropagation). But vanilla gradient descent is too slow for
+    models with trillions of parameters trained on trillions of tokens. Pillar 5
+    is about the clever numerical tricks that make training actually feasible:
+    stochastic gradients, momentum, adaptive learning rates. Without these, no
+    LLM could ever be trained.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 35 — SGD to Momentum to Adam (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>SGD to Momentum to Adam</h2>
+  <figure>
+    <img src="images/08-optimizers.png"
+         alt="Evolution from SGD to Momentum to Adam optimizer"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 36 — SGD to Adam
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-yellow"><span class="pillar-tag pillar-tag-yellow">P5</span>The Evolution of Optimizers
+    <span class="milestone-badge milestone-discovery">Discovery</span>
+  </h2>
+
+  <figure>
+    <img src="images/08-optimizers.png"
+         alt="Evolution from SGD to Momentum to Adam optimizer"
+         style="max-height:14vh;">
+  </figure>
+
+  <p class="fragment fade-in" data-fragment-index="1">
+    <span class="hl-green">1951:</span> Robbins &amp; Monro invent SGD
+  </p>
+  <p class="fragment fade-in" data-fragment-index="2">
+    <span class="hl-green">1964:</span> Polyak adds momentum
+  </p>
+  <p class="fragment fade-in" data-fragment-index="3">
+    <span class="hl-green">2014:</span> Kingma &amp; Ba create Adam &mdash; <strong>200,000+ citations</strong>
+  </p>
+
+  <figure class="fragment fade-in" data-fragment-index="4" style="margin-top:0.2rem; text-align:right;">
+    <img src="images/external/xkcd-machine-learning.png"
+         alt="XKCD #1838: Pour data into linear algebra, stir"
+         style="max-height:14vh; opacity:0.85; border-radius:4px;">
+    <figcaption class="text-xs" style="text-align:right;">xkcd.com/1838 (CC BY-NC 2.5)</figcaption>
+  </figure>
+
+  <aside class="notes">
+    Stochastic Gradient Descent (SGD) was invented by Robbins and Monro in 1951.
+    Instead of computing the gradient over the entire dataset, you estimate it
+    from a small random batch &mdash; much faster, slightly noisier, but it works.
+    In 1964, Boris Polyak added momentum: keep a running average of past gradients
+    so you do not oscillate. Then in 2014, Diederik Kingma and Jimmy Ba created
+    Adam (Adaptive Moment Estimation), which maintains per-parameter learning rates
+    that adapt based on the history of gradients. Adam has over 200,000 citations
+    and is used to train virtually every large language model. It is the workhorse
+    of modern AI.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 37 — Neural Scaling Laws (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Neural Scaling Laws (Kaplan et al., 2020)</h2>
+  <figure>
+    <img src="images/09-scaling-laws.png"
+         alt="Log-log plot showing power-law relationship between model size and loss"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 38 — Scaling Laws
+     ============================================================ -->
+<section class="center-layout">
+  <h2 class="pillar-title-yellow"><span class="pillar-tag pillar-tag-yellow">P5</span>More Math, Better AI
+    <span class="milestone-badge milestone-ai-connection">AI Connection</span>
+  </h2>
+
+  <figure>
+    <img src="images/09-scaling-laws.png"
+         alt="Log-log plot showing power-law relationship between model size and loss"
+         style="max-height:14vh;">
+  </figure>
+
+  <div class="formula-box mt-sm">
+    $$L(N) = \left(\frac{N_c}{N}\right)^{0.076}$$
+  </div>
+
+  <p class="fragment fade-up text-sm hl-muted mt-sm">
+    Kaplan et al., 2020 &mdash; why companies spend billions on bigger models.
+  </p>
+
+  <figure class="fragment fade-up" data-fragment-index="1" style="margin-top:0.2rem; text-align:right;">
+    <img src="images/external/xkcd-curve-fitting.png"
+         alt="XKCD #2048: Curve Fitting"
+         style="max-height:14vh; opacity:0.85; border-radius:4px;">
+    <figcaption class="text-xs" style="text-align:right;">xkcd.com/2048 (CC BY-NC 2.5)</figcaption>
+  </figure>
+
+  <aside class="notes">
+    In 2020, Jared Kaplan and colleagues at OpenAI discovered that LLM performance
+    follows a remarkably clean power law: loss decreases as a power of model size,
+    dataset size, and compute. Double the parameters, and you get a predictable
+    improvement. This is why companies are spending billions: the scaling laws say
+    it works. The exponent 0.076 means you need roughly 10x more parameters for
+    each halving of loss. This mathematical relationship &mdash; a simple power
+    law &mdash; is the economic engine driving the entire AI industry. More math,
+    more parameters, more compute, better AI. The returns are predictable and
+    the curve shows no sign of flattening.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 39 — All Five Pillars in One Forward-Backward Pass (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>All Five Pillars in One Forward-Backward Pass</h2>
+  <figure>
+    <img src="images/10-convergence.png"
+         alt="Diagram showing all five mathematical pillars converging in a transformer"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 40 — Convergence
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Where All Five Pillars Meet</h2>
+
+  <figure>
+    <img src="images/10-convergence.png"
+         alt="Diagram showing all five mathematical pillars converging in a transformer"
+         style="max-height:18vh;">
+  </figure>
+
+  <div class="pillar-summary fragment fade-in" data-fragment-index="0">
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--blue);"></span>
+      <span class="pillar-name hl-blue">Linear Algebra</span>
+      <span class="pillar-role">Skeleton</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--green);"></span>
+      <span class="pillar-name hl-green">Probability</span>
+      <span class="pillar-role">Language</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--orange);"></span>
+      <span class="pillar-name hl-orange">Calculus</span>
+      <span class="pillar-role">Teacher</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--teal);"></span>
+      <span class="pillar-name hl-teal">Info Theory</span>
+      <span class="pillar-role">Objective</span>
+    </div>
+    <div class="pillar-summary-item">
+      <span class="pillar-dot" style="background:var(--yellow);"></span>
+      <span class="pillar-name hl-yellow">Optimization</span>
+      <span class="pillar-role">Scale</span>
+    </div>
+  </div>
+
+  <p class="fragment fade-up mt-sm" data-fragment-index="1">
+    Five branches of pure mathematics, developed over 2000 years,
+    all running simultaneously in a single forward-backward pass.
+  </p>
+
+  <aside class="notes">
+    Let us trace one complete training step. Your text enters as token IDs,
+    which are mapped to embedding vectors (linear algebra). These vectors flow
+    through attention layers where Q, K, V matrices compute weighted
+    combinations (linear algebra again). Softmax converts attention scores and
+    output logits into probability distributions (probability theory). The
+    cross-entropy loss measures how far the prediction is from the truth
+    (information theory). Backpropagation sends the gradient of that loss
+    backward through every layer using the chain rule (calculus). And Adam
+    updates each of the trillions of weights using adaptive learning rates
+    (numerical optimization). All five pillars, working together, in every
+    single training step. This is the code of the universe.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 41 — What LLMs Can Actually Do
+     ============================================================ -->
+<section class="center-layout">
+  <h2>What LLMs Can Actually Do
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+
+  <div class="big-quote" style="font-size:1.1em; margin:0.4em 0;">
+    An AI won a Nobel Prize and a Math Olympiad gold medal. In back-to-back years.
+  </div>
+
+  <div class="columns-3 mt-sm">
+    <div class="card card-yellow fragment fade-in" data-fragment-index="1">
+      <span class="stat-number" style="font-size:1.8em;">35/42</span>
+      <span class="stat-label">IMO Gold Medal 2025</span>
+      <p class="text-sm hl-muted mb-0">Gemini Deep Think &mdash; only 67 of 630 humans earned gold</p>
+    </div>
+    <div class="card card-green fragment fade-in" data-fragment-index="2">
+      <span class="stat-number" style="font-size:1.8em; color:var(--green);">Nobel</span>
+      <span class="stat-label">Chemistry 2024</span>
+      <p class="text-sm hl-muted mb-0">AlphaFold solved 50-year protein folding problem</p>
+    </div>
+    <div class="card fragment fade-in" data-fragment-index="3">
+      <span class="stat-number" style="font-size:1.8em;">92%</span>
+      <span class="stat-label">HumanEval Coding</span>
+      <p class="text-sm hl-muted mb-0">Claude on standard benchmark</p>
+    </div>
+  </div>
+
+  <p class="fragment fade-up text-sm hl-muted mt-sm" data-fragment-index="4">
+    These are not predictions. These already happened.
+  </p>
+
+  <aside class="notes">
+    Start with the shock factor. In July 2025, Google DeepMind's Gemini Deep Think
+    scored 35 out of 42 on the International Mathematical Olympiad &mdash; earning
+    a gold medal. Out of 630 human contestants from 110 countries, only 67 earned
+    gold. The year before, in 2024, DeepMind's AlphaFold won the Nobel Prize in
+    Chemistry for solving the protein folding problem, a challenge that had stumped
+    biologists for 50 years. And Claude, the AI you can use for free right now,
+    scores 92% on HumanEval, a standard coding benchmark. These are not futuristic
+    projections. Every single one of these has already happened.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 42 — The Numbers Are Stupid Big
+     ============================================================ -->
+<section class="center-layout">
+  <h2>The Numbers Are Stupid Big</h2>
+
+  <div class="columns" style="gap:1rem;">
+    <div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="1">
+        <span class="stat-number" style="font-size:1.6em; color:var(--orange);">1.7T</span>
+        <span class="stat-label">Parameters in GPT-4</span>
+      </div>
+      <div class="card card-yellow fragment fade-in" data-fragment-index="2">
+        <span class="stat-number" style="font-size:1.6em;">$100M+</span>
+        <span class="stat-label">Training cost</span>
+        <p class="text-sm hl-muted mb-0">25,000 GPUs for 90 days</p>
+      </div>
+    </div>
+    <div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="3">
+        <span class="stat-number" style="font-size:1.6em; color:var(--teal);">15T</span>
+        <span class="stat-label">Training tokens</span>
+        <p class="text-sm hl-muted mb-0">= 2,750 Wikipedias = 84,000 years of reading</p>
+      </div>
+      <div class="card card-green fragment fade-in" data-fragment-index="4">
+        <span class="stat-number" style="font-size:1.6em; color:var(--green);">800M</span>
+        <span class="stat-label">Weekly ChatGPT users</span>
+        <p class="text-sm hl-muted mb-0">1 in 10 humans on Earth (Oct 2025)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-red fragment fade-in mt-sm" data-fragment-index="5">
+    <p class="mb-0"><strong>Plot twist:</strong> DeepSeek R1 matched GPT-4 performance for <span class="hl-green">$6 million</span>. Open source.</p>
+  </div>
+
+  <aside class="notes">
+    Let the numbers sink in. GPT-4 has an estimated 1.7 trillion parameters.
+    Training it cost over 100 million dollars, required 25,000 GPUs running for
+    90 days, and consumed enough electricity to power a city of 50,000 for a month.
+    The training data was 15 trillion tokens &mdash; that is 2,750 complete copies
+    of Wikipedia, or the equivalent of someone reading non-stop for 84,000 years.
+    As of October 2025, ChatGPT has 800 million weekly active users &mdash; roughly
+    one in ten humans on the planet. Sam Altman announced that number at Dev Day.
+    And then in January 2025, a Chinese lab called DeepSeek released R1, which
+    matched GPT-4 on most benchmarks &mdash; trained for just 6 million dollars,
+    and open-sourced. That blog post caused Nvidia to lose 600 billion dollars in
+    market value in a single day.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 43 — Brilliant and Broken
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Brilliant and Broken</h2>
+
+  <div class="big-quote" style="font-size:1.0em; margin:0.3em 0;">
+    It solved an IMO problem but can&rsquo;t count the letters in &ldquo;strawberry.&rdquo; Both true.
+  </div>
+
+  <div class="columns" style="gap:1rem;">
+    <div>
+      <div class="card card-red fragment fade-in" data-fragment-index="1">
+        <p class="mb-0"><span class="hl-red">Strawberry:</span> GPT can prove theorems but says there are 2 R&rsquo;s in &ldquo;strawberry&rdquo;</p>
+      </div>
+      <div class="card card-red fragment fade-in" data-fragment-index="2">
+        <p class="mb-0"><span class="hl-red">9.11 vs 9.9:</span> Many LLMs claim 9.11 &gt; 9.9</p>
+      </div>
+    </div>
+    <div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="3">
+        <p class="mb-0"><span class="hl-orange">Mata v. Avianca:</span> Lawyer fined $5,000 for citing cases ChatGPT invented</p>
+      </div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="4">
+        <p class="mb-0"><span class="hl-orange">Air Canada:</span> Company ordered to honor a refund policy its chatbot hallucinated</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-teal fragment fade-up mt-sm" data-fragment-index="5">
+    <p class="mb-0"><span class="hl-teal">Why?</span> LLMs are statistical pattern completers, not fact databases. There is no internal fact-checker.</p>
+  </div>
+
+  <aside class="notes">
+    Here is the paradox you need to understand. The same system that can solve
+    International Math Olympiad problems cannot reliably count the letter R in
+    the word strawberry. It says there are two. There are three. Many LLMs will
+    tell you that 9.11 is greater than 9.9 because they are doing pattern matching
+    on text, not arithmetic on numbers. In 2023, a New York lawyer named Steven
+    Schwartz submitted a legal brief citing six court cases that ChatGPT had
+    completely fabricated &mdash; fake case names, fake citations, fake rulings.
+    He was fined 5,000 dollars. Air Canada had to honor a bereavement discount
+    that its chatbot made up out of thin air. The reason: LLMs are statistical
+    pattern completers. They predict the most likely next token. They have no
+    concept of truth, no internal fact-checker, no way to verify their own outputs.
+    Brilliant at patterns, blind to facts.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 44 — The Race: Zero to Gold in 8 Years
+     ============================================================ -->
+<section>
+  <h2 class="text-center">The Race &mdash; Zero to Gold in 8 Years</h2>
+
+  <div class="milestone-row fragment fade-in" data-fragment-index="1">
+    <span class="milestone-year" style="min-width:4.5em;">2017</span>
+    <span class="milestone-text">&ldquo;Attention Is All You Need&rdquo; paper
+      <span class="milestone-badge milestone-origin">Origin</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="2">
+    <span class="milestone-year" style="min-width:4.5em;">2020</span>
+    <span class="milestone-text">GPT-3 launches &mdash; 175 billion parameters</span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="3">
+    <span class="milestone-year" style="min-width:4.5em;">Nov 2022</span>
+    <span class="milestone-text">ChatGPT: <span class="hl-green">100M users in 2 months</span> (Instagram took 2.5 years)</span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="4">
+    <span class="milestone-year" style="min-width:4.5em;">Mar 2023</span>
+    <span class="milestone-text">GPT-4 passes the bar exam
+      <span class="milestone-badge milestone-breakthrough">Breakthrough</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="5">
+    <span class="milestone-year" style="min-width:4.5em;">2024</span>
+    <span class="milestone-text">Two Nobel Prizes go to AI work (Physics + Chemistry)
+      <span class="milestone-badge milestone-discovery">Discovery</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="6">
+    <span class="milestone-year" style="min-width:4.5em;">Jan 2025</span>
+    <span class="milestone-text">DeepSeek R1 drops &mdash; <span class="hl-red">Nvidia loses $600B in one day</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="7">
+    <span class="milestone-year" style="min-width:4.5em;">Jul 2025</span>
+    <span class="milestone-text">AI scores IMO gold medal (35/42)
+      <span class="milestone-badge milestone-ai-connection">AI Connection</span></span>
+  </div>
+
+  <aside class="notes">
+    Look at this timeline. In 2017, eight Google researchers publish a paper called
+    Attention Is All You Need. It introduces the transformer architecture. In 2020,
+    OpenAI scales it to 175 billion parameters with GPT-3. In November 2022, they
+    wrap GPT-3.5 in a chat interface and call it ChatGPT. It reaches 100 million
+    users in two months &mdash; the fastest adoption of any technology in history.
+    Instagram took two and a half years to reach the same number. In 2023, GPT-4
+    passes the bar exam. In 2024, two Nobel Prizes go to AI-related work. In
+    January 2025, a Chinese lab called DeepSeek releases a model that matches
+    GPT-4 &mdash; Nvidia&rsquo;s stock drops 600 billion dollars in a single day,
+    the largest one-day loss in stock market history. And in July 2025, AI scores
+    a gold medal on the International Mathematical Olympiad. Eight years from an
+    academic paper to rewriting the global economy.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 45 — What YOU Can Do Right Now
+     ============================================================ -->
+<section class="center-layout">
+  <h2>What <span class="hl-green">YOU</span> Can Do Right Now</h2>
+
+  <div class="columns-6040">
+    <div>
+      <ol class="step-list">
+        <li class="fragment fade-in" data-fragment-index="1">
+          <div class="step-body">
+            <span class="step-title">Get the GitHub Student Developer Pack</span>
+            <span class="step-desc">Free Copilot, free cloud credits, free everything</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="2">
+          <div class="step-body">
+            <span class="step-title">Take the Kaggle Intro to ML course</span>
+            <span class="step-desc">Free, hands-on, takes one weekend</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="3">
+          <div class="step-body">
+            <span class="step-title">Open Google Colab and run a notebook</span>
+            <span class="step-desc">Free GPU, no setup, works in your browser</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="4">
+          <div class="step-body">
+            <span class="step-title">Try a HuggingFace model</span>
+            <span class="step-desc">Thousands of pre-trained models, one line of code</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="5">
+          <div class="step-body">
+            <span class="step-title">Enter a Kaggle competition</span>
+            <span class="step-desc">Real data, real problems, real community</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="col-center">
+      <div class="card card-green fragment fade-in" data-fragment-index="6">
+        <span class="stat-number" style="font-size:1.6em; color:var(--green);">$186K</span>
+        <span class="stat-label">ML Engineer median salary</span>
+      </div>
+      <div class="card fragment fade-in" data-fragment-index="7">
+        <p class="text-sm mb-0">Free tools: ChatGPT, Claude, GitHub Copilot (free for students), Google Colab, Kaggle</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="fragment fade-up hl-teal mt-sm" data-fragment-index="8">
+    The tools are free. The courses are free. What are you doing this weekend?
+  </p>
+
+  <aside class="notes">
+    This is the empowerment slide. Everything I am about to list is completely free.
+    Step one: get the GitHub Student Developer Pack. It gives you free access to
+    GitHub Copilot, cloud computing credits, and dozens of other tools. Step two:
+    take the Kaggle Intro to Machine Learning course &mdash; it is free, hands-on,
+    and you can finish it in a weekend. Step three: open Google Colab. It gives you
+    a free GPU in your browser &mdash; no installation, no setup. Step four: go to
+    HuggingFace and try running a pre-trained model. Thousands of models, one line
+    of code. Step five: enter a Kaggle competition. Real datasets, real problems,
+    and a community of hundreds of thousands of data scientists. The median salary
+    for an ML engineer is 186,000 dollars. The barrier to entry has never been lower.
+    The tools are free. The courses are free. The question is: what are you doing
+    this weekend?
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 46 — Five Pillars: Convergence Radar (Chart)
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Five Pillars: Convergence Radar</h2>
+  <figure>
+    <img src="images/19-radar-pillars.png"
+         alt="Radar chart showing all five mathematical pillars converging in modern AI"
+         style="max-height:70vh; max-width:95%;">
+  </figure>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 47 — Closing
+     ============================================================ -->
+<section class="center-layout">
+  <h2>The Code Is Still Being Written</h2>
+
+  <figure class="mb-0">
+    <img src="images/19-radar-pillars.png"
+         alt="Radar chart showing all five mathematical pillars converging in modern AI"
+         style="max-height:14vh; max-width:60%;">
+  </figure>
+
+  <ul class="career-list fragment fade-in" data-fragment-index="1">
+    <li>AI / ML Engineer</li>
+    <li>Data Scientist</li>
+    <li>Research Mathematician</li>
+    <li>Quantitative Analyst</li>
+    <li>AI Safety Researcher</li>
+  </ul>
+
+  <div class="big-quote fragment fade-in" data-fragment-index="2">
+    &ldquo;The mathematicians who built these tools never imagined AI.
+    The AI researchers who use them stand on 2000 years of shoulders.&rdquo;
+  </div>
+
+  <p class="fragment fade-up text-lg mt-sm" data-fragment-index="3">
+    <strong>Thank you. Questions?</strong>
+  </p>
+
+  <aside class="notes">
+    Every one of these five branches is an active research frontier. Linear
+    algebra researchers are developing new sparse attention mechanisms.
+    Probabilists are working on better calibration. Calculus and optimization
+    specialists are creating second-order methods. Information theorists are
+    exploring what LLMs actually learn about language structure. And entirely
+    new pillars may emerge: topology, category theory, algebraic geometry are
+    all finding applications in AI. The code of the universe is still being
+    written, and the next chapter may be written by someone in this room.
+    Thank you. I am happy to take questions.
+  </aside>
+</section>
+
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js 5.x -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    showSlideNumber: 'speaker',
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    width: 640,
+    height: 360,
+    margin: 0.01,
+    minScale: 0.2,
+    maxScale: 4.0,
+    plugins: [RevealNotes, RevealMath.KaTeX],
+    katex: {
+      local: false,
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    }
+  });
+</script>
+</body>
+</html>
