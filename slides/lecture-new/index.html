@@ -932,7 +932,285 @@
 
 
 <!-- ============================================================
-     SLIDE 25 — Closing
+     SLIDE 25 — What LLMs Can Actually Do
+     ============================================================ -->
+<section class="center-layout">
+  <h2>What LLMs Can Actually Do
+    <span class="milestone-badge milestone-breakthrough">Breakthrough</span>
+  </h2>
+
+  <div class="big-quote" style="font-size:1.1em; margin:0.4em 0;">
+    An AI won a Nobel Prize and a Math Olympiad gold medal. In back-to-back years.
+  </div>
+
+  <div class="columns-3 mt-sm">
+    <div class="card card-yellow fragment fade-in" data-fragment-index="1">
+      <span class="stat-number" style="font-size:1.8em;">35/42</span>
+      <span class="stat-label">IMO Gold Medal 2025</span>
+      <p class="text-sm hl-muted mb-0">Gemini Deep Think &mdash; only 67 of 630 humans earned gold</p>
+    </div>
+    <div class="card card-green fragment fade-in" data-fragment-index="2">
+      <span class="stat-number" style="font-size:1.8em; color:var(--green);">Nobel</span>
+      <span class="stat-label">Chemistry 2024</span>
+      <p class="text-sm hl-muted mb-0">AlphaFold solved 50-year protein folding problem</p>
+    </div>
+    <div class="card fragment fade-in" data-fragment-index="3">
+      <span class="stat-number" style="font-size:1.8em;">92%</span>
+      <span class="stat-label">HumanEval Coding</span>
+      <p class="text-sm hl-muted mb-0">Claude on standard benchmark</p>
+    </div>
+  </div>
+
+  <p class="fragment fade-up text-sm hl-muted mt-sm" data-fragment-index="4">
+    These are not predictions. These already happened.
+  </p>
+
+  <aside class="notes">
+    Start with the shock factor. In July 2025, Google DeepMind's Gemini Deep Think
+    scored 35 out of 42 on the International Mathematical Olympiad &mdash; earning
+    a gold medal. Out of 630 human contestants from 110 countries, only 67 earned
+    gold. The year before, in 2024, DeepMind's AlphaFold won the Nobel Prize in
+    Chemistry for solving the protein folding problem, a challenge that had stumped
+    biologists for 50 years. And Claude, the AI you can use for free right now,
+    scores 92% on HumanEval, a standard coding benchmark. These are not futuristic
+    projections. Every single one of these has already happened.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 26 — The Numbers Are Stupid Big
+     ============================================================ -->
+<section class="center-layout">
+  <h2>The Numbers Are Stupid Big</h2>
+
+  <div class="columns" style="gap:1rem;">
+    <div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="1">
+        <span class="stat-number" style="font-size:1.6em; color:var(--orange);">1.7T</span>
+        <span class="stat-label">Parameters in GPT-4</span>
+      </div>
+      <div class="card card-yellow fragment fade-in" data-fragment-index="2">
+        <span class="stat-number" style="font-size:1.6em;">$100M+</span>
+        <span class="stat-label">Training cost</span>
+        <p class="text-sm hl-muted mb-0">25,000 GPUs for 90 days</p>
+      </div>
+    </div>
+    <div>
+      <div class="card card-teal fragment fade-in" data-fragment-index="3">
+        <span class="stat-number" style="font-size:1.6em; color:var(--teal);">15T</span>
+        <span class="stat-label">Training tokens</span>
+        <p class="text-sm hl-muted mb-0">= 2,750 Wikipedias = 84,000 years of reading</p>
+      </div>
+      <div class="card card-green fragment fade-in" data-fragment-index="4">
+        <span class="stat-number" style="font-size:1.6em; color:var(--green);">800M</span>
+        <span class="stat-label">Weekly ChatGPT users</span>
+        <p class="text-sm hl-muted mb-0">1 in 10 humans on Earth (Oct 2025)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-red fragment fade-in mt-sm" data-fragment-index="5">
+    <p class="mb-0"><strong>Plot twist:</strong> DeepSeek R1 matched GPT-4 performance for <span class="hl-green">$6 million</span>. Open source.</p>
+  </div>
+
+  <aside class="notes">
+    Let the numbers sink in. GPT-4 has an estimated 1.7 trillion parameters.
+    Training it cost over 100 million dollars, required 25,000 GPUs running for
+    90 days, and consumed enough electricity to power a city of 50,000 for a month.
+    The training data was 15 trillion tokens &mdash; that is 2,750 complete copies
+    of Wikipedia, or the equivalent of someone reading non-stop for 84,000 years.
+    As of October 2025, ChatGPT has 800 million weekly active users &mdash; roughly
+    one in ten humans on the planet. Sam Altman announced that number at Dev Day.
+    And then in January 2025, a Chinese lab called DeepSeek released R1, which
+    matched GPT-4 on most benchmarks &mdash; trained for just 6 million dollars,
+    and open-sourced. That blog post caused Nvidia to lose 600 billion dollars in
+    market value in a single day.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 27 — Brilliant and Broken
+     ============================================================ -->
+<section class="center-layout">
+  <h2>Brilliant and Broken</h2>
+
+  <div class="big-quote" style="font-size:1.0em; margin:0.3em 0;">
+    It solved an IMO problem but can&rsquo;t count the letters in &ldquo;strawberry.&rdquo; Both true.
+  </div>
+
+  <div class="columns" style="gap:1rem;">
+    <div>
+      <div class="card card-red fragment fade-in" data-fragment-index="1">
+        <p class="mb-0"><span class="hl-red">Strawberry:</span> GPT can prove theorems but says there are 2 R&rsquo;s in &ldquo;strawberry&rdquo;</p>
+      </div>
+      <div class="card card-red fragment fade-in" data-fragment-index="2">
+        <p class="mb-0"><span class="hl-red">9.11 vs 9.9:</span> Many LLMs claim 9.11 &gt; 9.9</p>
+      </div>
+    </div>
+    <div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="3">
+        <p class="mb-0"><span class="hl-orange">Mata v. Avianca:</span> Lawyer fined $5,000 for citing cases ChatGPT invented</p>
+      </div>
+      <div class="card card-orange fragment fade-in" data-fragment-index="4">
+        <p class="mb-0"><span class="hl-orange">Air Canada:</span> Company ordered to honor a refund policy its chatbot hallucinated</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-teal fragment fade-up mt-sm" data-fragment-index="5">
+    <p class="mb-0"><span class="hl-teal">Why?</span> LLMs are statistical pattern completers, not fact databases. There is no internal fact-checker.</p>
+  </div>
+
+  <aside class="notes">
+    Here is the paradox you need to understand. The same system that can solve
+    International Math Olympiad problems cannot reliably count the letter R in
+    the word strawberry. It says there are two. There are three. Many LLMs will
+    tell you that 9.11 is greater than 9.9 because they are doing pattern matching
+    on text, not arithmetic on numbers. In 2023, a New York lawyer named Steven
+    Schwartz submitted a legal brief citing six court cases that ChatGPT had
+    completely fabricated &mdash; fake case names, fake citations, fake rulings.
+    He was fined 5,000 dollars. Air Canada had to honor a bereavement discount
+    that its chatbot made up out of thin air. The reason: LLMs are statistical
+    pattern completers. They predict the most likely next token. They have no
+    concept of truth, no internal fact-checker, no way to verify their own outputs.
+    Brilliant at patterns, blind to facts.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 28 — The Race: Zero to Gold in 8 Years
+     ============================================================ -->
+<section>
+  <h2 class="text-center">The Race &mdash; Zero to Gold in 8 Years</h2>
+
+  <div class="milestone-row fragment fade-in" data-fragment-index="1">
+    <span class="milestone-year" style="min-width:4.5em;">2017</span>
+    <span class="milestone-text">&ldquo;Attention Is All You Need&rdquo; paper
+      <span class="milestone-badge milestone-origin">Origin</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="2">
+    <span class="milestone-year" style="min-width:4.5em;">2020</span>
+    <span class="milestone-text">GPT-3 launches &mdash; 175 billion parameters</span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="3">
+    <span class="milestone-year" style="min-width:4.5em;">Nov 2022</span>
+    <span class="milestone-text">ChatGPT: <span class="hl-green">100M users in 2 months</span> (Instagram took 2.5 years)</span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="4">
+    <span class="milestone-year" style="min-width:4.5em;">Mar 2023</span>
+    <span class="milestone-text">GPT-4 passes the bar exam
+      <span class="milestone-badge milestone-breakthrough">Breakthrough</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="5">
+    <span class="milestone-year" style="min-width:4.5em;">2024</span>
+    <span class="milestone-text">Two Nobel Prizes go to AI work (Physics + Chemistry)
+      <span class="milestone-badge milestone-discovery">Discovery</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="6">
+    <span class="milestone-year" style="min-width:4.5em;">Jan 2025</span>
+    <span class="milestone-text">DeepSeek R1 drops &mdash; <span class="hl-red">Nvidia loses $600B in one day</span></span>
+  </div>
+  <div class="milestone-row fragment fade-in" data-fragment-index="7">
+    <span class="milestone-year" style="min-width:4.5em;">Jul 2025</span>
+    <span class="milestone-text">AI scores IMO gold medal (35/42)
+      <span class="milestone-badge milestone-ai-connection">AI Connection</span></span>
+  </div>
+
+  <aside class="notes">
+    Look at this timeline. In 2017, eight Google researchers publish a paper called
+    Attention Is All You Need. It introduces the transformer architecture. In 2020,
+    OpenAI scales it to 175 billion parameters with GPT-3. In November 2022, they
+    wrap GPT-3.5 in a chat interface and call it ChatGPT. It reaches 100 million
+    users in two months &mdash; the fastest adoption of any technology in history.
+    Instagram took two and a half years to reach the same number. In 2023, GPT-4
+    passes the bar exam. In 2024, two Nobel Prizes go to AI-related work. In
+    January 2025, a Chinese lab called DeepSeek releases a model that matches
+    GPT-4 &mdash; Nvidia&rsquo;s stock drops 600 billion dollars in a single day,
+    the largest one-day loss in stock market history. And in July 2025, AI scores
+    a gold medal on the International Mathematical Olympiad. Eight years from an
+    academic paper to rewriting the global economy.
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 29 — What YOU Can Do Right Now
+     ============================================================ -->
+<section class="center-layout">
+  <h2>What <span class="hl-green">YOU</span> Can Do Right Now</h2>
+
+  <div class="columns-6040">
+    <div>
+      <ol class="step-list">
+        <li class="fragment fade-in" data-fragment-index="1">
+          <div class="step-body">
+            <span class="step-title">Get the GitHub Student Developer Pack</span>
+            <span class="step-desc">Free Copilot, free cloud credits, free everything</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="2">
+          <div class="step-body">
+            <span class="step-title">Take the Kaggle Intro to ML course</span>
+            <span class="step-desc">Free, hands-on, takes one weekend</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="3">
+          <div class="step-body">
+            <span class="step-title">Open Google Colab and run a notebook</span>
+            <span class="step-desc">Free GPU, no setup, works in your browser</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="4">
+          <div class="step-body">
+            <span class="step-title">Try a HuggingFace model</span>
+            <span class="step-desc">Thousands of pre-trained models, one line of code</span>
+          </div>
+        </li>
+        <li class="fragment fade-in" data-fragment-index="5">
+          <div class="step-body">
+            <span class="step-title">Enter a Kaggle competition</span>
+            <span class="step-desc">Real data, real problems, real community</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="col-center">
+      <div class="card card-green fragment fade-in" data-fragment-index="6">
+        <span class="stat-number" style="font-size:1.6em; color:var(--green);">$186K</span>
+        <span class="stat-label">ML Engineer median salary</span>
+      </div>
+      <div class="card fragment fade-in" data-fragment-index="7">
+        <p class="text-sm mb-0">Free tools: ChatGPT, Claude, GitHub Copilot (free for students), Google Colab, Kaggle</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="fragment fade-up hl-teal mt-sm" data-fragment-index="8">
+    The tools are free. The courses are free. What are you doing this weekend?
+  </p>
+
+  <aside class="notes">
+    This is the empowerment slide. Everything I am about to list is completely free.
+    Step one: get the GitHub Student Developer Pack. It gives you free access to
+    GitHub Copilot, cloud computing credits, and dozens of other tools. Step two:
+    take the Kaggle Intro to Machine Learning course &mdash; it is free, hands-on,
+    and you can finish it in a weekend. Step three: open Google Colab. It gives you
+    a free GPU in your browser &mdash; no installation, no setup. Step four: go to
+    HuggingFace and try running a pre-trained model. Thousands of models, one line
+    of code. Step five: enter a Kaggle competition. Real datasets, real problems,
+    and a community of hundreds of thousands of data scientists. The median salary
+    for an ML engineer is 186,000 dollars. The barrier to entry has never been lower.
+    The tools are free. The courses are free. The question is: what are you doing
+    this weekend?
+  </aside>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 30 — Closing
      ============================================================ -->
 <section class="center-layout">
   <h2>The Code Is Still Being Written</h2>
