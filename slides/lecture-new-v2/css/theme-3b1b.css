@@ -921,6 +921,18 @@
   font-size: 1em;
 }
 
+/* Compact milestone rows for dense timeline slides */
+.reveal .compact-milestones .milestone-row {
+  margin-bottom: 0.3em;
+  line-height: 1.3;
+}
+.reveal .compact-milestones .milestone-text {
+  font-size: 0.9em;
+}
+.reveal .compact-milestones .milestone-year {
+  font-size: 0.85em;
+}
+
 
 /* ==========================================================================
    22a. PILLAR TAG (small colored indicator on content slides)
