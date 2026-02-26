@@ -1,0 +1,48 @@
+%% beamertheme3b1b.sty — Custom 3Blue1Brown dark theme for Beamer
+%% Requires colors defined in preamble.tex (BGDark, TextPrimary, etc.)
+
+\ProvidesPackage{beamertheme3b1b}
+
+%% Background
+\setbeamercolor{background canvas}{bg=BGDark}
+
+%% Text colors
+\setbeamercolor{normal text}{fg=TextPrimary}
+\setbeamercolor{structure}{fg=PillarBlue}
+\setbeamercolor{alerted text}{fg=AccentYellow}
+\setbeamercolor{example text}{fg=PillarGreen}
+
+%% Frame title
+\setbeamercolor{frametitle}{fg=TextPrimary, bg=}
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+
+%% Title page
+\setbeamercolor{title}{fg=TextPrimary}
+\setbeamercolor{subtitle}{fg=PillarTeal}
+\setbeamercolor{author}{fg=TextSecondary}
+\setbeamercolor{date}{fg=TextSecondary}
+\setbeamerfont{title}{size=\Huge, series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+
+%% Item colors
+\setbeamercolor{itemize item}{fg=PillarBlue}
+\setbeamercolor{itemize subitem}{fg=PillarTeal}
+\setbeamercolor{enumerate item}{fg=PillarBlue}
+\setbeamertemplate{itemize item}{\small\raise1pt\hbox{\color{PillarBlue}$\bullet$}}
+
+%% No navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%% Footline: slide number only, right-aligned
+\setbeamertemplate{footline}{%
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \scriptsize\color{TextSecondary}%
+  \insertframenumber\,/\,\inserttotalframenumber%
+  \hspace*{8pt}\vspace*{4pt}%
+}
+
+%% Block environment colors
+\setbeamercolor{block title}{fg=PillarBlue, bg=BGCard}
+\setbeamercolor{block body}{fg=TextPrimary, bg=BGCard}

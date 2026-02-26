@@ -1,0 +1,167 @@
+%% preamble.tex — Packages, colors, and custom commands
+%% For: "The Code of the Universe" Beamer presentation
+
+%% 1. PACKAGES
+\usepackage{fontspec}           % XeLaTeX font loading
+\usepackage{amsmath,amssymb}    % Math
+\usepackage{graphicx}           % Images
+\usepackage{tcolorbox}          % Cards, formula boxes, badges
+\usepackage{tikz}               % Watermarks on divider slides
+\usepackage{hyperref}           % Clickable URLs
+\usepackage{booktabs}           % Nice tables
+\usepackage[tracking]{microtype} % Better typography + \textls for letter-spacing
+\usepackage{multicol}           % Multi-column layouts within frames
+\usepackage{tabularx}           % Flexible tables
+
+%% 2. FONT SETUP
+\setsansfont{Inter}[
+  BoldFont={Inter Bold},
+  ItalicFont={Inter Italic},
+  BoldItalicFont={Inter Bold Italic},
+  Scale=1.0
+]
+% Fallback: If Inter not available, uncomment:
+% \setsansfont{Fira Sans}[Scale=0.95]
+
+%% 3. COLOR DEFINITIONS (from CSS design tokens)
+\definecolor{BGDark}{HTML}{1B2631}
+\definecolor{BGDarker}{HTML}{0D1117}
+\definecolor{BGCard}{HTML}{1E3044}
+\definecolor{TextPrimary}{HTML}{ECF0F1}
+\definecolor{TextSecondary}{HTML}{95A5A6}
+\definecolor{PillarBlue}{HTML}{3498DB}
+\definecolor{PillarGreen}{HTML}{2ECC71}
+\definecolor{PillarOrange}{HTML}{E67E22}
+\definecolor{PillarTeal}{HTML}{1ABC9C}
+\definecolor{PillarYellow}{HTML}{F1C40F}
+\definecolor{AccentRed}{HTML}{E74C3C}
+\definecolor{AccentPurple}{HTML}{9B59B6}
+\definecolor{AccentYellow}{HTML}{F1C40F}
+
+%% 4. IMAGE PATH
+\graphicspath{{../lecture-new-v2/images/}{../lecture-new-v2/images/portraits/}{../lecture-new-v2/images/external/}}
+
+%% 5. CUSTOM COMMANDS
+
+% --- Cards (tcolorbox with colored left border) ---
+% Usage: \begin{card}[PillarBlue] ... \end{card}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{card}[1][PillarBlue]{
+  colback=BGCard, colframe=BGCard,
+  boxrule=0pt, leftrule=4pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  arc=6pt, outer arc=6pt,
+  borderline west={4pt}{0pt}{#1},
+  before skip=4pt, after skip=4pt
+}
+
+% --- Formula Box ---
+\newenvironment{formulabox}{%
+  \begin{tcolorbox}[
+    colback=BGDarker, colframe=PillarBlue!30,
+    boxrule=1pt, arc=6pt,
+    halign=center,
+    left=12pt, right=12pt, top=8pt, bottom=8pt,
+    before skip=6pt, after skip=6pt
+  ]
+  \color{AccentYellow}
+}{%
+  \end{tcolorbox}
+}
+
+% --- Section Divider ---
+% \sectiondivider{icon-file}{pillar-color}{PILLAR N}{Title}{Subtitle}{notes text}
+% 6th argument holds speaker notes INSIDE the frame (required since \note{}
+% placed after the command would be outside the frame environment).
+\newcommand{\sectiondivider}[6]{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[opacity=0.08] at (current page.center) {%
+        \includegraphics[height=0.8\paperheight]{#1}};
+    \end{tikzpicture}
+    \centering\vfill
+    {\small\scshape\bfseries\color{#2}\MakeUppercase{#3}}\par\bigskip
+    {\fontsize{28}{32}\selectfont\bfseries\color{#2} #4}\par\medskip
+    {\large\color{TextSecondary} #5}\par
+    \vspace{1em}
+    {\color{PillarBlue}\rule{60pt}{3pt}}
+    \vfill
+    \note{#6}
+  \end{frame}
+}
+
+% --- Milestone Badge ---
+% \badge{color}{TEXT}
+\newtcbox{\badgebox}[1][PillarBlue]{
+  on line, colback=#1!12, colframe=#1!35,
+  size=small, arc=10pt, boxrule=0.5pt,
+  top=1pt, bottom=1pt, left=4pt, right=4pt
+}
+\newcommand{\badge}[2]{%
+  \badgebox[#1]{\scriptsize\scshape\bfseries\color{#1}#2}}
+
+% --- Milestone Row ---
+% \milestonerow{year}{text}
+\newcommand{\milestonerow}[2]{%
+  {\bfseries\color{TextSecondary}\small #1}\hspace{0.75em}%
+  {\color{TextPrimary} #2}\par\smallskip}
+
+% --- Big Quote ---
+% \bigquote[attribution]{quote text}
+\newcommand{\bigquote}[2][]{%
+  \begin{tcolorbox}[blanker, borderline west={4pt}{0pt}{AccentYellow},
+    left=1.5em, top=4pt, bottom=4pt]
+    {\large\itshape\color{AccentYellow}\textquotedblleft #2\textquotedblright}%
+    \if\relax\detokenize{#1}\relax\else
+      \par\smallskip{\scriptsize\color{TextSecondary}--- #1}\fi
+  \end{tcolorbox}}
+
+% --- Stat Number ---
+% \statnumber[color]{number}{label}
+\newcommand{\statnumber}[3][PillarBlue]{%
+  {\fontsize{22}{26}\selectfont\bfseries\color{#1}#2}\par\vspace{2pt}
+  {\scriptsize\scshape\color{TextSecondary}\textls[60]{#3}}}
+
+% --- Pillar Tag (small colored pill before title) ---
+% \pillartag{color}{P1}
+\newcommand{\pillartag}[2]{%
+  \badgebox[#1]{\tiny\bfseries\color{#1}#2}\hspace{0.3em}}
+
+% --- Highlight colors (inline) ---
+\newcommand{\hlblue}[1]{{\color{PillarBlue}#1}}
+\newcommand{\hlgreen}[1]{{\color{PillarGreen}#1}}
+\newcommand{\hlorange}[1]{{\color{PillarOrange}#1}}
+\newcommand{\hlteal}[1]{{\color{PillarTeal}#1}}
+\newcommand{\hlyellow}[1]{{\color{PillarYellow}#1}}
+\newcommand{\hlred}[1]{{\color{AccentRed}#1}}
+\newcommand{\hlmuted}[1]{{\color{TextSecondary}#1}}
+
+% --- Pillar Convergence Summary Item ---
+% \pillaritem{dot-color}{name}{role}
+\newcommand{\pillaritem}[3]{%
+  \begin{tcolorbox}[colback=BGCard, colframe=BGCard,
+    boxrule=0pt, arc=3pt, left=4pt, right=4pt, top=2pt, bottom=2pt,
+    on line, width=0.18\textwidth]
+    {\color{#1}\rule{6pt}{6pt}}\hspace{0.3em}%
+    {\small\bfseries\color{#1}#2}\hfill%
+    {\scriptsize\color{TextSecondary}#3}
+  \end{tcolorbox}}
+
+% --- Interactive Demo Placeholder ---
+% \demoslide{title}{url}{description}{notes text}
+% 4th argument holds speaker notes INSIDE the frame.
+\newcommand{\demoslide}[4]{%
+  \begin{frame}
+    \frametitle{#1}
+    \centering\vfill
+    \begin{tcolorbox}[colback=BGDarker, colframe=PillarBlue!30,
+      boxrule=1pt, arc=8pt, width=0.85\textwidth,
+      halign=center, top=12pt, bottom=12pt]
+      {\large\color{PillarBlue}\bfseries Live Interactive Demo}\par\bigskip
+      {\color{TextPrimary} #3}\par\bigskip
+      {\small\color{PillarTeal}\url{#2}}
+    \end{tcolorbox}
+    \vfill
+    \note{#4}
+  \end{frame}
+}
