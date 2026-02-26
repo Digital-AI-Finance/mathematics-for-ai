@@ -14,14 +14,15 @@
 \usepackage{tabularx}           % Flexible tables
 
 %% 2. FONT SETUP
-\setsansfont{Inter}[
-  BoldFont={Inter Bold},
-  ItalicFont={Inter Italic},
-  BoldItalicFont={Inter Bold Italic},
+% Inter preferred but not installed; using Calibri as system fallback
+\setsansfont{Calibri}[
+  BoldFont={Calibri Bold},
+  ItalicFont={Calibri Italic},
+  BoldItalicFont={Calibri Bold Italic},
   Scale=1.0
 ]
-% Fallback: If Inter not available, uncomment:
-% \setsansfont{Fira Sans}[Scale=0.95]
+% To use Inter (preferred): install Inter font, then uncomment:
+% \setsansfont{Inter}[BoldFont={Inter Bold}, ItalicFont={Inter Italic}, BoldItalicFont={Inter Bold Italic}, Scale=1.0]
 
 %% 3. COLOR DEFINITIONS (from CSS design tokens)
 \definecolor{BGDark}{HTML}{1B2631}
