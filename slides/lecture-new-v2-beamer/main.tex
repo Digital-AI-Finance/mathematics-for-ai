@@ -17,7 +17,7 @@
 % ===================================================================
 \begin{frame}{Why Should You Care About Math?}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.46\textwidth}
       \onslide<2->{
         \badge{PillarOrange}{4,000 Years}\par\smallskip
         {\small Babylonians solved quadratics. Greeks proved theorems. Newton invented calculus to predict planets.}\par\medskip
@@ -31,7 +31,7 @@
         {\small One paper --- \emph{``Attention Is All You Need''} --- launched ChatGPT, Claude, Gemini, and a \$3 trillion industry.}\par
       }
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.46\textwidth}
       \onslide<5->{
         \begin{card}[PillarTeal]
           {\small\textbf{The secret?} Every breakthrough in AI is built on math that already existed --- most of it centuries old. Today we'll trace \hlteal{five mathematical ideas} from ancient history to the AI running on your phone right now.}
@@ -72,10 +72,10 @@
 % ===================================================================
 \begin{frame}{What Happens When You Ask ChatGPT a Question?}
   \centering
-  \onslide<2->{\hlblue{1. Your words become vectors, then giant matrices multiply} --- Linear Algebra\par\medskip}
-  \onslide<3->{\hlgreen{2. It computes probabilities for every possible next word} --- Probability\par\medskip}
-  \onslide<4->{\hlorange{3. It learned from trillions of examples using derivatives} --- Calculus\par\medskip}
-  \onslide<5->{\hlteal{4. The goal: minimize surprise (cross-entropy)} --- Information Theory\par\medskip}
+  \onslide<2->{\hlblue{1. Your words become vectors, then giant matrices multiply} --- Linear Algebra\par\smallskip}
+  \onslide<3->{\hlgreen{2. It computes probabilities for every possible next word} --- Probability\par\smallskip}
+  \onslide<4->{\hlorange{3. It learned from trillions of examples using derivatives} --- Calculus\par\smallskip}
+  \onslide<5->{\hlteal{4. The goal: minimize surprise (cross-entropy)} --- Information Theory\par\smallskip}
   \onslide<6->{\hlyellow{5. Optimizers like Adam make trillion-parameter training possible} --- Optimization\par}
   \note{Every single step involves a different branch of mathematics. Words become vectors and matrices transform them layer by layer (linear algebra). Softmax converts raw scores into probabilities (probability theory). Backpropagation uses Leibniz's chain rule to compute gradients (calculus). The training objective --- cross-entropy --- comes straight from Shannon's 1948 paper (information theory). And optimizers like Adam make it feasible to train trillions of parameters (numerical optimization). Five pillars, all running simultaneously, billions of times per second.}
 \end{frame}
@@ -140,7 +140,7 @@
 % ===================================================================
 \begin{frame}{The Five Pillars}
   \centering
-  \includegraphics[height=0.28\textheight, keepaspectratio]{01-five-pillars-overview.png}\par\medskip
+  \includegraphics[height=0.32\textheight, keepaspectratio]{01-five-pillars-overview.png}\par\medskip
 
   \onslide<2->{
     \includegraphics[height=0.14\textheight, keepaspectratio]{11-timeline.png}\par\medskip
@@ -218,7 +218,7 @@
   \end{formulabox}
 
   \onslide<2->{
-    \includegraphics[height=0.18\textheight, keepaspectratio]{12-embedding-space.png}\par
+    \includegraphics[height=0.14\textheight, keepaspectratio]{12-embedding-space.png}\par
   }
 
   \onslide<3->{
@@ -353,7 +353,7 @@
   }
 
   \onslide<3->{
-    \includegraphics[height=0.22\textheight, keepaspectratio]{xkcd-frequentists-bayesians.png}\par
+    \includegraphics[height=0.16\textheight, keepaspectratio]{xkcd-frequentists-bayesians.png}\par
     {\scriptsize\color{TextSecondary} xkcd.com/1132 (CC BY-NC 2.5)}
   }
   \note{After the model processes your input through dozens of attention layers, it produces a raw score (logit) for every word in its vocabulary --- 50,000 or more. These scores can be any real number: positive, negative, huge, tiny. The softmax function converts them into a valid probability distribution: all positive, all sum to 1. The exponential ensures larger scores get disproportionately more probability. This is Kolmogorov's axioms made computational: the output is guaranteed to be a proper probability measure over the discrete vocabulary space.}
@@ -394,12 +394,12 @@
 \begin{frame}{\pillartag{PillarOrange}{P3}The Calculus Wars \badge{PillarOrange}{Origin}}
   \centering
   \begin{columns}[c]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.45\textwidth}
       \centering
       \includegraphics[height=0.16\textheight, keepaspectratio]{newton-1689.jpg}\par
       {\scriptsize\color{TextSecondary} Newton (1666)}
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.45\textwidth}
       \centering
       \includegraphics[height=0.16\textheight, keepaspectratio]{leibniz-1695.jpg}\par
       {\scriptsize\color{TextSecondary} Leibniz (1684)}
@@ -471,14 +471,14 @@
   \begin{columns}[T]
     \begin{column}{0.57\textwidth}
       \centering
-      \includegraphics[height=0.16\textheight, keepaspectratio]{18-backprop-flow.png}
+      \includegraphics[height=0.14\textheight, keepaspectratio]{18-backprop-flow.png}
     \end{column}
     \begin{column}{0.38\textwidth}
       \centering
-      \includegraphics[height=0.14\textheight, keepaspectratio]{hinton-2024.jpg}\par
+      \includegraphics[height=0.12\textheight, keepaspectratio]{hinton-2024.jpg}\par
       {\scriptsize\color{TextSecondary} Hinton (Nobel 2024)}
     \end{column}
-  \end{columns}\par\smallskip
+  \end{columns}\par\vspace{2pt}
 
   \onslide<2->{
     \begin{card}[PillarOrange]
@@ -584,7 +584,7 @@
 % ===================================================================
 \begin{frame}{\pillartag{PillarTeal}{P4}Shannon's Model $\to$ The LLM Pipeline}
   \centering
-  \includegraphics[height=0.18\textheight, keepaspectratio]{07-shannon-diagram.png}\par\medskip
+  \includegraphics[height=0.25\textheight, keepaspectratio]{07-shannon-diagram.png}\par\medskip
 
   \onslide<2->{
     {\small Shannon designed this for telephone lines. 75 years later, it describes exactly how ChatGPT works.}
@@ -626,9 +626,8 @@
   }
 
   \onslide<5->{
-    \hfill
-    \includegraphics[height=0.22\textheight, keepaspectratio]{xkcd-machine-learning.png}\par
-    {\scriptsize\color{TextSecondary}\hfill xkcd.com/1838 (CC BY-NC 2.5)}
+    \includegraphics[height=0.16\textheight, keepaspectratio]{xkcd-machine-learning.png}\par
+    {\scriptsize\color{TextSecondary} xkcd.com/1838 (CC BY-NC 2.5)}
   }
   \note{Stochastic Gradient Descent (SGD) was invented by Robbins and Monro in 1951. Instead of computing the gradient over the entire dataset, you estimate it from a small random batch --- much faster, slightly noisier, but it works. In 1964, Boris Polyak added momentum: keep a running average of past gradients so you do not oscillate. Then in 2014, Diederik Kingma and Jimmy Ba created Adam (Adaptive Moment Estimation), which maintains per-parameter learning rates that adapt based on the history of gradients. Adam has over 200,000 citations and is used to train virtually every large language model. It is the workhorse of modern AI.}
 \end{frame}
@@ -659,9 +658,8 @@
   }
 
   \onslide<3->{
-    \hfill
-    \includegraphics[height=0.22\textheight, keepaspectratio]{xkcd-curve-fitting.png}\par
-    {\scriptsize\color{TextSecondary}\hfill xkcd.com/2048 (CC BY-NC 2.5)}
+    \includegraphics[height=0.16\textheight, keepaspectratio]{xkcd-curve-fitting.png}\par
+    {\scriptsize\color{TextSecondary} xkcd.com/2048 (CC BY-NC 2.5)}
   }
   \note{In 2020, Jared Kaplan and colleagues at OpenAI discovered that LLM performance follows a remarkably clean power law: loss decreases as a power of model size, dataset size, and compute. Double the parameters, and you get a predictable improvement. This is why companies are spending billions: the scaling laws say it works. The exponent 0.076 means you need roughly 10x more parameters for each halving of loss. This mathematical relationship --- a simple power law --- is the economic engine driving the entire AI industry. More math, more parameters, more compute, better AI. The returns are predictable and the curve shows no sign of flattening.}
 \end{frame}
@@ -681,14 +679,14 @@
 % ===================================================================
 \begin{frame}{Where All Five Pillars Meet}
   \centering
-  \includegraphics[height=0.18\textheight, keepaspectratio]{10-convergence.png}\par\medskip
+  \includegraphics[height=0.16\textheight, keepaspectratio]{10-convergence.png}\par\medskip
 
   \onslide<2->{
     \pillaritem{PillarBlue}{Linear Algebra}{Skeleton}\hfill
     \pillaritem{PillarGreen}{Probability}{Language}\hfill
     \pillaritem{PillarOrange}{Calculus}{Teacher}\hfill
     \pillaritem{PillarTeal}{Info Theory}{Objective}\hfill
-    \pillaritem{PillarYellow}{Optimization}{Scale}\par\medskip
+    \pillaritem{PillarYellow}{Optimization}{Scale}\par\smallskip
   }
 
   \onslide<3->{
@@ -748,7 +746,7 @@
 % ===================================================================
 \begin{frame}{The Numbers Are Stupid Big}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.46\textwidth}
       \onslide<2->{
         \begin{card}[PillarOrange]
           \statnumber[PillarOrange]{1.7T}{Parameters in GPT-4}
@@ -761,7 +759,7 @@
         \end{card}
       }
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.46\textwidth}
       \onslide<4->{
         \begin{card}[PillarTeal]
           \statnumber[PillarTeal]{15T}{Training tokens}\par\smallskip
@@ -775,7 +773,7 @@
         \end{card}
       }
     \end{column}
-  \end{columns}\par\smallskip
+  \end{columns}\par\vspace{2pt}
 
   \onslide<6->{
     \begin{card}[AccentRed]
@@ -795,7 +793,7 @@
   \bigquote{It solved an IMO problem but can't count the letters in ``strawberry.'' Both true.}
 
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.46\textwidth}
       \onslide<2->{
         \begin{card}[AccentRed]
           \hlred{Strawberry:} Says there are 2 R's in ``strawberry''\par\smallskip
@@ -803,7 +801,7 @@
         \end{card}
       }
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.46\textwidth}
       \onslide<3->{
         \begin{card}[PillarOrange]
           \hlorange{Mata v. Avianca:} Lawyer fined \$5K for fake citations\par\smallskip
@@ -826,6 +824,7 @@
 % --- Slide 44: The Race -- Zero to Gold in 8 Years ---
 % ===================================================================
 \begin{frame}{The Race --- Zero to Gold in 8 Years}
+  {\footnotesize
   \onslide<2->{
     \milestonerow{2017}{``Attention Is All You Need'' paper \badge{PillarOrange}{Origin}}
   }
@@ -847,6 +846,7 @@
   \onslide<8->{
     \milestonerow{Jul 2025}{AI scores IMO gold medal (35/42) \badge{PillarBlue}{AI Connection}}
   }
+  }%end footnotesize
   \note{Look at this timeline. In 2017, eight Google researchers publish a paper called Attention Is All You Need. It introduces the transformer architecture. In 2020, OpenAI scales it to 175 billion parameters with GPT-3. In November 2022, they wrap GPT-3.5 in a chat interface and call it ChatGPT. It reaches 100 million users in two months --- the fastest adoption of any technology in history. Instagram took two and a half years to reach the same number. In 2023, GPT-4 passes the bar exam. In 2024, two Nobel Prizes go to AI-related work. In January 2025, a Chinese lab called DeepSeek releases a model that matches GPT-4 --- Nvidia's stock drops 600 billion dollars in a single day, the largest one-day loss in stock market history. And in July 2025, AI scores a gold medal on the International Mathematical Olympiad. Eight years from an academic paper to rewriting the global economy.}
 \end{frame}
 
@@ -857,7 +857,7 @@
 \begin{frame}{What \hlgreen{YOU} Can Do Right Now}
   \begin{columns}[T]
     \begin{column}{0.57\textwidth}
-      \begin{enumerate}
+      \begin{enumerate}\setlength{\itemsep}{2pt}
         \item {\small\textbf{Get the GitHub Student Developer Pack}\par
               {\scriptsize\color{TextSecondary} Free Copilot, free cloud credits, free everything}}
         \item {\small\textbf{Take the Kaggle Intro to ML course}\par
@@ -906,7 +906,7 @@
 % ===================================================================
 \begin{frame}{The Code Is Still Being Written}
   \centering
-  \includegraphics[height=0.14\textheight, keepaspectratio]{19-radar-pillars.png}\par\medskip
+  \includegraphics[height=0.12\textheight, keepaspectratio]{19-radar-pillars.png}\par\medskip
 
   \onslide<2->{
     \begin{multicols}{2}

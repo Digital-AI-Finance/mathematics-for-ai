@@ -1,0 +1,482 @@
+{
+  "audit_date": "2026-02-27",
+  "total_frames": 52,
+  "frames_fixed": 17,
+  "frames_ok": 35,
+  "systemic_fixes": [
+    "pillaritem width 0.18->0.165 in preamble.tex (affects frame 40)",
+    "statnumber letter-spacing 60->40 in preamble.tex (affects frame 41 and all statnumber uses)",
+    "xkcd images standardized from 0.22 to 0.16 textheight (frames 19, 36, 38)",
+    "tight column gaps 0.48->0.45/0.46 (frames 0, 22, 42, 43)"
+  ],
+  "fixes": [
+    {
+      "frame": 0,
+      "line": 18,
+      "title": "Why Should You Care About Math?",
+      "severity": "minor",
+      "issues": ["tight column gap (0.48+0.48=0.96)"],
+      "changes": ["column widths 0.48->0.46 (both columns)"],
+      "status": "fixed"
+    },
+    {
+      "frame": 1,
+      "line": 49,
+      "title": "Title Slide",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 2,
+      "line": 64,
+      "title": "LLM Token Processing Pipeline",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 3,
+      "line": 73,
+      "title": "What Happens When You Ask ChatGPT a Question?",
+      "severity": "minor",
+      "issues": ["inconsistent spacing (medskip vs none on last item)"],
+      "changes": ["changed medskip to smallskip on items 1-5 for consistency"],
+      "status": "fixed"
+    },
+    {
+      "frame": "3b",
+      "line": 87,
+      "title": "How LLMs Work -- Visual Intro (Demo)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": "3c",
+      "line": 96,
+      "title": "Transformer Explainer (Demo)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": "3d",
+      "line": 105,
+      "title": "3D LLM Visualization (Demo)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": "3e",
+      "line": 114,
+      "title": "AnimatedLLM (Demo)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 4,
+      "line": 123,
+      "title": "The Five Pillars of AI Mathematics (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 5,
+      "line": 132,
+      "title": "Mathematical Timeline (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 6,
+      "line": 141,
+      "title": "The Five Pillars",
+      "severity": "minor",
+      "issues": ["first image too small at 0.28 textheight"],
+      "changes": ["increased image from 0.28 to 0.32 textheight"],
+      "status": "fixed"
+    },
+    {
+      "frame": 7,
+      "line": 159,
+      "title": "Section Divider -- Linear Algebra",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 8,
+      "line": 165,
+      "title": "2000 Years of Linear Algebra",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 9,
+      "line": 194,
+      "title": "Word Vectors (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 10,
+      "line": 203,
+      "title": "2D Word Embedding Space (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 11,
+      "line": 212,
+      "title": "Words as Vectors",
+      "severity": "minor",
+      "issues": ["second image larger than first (hierarchy issue)"],
+      "changes": ["reduced second image from 0.18 to 0.14 textheight"],
+      "status": "fixed"
+    },
+    {
+      "frame": 12,
+      "line": 234,
+      "title": "Matrix Multiplication (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 13,
+      "line": 243,
+      "title": "The Engine: Matrix Multiplication",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 14,
+      "line": 268,
+      "title": "Attention Weight Heatmap (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 15,
+      "line": 277,
+      "title": "Attention = Three Matrix Multiplies",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 16,
+      "line": 296,
+      "title": "Section Divider -- Probability & Statistics",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 17,
+      "line": 302,
+      "title": "Born from Gambling",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 18,
+      "line": 334,
+      "title": "Softmax (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 19,
+      "line": 343,
+      "title": "Turning Scores into Probabilities",
+      "severity": "major",
+      "issues": ["xkcd image at 0.22 textheight too large, vertical budget ~50.4mm of ~56mm"],
+      "changes": ["reduced xkcd image from 0.22 to 0.16 textheight"],
+      "status": "fixed"
+    },
+    {
+      "frame": 20,
+      "line": 366,
+      "title": "Randomness Creates Order",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 21,
+      "line": 388,
+      "title": "Section Divider -- Calculus & Optimization",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 22,
+      "line": 394,
+      "title": "The Calculus Wars",
+      "severity": "minor",
+      "issues": ["tight column gap (0.48+0.48=0.96)"],
+      "changes": ["column widths 0.48->0.45 (both columns)"],
+      "status": "fixed"
+    },
+    {
+      "frame": 23,
+      "line": 424,
+      "title": "Gradient Descent on a Loss Surface (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 24,
+      "line": 433,
+      "title": "Gradient Descent: How AI Learns",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 25,
+      "line": 456,
+      "title": "Backpropagation (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 26,
+      "line": 465,
+      "title": "Backpropagation = The Chain Rule",
+      "severity": "major",
+      "issues": ["formulabox + column images + 3 stacking cards = ~49.9mm of ~56mm"],
+      "changes": ["reduced backprop image 0.16->0.14, Hinton image 0.14->0.12, tightened column spacing"],
+      "status": "fixed"
+    },
+    {
+      "frame": 27,
+      "line": 505,
+      "title": "Section Divider -- Information Theory",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 28,
+      "line": 511,
+      "title": "Shannon: Father of Information Theory",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 29,
+      "line": 535,
+      "title": "Cross-Entropy (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 30,
+      "line": 544,
+      "title": "Training Loss Curve (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 31,
+      "line": 553,
+      "title": "Cross-Entropy: The LLM Loss Function",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 32,
+      "line": 576,
+      "title": "Shannon's Communication Model (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 33,
+      "line": 585,
+      "title": "Shannon's Model -> The LLM Pipeline",
+      "severity": "minor",
+      "issues": ["too much whitespace, image too small"],
+      "changes": ["increased Shannon diagram from 0.18 to 0.25 textheight"],
+      "status": "fixed"
+    },
+    {
+      "frame": 34,
+      "line": 599,
+      "title": "Section Divider -- Numerical Optimization",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 35,
+      "line": 605,
+      "title": "SGD to Momentum to Adam (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 36,
+      "line": 614,
+      "title": "The Evolution of Optimizers",
+      "severity": "major",
+      "issues": ["xkcd image at 0.22 textheight too large, ~51.4mm of ~56mm"],
+      "changes": ["reduced xkcd from 0.22 to 0.16 textheight, removed hfill alignment"],
+      "status": "fixed"
+    },
+    {
+      "frame": 37,
+      "line": 640,
+      "title": "Neural Scaling Laws (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 38,
+      "line": 649,
+      "title": "More Math, Better AI",
+      "severity": "major",
+      "issues": ["xkcd image at 0.22 textheight too large, ~50.4mm of ~56mm"],
+      "changes": ["reduced xkcd from 0.22 to 0.16 textheight, removed hfill alignment"],
+      "status": "fixed"
+    },
+    {
+      "frame": 39,
+      "line": 673,
+      "title": "All Five Pillars in One Forward-Backward Pass (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 40,
+      "line": 682,
+      "title": "Where All Five Pillars Meet",
+      "severity": "critical",
+      "issues": ["5 pillaritem boxes overflow horizontally with padding", "convergence image too large"],
+      "changes": ["pillaritem width 0.18->0.165 in preamble", "convergence image 0.18->0.16", "medskip->smallskip after pillar row"],
+      "status": "fixed"
+    },
+    {
+      "frame": 41,
+      "line": 704,
+      "title": "What LLMs Can Actually Do",
+      "severity": "minor",
+      "issues": ["statnumber letter-spacing may be tight"],
+      "changes": ["textls[60]->textls[40] in preamble (global)"],
+      "status": "fixed"
+    },
+    {
+      "frame": 42,
+      "line": 749,
+      "title": "The Numbers Are Stupid Big",
+      "severity": "critical",
+      "issues": ["4 stat cards + DeepSeek card = ~55mm of ~56mm limit", "tight column gap"],
+      "changes": ["column widths 0.48->0.46", "reduced spacing after columns from smallskip to vspace{2pt}"],
+      "status": "fixed"
+    },
+    {
+      "frame": 43,
+      "line": 792,
+      "title": "Brilliant and Broken",
+      "severity": "minor",
+      "issues": ["tight column gap"],
+      "changes": ["column widths 0.48->0.46 (both columns)"],
+      "status": "fixed"
+    },
+    {
+      "frame": 44,
+      "line": 828,
+      "title": "The Race -- Zero to Gold in 8 Years",
+      "severity": "major",
+      "issues": ["7 milestones with long text lines, 8 overlays"],
+      "changes": ["wrapped milestone block in footnotesize group"],
+      "status": "fixed"
+    },
+    {
+      "frame": 45,
+      "line": 857,
+      "title": "What YOU Can Do Right Now",
+      "severity": "minor",
+      "issues": ["dense list could benefit from tighter itemsep"],
+      "changes": ["added itemsep=2pt to enumerate"],
+      "status": "fixed"
+    },
+    {
+      "frame": 46,
+      "line": 898,
+      "title": "Five Pillars: Convergence Radar (Chart)",
+      "severity": "ok",
+      "issues": [],
+      "changes": [],
+      "status": "ok"
+    },
+    {
+      "frame": 47,
+      "line": 907,
+      "title": "The Code Is Still Being Written",
+      "severity": "minor",
+      "issues": ["near margin (~50.9mm of ~56mm)"],
+      "changes": ["reduced radar image from 0.14 to 0.12 textheight"],
+      "status": "fixed"
+    }
+  ]
+}

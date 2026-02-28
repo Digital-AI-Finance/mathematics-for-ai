@@ -121,7 +121,7 @@
 % \statnumber[color]{number}{label}
 \newcommand{\statnumber}[3][PillarBlue]{%
   {\fontsize{22}{26}\selectfont\bfseries\color{#1}#2}\par\vspace{2pt}
-  {\scriptsize\scshape\color{TextSecondary}\textls[60]{#3}}}
+  {\scriptsize\scshape\color{TextSecondary}\textls[40]{#3}}}
 
 % --- Pillar Tag (small colored pill before title) ---
 % \pillartag{color}{P1}
@@ -142,7 +142,7 @@
 \newcommand{\pillaritem}[3]{%
   \begin{tcolorbox}[colback=BGCard, colframe=BGCard,
     boxrule=0pt, arc=3pt, left=4pt, right=4pt, top=2pt, bottom=2pt,
-    on line, width=0.18\textwidth]
+    on line, width=0.165\textwidth]
     {\color{#1}\rule{6pt}{6pt}}\hspace{0.3em}%
     {\small\bfseries\color{#1}#2}\hfill%
     {\scriptsize\color{TextSecondary}#3}
