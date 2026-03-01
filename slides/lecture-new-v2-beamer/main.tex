@@ -342,7 +342,7 @@
 % ===================================================================
 \begin{frame}{\pillartag{PillarGreen}{P2}Turning Scores into Probabilities}
   \centering
-  \includegraphics[height=0.14\textheight, keepaspectratio]{03-softmax.png}\par\smallskip
+  \includegraphics[height=0.16\textheight, keepaspectratio]{03-softmax.png}\par\smallskip
 
   \begin{formulabox}
     $P(w_i) = \dfrac{e^{z_i}}{\sum_j e^{z_j}}$
@@ -353,7 +353,7 @@
   }
 
   \onslide<3->{
-    \includegraphics[height=0.16\textheight, keepaspectratio]{xkcd-frequentists-bayesians.png}\par
+    \includegraphics[height=0.14\textheight, keepaspectratio]{xkcd-frequentists-bayesians.png}\par
     {\scriptsize\color{TextSecondary} xkcd.com/1132 (CC BY-NC 2.5)}
   }
   \note{After the model processes your input through dozens of attention layers, it produces a raw score (logit) for every word in its vocabulary --- 50,000 or more. These scores can be any real number: positive, negative, huge, tiny. The softmax function converts them into a valid probability distribution: all positive, all sum to 1. The exponential ensures larger scores get disproportionately more probability. This is Kolmogorov's axioms made computational: the output is guaranteed to be a proper probability measure over the discrete vocabulary space.}
@@ -584,7 +584,7 @@
 % ===================================================================
 \begin{frame}{\pillartag{PillarTeal}{P4}Shannon's Model $\to$ The LLM Pipeline}
   \centering
-  \includegraphics[height=0.25\textheight, keepaspectratio]{07-shannon-diagram.png}\par\medskip
+  \includegraphics[height=0.35\textheight, keepaspectratio]{07-shannon-diagram.png}\par\medskip
 
   \onslide<2->{
     {\small Shannon designed this for telephone lines. 75 years later, it describes exactly how ChatGPT works.}
@@ -613,7 +613,7 @@
 % ===================================================================
 \begin{frame}{\pillartag{PillarYellow}{P5}The Evolution of Optimizers \badge{PillarTeal}{Discovery}}
   \centering
-  \includegraphics[height=0.14\textheight, keepaspectratio]{08-optimizers.png}\par\smallskip
+  \includegraphics[height=0.16\textheight, keepaspectratio]{08-optimizers.png}\par\smallskip
 
   \onslide<2->{
     {\small \hlgreen{1951:} Robbins \& Monro invent SGD}\par\smallskip
@@ -626,7 +626,7 @@
   }
 
   \onslide<5->{
-    \includegraphics[height=0.16\textheight, keepaspectratio]{xkcd-machine-learning.png}\par
+    \includegraphics[height=0.14\textheight, keepaspectratio]{xkcd-machine-learning.png}\par
     {\scriptsize\color{TextSecondary} xkcd.com/1838 (CC BY-NC 2.5)}
   }
   \note{Stochastic Gradient Descent (SGD) was invented by Robbins and Monro in 1951. Instead of computing the gradient over the entire dataset, you estimate it from a small random batch --- much faster, slightly noisier, but it works. In 1964, Boris Polyak added momentum: keep a running average of past gradients so you do not oscillate. Then in 2014, Diederik Kingma and Jimmy Ba created Adam (Adaptive Moment Estimation), which maintains per-parameter learning rates that adapt based on the history of gradients. Adam has over 200,000 citations and is used to train virtually every large language model. It is the workhorse of modern AI.}
@@ -647,7 +647,7 @@
 % ===================================================================
 \begin{frame}{\pillartag{PillarYellow}{P5}More Math, Better AI \badge{PillarBlue}{AI Connection}}
   \centering
-  \includegraphics[height=0.14\textheight, keepaspectratio]{09-scaling-laws.png}\par\smallskip
+  \includegraphics[height=0.16\textheight, keepaspectratio]{09-scaling-laws.png}\par\smallskip
 
   \begin{formulabox}
     $L(N) = \left(\dfrac{N_c}{N}\right)^{0.076}$
@@ -658,7 +658,7 @@
   }
 
   \onslide<3->{
-    \includegraphics[height=0.16\textheight, keepaspectratio]{xkcd-curve-fitting.png}\par
+    \includegraphics[height=0.14\textheight, keepaspectratio]{xkcd-curve-fitting.png}\par
     {\scriptsize\color{TextSecondary} xkcd.com/2048 (CC BY-NC 2.5)}
   }
   \note{In 2020, Jared Kaplan and colleagues at OpenAI discovered that LLM performance follows a remarkably clean power law: loss decreases as a power of model size, dataset size, and compute. Double the parameters, and you get a predictable improvement. This is why companies are spending billions: the scaling laws say it works. The exponent 0.076 means you need roughly 10x more parameters for each halving of loss. This mathematical relationship --- a simple power law --- is the economic engine driving the entire AI industry. More math, more parameters, more compute, better AI. The returns are predictable and the curve shows no sign of flattening.}

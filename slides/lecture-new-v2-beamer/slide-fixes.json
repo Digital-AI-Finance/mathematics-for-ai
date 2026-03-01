@@ -1,12 +1,14 @@
 {
-  "audit_date": "2026-02-27",
+  "audit_date": "2026-03-01",
+  "audit_passes": 2,
   "total_frames": 52,
-  "frames_fixed": 17,
-  "frames_ok": 35,
+  "frames_fixed": 21,
+  "frames_ok": 31,
   "systemic_fixes": [
     "pillaritem width 0.18->0.165 in preamble.tex (affects frame 40)",
+    "pillaritem fonts small->scriptsize, scriptsize->tiny, rule 6->5pt (v2, affects frame 40)",
     "statnumber letter-spacing 60->40 in preamble.tex (affects frame 41 and all statnumber uses)",
-    "xkcd images standardized from 0.22 to 0.16 textheight (frames 19, 36, 38)",
+    "xkcd images standardized to 0.14 textheight, primary charts to 0.16 (v2, frames 19, 36, 38)",
     "tight column gaps 0.48->0.45/0.46 (frames 0, 22, 42, 43)"
   ],
   "fixes": [
@@ -222,9 +224,9 @@
       "line": 343,
       "title": "Turning Scores into Probabilities",
       "severity": "major",
-      "issues": ["xkcd image at 0.22 textheight too large, vertical budget ~50.4mm of ~56mm"],
-      "changes": ["reduced xkcd image from 0.22 to 0.16 textheight"],
-      "status": "fixed"
+      "issues": ["xkcd image at 0.22 textheight too large, vertical budget ~50.4mm of ~56mm", "v2: xkcd (0.16) larger than primary chart (0.14) hierarchy inversion"],
+      "changes": ["reduced xkcd image from 0.22 to 0.16 textheight", "v2: swapped -- primary chart 0.14->0.16, xkcd 0.16->0.14"],
+      "status": "fixed-v2"
     },
     {
       "frame": 20,
@@ -302,10 +304,10 @@
       "frame": 28,
       "line": 511,
       "title": "Shannon: Father of Information Theory",
-      "severity": "ok",
-      "issues": [],
+      "severity": "minor",
+      "issues": ["v2: bigquote underfull hbox badness 6204 (cosmetic)"],
       "changes": [],
-      "status": "ok"
+      "status": "wontfix"
     },
     {
       "frame": 29,
@@ -348,9 +350,9 @@
       "line": 585,
       "title": "Shannon's Model -> The LLM Pipeline",
       "severity": "minor",
-      "issues": ["too much whitespace, image too small"],
-      "changes": ["increased Shannon diagram from 0.18 to 0.25 textheight"],
-      "status": "fixed"
+      "issues": ["too much whitespace, image too small", "v2: still underfilled at 37% after 0.25 fix"],
+      "changes": ["increased Shannon diagram from 0.18 to 0.25 textheight", "v2: increased further to 0.35 textheight (~49% fill)"],
+      "status": "fixed-v2"
     },
     {
       "frame": 34,
@@ -375,9 +377,9 @@
       "line": 614,
       "title": "The Evolution of Optimizers",
       "severity": "major",
-      "issues": ["xkcd image at 0.22 textheight too large, ~51.4mm of ~56mm"],
-      "changes": ["reduced xkcd from 0.22 to 0.16 textheight, removed hfill alignment"],
-      "status": "fixed"
+      "issues": ["xkcd image at 0.22 textheight too large, ~51.4mm of ~56mm", "v2: xkcd (0.16) larger than primary chart (0.14) hierarchy inversion"],
+      "changes": ["reduced xkcd from 0.22 to 0.16 textheight, removed hfill alignment", "v2: swapped -- primary chart 0.14->0.16, xkcd 0.16->0.14"],
+      "status": "fixed-v2"
     },
     {
       "frame": 37,
@@ -393,9 +395,9 @@
       "line": 649,
       "title": "More Math, Better AI",
       "severity": "major",
-      "issues": ["xkcd image at 0.22 textheight too large, ~50.4mm of ~56mm"],
-      "changes": ["reduced xkcd from 0.22 to 0.16 textheight, removed hfill alignment"],
-      "status": "fixed"
+      "issues": ["xkcd image at 0.22 textheight too large, ~50.4mm of ~56mm", "v2: xkcd (0.16) larger than primary chart (0.14) hierarchy inversion"],
+      "changes": ["reduced xkcd from 0.22 to 0.16 textheight, removed hfill alignment", "v2: swapped -- primary chart 0.14->0.16, xkcd 0.16->0.14"],
+      "status": "fixed-v2"
     },
     {
       "frame": 39,
@@ -411,9 +413,9 @@
       "line": 682,
       "title": "Where All Five Pillars Meet",
       "severity": "critical",
-      "issues": ["5 pillaritem boxes overflow horizontally with padding", "convergence image too large"],
-      "changes": ["pillaritem width 0.18->0.165 in preamble", "convergence image 0.18->0.16", "medskip->smallskip after pillar row"],
-      "status": "fixed"
+      "issues": ["5 pillaritem boxes overflow horizontally with padding", "convergence image too large", "v2: pillaritem text produces badness 10000 underfull at 0.165 width"],
+      "changes": ["pillaritem width 0.18->0.165 in preamble", "convergence image 0.18->0.16", "medskip->smallskip after pillar row", "v2: pillaritem fonts small->scriptsize, scriptsize->tiny, rule 6->5pt"],
+      "status": "fixed-v2"
     },
     {
       "frame": 41,
