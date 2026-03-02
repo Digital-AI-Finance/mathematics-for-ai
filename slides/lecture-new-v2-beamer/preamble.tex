@@ -27,7 +27,7 @@
 %% 3. COLOR DEFINITIONS (from CSS design tokens)
 \definecolor{BGDark}{HTML}{1B2631}
 \definecolor{BGDarker}{HTML}{0D1117}
-\definecolor{BGCard}{HTML}{1E3044}
+\definecolor{BGCard}{HTML}{243B53}
 \definecolor{TextPrimary}{HTML}{ECF0F1}
 \definecolor{TextSecondary}{HTML}{95A5A6}
 \definecolor{PillarBlue}{HTML}{3498DB}
@@ -59,7 +59,7 @@
 % --- Formula Box ---
 \newenvironment{formulabox}{%
   \begin{tcolorbox}[
-    colback=BGDarker, colframe=PillarBlue!30,
+    colback=BGDarker, colframe=PillarBlue!50,
     boxrule=1pt, arc=6pt,
     halign=center,
     left=12pt, right=12pt, top=8pt, bottom=8pt,
@@ -77,7 +77,11 @@
 \newcommand{\sectiondivider}[6]{%
   \begin{frame}[plain]
     \begin{tikzpicture}[remember picture, overlay]
-      \node[opacity=0.08] at (current page.center) {%
+      % Pillar-colored radial wash
+      \shade[inner color=#2!8!BGDark, outer color=BGDarker]
+        (current page.south west) rectangle (current page.north east);
+      % Watermark icon at visible opacity
+      \node[opacity=0.15] at (current page.center) {%
         \includegraphics[height=0.8\paperheight]{#1}};
     \end{tikzpicture}
     \centering\vfill
@@ -85,7 +89,7 @@
     {\fontsize{28}{32}\selectfont\bfseries\color{#2} #4}\par\medskip
     {\large\color{TextSecondary} #5}\par
     \vspace{1em}
-    {\color{PillarBlue}\rule{60pt}{3pt}}
+    {\color{#2}\rule{60pt}{3pt}}
     \vfill
     \note{#6}
   \end{frame}

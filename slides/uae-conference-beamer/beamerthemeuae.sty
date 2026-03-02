@@ -1,0 +1,62 @@
+%% beamerthemeuae.sty — Desert Horizon light theme for Beamer
+%% Requires colors defined in preamble.tex
+
+\ProvidesPackage{beamerthemeuae}
+\RequirePackage{tikz}
+
+%% Background — clean solid light
+\setbeamercolor{background canvas}{bg=BGLight}
+
+%% Text colors
+\setbeamercolor{normal text}{fg=TextDark}
+\setbeamercolor{structure}{fg=PillarBlue}
+\setbeamercolor{alerted text}{fg=AccentGold}
+\setbeamercolor{example text}{fg=PillarGreen}
+
+%% Frame title — with accent underline
+\setbeamercolor{frametitle}{fg=TextDark, bg=}
+\setbeamerfont{frametitle}{size=\LARGE, series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace*{6pt}%
+  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+  \insertframetitle\par%
+  \vspace*{3pt}%
+  {\color{PillarBlue!40}\rule{0.35\textwidth}{2pt}}%
+  \vspace*{2pt}%
+}
+
+%% Title page
+\setbeamercolor{title}{fg=TextDark}
+\setbeamercolor{subtitle}{fg=PillarTeal}
+\setbeamercolor{author}{fg=TextMuted}
+\setbeamercolor{date}{fg=TextMuted}
+\setbeamerfont{title}{size=\Huge, series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+
+%% Item colors
+\setbeamercolor{itemize item}{fg=PillarBlue}
+\setbeamercolor{itemize subitem}{fg=PillarTeal}
+\setbeamercolor{enumerate item}{fg=PillarBlue}
+\setbeamertemplate{itemize item}{\small\raise1pt\hbox{\color{PillarBlue}$\bullet$}}
+
+%% No navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%% Footline: thin separator + short title left + page number right
+\setbeamertemplate{footline}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[TextMuted!20, line width=0.5pt]
+      ([yshift=12pt]current page.south west) --
+      ([yshift=12pt]current page.south east);
+  \end{tikzpicture}%
+  \hspace*{10pt}%
+  {\tiny\color{TextMuted!60}\textls[50]{\MakeUppercase{\insertshorttitle}}}%
+  \hfill%
+  {\tiny\color{TextMuted}%
+    \insertframenumber\,/\,\inserttotalframenumber}%
+  \hspace*{10pt}\vspace*{4pt}%
+}
+
+%% Block environment colors
+\setbeamercolor{block title}{fg=PillarBlue, bg=BGPanel}
+\setbeamercolor{block body}{fg=TextDark, bg=BGPanel}

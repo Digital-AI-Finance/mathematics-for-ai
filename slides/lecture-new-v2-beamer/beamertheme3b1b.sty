@@ -2,9 +2,16 @@
 %% Requires colors defined in preamble.tex (BGDark, TextPrimary, etc.)
 
 \ProvidesPackage{beamertheme3b1b}
+\RequirePackage{tikz}
 
-%% Background
-\setbeamercolor{background canvas}{bg=BGDark}
+%% Background — radial vignette (dark edges, lighter center)
+\setbeamercolor{background canvas}{bg=}
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \shade[inner color=BGDark, outer color=BGDarker]
+      (current page.south west) rectangle (current page.north east);
+  \end{tikzpicture}%
+}
 
 %% Text colors
 \setbeamercolor{normal text}{fg=TextPrimary}
@@ -12,9 +19,17 @@
 \setbeamercolor{alerted text}{fg=AccentYellow}
 \setbeamercolor{example text}{fg=PillarGreen}
 
-%% Frame title
+%% Frame title — with accent underline
 \setbeamercolor{frametitle}{fg=TextPrimary, bg=}
-\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamerfont{frametitle}{size=\LARGE, series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace*{6pt}%
+  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+  \insertframetitle\par%
+  \vspace*{3pt}%
+  {\color{PillarBlue!50}\rule{0.35\textwidth}{1.5pt}}%
+  \vspace*{2pt}%
+}
 
 %% Title page
 \setbeamercolor{title}{fg=TextPrimary}
@@ -33,14 +48,19 @@
 %% No navigation symbols
 \setbeamertemplate{navigation symbols}{}
 
-%% Footline: slide number only, right-aligned
+%% Footline: thin separator + short title left + page number right
 \setbeamertemplate{footline}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[TextSecondary!15, line width=0.5pt]
+      ([yshift=12pt]current page.south west) --
+      ([yshift=12pt]current page.south east);
+  \end{tikzpicture}%
+  \hspace*{10pt}%
+  {\tiny\color{TextSecondary!50}\textls[50]{\MakeUppercase{\insertshorttitle}}}%
   \hfill%
-  \usebeamercolor[fg]{page number in head/foot}%
-  \usebeamerfont{page number in head/foot}%
-  \scriptsize\color{TextSecondary}%
-  \insertframenumber\,/\,\inserttotalframenumber%
-  \hspace*{8pt}\vspace*{4pt}%
+  {\tiny\color{TextSecondary}%
+    \insertframenumber\,/\,\inserttotalframenumber}%
+  \hspace*{10pt}\vspace*{4pt}%
 }
 
 %% Block environment colors

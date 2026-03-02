@@ -1,0 +1,1013 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+\input{preamble}
+\usepackage{beamerthemeuae}
+
+% Speaker notes (uncomment for presenter mode)
+% \setbeameroption{show notes on second screen=right}
+
+\title{The Code of the Universe}
+\subtitle{From Classical Mathematics to Large Language Models}
+\date{UAE Mathematics Conference 2026}
+\author{Prof.\ J\"org Osterrieder}
+\institute{}
+
+\begin{document}
+
+
+% ===================================================================
+% SECTION 1: OPENING (Frames 1-6)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 1: Title Slide ---
+% ===================================================================
+\begin{frame}[plain]
+  \centering\vfill
+  \includegraphics[height=0.12\textheight, keepaspectratio]{15-hero-neural-net.png}\par\medskip
+  \badge{PillarBlue}{The Five Pillars}\par\bigskip
+  {\fontsize{26}{30}\selectfont\bfseries\color{TextDark} The Code of the Universe}\par\medskip
+  {\large\color{PillarTeal} From Classical Mathematics to Large Language Models}\par\medskip
+  {\small\color{TextMuted} UAE Mathematics Conference 2026 \quad$\cdot$\quad Prof.\ J\"org Osterrieder}
+  \vfill
+  \note{Welcome. Today we trace five mathematical ideas --- some over 2000 years old --- and show how each one is literally running inside ChatGPT, Claude, and every LLM right now. Each pillar was developed by brilliant minds who had no idea their work would power artificial intelligence. By the end, you will see all five converge in a single forward-backward pass through a transformer.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 2: Why Should You Care About Math? ---
+% ===================================================================
+\begin{frame}{Why Should You Care About Math?}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \onslide<2->{
+        \badge{PillarOrange}{4,000 Years}\par\vspace{1pt}
+        {\small Babylonians solved quadratics. Greeks proved theorems. Newton invented calculus to predict planets.}\par\vspace{1pt}
+        \badge{AccentGold}{Hidden Power}\par\vspace{1pt}
+        {\small GPS needs relativity. Spotify uses linear algebra. Your phone camera runs Fourier transforms.}\par\vspace{1pt}
+      }
+      \onslide<3->{
+        \badge{PillarBlue}{2017 $\to$ Now}\par\vspace{1pt}
+        {\small One paper --- \emph{``Attention Is All You Need''} --- launched ChatGPT, Claude, Gemini, and a \$3 trillion industry.}\par\vspace{1pt}
+        \badge{PillarTeal}{Local Impact}\par\vspace{1pt}
+        {\small Dubai's autonomous metro runs on optimization. Abu Dhabi's Falcon LLM uses every pillar we will cover today.}
+      }
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \onslide<4->{
+        \begin{card}[PillarTeal]
+          {\small\textbf{The secret?} Every breakthrough in AI is built on math that already existed --- most of it centuries old. Today we trace \hlteal{five mathematical ideas} from ancient history to the AI running on your phone right now.}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{Open with energy. This slide sets up the ``why'' before we dive into the ``what.'' Mathematics is not dusty textbook stuff --- it literally powers the technology they use every day. The 2017 transformer paper is the single most impactful scientific paper of the 21st century so far, and every equation in it uses math that's at least 100 years old. The UAE hook: Dubai's autonomous metro, the world's longest, runs on real-time optimization algorithms, and Abu Dhabi's Technology Innovation Institute built the Falcon LLM --- every pillar of math we cover today is inside it.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 3: What Happens When You Ask ChatGPT a Question? ---
+% ===================================================================
+\begin{frame}{What Happens When You Ask ChatGPT a Question?}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      \centering
+      \onslide<2->{\hlblue{1. Your words become vectors, then giant matrices multiply} --- Linear Algebra\par\smallskip}
+      \onslide<3->{\hlgreen{2. It computes probabilities for every possible next word} --- Probability\par\smallskip}
+      \onslide<4->{\hlorange{3. It learned from trillions of examples using derivatives} --- Calculus\par\smallskip}
+      \onslide<5->{\hlteal{4. The goal: minimize surprise (cross-entropy)} --- Information Theory\par\smallskip}
+      \onslide<6->{\hlgold{5. Optimizers like Adam make trillion-parameter training practical} --- Optimization\par}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \onslide<2->{
+        \includegraphics[width=\textwidth, keepaspectratio]{16-token-pipeline.png}\par
+        {\scriptsize\color{TextMuted} Token processing pipeline}
+      }
+    \end{column}
+  \end{columns}
+  \note{Every single step involves a different branch of mathematics. Words become vectors and matrices transform them layer by layer (linear algebra). Softmax converts raw scores into probabilities (probability theory). Backpropagation uses Leibniz's chain rule to compute gradients (calculus). The training objective --- cross-entropy --- comes straight from Shannon's 1948 paper (information theory). And optimizers like Adam make it feasible to train trillions of parameters (numerical optimization). Five pillars, all running simultaneously, billions of times per second.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 4: The Five Pillars of AI Mathematics ---
+% ===================================================================
+\begin{frame}{The Five Pillars of AI Mathematics}
+  \centering
+  \includegraphics[height=0.32\textheight, keepaspectratio]{01-five-pillars-overview.png}\par\medskip
+
+  \onslide<2->{
+    \includegraphics[height=0.14\textheight, keepaspectratio]{11-timeline.png}\par\medskip
+  }
+
+  \onslide<3->{
+    {\small Each pillar was developed by brilliant minds who had no idea their work would power AI. We will visit each one, meet the mathematicians who built it, and show exactly where it appears inside a modern LLM.}
+  }
+  \note{Here is the roadmap. Five pillars: Linear Algebra (the skeleton), Probability (the language of uncertainty), Calculus (the teacher), Information Theory (the objective function), and Numerical Optimization (training at scale). We will visit each one, meet the mathematicians who built it, and then show exactly where it appears inside a modern LLM. Let us begin with the skeleton.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 5: Interactive Demos: How LLMs Work ---
+% ===================================================================
+\dualdemoslide{Interactive Demos: How LLMs Work}
+  {https://www.youtube.com/watch?v=LPZh9BOjkQs}
+  {3Blue1Brown --- ``Large Language Models explained briefly'' ($\sim$5 min). Visual walkthrough: tokenization, embeddings, attention, next-token prediction.}
+  {https://poloclub.github.io/transformer-explainer/}
+  {Transformer Explainer --- type text, see tokens $\to$ embeddings $\to$ attention $\to$ prediction in a live GPT-2 model.}
+  {We are showing these demos before the math on purpose --- they give you a visual anchor. As we cover each of the five pillars, you will recognize exactly where it fits in these tools. Play the 3Blue1Brown video first (5 minutes). It visually walks through how LLMs process text: tokenization, embeddings, attention, and next-token prediction. Then switch to the Transformer Explainer, which runs a live GPT-2 model in the browser. Type any text and watch it flow through every transformer component. Click on attention heads to see which tokens attend to which. Bonus resources for students who want to explore further: Brendan Bycroft's 3D GPT visualization (bbycroft.net/llm) and AnimatedLLM (animatedllm.github.io) for step-by-step training animations. Fallback if internet fails: use pre-recorded screen capture (backup-demos.mp4 on USB) or skip to Frame 7 and reference the Bycroft screenshots in the printed handout.}
+
+
+
+
+% ===================================================================
+% SECTION 2: PILLAR 1 — LINEAR ALGEBRA (Frames 7-12)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 7: Section Divider — Linear Algebra ---
+% ===================================================================
+\sectiondivider{20a-icon-linalg.png}{PillarBlue}{Pillar 1}{Linear Algebra}{The Skeleton of AI}{Linear algebra is the skeleton of every neural network. Every piece of data --- text, images, audio --- gets converted into vectors and matrices before the model can touch it. The operations are simple: multiply, add, project. But at scale, those simple operations produce intelligence.}
+
+
+% ===================================================================
+% --- Frame 8: 2000 Years of Linear Algebra ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarBlue}{P1}2000 Years of Linear Algebra}
+  \begin{columns}[T]
+    \begin{column}{0.38\textwidth}
+      \centering
+      \includegraphics[height=0.18\textheight, keepaspectratio]{grassmann-1860.jpg}\par
+      {\scriptsize\color{TextMuted} Hermann Grassmann}\par\medskip
+      \onslide<4->{
+        \includegraphics[height=0.14\textheight, keepaspectratio]{cayley-1883.jpg}\par
+        {\scriptsize\color{TextMuted} Arthur Cayley}
+      }
+    \end{column}
+    \begin{column}{0.57\textwidth}
+      \onslide<2->{
+        \milestonerow{$\sim$100 BCE}{Chinese \emph{Fangcheng} --- solving systems with counting rods \badge{PillarOrange}{Origin}}
+      }
+      \onslide<3->{
+        \milestonerow{1844}{Grassmann publishes vector spaces --- almost universally ignored}
+      }
+      \onslide<4->{
+        \milestonerow{1858}{Cayley invents matrix theory --- while working as a lawyer}
+      }
+    \end{column}
+  \end{columns}
+  \note{The story begins around 100 BCE in China, where the Jiuzhang Suanshu (Nine Chapters on the Mathematical Art) describes Gaussian elimination --- 2000 years before Gauss. Then in 1844, Hermann Grassmann, a schoolteacher in Stettin, publishes a book inventing vector spaces, exterior algebras, and essentially all of modern linear algebra. Nobody reads it. He gives up mathematics and becomes a famous Sanskrit scholar instead. Meanwhile, Arthur Cayley, working as a London barrister because Cambridge would not pay him enough, invents matrix algebra in 1858 as a way to organize linear transformations. The notation he created is the exact notation running inside every GPU today.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 9: Words as Vectors ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarBlue}{P1}Words as Vectors \badge{PillarBlue}{AI Connection}}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[height=0.22\textheight, keepaspectratio]{02-word-vectors.png}\par\smallskip
+
+      \begin{formulabox}
+        $\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$
+      \end{formulabox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \onslide<2->{
+        \includegraphics[height=0.22\textheight, keepaspectratio]{12-embedding-space.png}\par
+      }
+    \end{column}
+  \end{columns}\par\smallskip
+
+  \onslide<3->{
+    {\small\color{TextMuted} Mikolov et al., 2013 --- Word2Vec: meaning encoded as geometry. GPT-3 uses 12,288-dimensional vectors; modern LLMs use comparable or larger spaces.}
+  }
+  \note{In 2013, Tomas Mikolov at Google showed that if you train a neural network to predict words from context, the learned vectors capture semantic relationships as linear directions. ``King minus man plus woman equals queen'' is not a metaphor --- it is a literal vector arithmetic operation in 300-dimensional space. Modern LLMs use the same principle but with far larger embeddings: GPT-3 uses vectors of dimension 12,288, and modern LLMs use comparable or larger embedding spaces. Every word you type becomes a point in that high-dimensional space.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 10: The Engine: Matrix Multiplication ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarBlue}{P1}The Engine: Matrix Multiplication}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \centering
+      \begin{formulabox}
+        $\text{output} = W \cdot \vec{x} + \vec{b}$
+      \end{formulabox}
+
+      \onslide<2->{
+        \begin{card}
+          {\small Every layer: multiply input vector by weight matrix, add bias. A neural network is this operation repeated hundreds of times.}
+        \end{card}
+      }
+      \onslide<3->{
+        \begin{card}[PillarOrange]
+          \statnumber[PillarOrange]{$\sim$1.8T}{parameters in GPT-4 (estimated)}
+        \end{card}
+      }
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \includegraphics[width=\textwidth, keepaspectratio]{17-matrix-multiply.png}\par
+      {\scriptsize\color{TextMuted} Matrix multiplication visualized}
+    \end{column}
+  \end{columns}
+  \note{This is the single most important equation in deep learning. Take an input vector, multiply by a weight matrix, add a bias. That is it. A neural network is just this operation repeated hundreds of times with different matrices. The matrices are learned during training. GPT-4 has roughly 1.8 trillion parameters --- each one is an entry in one of these weight matrices. Cayley's 1858 notation is doing all the heavy lifting, 166 years later.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 11: Attention = Three Matrix Multiplies ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarBlue}{P1}Attention = Three Matrix Multiplies \badge{AccentGold}{Breakthrough}}
+  \centering
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{formulabox}
+        $Q = XW_Q, \quad K = XW_K, \quad V = XW_V$
+      \end{formulabox}
+      \vspace{4pt}
+      \begin{formulabox}
+        $\text{Attention}(Q,K,V) = \text{softmax}\!\left(\dfrac{QK^T}{\sqrt{d_k}}\right)\!V$
+      \end{formulabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \includegraphics[width=\textwidth, keepaspectratio]{14-attention-heatmap.png}\par
+      {\scriptsize\color{TextMuted} Attention weight heatmap}
+    \end{column}
+  \end{columns}\par\medskip
+
+  \onslide<2->{
+    {\small Three matrices. That's all attention is. Cayley's 1858 invention, applied to language --- and it changed the world.}
+  }
+  \note{The attention mechanism from ``Attention Is All You Need'' (Vaswani et al., 2017) is built entirely from matrix multiplications. The input sequence X is projected into three spaces: Queries, Keys, and Values. The dot product of Q and K-transpose produces an attention matrix --- which tokens should attend to which. The softmax normalizes each row into a probability distribution. Then we multiply by V to produce the output. Three matrix multiplies. That is the entire mechanism that made transformers revolutionary. Pure linear algebra.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 12: Linear Algebra Recap ---
+% ===================================================================
+\recapslide{PillarBlue}{Linear Algebra}{Vectors represent meaning --- words become geometry}{Matrices transform --- every layer is a matrix multiply}{Attention is pure linear algebra --- Q, K, V}{Linear algebra is the skeleton: words become vectors, matrices transform them, and the attention mechanism is pure matrix algebra. Three ideas, all from the 1800s, all running inside every LLM. Next: probability, the language of uncertainty.}
+
+
+% ===================================================================
+% SECTION 3: PILLAR 2 — PROBABILITY & STATISTICS (Frames 13-17)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 13: Section Divider — Probability & Statistics ---
+% ===================================================================
+\sectiondivider{20b-icon-prob.png}{PillarGreen}{Pillar 2}{Probability \& Statistics}{The Language of Uncertainty}{If linear algebra is the skeleton, probability is the language. Every prediction an LLM makes is a probability distribution over the entire vocabulary. The model never says ``the next word IS this.'' It says ``the next word is probably this, with some confidence level.'' That uncertainty is not a weakness --- it is the entire point. And it all started with a gambling problem.}
+
+
+% ===================================================================
+% --- Frame 14: Born from Gambling ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarGreen}{P2}Born from Gambling}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \onslide<2->{
+        \milestonerow{1654}{Pascal \& Fermat exchange letters about a gambling problem \badge{PillarOrange}{Origin}}
+      }
+      \onslide<3->{
+        \milestonerow{1763}{Bayes' theorem published posthumously}
+      }
+      \onslide<4->{
+        \milestonerow{1889}{Galton describes the quincunx in \emph{Natural Inheritance} --- the bell curve made physical}
+      }
+      \onslide<5->{
+        \milestonerow{1933}{Kolmogorov writes the axioms --- probability becomes rigorous}
+      }
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \includegraphics[height=0.16\textheight, keepaspectratio]{pascal-1663.jpg}\par
+      {\scriptsize\color{TextMuted} Blaise Pascal}\par\medskip
+      \onslide<2->{
+        \includegraphics[height=0.08\textheight, keepaspectratio]{fermat.jpg}\hfill
+        \includegraphics[height=0.08\textheight, keepaspectratio]{bayes.jpg}\hfill
+        \includegraphics[height=0.08\textheight, keepaspectratio]{kolmogorov.jpg}\par
+        {\scriptsize\color{TextMuted} Fermat \hfill Bayes \hfill Kolmogorov}
+      }
+    \end{column}
+  \end{columns}
+  \note{The Chevalier de M\'er\'e, a French gambler, was losing money and could not figure out why. He asked Blaise Pascal, who wrote to Pierre de Fermat. Their 1654 correspondence invented probability theory --- because a gambler wanted to win more. Then in 1763, Thomas Bayes' theorem was published two years after his death by his friend Richard Price. Bayes showed how to update beliefs with new evidence --- the foundation of all machine learning. Finally, in 1933, Andrey Kolmogorov gave probability its rigorous axiomatic foundation: every probability is between 0 and 1, the certain event has probability 1, and disjoint events add. Every softmax output in every LLM satisfies Kolmogorov's axioms.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 15: Turning Scores into Probabilities ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarGreen}{P2}Turning Scores into Probabilities}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[height=0.22\textheight, keepaspectratio]{03-softmax.png}\par\smallskip
+
+      \begin{formulabox}
+        $P(w_i) = \dfrac{e^{z_i}}{\sum_j e^{z_j}}$
+      \end{formulabox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \onslide<2->{
+        {\small\color{TextDark} 50,000+ words. One probability each. Kolmogorov's axioms in action: all positive, all sum to 1.}\par\medskip
+      }
+      \onslide<3->{
+        \centering
+        \includegraphics[height=0.18\textheight, keepaspectratio]{xkcd-frequentists-bayesians.png}\par
+        {\scriptsize\color{TextMuted} xkcd.com/1132 (CC BY-NC 2.5)}
+      }
+    \end{column}
+  \end{columns}
+  \note{After the model processes your input through dozens of attention layers, it produces a raw score (logit) for every word in its vocabulary --- 50,000 or more. These scores can be any real number: positive, negative, huge, tiny. The softmax function converts them into a valid probability distribution: all positive, all sum to 1. The exponential ensures larger scores get disproportionately more probability. This is Kolmogorov's axioms made computational: the output is guaranteed to be a proper probability measure over the discrete vocabulary space.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 16: Randomness Creates Order ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarGreen}{P2}Randomness Creates Order}
+  \begin{columns}[T]
+    \begin{column}{0.38\textwidth}
+      \centering
+      \includegraphics[height=0.36\textheight, keepaspectratio]{04-galton-board.png}\par
+      {\scriptsize\color{TextMuted} Galton board (1889)}
+    \end{column}
+    \begin{column}{0.57\textwidth}
+      \begin{card}
+        {\small Individual events are random. Each ball bounces left or right at every peg. Yet the aggregate always forms a bell curve --- the Central Limit Theorem made physical.}
+      \end{card}
+      \par\medskip
+      \onslide<2->{
+        \begin{card}[PillarGreen]
+          {\small\color{TextDark} \hlgreen{LLMs show a similar pattern:} each token is sampled from a probability distribution, but the sequence of samples produces coherent text. Randomness at the micro level, structure at the macro level.}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{Francis Galton built this device in 1889. Each ball bounces randomly left or right at every peg. Yet the aggregate always forms a bell curve --- the normal distribution. This is the Central Limit Theorem made physical. LLMs exploit the same principle: each individual token is sampled from a probability distribution (random), but the sequence of samples produces coherent text (ordered). Randomness at the micro level, structure at the macro level. This is why LLMs can give different answers to the same question --- and why those answers are almost always sensible.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 17: Probability & Statistics Recap ---
+% ===================================================================
+\recapslide{PillarGreen}{Probability \& Statistics}{Probability is the output language of LLMs}{Softmax satisfies Kolmogorov's axioms --- rigorously correct}{Randomness at micro level creates structure at macro level}{Probability is the output language of every LLM. Softmax produces a valid probability distribution over the vocabulary, and the randomness in token sampling is what creates coherent text. Next: calculus, the mechanism that makes learning possible.}
+
+
+% ===================================================================
+% SECTION 4: PILLAR 3 — CALCULUS & OPTIMIZATION (Frames 18-22)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 18: Section Divider — Calculus & Optimization ---
+% ===================================================================
+\sectiondivider{20c-icon-calc.png}{PillarOrange}{Pillar 3}{Calculus \& Optimization}{The Teacher}{Calculus is how AI learns. Without derivatives, a neural network is just a random collection of numbers. The derivative tells the model: ``if you nudge this weight slightly, here is how the error changes.'' That signal, propagated backward through every layer, is the entire mechanism of learning. And it all started with a bitter rivalry between two geniuses.}
+
+
+% ===================================================================
+% --- Frame 19: The Calculus Wars ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarOrange}{P3}The Calculus Wars \badge{PillarOrange}{Origin}}
+  \begin{columns}[c]
+    \begin{column}{0.30\textwidth}
+      \centering
+      \includegraphics[height=0.18\textheight, keepaspectratio]{newton-1689.jpg}\par
+      {\scriptsize\color{TextMuted} Newton (1666)}
+    \end{column}
+    \begin{column}{0.05\textwidth}
+      \centering
+      {\Large\color{AccentRed}\textbf{vs}}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \centering
+      \includegraphics[height=0.18\textheight, keepaspectratio]{leibniz-1695.jpg}\par
+      {\scriptsize\color{TextMuted} Leibniz (1684)}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \centering
+      \onslide<2->{
+        \includegraphics[height=0.18\textheight, keepaspectratio]{principia-title-page.jpg}\par
+        {\scriptsize\color{TextMuted} Principia, 1713 ed.}
+      }
+    \end{column}
+  \end{columns}\par\bigskip
+
+  \onslide<3->{
+    {\small Both invented calculus independently. Newton accused Leibniz of plagiarism, then secretly wrote the Royal Society report exonerating himself. Modern historians agree: both were right. But we use Leibniz's notation: $\dfrac{dy}{dx}$}
+  }
+  \note{The nastiest priority dispute in the history of science. Newton developed his ``method of fluxions'' around 1666 but did not publish. Leibniz published his version in 1684, with the notation we still use today. Newton accused Leibniz of plagiarism, assembled a Royal Society committee to investigate, and then secretly wrote the committee's report himself --- which, unsurprisingly, exonerated Newton. Modern historians agree both invented calculus independently. But it is Leibniz's dy/dx notation that survives in every calculus textbook and every backpropagation implementation.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 20: Gradient Descent: How AI Learns ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarOrange}{P3}Gradient Descent: How AI Learns}
+  \begin{columns}[T]
+    \begin{column}{0.57\textwidth}
+      \centering
+      \includegraphics[height=0.28\textheight, keepaspectratio]{05-gradient-descent.png}\par\smallskip
+
+      \onslide<2->{
+        \begin{card}[PillarOrange]
+          {\small\textbf{Blindfolded on a hill.} Feel the slope under your feet. Step downhill. Repeat. That is gradient descent --- and Cauchy invented it in 1847 for solving systems of equations.}
+        \end{card}
+      }
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \includegraphics[height=0.14\textheight, keepaspectratio]{cauchy.jpg}\par
+      {\scriptsize\color{TextMuted} Augustin-Louis Cauchy (1847)}
+    \end{column}
+  \end{columns}
+  \note{Imagine you are blindfolded on a hilly landscape and you want to find the lowest point. Strategy: feel the slope under your feet and take a step downhill. Repeat. That is gradient descent. Augustin-Louis Cauchy published this algorithm in 1847 to solve systems of equations. Today, the exact same algorithm --- scaled to 1.8 trillion parameters --- trains every large language model. The derivative tells you which direction is downhill. The learning rate tells you how big a step to take. Millions of steps later, the model has learned language.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 21: Backpropagation = The Chain Rule ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarOrange}{P3}Backpropagation = The Chain Rule \badge{AccentGold}{Breakthrough}}
+  \centering
+  \begin{formulabox}
+    $\dfrac{\partial L}{\partial w} = \dfrac{\partial L}{\partial y} \cdot \dfrac{\partial y}{\partial w}$
+  \end{formulabox}
+
+  \begin{columns}[T]
+    \begin{column}{0.57\textwidth}
+      \centering
+      \includegraphics[height=0.16\textheight, keepaspectratio]{18-backprop-flow.png}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \includegraphics[height=0.12\textheight, keepaspectratio]{hinton-2024.jpg}\par
+      {\scriptsize\color{TextMuted} Geoffrey Hinton}\par
+      \onslide<2->{
+        \badge{AccentGold}{Nobel Physics 2024}
+      }
+    \end{column}
+  \end{columns}\par\vspace{4pt}
+
+  \onslide<3->{
+    \begin{card}[PillarOrange]
+      {\small The chain rule: derivatives flow backward through every layer}
+    \end{card}
+  }
+  \onslide<4->{
+    \begin{card}[PillarOrange]
+      {\small 1986: Rumelhart, Hinton \& Williams publish in \emph{Nature}. 2024: Hinton wins the Nobel Prize for foundational work in machine learning.}
+    \end{card}
+  }
+  \note{Backpropagation is just Leibniz's chain rule from 1684, applied systematically. If you have a function composed of many nested functions --- which is exactly what a neural network is --- the chain rule tells you how to compute the derivative of the whole thing with respect to any individual weight. Error signals flow backward from the output layer through every hidden layer to the input. Rumelhart, Hinton, and Williams published this in Nature in 1986. Nearly 40 years later, in 2024, Geoffrey Hinton won the Nobel Prize in Physics for foundational discoveries in machine learning with artificial neural networks. Leibniz's 350-year-old chain rule powers every AI system on Earth.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 22: Calculus & Optimization Recap ---
+% ===================================================================
+\recapslide{PillarOrange}{Calculus \& Optimization}{Derivatives tell the model which way to adjust}{The chain rule makes it scale to billions of parameters}{350-year-old math powers every AI training run}{Calculus provides the learning mechanism: derivatives tell the model which direction to adjust, and the chain rule scales this to billions of parameters. Backpropagation is Leibniz's 1684 chain rule applied systematically. Next: information theory, the objective function.}
+
+
+% ===================================================================
+% SECTION 5: PILLAR 4 — INFORMATION THEORY (Frames 23-27)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 23: Section Divider — Information Theory ---
+% ===================================================================
+\sectiondivider{20d-icon-info.png}{PillarTeal}{Pillar 4}{Information Theory}{The Objective Function}{We have the skeleton (linear algebra), the language of uncertainty (probability), and the learning mechanism (calculus). But learning toward what? What is the goal? Information theory provides the answer: minimize cross-entropy. The model tries to minimize its surprise about the next token. And this objective comes from one of the most remarkable minds of the 20th century.}
+
+
+% ===================================================================
+% --- Frame 24: Shannon: Father of Information Theory ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarTeal}{P4}Shannon: Father of Information Theory}
+  \begin{columns}[T]
+    \begin{column}{0.38\textwidth}
+      \centering
+      \includegraphics[height=0.22\textheight, keepaspectratio]{shannon-1963.jpg}\par
+      {\scriptsize\color{TextMuted} Claude Shannon}\par\medskip
+      \onslide<2->{
+        \badge{PillarOrange}{Origin}
+      }
+    \end{column}
+    \begin{column}{0.57\textwidth}
+      \onslide<2->{
+        \bigquote[Claude Shannon]{Information is the resolution of uncertainty.}
+        \par\medskip
+      }
+      \onslide<3->{
+        \begin{card}[PillarTeal]
+          {\small\textbf{1948:} \emph{``A Mathematical Theory of Communication''} --- invented the \hlteal{bit} as the fundamental unit of information.}\par\smallskip
+          {\small\color{TextMuted} Fun fact: Shannon juggled while riding a unicycle through the halls of Bell Labs.}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{Claude Shannon was a unicyclist, a juggler, a prankster, and the author of arguably the most important paper of the 20th century. His 1948 ``A Mathematical Theory of Communication'' invented the concept of the ``bit'' as the fundamental unit of information, defined entropy as a measure of uncertainty, and laid the theoretical foundation for everything from zip files to 5G to LLMs. He also built a flame-throwing trumpet, a robot mouse that could solve mazes, and a machine whose sole purpose was to turn itself off. He is the reason we can measure information, compress it, and transmit it --- and his formula is the exact loss function used to train every language model.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 25: Cross-Entropy: The LLM Loss Function ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarTeal}{P4}Cross-Entropy: The LLM Loss Function}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[height=0.18\textheight, keepaspectratio]{06-cross-entropy.png}\par\smallskip
+      \onslide<2->{
+        \includegraphics[height=0.16\textheight, keepaspectratio]{13-loss-curve.png}\par
+        {\scriptsize\color{TextMuted} Training loss decreasing over time}
+      }
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{formulabox}
+        $H(P, Q) = -\sum_{x} P(x) \log Q(x)$
+      \end{formulabox}
+      \par\medskip
+      \onslide<3->{
+        \begin{card}[PillarTeal]
+          {\small Shannon's 1948 formula \textbf{IS} the training objective of every LLM. Minimize surprise: assign high probability to the correct next word.}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{Cross-entropy measures how ``surprised'' the model is by the correct answer. P is the true distribution (the actual next word), Q is the model's predicted distribution. When the model assigns high probability to the correct word, cross-entropy is low. When the model is wrong, cross-entropy is high. Training an LLM means minimizing this number over trillions of examples. Shannon derived this formula in 1948 for analyzing communication channels. Nearly eighty years later, it is the single number that every LLM training run tries to make as small as possible.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 26: Shannon's Model → The LLM Pipeline ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarTeal}{P4}Shannon's Model $\to$ The LLM Pipeline}
+  \centering
+  \includegraphics[height=0.32\textheight, keepaspectratio]{07-shannon-diagram.png}\par\medskip
+
+  \onslide<2->{
+    \begin{card}[PillarTeal]
+      {\small\textbf{Shannon (1948):} Source $\to$ Encoder $\to$ Channel $\to$ Decoder $\to$ Destination}\par\smallskip
+      {\small\textbf{Modern LLM:} User $\to$ Tokenizer $\to$ Transformer $\to$ Output Layer $\to$ Response}\par\medskip
+      {\small Designed for communication channels. Nearly 80 years later, describes what ChatGPT does with \hlteal{striking} precision.}
+    \end{card}
+  }
+  \note{Shannon's 1948 diagram: Source produces a message. Encoder transforms it for transmission. Channel introduces noise. Decoder reconstructs the message. Destination receives it. Now map this to an LLM: the user (source) types a prompt (message). The tokenizer (encoder) converts text to token IDs. The transformer (channel) processes the sequence. The output layer (decoder) produces probabilities. The generated text (destination) arrives as the response. The parallel is remarkably tight --- not identical in mechanism (Shannon models noisy channels; transformers are generative models), but the functional pipeline maps with striking precision. Shannon built the theoretical framework; transformers are a concrete implementation of it.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 27: Information Theory Recap ---
+% ===================================================================
+\recapslide{PillarTeal}{Information Theory}{Cross-entropy = minimize surprise --- the LLM training objective}{Shannon's communication model maps remarkably onto the LLM pipeline}{A 1948 formula designed for communication channels trains every modern AI}{Information theory gives us the training objective: minimize cross-entropy, which means minimize the model's surprise at the next token. Shannon's 1948 framework maps remarkably well onto the modern LLM pipeline. Next: our final pillar, numerical optimization.}
+
+
+% ===================================================================
+% SECTION 6: PILLAR 5 — NUMERICAL OPTIMIZATION (Frames 28-31)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 28: Section Divider — Numerical Optimization ---
+% ===================================================================
+\sectiondivider{20e-icon-optim.png}{PillarGold}{Pillar 5}{Numerical Optimization}{Training at Scale}{We know what to optimize (cross-entropy), we know the mechanism (gradient descent via backpropagation). But vanilla gradient descent is too slow for models with trillions of parameters trained on trillions of tokens. Pillar 5 is about the clever numerical tricks that make training actually feasible: stochastic gradients, momentum, adaptive learning rates. Without these, no LLM could ever be trained.}
+
+
+% ===================================================================
+% --- Frame 29: The Evolution of Optimizers ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarGold}{P5}The Evolution of Optimizers}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[height=0.22\textheight, keepaspectratio]{08-optimizers.png}\par\smallskip
+      \onslide<4->{
+        \includegraphics[height=0.14\textheight, keepaspectratio]{xkcd-machine-learning.png}\par
+        {\scriptsize\color{TextMuted} xkcd.com/1838 (CC BY-NC 2.5)}
+      }
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \onslide<2->{
+        \milestonerow{1951}{Robbins \& Monro invent SGD \badge{PillarOrange}{Origin}}
+      }
+      \onslide<3->{
+        \milestonerow{1964}{Polyak adds momentum --- past gradients guide future steps}
+      }
+      \onslide<5->{
+        \milestonerow{2014}{Kingma \& Ba create \hlgold{Adam} --- 200,000+ citations \badge{AccentGold}{Breakthrough}}
+      }
+    \end{column}
+  \end{columns}
+  \note{Stochastic Gradient Descent (SGD) was invented by Robbins and Monro in 1951. Instead of computing the gradient over the entire dataset, you estimate it from a small random batch --- much faster, slightly noisier, but it works. In 1964, Boris Polyak added momentum: keep a running average of past gradients so you do not oscillate. Then in 2014, Diederik Kingma and Jimmy Ba created Adam (Adaptive Moment Estimation), which maintains per-parameter learning rates that adapt based on the history of gradients. Adam has over 200,000 citations and is used to train virtually every large language model. It is the workhorse of modern AI.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 30: More Math, Better AI: Scaling Laws ---
+% ===================================================================
+\begin{frame}{\pillartag{PillarGold}{P5}More Math, Better AI: Scaling Laws}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[height=0.22\textheight, keepaspectratio]{09-scaling-laws.png}\par\smallskip
+      \onslide<2->{
+        \includegraphics[height=0.14\textheight, keepaspectratio]{xkcd-curve-fitting.png}\par
+        {\scriptsize\color{TextMuted} xkcd.com/2048 (CC BY-NC 2.5)}
+      }
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{formulabox}
+        $L(N) = \left(\dfrac{N_c}{N}\right)^{0.076}$
+      \end{formulabox}
+      \par\medskip
+      \onslide<3->{
+        \begin{card}[PillarGold]
+          {\small\textbf{Kaplan et al., 2020:} LLM performance follows a \hlgold{power law}. Double the parameters $\to$ $\sim$5\% lower loss. Halving the loss requires $\sim$10,000x more parameters. This equation is why companies spend billions on bigger models.}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{In 2020, Jared Kaplan and colleagues at OpenAI discovered that LLM performance follows a remarkably clean power law: loss decreases as a power of model size, dataset size, and compute. Double the parameters, and you get a predictable improvement. This is why companies are spending billions: the scaling laws say it works. The exponent 0.076 means doubling parameters reduces loss by only about 5\%. To halve the loss, you need roughly 10,000x more parameters --- that is why scaling is so expensive. This mathematical relationship --- a simple power law --- is the economic engine driving the entire AI industry. More math, more parameters, more compute, better AI.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 31: Numerical Optimization Recap ---
+% ===================================================================
+\recapslide{PillarGold}{Numerical Optimization}{Adam is the workhorse of modern AI training}{Scaling laws reveal a power law --- more parameters, predictably better}{The optimization frontier turns mathematical insight into economic force}{Numerical optimization makes training feasible at scale. SGD, momentum, and Adam are the workhorses. Scaling laws reveal a clean power law: more parameters yield predictably lower loss, but the improvements are logarithmic --- doubling parameters buys only about 5 percent. Now let us see all five pillars converge.}
+
+
+% ===================================================================
+% SECTION 7: CONVERGENCE & IMPACT (Frames 32-37)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 32: Where All Five Pillars Meet ---
+% ===================================================================
+\begin{frame}{Where All Five Pillars Meet}
+  \centering
+  \includegraphics[height=0.18\textheight, keepaspectratio]{10-convergence.png}\par\smallskip
+
+  \onslide<2->{
+    \pillaritem{PillarBlue}{Linear Algebra}{Embeddings \& attention matrices}\hfill
+    \pillaritem{PillarGreen}{Probability}{Softmax distributions}\par\vspace{1pt}
+    \pillaritem{PillarOrange}{Calculus}{Backprop via chain rule}\hfill
+    \pillaritem{PillarTeal}{Info Theory}{Cross-entropy loss}\par\vspace{1pt}
+    \centering\pillaritem{PillarGold}{Optimization}{Adam updates weights}\par
+  }
+  \vspace{2pt}
+  \onslide<3->{
+    \begin{card}
+      {\small Five branches of pure mathematics, developed over \textbf{2000 years}, all running simultaneously in a single forward-backward pass. This is the code of the universe.}
+    \end{card}
+  }
+  \note{Let us trace one complete training step. Your text enters as token IDs, which are mapped to embedding vectors (linear algebra). These vectors flow through attention layers where Q, K, V matrices compute weighted combinations (linear algebra again). Softmax converts attention scores and output logits into probability distributions (probability theory). The cross-entropy loss measures how far the prediction is from the truth (information theory). Backpropagation sends the gradient of that loss backward through every layer using the chain rule (calculus). And Adam updates each of the trillions of weights using adaptive learning rates (numerical optimization). All five pillars, working together, in every single training step.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 33: What AI Can Actually Do ---
+% ===================================================================
+\begin{frame}{What AI Can Actually Do}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \onslide<1->{
+        \statnumber[PillarBlue]{35/42}{IMO Gold Medal --- Gemini Deep Think (2025)}
+      }
+      \onslide<2->{
+        \statnumber[PillarGreen]{Nobel}{Chemistry 2024 --- AlphaFold solved protein folding}
+      }
+      \onslide<3->{
+        \statnumber[PillarOrange]{92\%+}{HumanEval --- Claude coding benchmark (2025)}
+      }
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \includegraphics[height=0.22\textheight, keepaspectratio]{10-convergence.png}\par
+      {\scriptsize\color{TextMuted} Five pillars powering AI capabilities}\par\medskip
+      \onslide<4->{
+        \statnumber[PillarTeal]{1M+ tokens}{Context window --- Gemini processes entire codebases at once}
+      }
+      \onslide<5->{
+        \statnumber[PillarGold]{$\sim$90\%}{MMLU --- frontier models match expert human level (89.8\%)}
+      }
+    \end{column}
+  \end{columns}
+  \note{Start with the shock factor. In July 2025, Google DeepMind's Gemini Deep Think scored 35 out of 42 on the International Mathematical Olympiad --- earning a gold medal. Out of 630 human contestants from 110 countries, only 67 earned gold. The year before, in 2024, DeepMind's AlphaFold won the Nobel Prize in Chemistry for solving the protein folding problem. Claude scores 92\% on HumanEval. These are not futuristic projections --- every single one has already happened.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 34: The Numbers Are Staggering ---
+% ===================================================================
+\begin{frame}{The Numbers Are Staggering}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \onslide<1->{
+        \statnumber[PillarBlue]{$\sim$1.7T}{estimated parameters in GPT-4 (OpenAI has not confirmed)}
+      }
+      \onslide<2->{
+        \statnumber[AccentRed]{\$100M+}{training cost --- 25,000 GPUs for 90 days}
+      }
+      \onslide<3->{
+        \statnumber[PillarOrange]{$\sim$13T}{training tokens $\approx$ 2,200 Wikipedias}
+      }
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \onslide<4->{
+        \statnumber[PillarTeal]{900M}{weekly ChatGPT users (Feb 2026)}
+      }
+      \onslide<5->{
+        {\small\color{TextMuted} That is more than 1 in 10 humans on Earth.}\par\medskip
+      }
+      \onslide<6->{
+        \begin{card}[PillarGreen]
+          {\small\textbf{Plot twist:} DeepSeek R1 matched GPT-4 for \hlgreen{\$6 million}. Open source. Nvidia lost \hlred{nearly \$600 billion} in one day.}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{Let the numbers sink in. GPT-4 has an estimated 1.7 trillion parameters (OpenAI has never officially confirmed the number; this estimate comes from independent analysis of the model's Mixture-of-Experts architecture). Training it cost over 100 million dollars, required 25,000 GPUs running for 90 days, and consumed enough electricity to power a small city. The training data was an estimated 13 trillion tokens --- roughly 2,200 complete copies of Wikipedia. As of February 2026, ChatGPT has 900 million weekly active users. And then in January 2025, a Chinese lab called DeepSeek released R1, which matched GPT-4 --- trained for just 6 million dollars and open-sourced. That blog post caused Nvidia to lose nearly 600 billion dollars in market value in a single day.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 35: Brilliant and Broken ---
+% ===================================================================
+\begin{frame}{Brilliant and Broken}
+  \onslide<1->{
+    \begin{card}[AccentRed]
+      {\small\textbf{Strawberry:} Ask an LLM to count the R's in ``strawberry.'' It says 2. There are 3. The same system that earns an IMO gold medal cannot count letters.}
+    \end{card}
+  }
+  \onslide<2->{
+    \begin{card}[PillarOrange]
+      {\small\textbf{Numbers:} Many LLMs claim $9.11 > 9.9$ --- because they do pattern matching on text, not arithmetic on numbers.}
+    \end{card}
+  }
+  \onslide<3->{
+    \begin{card}[PillarTeal]
+      {\small\textbf{Hallucinations:} A New York lawyer was fined \$5,000 for submitting fabricated court cases generated by ChatGPT. Air Canada had to honor a refund policy its chatbot invented.}
+    \end{card}
+  }
+  \onslide<4->{
+    \begin{card}
+      {\small\color{TextDark} \textbf{Why?} LLMs are \hlred{statistical pattern completers}, not fact databases. They predict the most likely next token. They have no internal fact-checker and no concept of truth.}
+    \end{card}
+  }
+  \note{Here is the paradox. The same system that can solve International Math Olympiad problems cannot reliably count the letter R in ``strawberry.'' Many LLMs will tell you that 9.11 is greater than 9.9 because they are doing pattern matching on text, not arithmetic on numbers. In 2023, a New York lawyer submitted a legal brief citing six court cases that ChatGPT had completely fabricated. Air Canada had to honor a bereavement discount that its chatbot made up. The reason: LLMs are statistical pattern completers. They predict the most likely next token. They have no concept of truth, no internal fact-checker. Brilliant at patterns, blind to facts. IMPORTANT: Test the strawberry and 9.11 examples against current models (ChatGPT, Claude, Gemini) the day before presenting. These failure modes may have been patched. If they no longer fail, note that in your delivery: 'These used to fail until recently, showing how fast the field moves.'}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 36: The Race: Zero to Gold in 8 Years ---
+% ===================================================================
+\begin{frame}{The Race: Zero to Gold in 8 Years}
+  \onslide<2->{
+    \milestonerow{2017}{\emph{``Attention Is All You Need''} --- the transformer is born \badge{PillarOrange}{Origin}}
+  }
+  \onslide<3->{
+    \milestonerow{2020}{GPT-3 launches --- 175 billion parameters}
+  }
+  \onslide<4->{
+    \milestonerow{Nov 2022}{ChatGPT: \hlgreen{100M users in 2 months} (Instagram took 2.5 years)}
+  }
+  \onslide<5->{
+    \milestonerow{Mar 2023}{GPT-4 passes the bar exam \badge{AccentGold}{Breakthrough}}
+  }
+  \onslide<6->{
+    \milestonerow{2024}{Two Nobel Prizes go to AI work (Physics + Chemistry) \badge{AccentPurple}{Discovery}}
+  }
+  \onslide<7->{
+    \milestonerow{Jan 2025}{DeepSeek R1 drops --- Nvidia loses \hlred{nearly \$600B in one day}}
+  }
+  \onslide<8->{
+    \milestonerow{Jul 2025}{AI scores \hlgold{IMO gold medal} (35/42) \badge{PillarBlue}{AI Connection}}
+  }
+  \note{Look at this timeline. In 2017, eight Google researchers publish Attention Is All You Need. It introduces the transformer. In 2020, OpenAI scales it to 175 billion parameters with GPT-3. In November 2022, ChatGPT reaches 100 million users in two months --- the fastest adoption of any technology in history. In 2023, GPT-4 passes the bar exam. In 2024, two Nobel Prizes go to AI-related work. In January 2025, DeepSeek releases a model matching GPT-4 --- Nvidia drops 600 billion in a single day. And in July 2025, AI scores a gold medal on the IMO. Eight years from an academic paper to rewriting the global economy.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 37: The Math Behind the Headlines ---
+% ===================================================================
+\begin{frame}{The Math Behind the Headlines}
+  \onslide<1->{
+    \begin{card}[PillarTeal]
+      {\small\textbf{MBZUAI} --- Mohamed bin Zayed University of Artificial Intelligence (Abu Dhabi). The world's first graduate-level AI university. Research spans all five pillars.}
+    \end{card}
+  }
+  \onslide<2->{
+    \begin{card}[PillarBlue]
+      {\small\textbf{Falcon LLM} --- Built by the Technology Innovation Institute, Abu Dhabi. Open-source, now in its third generation (Falcon 3). Every pillar you learned today is inside it: embeddings, softmax, cross-entropy, backprop, Adam.}
+    \end{card}
+  }
+  \onslide<3->{
+    \begin{card}[PillarGold]
+      {\small\textbf{Dubai Smart City \& Abu Dhabi AI Strategy} --- From autonomous transport to AI-powered government services. The UAE is building its future on mathematical foundations.}\par\medskip
+      {\small\color{TextDark} The five pillars you just learned are the \hlgold{foundation of all of this}.}
+    \end{card}
+  }
+  \note{This is where it connects to you. MBZUAI in Abu Dhabi is the world's first graduate-level university dedicated to AI research --- and its curriculum is built on exactly these five mathematical pillars. The Technology Innovation Institute, also in Abu Dhabi, built Falcon LLM --- now in its third generation, an open-source model family competing on global benchmarks. Every matrix multiplication, every softmax, every cross-entropy calculation, every Adam update we discussed today is running inside Falcon. Dubai's Smart City initiative and Abu Dhabi's national AI strategy are built on these mathematical foundations. The five pillars are not abstract theory --- they are the engine of the UAE's technological ambition.}
+\end{frame}
+
+
+% ===================================================================
+% SECTION 8: CALL TO ACTION & CLOSING (Frames 38-43)
+% ===================================================================
+
+
+% ===================================================================
+% --- Frame 38: What YOU Can Do Right Now ---
+% ===================================================================
+\begin{frame}{What YOU Can Do Right Now}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \onslide<2->{
+        \begin{enumerate}
+          \item[\hlblue{1.}] \textbf{GitHub Student Pack} --- free Copilot, free cloud credits
+          \item[\hlgreen{2.}] \textbf{Kaggle Intro to ML} --- free course, one weekend
+          \item[\hlorange{3.}] \textbf{Google Colab} --- free GPU in your browser
+          \item[\hlteal{4.}] \textbf{HuggingFace} --- thousands of models, one line of code
+          \item[\hlgold{5.}] \textbf{Kaggle Competition} --- real data, real problems, real community
+        \end{enumerate}
+      }
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \onslide<3->{
+        \statnumber[PillarGreen]{\$160K+}{ML Engineer average salary (Glassdoor, 2026)}
+      }
+      \onslide<4->{
+        \begin{card}[PillarTeal]
+          {\small\textbf{Free tools:} ChatGPT, Claude, GitHub Copilot (free for students), Google Colab, Kaggle}\par\medskip
+          {\small\color{PillarTeal} The tools are free. The courses are free. The barrier has never been lower. What are you doing \emph{this weekend}?}
+        \end{card}
+      }
+    \end{column}
+  \end{columns}
+  \note{This is the empowerment slide. Everything listed is completely free. Step one: get the GitHub Student Developer Pack --- free Copilot, cloud credits, dozens of tools. Step two: take the Kaggle Intro to Machine Learning course --- free, hands-on, finish in a weekend. Step three: open Google Colab for a free GPU in your browser. Step four: try HuggingFace --- thousands of pre-trained models, one line of code. Step five: enter a Kaggle competition with real datasets and a community of hundreds of thousands. The average ML engineer salary is over 160,000 dollars according to Glassdoor, with top-tier positions at major tech companies exceeding 250,000 dollars. The barrier to entry has never been lower.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 39: Mathematics Competition Pathways ---
+% ===================================================================
+\begin{frame}{Mathematics Competition Pathways}
+  \onslide<1->{
+    \begin{card}[PillarBlue]
+      {\small\textbf{IMO / EGMO / Math Competitions} $\to$ \textbf{AI Research}\par\smallskip
+      The proof techniques you practice --- induction, estimation, combinatorial arguments --- train the same mathematical thinking that builds AI. Linear algebra, probability, and optimization \emph{are} competition mathematics.}
+    \end{card}
+  }
+  \onslide<2->{
+    \begin{card}[PillarTeal]
+      {\small\textbf{MBZUAI Scholarships} --- Full scholarships for MSc and PhD in AI, Machine Learning, NLP, and Computer Vision. Undergraduate research positions available.}\par\smallskip
+      {\small\textbf{UAE Math Olympiad Team} $\to$ competition experience is valued by every top AI program worldwide.}
+    \end{card}
+  }
+  \onslide<3->{
+    \begin{card}[PillarGold]
+      {\small The math you study for competitions \textbf{IS} the math inside AI. The same inequalities that win medals are the same bounds that prove convergence of gradient descent. \hlgold{Your preparation already has a destination.}}
+    \end{card}
+  }
+  \note{This slide is specifically for you as competition-level mathematicians. The proof techniques you practice for IMO and EGMO --- induction, bounding arguments, optimization, combinatorics --- are exactly the mathematical thinking that builds AI systems. Linear algebra, probability, and optimization are competition mathematics. MBZUAI offers full scholarships for graduate study in AI. And competition experience is valued by every top AI research program worldwide. The math you are studying right now has a direct path to the most impactful technology of our era. Verify MBZUAI's current program offerings before presenting --- check whether undergraduate programs have launched by 2026, as the university was graduate-only at founding.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 40: Five Pillars: The Complete Picture ---
+% ===================================================================
+\begin{frame}{Five Pillars: The Complete Picture}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \includegraphics[height=0.32\textheight, keepaspectratio]{19-radar-pillars.png}\par\medskip
+      \onslide<2->{
+        {\scriptsize
+        \begin{multicols}{2}
+          \hlblue{AI/ML Engineer}\par
+          \hlgreen{Data Scientist}\par
+          \hlorange{Research Mathematician}\par
+          \hlteal{Quant Analyst}\par
+          \hlgold{AI Safety Researcher}\par
+        \end{multicols}
+        }
+      }
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \onslide<3->{
+        \bigquote{The mathematicians who built these tools never imagined AI. The AI researchers who use them stand on 2000 years of shoulders.}
+      }
+    \end{column}
+  \end{columns}
+  \note{Here is the complete picture. The radar chart shows all five pillars and how they contribute to modern AI. Every career path in AI --- ML engineer, data scientist, research mathematician, quantitative analyst, AI safety researcher --- draws on multiple pillars. The mathematicians who developed these tools over 2000 years never imagined artificial intelligence. But the AI researchers who use them today stand on those 2000 years of mathematical shoulders. Your mathematical training is not preparation for AI --- it is the foundation AI is built upon.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 41: The Code Is Still Being Written ---
+% ===================================================================
+\begin{frame}{The Code Is Still Being Written}
+  \onslide<1->{
+    \begin{card}[PillarBlue]
+      {\small\textbf{Active frontiers:} Sparse attention (linear algebra), calibration (probability), second-order methods (calculus), mechanistic interpretability (information theory), distributed optimization at scale.}
+    \end{card}
+  }
+  \onslide<2->{
+    \begin{card}[AccentPurple]
+      {\small\textbf{New pillars emerging:} Topology, category theory, algebraic geometry, and differential geometry are all finding applications in AI. The mathematical story is far from finished.}
+    \end{card}
+  }
+  \onslide<3->{
+    \begin{card}[PillarTeal]
+      {\small\textbf{Open problems:} Why do LLMs generalize so well? Can we prove convergence guarantees? How do we make AI safe and aligned? These are \emph{mathematical} questions waiting for answers.}
+    \end{card}
+  }
+  \onslide<4->{
+    \begin{card}[PillarGold]
+      {\small The code of the universe is still being written. The next chapter may be written by \hlgold{someone in this room}.}
+    \end{card}
+  }
+  \note{Every one of these five branches is an active research frontier. Linear algebra researchers are developing new sparse attention mechanisms. Probabilists are working on better calibration. Calculus specialists are creating second-order methods. Information theorists are exploring what LLMs actually learn. And entirely new pillars may emerge: topology, category theory, algebraic geometry are all finding applications in AI. The open problems --- why LLMs generalize, convergence proofs, AI safety --- are fundamentally mathematical questions. The code of the universe is still being written, and the next chapter may be written by someone in this room.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 42: Thank You ---
+% ===================================================================
+\begin{frame}[plain]
+  \centering\vfill
+  \includegraphics[height=0.10\textheight, keepaspectratio]{15-hero-neural-net.png}\par\bigskip
+  {\fontsize{28}{34}\selectfont\bfseries\color{TextDark} Thank You}\par\bigskip
+  {\Large\color{PillarTeal} Questions?}\par\medskip
+  {\small\color{TextMuted} UAE Mathematics Conference 2026 \quad$\cdot$\quad Prof.\ J\"org Osterrieder}\par\smallskip
+  {\small\color{TextMuted} The Five Pillars of AI Mathematics}
+  \vfill
+  \note{Thank you for your attention. I hope you now see that mathematics is not just preparation for AI --- it IS the foundation AI is built upon. Every equation we discussed today, from Cayley's matrices to Shannon's entropy, is running right now inside the AI on your phone. I am happy to take questions. For those interested in pursuing this further, remember: the tools are free, the courses are free, and the math you are already learning is exactly the math that powers AI.}
+\end{frame}
+
+
+% ===================================================================
+% --- Frame 43: Appendix — Formula Reference ---
+% ===================================================================
+\begin{frame}[noframenumbering]{Appendix: Formula Reference}
+  {\scriptsize
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \badge{PillarBlue}{P1: Linear Algebra}\par\vspace{2pt}
+      \begin{formulabox}
+        $\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$
+      \end{formulabox}\vspace{2pt}
+      \begin{formulabox}
+        $\text{output} = W \cdot \vec{x} + \vec{b}$
+      \end{formulabox}\vspace{2pt}
+      \begin{formulabox}
+        $Q = XW_Q, \; K = XW_K, \; V = XW_V$
+      \end{formulabox}\vspace{2pt}
+      \begin{formulabox}
+        $\text{Att}(Q,K,V) = \text{softmax}\!\left(\dfrac{QK^T}{\sqrt{d_k}}\right)\!V$
+      \end{formulabox}\vspace{4pt}
+      \badge{PillarGreen}{P2: Probability}\par\vspace{2pt}
+      \begin{formulabox}
+        $P(w_i) = \dfrac{e^{z_i}}{\sum_j e^{z_j}}$
+      \end{formulabox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \badge{PillarOrange}{P3: Calculus}\par\vspace{2pt}
+      \begin{formulabox}
+        $\dfrac{dy}{dx}$ \quad (Leibniz notation)
+      \end{formulabox}\vspace{2pt}
+      \begin{formulabox}
+        $\dfrac{\partial L}{\partial w} = \dfrac{\partial L}{\partial y} \cdot \dfrac{\partial y}{\partial w}$
+      \end{formulabox}\vspace{4pt}
+      \badge{PillarTeal}{P4: Information Theory}\par\vspace{2pt}
+      \begin{formulabox}
+        $H(P, Q) = -\sum_{x} P(x) \log Q(x)$
+      \end{formulabox}\vspace{4pt}
+      \badge{PillarGold}{P5: Optimization}\par\vspace{2pt}
+      \begin{formulabox}
+        $L(N) = \left(\dfrac{N_c}{N}\right)^{0.076}$
+      \end{formulabox}\vspace{4pt}
+      \badge{AccentRed}{LLM Failure}\par\vspace{2pt}
+      \begin{formulabox}
+        $9.11 > 9.9$ \quad (incorrect!)
+      \end{formulabox}
+    \end{column}
+  \end{columns}
+  }
+  \note{This is a reference slide. You do not need to present it --- it is here for anyone who wants to review the formulas after the talk. All ten key formulas from the five pillars are collected here.}
+\end{frame}
+
+
+\end{document}

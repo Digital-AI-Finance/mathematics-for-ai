@@ -1,0 +1,207 @@
+%% preamble.tex — Packages, colors, and custom commands
+%% For: "The Code of the Universe" UAE Conference Beamer deck
+
+%% 1. PACKAGES
+\usepackage{fontspec}           % XeLaTeX font loading
+\usepackage{amsmath,amssymb}    % Math
+\usepackage{graphicx}           % Images
+\usepackage{tcolorbox}          % Cards, formula boxes, badges
+\usepackage{tikz}               % Watermarks on divider slides
+\usepackage{hyperref}           % Clickable URLs
+\usepackage{booktabs}           % Nice tables
+\usepackage[tracking]{microtype} % Better typography + \textls
+\usepackage{multicol}           % Multi-column layouts
+\usepackage{tabularx}           % Flexible tables
+
+%% 2. FONT SETUP
+\setsansfont{Calibri}[
+  BoldFont={Calibri Bold},
+  ItalicFont={Calibri Italic},
+  BoldItalicFont={Calibri Bold Italic},
+  Scale=1.0
+]
+
+%% 3. COLOR DEFINITIONS — Desert Horizon palette
+\definecolor{BGLight}{HTML}{FAFAFA}
+\definecolor{BGWarm}{HTML}{F5F0E8}
+\definecolor{BGPanel}{HTML}{E8E0D0}
+\definecolor{TextDark}{HTML}{1A1A2E}
+\definecolor{TextMuted}{HTML}{6B7280}
+\definecolor{PillarBlue}{HTML}{1E6091}
+\definecolor{PillarGreen}{HTML}{0F7B6C}
+\definecolor{PillarOrange}{HTML}{C65D07}
+\definecolor{PillarTeal}{HTML}{0E8388}
+\definecolor{PillarGold}{HTML}{B8860B}
+\definecolor{AccentRed}{HTML}{B91C1C}
+\definecolor{AccentPurple}{HTML}{6D28D9}
+\definecolor{AccentGold}{HTML}{D4A017}
+
+%% 4. IMAGE PATH
+\graphicspath{{../lecture-new-v2/images/}{../lecture-new-v2/images/portraits/}{../lecture-new-v2/images/external/}}
+
+%% 5. CUSTOM COMMANDS
+
+% --- Cards (tcolorbox with colored left border on light panel) ---
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{card}[1][PillarBlue]{
+  colback=BGPanel, colframe=BGPanel,
+  boxrule=0pt, leftrule=4pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  arc=6pt, outer arc=6pt,
+  borderline west={4pt}{0pt}{#1},
+  before skip=4pt, after skip=4pt
+}
+
+% --- Formula Box ---
+\newenvironment{formulabox}{%
+  \begin{tcolorbox}[
+    colback=BGWarm, colframe=PillarBlue!40,
+    boxrule=1pt, arc=6pt,
+    halign=center,
+    left=12pt, right=12pt, top=8pt, bottom=8pt,
+    before skip=6pt, after skip=6pt
+  ]
+  \color{AccentGold}
+}{%
+  \end{tcolorbox}
+}
+
+% --- Section Divider ---
+% \sectiondivider{icon-file}{pillar-color}{PILLAR N}{Title}{Subtitle}{notes text}
+\newcommand{\sectiondivider}[6]{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+      % Warm sand background
+      \fill[BGWarm] (current page.south west) rectangle (current page.north east);
+      % Watermark icon at low opacity
+      \node[opacity=0.08] at (current page.center) {%
+        \includegraphics[height=0.8\paperheight]{#1}};
+    \end{tikzpicture}
+    \centering\vfill
+    {\small\scshape\bfseries\color{#2}\MakeUppercase{#3}}\par\bigskip
+    {\fontsize{28}{32}\selectfont\bfseries\color{#2} #4}\par\medskip
+    {\large\color{TextMuted} #5}\par
+    \vspace{1em}
+    {\color{#2}\rule{60pt}{3pt}}
+    \vfill
+    \note{#6}
+  \end{frame}
+}
+
+% --- Badge (inline pill) ---
+\newtcbox{\badgebox}[1][PillarBlue]{
+  on line, colback=#1!8, colframe=#1!25,
+  size=small, arc=10pt, boxrule=0.5pt,
+  top=1pt, bottom=1pt, left=4pt, right=4pt
+}
+\newcommand{\badge}[2]{%
+  \badgebox[#1]{\scriptsize\scshape\bfseries\color{#1}#2}}
+
+% --- Milestone Row ---
+\newcommand{\milestonerow}[2]{%
+  {\bfseries\color{TextMuted}\small #1}\hspace{0.75em}%
+  {\color{TextDark} #2}\par\smallskip}
+
+% --- Big Quote ---
+\newcommand{\bigquote}[2][]{%
+  \begin{tcolorbox}[blanker, borderline west={4pt}{0pt}{AccentGold},
+    left=1.5em, top=4pt, bottom=4pt]
+    {\large\itshape\color{AccentGold}\textquotedblleft #2\textquotedblright}%
+    \if\relax\detokenize{#1}\relax\else
+      \par\smallskip{\scriptsize\color{TextMuted}--- #1}\fi
+  \end{tcolorbox}}
+
+% --- Stat Number ---
+\newcommand{\statnumber}[3][PillarBlue]{%
+  {\fontsize{22}{26}\selectfont\bfseries\color{#1}#2}\par\vspace{2pt}
+  {\scriptsize\scshape\color{TextMuted}\textls[40]{#3}}}
+
+% --- Pillar Tag ---
+\newcommand{\pillartag}[2]{%
+  \badgebox[#1]{\tiny\bfseries\color{#1}#2}\hspace{0.3em}}
+
+% --- Highlight colors (inline) ---
+\newcommand{\hlblue}[1]{{\color{PillarBlue}#1}}
+\newcommand{\hlgreen}[1]{{\color{PillarGreen}#1}}
+\newcommand{\hlorange}[1]{{\color{PillarOrange}#1}}
+\newcommand{\hlteal}[1]{{\color{PillarTeal}#1}}
+\newcommand{\hlgold}[1]{{\color{PillarGold}#1}}
+\newcommand{\hlred}[1]{{\color{AccentRed}#1}}
+\newcommand{\hlmuted}[1]{{\color{TextMuted}#1}}
+
+% --- Pillar Item (convergence summary) ---
+\newcommand{\pillaritem}[3]{%
+  \begin{tcolorbox}[colback=BGPanel, colframe=BGPanel,
+    boxrule=0pt, arc=3pt, left=4pt, right=4pt, top=2pt, bottom=2pt,
+    on line, width=0.165\textwidth]
+    {\color{#1}\rule{5pt}{5pt}}\hspace{0.2em}%
+    {\scriptsize\bfseries\color{#1}#2}\hfill%
+    {\tiny\color{TextMuted}#3}
+  \end{tcolorbox}}
+
+% --- Demo Slide ---
+\newcommand{\demoslide}[4]{%
+  \begin{frame}
+    \frametitle{#1}
+    \centering\vfill
+    \begin{tcolorbox}[colback=BGWarm, colframe=PillarBlue!30,
+      boxrule=1pt, arc=8pt, width=0.85\textwidth,
+      halign=center, top=12pt, bottom=12pt]
+      {\large\color{PillarBlue}\bfseries Live Interactive Demo}\par\bigskip
+      {\color{TextDark} #3}\par\bigskip
+      {\small\color{PillarTeal}\url{#2}}
+    \end{tcolorbox}
+    \vfill
+    \note{#4}
+  \end{frame}
+}
+
+% --- Dual Demo Slide (NEW: two demos side-by-side) ---
+\newcommand{\dualdemoslide}[6]{%
+  \begin{frame}
+    \frametitle{#1}
+    \centering\vfill
+    \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+    \begin{tcolorbox}[colback=BGWarm, colframe=PillarBlue!30,
+      boxrule=1pt, arc=8pt, halign=center, top=10pt, bottom=10pt]
+      {\small\color{PillarBlue}\bfseries Demo 1}\par\medskip
+      {\small\color{TextDark} #3}\par\medskip
+      {\footnotesize\color{PillarTeal}\url{#2}}
+    \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+    \begin{tcolorbox}[colback=BGWarm, colframe=PillarTeal!30,
+      boxrule=1pt, arc=8pt, halign=center, top=10pt, bottom=10pt]
+      {\small\color{PillarTeal}\bfseries Demo 2}\par\medskip
+      {\small\color{TextDark} #5}\par\medskip
+      {\footnotesize\color{PillarTeal}\url{#4}}
+    \end{tcolorbox}
+    \end{column}
+    \end{columns}
+    \vfill
+    \note{#6}
+  \end{frame}
+}
+
+% --- Recap Slide (NEW: pillar summary bridge) ---
+% \recapslide{pillar-color}{Pillar Name}{bullet1}{bullet2}{bullet3}{speaker notes}
+\newcommand{\recapslide}[6]{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+      \fill[BGWarm] (current page.south west) rectangle (current page.north east);
+    \end{tikzpicture}
+    \centering\vfill
+    {\small\scshape\bfseries\color{#1}KEY TAKEAWAYS}\par\bigskip
+    {\LARGE\bfseries\color{#1} #2}\par\bigskip
+    \begin{minipage}{0.7\textwidth}
+      \begin{itemize}
+        \item[\color{#1}$\bullet$] {\color{TextDark}#3}
+        \item[\color{#1}$\bullet$] {\color{TextDark}#4}
+        \item[\color{#1}$\bullet$] {\color{TextDark}#5}
+      \end{itemize}
+    \end{minipage}
+    \vfill
+    \note{#6}
+  \end{frame}
+}
