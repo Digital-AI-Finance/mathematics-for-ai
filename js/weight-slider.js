@@ -215,6 +215,66 @@
         font-size: 0.85rem;
         color: var(--text-secondary, #6b7280);
       }
+      .ws-fairness-card {
+        background: var(--card-bg, #ffffff);
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        padding: 20px 24px;
+        margin-top: 16px;
+      }
+      .ws-fairness-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-secondary, #6b7280);
+        margin: 0 0 12px 0;
+      }
+      .ws-fairness-profiles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 500px) {
+        .ws-fairness-profiles { grid-template-columns: 1fr; }
+      }
+      .ws-fairness-profile {
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .ws-fairness-profile-a {
+        background: rgba(0,137,123,0.06);
+        border-left: 4px solid #00897b;
+      }
+      .ws-fairness-profile-b {
+        background: rgba(255,143,0,0.06);
+        border-left: 4px solid #ff8f00;
+      }
+      .ws-fairness-name {
+        font-size: 0.82rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .ws-fairness-detail {
+        font-size: 0.75rem;
+        color: var(--text-secondary, #6b7280);
+        line-height: 1.5;
+        margin-bottom: 6px;
+      }
+      .ws-fairness-score {
+        font-size: 1.3rem;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+      }
+      .ws-fairness-insight {
+        font-size: 0.82rem;
+        color: var(--text-secondary, #6b7280);
+        line-height: 1.55;
+        margin-top: 12px;
+        padding: 10px 14px;
+        background: rgba(26,35,126,0.04);
+        border-radius: 8px;
+      }
     `;
     document.head.appendChild(style);
   }
@@ -292,8 +352,12 @@
       slider.style.setProperty('--thumb-color', factor.color);
       sliderWrap.appendChild(slider);
 
-      const pct = el('span', { className: 'ws-pct', style: { color: factor.color } },
-        factor.defaultWeight + '%');
+      const pct = el('span', {
+        className: 'ws-pct',
+        style: { color: factor.color },
+        'aria-live': 'polite',
+        'aria-atomic': 'true',
+      }, factor.defaultWeight + '%');
 
       row.append(labelWrap, sliderWrap, pct);
       leftCard.appendChild(row);
@@ -373,12 +437,46 @@
     formulaCard.appendChild(formulaExpr);
 
     const scoreReadout = el('div', { className: 'ws-score-readout' });
-    const scoreValue   = el('span', { className: 'ws-score-value' });
+    const scoreValue   = el('span', { className: 'ws-score-value', 'aria-live': 'polite', 'aria-atomic': 'true' });
     const scoreLabel   = el('span', { className: 'ws-score-label' }, 'weighted score (out of 100)');
     scoreReadout.append(scoreValue, scoreLabel);
     formulaCard.appendChild(scoreReadout);
 
     root.appendChild(formulaCard);
+
+    // ── Fairness Comparison Card ─────────────────────────────────────────
+    const PROFILE_A = { name: 'Responsible Student', values: [95, 80, 20, 60, 30] };
+    const PROFILE_B = { name: 'Experienced but Imperfect', values: [70, 50, 95, 80, 90] };
+
+    const fairnessCard = el('div', { className: 'ws-fairness-card' });
+    fairnessCard.appendChild(el('p', { className: 'ws-fairness-title' }, '"What Happens If" — Fairness Comparison'));
+
+    const fairnessProfiles = el('div', { className: 'ws-fairness-profiles' });
+
+    const profileABox = el('div', { className: 'ws-fairness-profile ws-fairness-profile-a' });
+    profileABox.appendChild(el('div', { className: 'ws-fairness-name', style: { color: '#00897b' } }, PROFILE_A.name));
+    const profileADetail = el('div', { className: 'ws-fairness-detail' });
+    profileADetail.textContent = 'Payment=95, Utilization=80, Length=20, New=60, Mix=30';
+    profileABox.appendChild(profileADetail);
+    const profileAScore = el('div', { className: 'ws-fairness-score', style: { color: '#00897b' }, 'aria-live': 'polite' });
+    profileABox.appendChild(profileAScore);
+
+    const profileBBox = el('div', { className: 'ws-fairness-profile ws-fairness-profile-b' });
+    profileBBox.appendChild(el('div', { className: 'ws-fairness-name', style: { color: '#ff8f00' } }, PROFILE_B.name));
+    const profileBDetail = el('div', { className: 'ws-fairness-detail' });
+    profileBDetail.textContent = 'Payment=70, Utilization=50, Length=95, New=80, Mix=90';
+    profileBBox.appendChild(profileBDetail);
+    const profileBScore = el('div', { className: 'ws-fairness-score', style: { color: '#ff8f00' }, 'aria-live': 'polite' });
+    profileBBox.appendChild(profileBScore);
+
+    fairnessProfiles.appendChild(profileABox);
+    fairnessProfiles.appendChild(profileBBox);
+    fairnessCard.appendChild(fairnessProfiles);
+
+    const fairnessInsight = el('div', { className: 'ws-fairness-insight' });
+    fairnessCard.appendChild(fairnessInsight);
+
+    root.appendChild(fairnessCard);
     container.appendChild(root);
 
     // ── Reactivity ────────────────────────────────────────────────────────
@@ -425,6 +523,21 @@
       formulaExpr.innerHTML = buildFormulaHTML(weights);
       const score = computeScore(weights);
       scoreValue.textContent = score.toFixed(1);
+
+      // Fairness comparison
+      const scoreA = weights.reduce((sum, w, i) => sum + (w / 100) * PROFILE_A.values[i], 0);
+      const scoreB = weights.reduce((sum, w, i) => sum + (w / 100) * PROFILE_B.values[i], 0);
+      profileAScore.textContent = 'Score: ' + scoreA.toFixed(1);
+      profileBScore.textContent = 'Score: ' + scoreB.toFixed(1);
+
+      const diff = Math.abs(scoreA - scoreB).toFixed(1);
+      if (scoreA > scoreB) {
+        fairnessInsight.textContent = 'With these weights, the ' + PROFILE_A.name + ' scores ' + diff + ' points higher. Payment history reliability outweighs years of experience.';
+      } else if (scoreB > scoreA) {
+        fairnessInsight.textContent = 'With these weights, the ' + PROFILE_B.name + ' scores ' + diff + ' points higher. Longer credit history outweighs perfect recent behavior.';
+      } else {
+        fairnessInsight.textContent = 'Both profiles score equally! The weights create a perfectly balanced outcome.';
+      }
     }
 
     // Slider event wiring

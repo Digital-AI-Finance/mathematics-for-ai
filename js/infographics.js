@@ -81,10 +81,16 @@
       callout: 'Balance prediction: You might overspend this week',
       icon: 'bank',
     },
+    {
+      time:  '8:30',
+      label: 'Arrive at School',
+      callout: 'WiFi assigns bandwidth priority, attendance logged digitally, lunch account debited',
+      icon: 'school',
+    },
   ];
 
   // Counter values shown after each station reveals
-  const COUNTER_VALUES = [1, 5, 12, 37, '50–200'];
+  const COUNTER_VALUES = [1, 5, 12, 37, 49, '60–200'];
 
   // ─── SVG ICON PATHS ───────────────────────────────────────────────────────
   // Each icon fits a 32×32 viewBox centered at (0,0).
@@ -158,6 +164,21 @@
       g.appendChild(svgEl('rect', { x: -11, y: 6, width: 22, height: 3, rx: 1, fill: color }));
       // Foundation
       g.appendChild(svgEl('rect', { x: -13, y: 9, width: 26, height: 3, rx: 1, fill: color }));
+
+    } else if (type === 'school') {
+      // School building body
+      g.appendChild(svgEl('rect', { x: -10, y: -4, width: 20, height: 14, fill: 'none', stroke: color, 'stroke-width': 2, rx: 1 }));
+      // Roof triangle
+      g.appendChild(svgEl('polygon', { points: '-12,-4 12,-4 0,-12', fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+      // Door
+      g.appendChild(svgEl('rect', { x: -2, y: 3, width: 4, height: 7, fill: color, rx: 1 }));
+      // Windows
+      [[-6, -1], [5, -1]].forEach(([wx, wy]) => {
+        g.appendChild(svgEl('rect', { x: wx, y: wy, width: 3, height: 3, fill: color, rx: 0.5 }));
+      });
+      // Flag on top
+      g.appendChild(svgEl('line', { x1: 0, y1: -12, x2: 0, y2: -16, stroke: color, 'stroke-width': 1.5 }));
+      g.appendChild(svgEl('polygon', { points: '0,-16 5,-14.5 0,-13', fill: color }));
     }
 
     return g;
@@ -493,6 +514,8 @@
     { id: 'fintech', label: 'Fintech Founder',  icon: 'rocket',  desc: 'Build the next banking app',              salary: '€–€€€€€',  color: '#ff8f00' },
     { id: 'risk',    label: 'Risk Analyst',     icon: 'shield',  desc: 'Predict and prevent financial disasters', salary: '€€€',      color: '#00897b' },
     { id: 'ml',      label: 'ML Engineer',      icon: 'robot',   desc: 'Build and deploy AI systems',             salary: '€€€€',     color: '#ff8f00' },
+    { id: 'ux',      label: 'UX Designer',      icon: 'palette', desc: 'Design intuitive financial apps',         salary: '€€€',      color: '#00897b' },
+    { id: 'journal', label: 'Data Journalist',   icon: 'pen',     desc: 'Tell stories with financial data',        salary: '€€',       color: '#ff8f00' },
   ];
 
   // ─── CAREER ICON BUILDERS ─────────────────────────────────────────────────
@@ -580,6 +603,27 @@
       // Arms
       g.appendChild(svgEl('line', { x1: -8, y1: 3, x2: -12, y2: 3, stroke: color, 'stroke-width': 2 }));
       g.appendChild(svgEl('line', { x1:  8, y1: 3, x2:  12, y2: 3, stroke: color, 'stroke-width': 2 }));
+
+    } else if (type === 'palette') {
+      // Paint palette (UX Designer)
+      g.appendChild(svgEl('ellipse', { cx: 0, cy: 0, rx: 12, ry: 10, fill: 'none', stroke: color, 'stroke-width': 2 }));
+      // Thumb hole
+      g.appendChild(svgEl('circle', { cx: -5, cy: 3, r: 3, fill: 'none', stroke: color, 'stroke-width': 1.5 }));
+      // Paint dots
+      [[3, -4], [7, -1], [4, 3], [-1, -5]].forEach(([dx, dy]) => {
+        g.appendChild(svgEl('circle', { cx: dx, cy: dy, r: 1.5, fill: color }));
+      });
+
+    } else if (type === 'pen') {
+      // Fountain pen (Data Journalist)
+      g.appendChild(svgEl('path', {
+        d: 'M -3 -12 L 3 -12 L 5 8 L 0 13 L -5 8 Z',
+        fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linejoin': 'round',
+      }));
+      // Nib detail
+      g.appendChild(svgEl('line', { x1: 0, y1: 8, x2: 0, y2: 13, stroke: color, 'stroke-width': 1.5 }));
+      // Band
+      g.appendChild(svgEl('line', { x1: -3, y1: -4, x2: 3, y2: -4, stroke: color, 'stroke-width': 1.5 }));
     }
 
     return g;
@@ -698,19 +742,20 @@
     const root = el('div', { className: 'cc-root' });
 
     // ── Desktop SVG ────────────────────────────────────────────────────────
-    const SVG_W  = 700;
-    const SVG_H  = 500;
+    const SVG_W  = 720;
+    const SVG_H  = 540;
     const CX     = SVG_W / 2;
     const CY     = SVG_H / 2;
-    const RADIUS = 175;        // distance from center to career nodes
+    const RADIUS = 195;        // distance from center to career nodes (increased for 8 nodes)
     const HUB_R  = 52;
-    const NODE_R = 36;
+    const NODE_R = 34;
 
     const svgWrap = el('div', { className: 'cc-svg-wrap' });
     const svg = svgEl('svg', {
       viewBox: `0 0 ${SVG_W} ${SVG_H}`,
       preserveAspectRatio: 'xMidYMid meet',
-      'aria-hidden': 'true',
+      role: 'img',
+      'aria-label': 'Career constellation showing paths in data science, quantitative analysis, AI ethics, fintech, risk analysis, ML engineering, UX design, and financial journalism',
     });
 
     // Pre-compute node positions (evenly spaced on circle, starting top)

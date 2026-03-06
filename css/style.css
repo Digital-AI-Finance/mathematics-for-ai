@@ -565,6 +565,23 @@ section > p.section-subtitle,
     margin-top: var(--space-xs);
 }
 
+.viz-link {
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px dashed var(--color-border);
+    font-size: 0.85rem;
+}
+
+.viz-link a {
+    color: var(--color-secondary);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.viz-link a:hover {
+    color: var(--color-accent);
+}
+
 
 /* ==========================================================================
    7. MATH CONCEPTS TABLE (#math-concepts)
@@ -859,6 +876,29 @@ section > p.section-subtitle,
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--color-text-light);
+}
+
+.bankbot-stage[data-stage="8"] {
+    background: linear-gradient(135deg, #e8f5e9 0%, #fff3e0 100%);
+    border-top: 4px solid var(--color-secondary);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.bankbot-stage[data-stage="8"] .bankbot-icon {
+    font-size: 4rem;
+}
+
+.bankbot-stage[data-stage="8"] blockquote {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    max-width: 360px;
+}
+
+.bankbot-stage[data-stage="8"] .bankbot-label {
+    font-size: 0.85rem;
+    color: var(--color-secondary);
 }
 
 

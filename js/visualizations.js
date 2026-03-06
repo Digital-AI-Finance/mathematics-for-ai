@@ -1180,6 +1180,331 @@ function renderRegression(containerId) {
 
 
 /* =========================================================================
+   8. GRADIENT DESCENT  (#viz-gradient-descent)
+   ========================================================================= */
+
+function renderGradientDescent(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const W = 500, H = 380;
+  const pad = { top: 30, right: 30, bottom: 50, left: 55 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  // Loss function: y = (x - 3)^2 + 1
+  function loss(x) { return (x - 3) * (x - 3) + 1; }
+  function dLoss(x) { return 2 * (x - 3); }  // derivative
+
+  const xMin = -1, xMax = 7;
+  const yMin = 0, yMax = 18;
+
+  function toSVGX(x) { return pad.left + ((x - xMin) / (xMax - xMin)) * plotW; }
+  function toSVGY(y) { return pad.top + (1 - (y - yMin) / (yMax - yMin)) * plotH; }
+
+  // Wrapper with controls
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = 'max-width:520px;margin:0 auto;font-family:Inter,system-ui,sans-serif;';
+
+  const svg = svgEl('svg', {
+    viewBox: `0 0 ${W} ${H}`,
+    width: '100%',
+    style: 'display:block;margin:0 auto;',
+    role: 'img',
+    'aria-label': 'Gradient descent visualization showing a ball rolling down a U-shaped loss curve toward the minimum, with adjustable learning rate',
+  });
+
+  // Background
+  svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: H, fill: VIZ_COLORS.surface, rx: 8 }));
+  svg.appendChild(svgEl('rect', { x: pad.left, y: pad.top, width: plotW, height: plotH, fill: VIZ_COLORS.mathBg, rx: 4 }));
+
+  // Grid
+  [0, 5, 10, 15].forEach(y => {
+    svg.appendChild(svgEl('line', {
+      x1: pad.left, y1: toSVGY(y), x2: pad.left + plotW, y2: toSVGY(y),
+      stroke: VIZ_COLORS.border, 'stroke-width': 0.5,
+    }));
+  });
+  [0, 1, 2, 3, 4, 5, 6].forEach(x => {
+    svg.appendChild(svgEl('line', {
+      x1: toSVGX(x), y1: pad.top, x2: toSVGX(x), y2: pad.top + plotH,
+      stroke: VIZ_COLORS.border, 'stroke-width': 0.5,
+    }));
+  });
+
+  // Axes
+  svg.appendChild(svgEl('line', {
+    x1: pad.left, y1: pad.top + plotH, x2: pad.left + plotW, y2: pad.top + plotH,
+    stroke: VIZ_COLORS.text, 'stroke-width': 1.5,
+  }));
+  svg.appendChild(svgEl('line', {
+    x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + plotH,
+    stroke: VIZ_COLORS.text, 'stroke-width': 1.5,
+  }));
+
+  // Axis labels
+  const xLabel = svgEl('text', {
+    x: pad.left + plotW / 2, y: H - 6, 'text-anchor': 'middle',
+    fill: VIZ_COLORS.textLight, 'font-size': '11',
+  });
+  xLabel.textContent = 'Parameter value';
+  svg.appendChild(xLabel);
+
+  const yLabel = svgEl('text', {
+    x: 12, y: pad.top + plotH / 2, 'text-anchor': 'middle',
+    fill: VIZ_COLORS.textLight, 'font-size': '11',
+    transform: `rotate(-90, 12, ${pad.top + plotH / 2})`,
+  });
+  yLabel.textContent = 'Loss (how wrong)';
+  svg.appendChild(yLabel);
+
+  // Tick labels
+  [0, 1, 2, 3, 4, 5, 6].forEach(x => {
+    const t = svgEl('text', {
+      x: toSVGX(x), y: pad.top + plotH + 14, 'text-anchor': 'middle',
+      fill: VIZ_COLORS.textLight, 'font-size': '9',
+    });
+    t.textContent = x;
+    svg.appendChild(t);
+  });
+  [0, 5, 10, 15].forEach(y => {
+    const t = svgEl('text', {
+      x: pad.left - 6, y: toSVGY(y) + 3, 'text-anchor': 'end',
+      fill: VIZ_COLORS.textLight, 'font-size': '9',
+    });
+    t.textContent = y;
+    svg.appendChild(t);
+  });
+
+  // Draw the loss curve
+  let curvePath = '';
+  const steps = 200;
+  for (let i = 0; i <= steps; i++) {
+    const x = xMin + (i / steps) * (xMax - xMin);
+    const y = loss(x);
+    const clampedY = Math.min(y, yMax);
+    curvePath += (i === 0 ? 'M' : 'L') + toSVGX(x).toFixed(1) + ',' + toSVGY(clampedY).toFixed(1);
+  }
+  svg.appendChild(svgEl('path', {
+    d: curvePath, fill: 'none', stroke: VIZ_COLORS.primary,
+    'stroke-width': 2.5, 'stroke-linecap': 'round',
+  }));
+
+  // Minimum marker
+  svg.appendChild(svgEl('line', {
+    x1: toSVGX(3), y1: toSVGY(1) + 4, x2: toSVGX(3), y2: pad.top + plotH,
+    stroke: VIZ_COLORS.secondary, 'stroke-width': 1, 'stroke-dasharray': '4,3', opacity: 0.5,
+  }));
+  const minLabel = svgEl('text', {
+    x: toSVGX(3), y: toSVGY(1) + 18, 'text-anchor': 'middle',
+    fill: VIZ_COLORS.secondary, 'font-size': '8.5', 'font-weight': '600',
+  });
+  minLabel.textContent = 'Minimum';
+  svg.appendChild(minLabel);
+
+  // Step arrows group (will be populated during animation)
+  const stepsGroup = svgEl('g');
+  svg.appendChild(stepsGroup);
+
+  // Ball
+  const ball = svgEl('circle', {
+    cx: toSVGX(0), cy: toSVGY(loss(0)), r: 8,
+    fill: VIZ_COLORS.red, stroke: '#fff', 'stroke-width': 2,
+  });
+  svg.appendChild(ball);
+
+  // Ball position label
+  const ballLabel = svgEl('text', {
+    x: toSVGX(0) + 14, y: toSVGY(loss(0)) - 12,
+    fill: VIZ_COLORS.red, 'font-size': '9', 'font-weight': '600',
+    style: 'pointer-events:none;',
+  });
+  ballLabel.textContent = 'Loss: ' + loss(0).toFixed(1);
+  svg.appendChild(ballLabel);
+
+  // Learning rate label near the ball area
+  const lrLabel = svgEl('text', {
+    x: pad.left + plotW - 4, y: pad.top + 16, 'text-anchor': 'end',
+    fill: VIZ_COLORS.accent, 'font-size': '9', 'font-weight': '600',
+  });
+  lrLabel.textContent = 'Learning rate: 0.10';
+  svg.appendChild(lrLabel);
+
+  wrapper.appendChild(svg);
+
+  // Controls row
+  const controls = document.createElement('div');
+  controls.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap;';
+
+  const sliderLabel = document.createElement('label');
+  sliderLabel.style.cssText = 'font-size:0.82rem;font-weight:600;color:#616161;';
+  sliderLabel.textContent = 'Learning Rate:';
+
+  const slider = document.createElement('input');
+  slider.type = 'range';
+  slider.min = '1';
+  slider.max = '50';
+  slider.value = '10';
+  slider.style.cssText = 'width:140px;cursor:pointer;accent-color:#ff8f00;';
+  slider.setAttribute('aria-label', 'Learning rate');
+
+  const sliderValue = document.createElement('span');
+  sliderValue.style.cssText = 'font-size:0.82rem;font-weight:700;color:#ff8f00;min-width:36px;font-variant-numeric:tabular-nums;';
+  sliderValue.setAttribute('aria-live', 'polite');
+  sliderValue.textContent = '0.10';
+
+  const resetBtn = document.createElement('button');
+  resetBtn.textContent = 'Reset';
+  resetBtn.style.cssText = 'padding:6px 18px;border:2px solid #1a237e;background:transparent;color:#1a237e;border-radius:6px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.2s,color 0.2s;';
+  resetBtn.setAttribute('aria-label', 'Reset gradient descent animation');
+  resetBtn.addEventListener('mouseenter', function () { resetBtn.style.background = '#1a237e'; resetBtn.style.color = '#fff'; });
+  resetBtn.addEventListener('mouseleave', function () { resetBtn.style.background = 'transparent'; resetBtn.style.color = '#1a237e'; });
+
+  controls.appendChild(sliderLabel);
+  controls.appendChild(slider);
+  controls.appendChild(sliderValue);
+  controls.appendChild(resetBtn);
+  wrapper.appendChild(controls);
+
+  // Status text
+  const statusEl = document.createElement('div');
+  statusEl.style.cssText = 'text-align:center;margin-top:8px;font-size:0.82rem;color:#616161;min-height:1.4em;';
+  statusEl.setAttribute('aria-live', 'polite');
+  wrapper.appendChild(statusEl);
+
+  container.appendChild(wrapper);
+
+  // Animation state
+  let animFrame = null;
+  let currentX = 0;
+  let stepHistory = [];
+  let running = false;
+  let learningRate = 0.10;
+
+  function drawBall(x) {
+    const y = loss(x);
+    const clampedY = Math.min(y, yMax);
+    ball.setAttribute('cx', toSVGX(x));
+    ball.setAttribute('cy', toSVGY(clampedY));
+    ballLabel.setAttribute('x', toSVGX(x) + 14);
+    ballLabel.setAttribute('y', toSVGY(clampedY) - 12);
+    ballLabel.textContent = 'Loss: ' + y.toFixed(1);
+  }
+
+  function drawSteps() {
+    // Clear old arrows
+    while (stepsGroup.firstChild) stepsGroup.removeChild(stepsGroup.firstChild);
+
+    for (let i = 0; i < stepHistory.length - 1; i++) {
+      const x1 = stepHistory[i];
+      const x2 = stepHistory[i + 1];
+      const y1 = Math.min(loss(x1), yMax);
+      const y2 = Math.min(loss(x2), yMax);
+      // Step arrow
+      const arrow = svgEl('line', {
+        x1: toSVGX(x1), y1: toSVGY(y1),
+        x2: toSVGX(x2), y2: toSVGY(y2),
+        stroke: VIZ_COLORS.accent, 'stroke-width': 1.5,
+        'stroke-dasharray': '4,2', opacity: 0.7,
+      });
+      stepsGroup.appendChild(arrow);
+      // Arrowhead dot
+      stepsGroup.appendChild(svgEl('circle', {
+        cx: toSVGX(x2), cy: toSVGY(y2), r: 3,
+        fill: VIZ_COLORS.accent, opacity: 0.7,
+      }));
+    }
+  }
+
+  function runDescent() {
+    if (running) return;
+    running = true;
+    currentX = 0;
+    stepHistory = [currentX];
+    drawBall(currentX);
+    drawSteps();
+    statusEl.textContent = 'Descending...';
+
+    let stepCount = 0;
+    const maxSteps = 60;
+
+    function step() {
+      const grad = dLoss(currentX);
+      const newX = currentX - learningRate * grad;
+
+      // Clamp to visible range
+      const clampedX = Math.max(xMin + 0.1, Math.min(xMax - 0.1, newX));
+      currentX = clampedX;
+      stepHistory.push(currentX);
+      stepCount++;
+
+      drawBall(currentX);
+      drawSteps();
+
+      // Check convergence
+      const currentLoss = loss(currentX);
+      if (Math.abs(grad) < 0.05 || stepCount >= maxSteps) {
+        running = false;
+        if (currentLoss < 1.5) {
+          statusEl.textContent = 'Converged in ' + stepCount + ' steps! Loss = ' + currentLoss.toFixed(2);
+        } else if (stepCount >= maxSteps) {
+          statusEl.textContent = 'Stopped after ' + maxSteps + ' steps. Loss = ' + currentLoss.toFixed(2) + (learningRate > 0.35 ? ' (overshooting!)' : '');
+        }
+        return;
+      }
+
+      // Check for oscillation/overshoot with high learning rate
+      if (stepCount > 2 && Math.abs(currentX - 3) > Math.abs(stepHistory[stepHistory.length - 3] - 3) && learningRate > 0.3) {
+        // Overshooting
+        statusEl.textContent = 'Overshooting! Learning rate too high. Step ' + stepCount;
+      }
+
+      animFrame = requestAnimationFrame(function () {
+        setTimeout(step, prefersReducedMotion() ? 0 : 80);
+      });
+    }
+
+    animFrame = requestAnimationFrame(function () {
+      setTimeout(step, 300);
+    });
+  }
+
+  function reset() {
+    if (animFrame) cancelAnimationFrame(animFrame);
+    running = false;
+    currentX = 0;
+    stepHistory = [];
+    while (stepsGroup.firstChild) stepsGroup.removeChild(stepsGroup.firstChild);
+    drawBall(0);
+    statusEl.textContent = '';
+  }
+
+  slider.addEventListener('input', function () {
+    learningRate = parseInt(slider.value, 10) / 100;
+    sliderValue.textContent = learningRate.toFixed(2);
+    lrLabel.textContent = 'Learning rate: ' + learningRate.toFixed(2);
+  });
+
+  resetBtn.addEventListener('click', function () {
+    reset();
+    // Auto-start after reset
+    setTimeout(runDescent, 200);
+  });
+
+  // Auto-start on scroll into view
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        runDescent();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(container);
+}
+
+
+/* =========================================================================
    INIT -- call all renderers on DOMContentLoaded
    ========================================================================= */
 
@@ -1191,4 +1516,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCosine('viz-cosine');
   renderDotProduct('viz-dotproduct');
   renderRegression('viz-regression');
+  renderGradientDescent('viz-gradient-descent');
 });

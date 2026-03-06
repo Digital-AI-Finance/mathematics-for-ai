@@ -146,7 +146,7 @@
           <ul>
             <li><strong>Math concepts:</strong> None yet &mdash; pure engagement</li>
             <li><strong>Humor/cartoon:</strong> BankBot introduction &mdash; &ldquo;I analyzed your breakfast. You are 94% human.&rdquo;</li>
-            <li><strong>Engagement:</strong> Hand raise after the &ldquo;50&ndash;200 AI decisions before breakfast&rdquo; factoid</li>
+            <li><strong>Engagement:</strong> Hand raise after the &ldquo;50&ndash;200 AI decisions before breakfast&rdquo; factoid (industry estimates based on fraud checks, ad targeting, content ranking, smart device automation, and banking algorithms)</li>
           </ul>
         </details>
       </div>
@@ -163,11 +163,12 @@
           <summary>Details</summary>
           <ul>
             <li><strong>Math concepts:</strong> Probability concepts introduced informally</li>
-            <li><strong>History vignette:</strong> Florence Nightingale &mdash; data visualization pioneer (1854)</li>
+            <li><strong>History vignette:</strong> Florence Nightingale &mdash; data visualization pioneer (coxcomb diagrams, 1858)</li>
             <li><strong>Humor/cartoon:</strong> Cafeteria &ldquo;mystery meat&rdquo; probability analogy</li>
             <li><strong>Engagement:</strong> Cafeteria analogy &mdash; &ldquo;How do you decide if the lunch line is worth it?&rdquo;</li>
           </ul>
         </details>
+        <p class="viz-link"><a href="#viz-nightingale">See the interactive Nightingale rose diagram &darr;</a></p>
       </div>
 
       <!-- Card 3 -->
@@ -192,8 +193,10 @@
             <li><strong>History vignettes:</strong> Gauss (bell curve), Bayes (updating beliefs), Rosenblatt (first neuron, 1958)</li>
             <li><strong>Humor/cartoon:</strong> Gauss hair matches bell curve; AI Nightmare cartoon; BankBot sweating on the decision boundary</li>
             <li><strong>Engagement:</strong> Step-by-step Bayesian reasoning walkthrough</li>
+            <li><strong>Worked example:</strong> If 1 in 1,000 transactions is fraud (P(Fraud) = 0.001), the AI catches 99% of fraud (P(Data|Fraud) = 0.99), but false-alarms on 2% of legit transactions (P(Data|&not;Fraud) = 0.02), then: P(Fraud|Flagged) = (0.99 &times; 0.001) / ((0.99 &times; 0.001) + (0.02 &times; 0.999)) &asymp; <strong>4.7%</strong>. Even with a 99% accurate test, only ~5% of flagged transactions are actually fraud!</li>
           </ul>
         </details>
+        <p class="viz-link"><a href="#visualizations">See Bayes, Sigmoid, Bell Curve &amp; Scatter Plot visualizations &darr;</a></p>
       </div>
 
       <!-- Card 4 -->
@@ -208,7 +211,7 @@
           <summary>Details</summary>
           <ul>
             <li><strong>Math concepts:</strong> Feedback loops, gradient descent (named only, not derived)</li>
-            <li><strong>History vignette:</strong> Ada Lovelace &mdash; first programmer, &ldquo;math = computation&rdquo; (1843)</li>
+            <li><strong>History vignette:</strong> Ada Lovelace &mdash; wrote the first published computer program, &ldquo;math = computation&rdquo; (1843)</li>
             <li><strong>Humor/cartoon:</strong> BankBot learning panels &mdash; confident, wrong, confused, improving</li>
             <li><strong>Engagement:</strong> &ldquo;Think of it like learning a video game &mdash; you die, adjust, try again&rdquo;</li>
           </ul>
@@ -232,6 +235,7 @@
             <li><strong>Engagement:</strong> Warmup example + 3 voting scenarios (Alex buys a guitar in another city; Tomoko buys 50 gift cards at 3 AM; Karla has small charges in 4 countries)</li>
           </ul>
         </details>
+        <p class="viz-link"><a href="#viz-wald">See the Wald survivorship bias diagram &darr;</a></p>
       </div>
 
       <!-- Card 6 -->
@@ -251,11 +255,13 @@
                 <li>Linear regression: $$y = mx + b$$</li>
               </ul>
             </li>
-            <li><strong>History vignette:</strong> Andrey Markov &mdash; sequential patterns, Markov chains (1906)</li>
+            <li><strong>History vignette:</strong> Andrey Markov &mdash; sequential patterns, Markov chains (1906). Banks model payment behavior as chains of states: if you paid on time last month, what&rsquo;s the probability you pay on time next month?</li>
             <li><strong>Humor/cartoon:</strong> Fortune teller cartoon; weighted average horror (&ldquo;Homework is only 10%?!&rdquo;)</li>
             <li><strong>Engagement:</strong> &ldquo;Calculate your own credit score&rdquo; exercise with simplified weights</li>
+            <li><strong>Real-world connection:</strong> These weights mirror the real FICO credit scoring model used by most US banks.</li>
           </ul>
         </details>
+        <p class="viz-link"><a href="#viz-regression">See the interactive Linear Regression visualization &darr;</a></p>
       </div>
 
       <!-- Card 7 -->
@@ -270,6 +276,7 @@
           <summary>Details</summary>
           <ul>
             <li><strong>Math concepts:</strong> Callback to all prior formulas (Bayes, sigmoid, weighted average, linear regression)</li>
+            <li><strong>The AI Pipeline:</strong> Transaction data &rarr; Bell Curve (is this normal?) &rarr; Bayes (update belief) &rarr; Sigmoid (convert to probability) &rarr; Decision Boundary (approve or flag). All four formulas from this talk work together in one pipeline.</li>
             <li><strong>Engagement:</strong> 3-tier demo approach:
               <ol>
                 <li>Pre-recorded screencast (safest)</li>
@@ -300,8 +307,10 @@
             </li>
             <li><strong>Humor/cartoon:</strong> BankBot recommends 47 houseplants</li>
             <li><strong>Engagement:</strong> &ldquo;You and your friend both like saving accounts and crypto &mdash; how similar are you?&rdquo;</li>
+            <li><strong>Worked example:</strong> Alice rates (Savings=4, Crypto=1, Sneakers=5). Bob rates (Savings=3, Crypto=5, Sneakers=4). Dot product = 4&times;3 + 1&times;5 + 5&times;4 = 37. Cosine similarity = 37 / (&radic;42 &times; &radic;50) &asymp; 0.81. They&rsquo;re 81% similar!</li>
           </ul>
         </details>
+        <p class="viz-link"><a href="#viz-cosine">See Cosine Similarity &amp; Dot Product visualizations &darr;</a></p>
       </div>
 
       <!-- Card 9 -->
@@ -332,7 +341,7 @@
         <details>
           <summary>Details</summary>
           <ul>
-            <li><strong>Careers:</strong> Data scientist, quant analyst, AI ethics officer, fintech founder, risk analyst</li>
+            <li><strong>Careers:</strong> Data scientist, quant analyst, AI ethics officer, fintech founder, risk analyst, UX designer for financial apps, financial data journalist, regulatory compliance officer</li>
             <li><strong>History callback:</strong> Lovelace + Nightingale &mdash; math has always needed diverse thinkers</li>
             <li><strong>Humor/cartoon:</strong> BankBot Final Form &mdash; graduation cap, &ldquo;I am 73% confident. But I defer to the human.&rdquo;</li>
             <li><strong>Engagement:</strong> &ldquo;What will YOU build?&rdquo; closing question</li>
@@ -454,6 +463,10 @@
       <div class="formula-card scroll-reveal">
         <h3>Dot Product</h3>
         <div id="viz-dotproduct"></div>
+      </div>
+      <div class="formula-card scroll-reveal">
+        <h3>Gradient Descent &mdash; The Blindfolded Hiker</h3>
+        <div id="viz-gradient-descent"></div>
       </div>
     </div>
   </section>
@@ -589,7 +602,7 @@
             <span class="story-number">3</span>
             <div class="story-title-group">
               <h4>Shannon&rsquo;s 1948 Experiment</h4>
-              <span class="story-year">1948</span>
+              <span class="story-year">1948&ndash;1951</span>
             </div>
           </div>
           <p class="story-narrative">In 1951, a 35-year-old mathematician at Bell Labs named <strong>Claude Shannon</strong> ran a remarkable experiment: he asked people to predict the next letter of a text, one character at a time. If wrong, they were told the correct letter. By counting guesses, Shannon measured the statistical structure of English&mdash;finding it has only ~1.1 bits of entropy per character (out of a maximum 4.7). He had described exactly what ChatGPT does: minimize uncertainty about the next token. He did it <strong>74 years before ChatGPT existed</strong>.</p>
@@ -740,7 +753,7 @@
               <span class="story-year">1986&ndash;today</span>
             </div>
           </div>
-          <p class="story-narrative">Training a language model means adjusting <strong>hundreds of billions of numbers</strong> to reduce how wrong the model is. The algorithm is beautifully simple: imagine you&rsquo;re blindfolded on a mountain and want to reach the lowest valley. You feel the slope under your feet and take a small step downhill. Repeat billions of times. The math hasn&rsquo;t changed since Rumelhart, Hinton &amp; Williams formalized backpropagation in 1986. What changed: hardware, data, and the transformer architecture it&rsquo;s applied to.</p>
+          <p class="story-narrative">Training a language model means adjusting <strong>hundreds of billions of numbers</strong> to reduce how wrong the model is. The algorithm is beautifully simple: imagine you&rsquo;re blindfolded on a mountain and want to reach the lowest valley. You feel the slope under your feet and take a small step downhill. Repeat billions of times. The math hasn&rsquo;t changed since Rumelhart, Hinton &amp; Williams formalized backpropagation in 1986. One of the three authors, Geoffrey Hinton, won the 2024 Nobel Prize in Physics for foundational work on neural networks. What changed: hardware, data, and the transformer architecture it&rsquo;s applied to.</p>
           <div class="story-math">
             <h5>The Math: Backpropagation &amp; the Chain Rule</h5>
             <div class="formula">$$\theta \leftarrow \theta - \alpha \cdot \nabla_\theta \mathcal{L}(\theta)$$</div>
@@ -828,10 +841,10 @@
             <span class="story-number">11</span>
             <div class="story-title-group">
               <h4>Hallucinations Are Mathematically Inevitable</h4>
-              <span class="story-year">2025</span>
+              <span class="story-year">2024</span>
             </div>
           </div>
-          <p class="story-narrative">In September 2025, <strong>OpenAI&rsquo;s own researchers</strong> published a paper proving that LLM hallucinations are not just engineering bugs&mdash;they are <strong>mathematically inevitable</strong>. Any system that generates text by sampling from a learned probability distribution will sometimes produce false statements. The fix (explicit confidence scoring for every claim) works in theory but is impractical: it would require the model to pause and verify each statement against a factual database, making responses extremely slow and expensive.</p>
+          <p class="story-narrative">In September 2024, <strong>researchers</strong> published a paper proving that LLM hallucinations are not just engineering bugs&mdash;they are <strong>mathematically inevitable</strong>. Any system that generates text by sampling from a learned probability distribution will sometimes produce false statements. The fix (explicit confidence scoring for every claim) works in theory but is impractical: it would require the model to pause and verify each statement against a factual database, making responses extremely slow and expensive.</p>
           <div class="story-math">
             <h5>The Math: Information-Theoretic Impossibility</h5>
             <p>The probability distribution over tokens spreads across incorrect possibilities. With ~100K vocabulary items and softmax normalization, there is always non-zero probability mass on wrong tokens. The chain rule of probability compounds: if each step has 1% error rate, a 100-word sentence has ~63% chance of at least one error. Perfect truthfulness requires external verification&mdash;something the architecture fundamentally lacks.</p>
@@ -920,7 +933,7 @@
               <span class="story-year">2022&ndash;today</span>
             </div>
           </div>
-          <p class="story-narrative">When ChatGPT launched, the underlying model was capable but sometimes offensive or dangerous. The fix: <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>. Humans rate pairs of responses (&ldquo;which is better?&rdquo;), training a reward model that scores helpfulness. The LLM is then fine-tuned to maximize that score. Result: harmful outputs dropped from 23% to 2.1% in adversarial tests. But researchers also found <strong>&ldquo;reward hacking&rdquo;</strong>&mdash;models learning to game the reward model rather than genuinely being helpful. A mathematical cat-and-mouse game.</p>
+          <p class="story-narrative">When ChatGPT launched, the underlying model was capable but sometimes offensive or dangerous. The fix: <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>. Humans rate pairs of responses (&ldquo;which is better?&rdquo;), training a reward model that scores helpfulness. The LLM is then fine-tuned to maximize that score. Result: independent safety evaluations showed significant reductions in harmful outputs. But researchers also found <strong>&ldquo;reward hacking&rdquo;</strong>&mdash;models learning to game the reward model rather than genuinely being helpful. A mathematical cat-and-mouse game.</p>
           <div class="story-math">
             <h5>The Math: Constrained Optimization</h5>
             <div class="formula">$$\max_\pi \mathbb{E}\bigl[R(y)\bigr] - \beta \cdot D_{\text{KL}}(\pi \| \pi_{\text{ref}})$$</div>
@@ -965,7 +978,7 @@
           <div class="benchmark-item">
             <span class="benchmark-label">AIME 2025</span>
             <span class="benchmark-value">100%</span>
-            <span class="benchmark-detail">GPT-5.2 &mdash; first-ever perfect score by AI</span>
+            <span class="benchmark-detail">GPT-5.2 (Grok 4 Heavy also scored 100%)</span>
           </div>
         </div>
         <p class="benchmark-note">Sources: <a href="https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/" target="_blank" rel="noopener">DeepMind</a>, <a href="https://openai.com/index/learning-to-reason-with-llms/" target="_blank" rel="noopener">OpenAI</a>, <a href="https://huggingface.co/blog/rajkumarrawal/aiprl-lir-september-2025-mathematics-coding" target="_blank" rel="noopener">HuggingFace Sept 2025 Report</a></p>
@@ -984,7 +997,7 @@
         <div class="timeline-card">
           <span class="timeline-date">1701 &ndash; 1761</span>
           <h3>Thomas Bayes</h3>
-          <p>Presbyterian minister whose theorem powers modern fraud detection. His work on probability was published posthumously by a friend. Core question: &ldquo;How surprised should you be?&rdquo;</p>
+          <p>Presbyterian minister whose theorem powers modern fraud detection. His work on probability was published posthumously by his friend Richard Price in 1763. Core question: &ldquo;How surprised should you be?&rdquo;</p>
           <p class="timeline-connection">Used in Section 3 &mdash; Fraud Detection</p>
         </div>
       </div>
@@ -1055,6 +1068,16 @@
       <div class="timeline-item scroll-reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
+          <span class="timeline-date">1916 &ndash; 2001</span>
+          <h3>Claude Shannon</h3>
+          <p>The father of information theory. His 1948 paper defined entropy and showed that all communication is mathematics. In 1951, he ran the first &ldquo;predict the next character&rdquo; experiment &mdash; exactly what ChatGPT does, 74 years early.</p>
+          <p class="timeline-connection">Used in LLM Stories &mdash; Story 3</p>
+        </div>
+      </div>
+
+      <div class="timeline-item scroll-reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
           <span class="timeline-date">Closing</span>
           <h3>The Callback</h3>
           <p>Nightingale + Lovelace remind us: mathematics has always needed diverse thinkers. The field moves forward when different perspectives ask different questions.</p>
@@ -1104,13 +1127,13 @@
       <div class="bankbot-stage" data-stage="6" data-bankbot="observant" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #f1c40f;">&#127793;</div>
         <blockquote>&ldquo;Based on my analysis, you need 47 houseplants.&rdquo;</blockquote>
-        <span class="bankbot-label">Observant (Sec 7)</span>
+        <span class="bankbot-label">Observant (Sec 8)</span>
       </div>
 
       <div class="bankbot-stage" data-stage="7" data-bankbot="critical" data-bankbot-size="80">
         <div class="bankbot-icon" style="--stage-color: #2ecc71;">&#129320;</div>
         <blockquote>(shaking head at social media data)</blockquote>
-        <span class="bankbot-label">Critical (Sec 8)</span>
+        <span class="bankbot-label">Critical (Sec 9)</span>
       </div>
 
       <div class="bankbot-stage" data-stage="8" data-bankbot="wise" data-bankbot-size="80">

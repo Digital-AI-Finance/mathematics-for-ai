@@ -38,6 +38,14 @@
       answer: 'fraud',
       explanation: 'Multiple countries in one hour is physically impossible. Small test charges are how criminals verify a stolen card before making big purchases. The AI catches this pattern instantly.',
       bayesian: 'P(Fraud|4 countries in 1 hour) \u2248 near certain.'
+    },
+    {
+      id: 4,
+      name: 'Priya',
+      text: 'Priya, 18, books a round-trip flight to London and a 5-night hotel for next week. She has never left the country before. Total: \u20ac2,400.',
+      answer: 'ambiguous',
+      explanation: 'This one is genuinely ambiguous! It could be a graduation trip or a stolen card. P(Fraud) is uncertain \u2014 first-time international travel is unusual but not rare for 18-year-olds. The AI\u2019s job is harder than it looks. Sometimes the honest answer is: "I\u2019m not sure."',
+      bayesian: 'P(Fraud|first international trip, high amount, young) \u2248 genuinely uncertain.'
     }
   ];
 
@@ -172,8 +180,8 @@
       body.appendChild(el('p', { className: 'fg-scenario-text', textContent: sc.text }));
 
       /* Vote buttons */
-      var btnLegit = el('button', { className: 'fg-btn fg-btn-legit', textContent: 'LEGIT', 'aria-label': 'Vote Legit' });
-      var btnFraud = el('button', { className: 'fg-btn fg-btn-fraud', textContent: 'FRAUD', 'aria-label': 'Vote Fraud' });
+      var btnLegit = el('button', { className: 'fg-btn fg-btn-legit', textContent: 'LEGIT', 'aria-label': 'Vote Legit for ' + sc.name, role: 'button', tabindex: '0' });
+      var btnFraud = el('button', { className: 'fg-btn fg-btn-fraud', textContent: 'FRAUD', 'aria-label': 'Vote Fraud for ' + sc.name, role: 'button', tabindex: '0' });
 
       var buttonsRow = el('div', { className: 'fg-buttons' }, [btnLegit, btnFraud]);
       body.appendChild(buttonsRow);
@@ -191,7 +199,8 @@
       /* Click handlers */
       function vote(choice) {
         state.voted = true;
-        var correct = choice === sc.answer;
+        var isAmbiguous = sc.answer === 'ambiguous';
+        var correct = isAmbiguous ? true : (choice === sc.answer);
         if (correct) state.score++;
 
         /* Disable buttons, highlight chosen */
@@ -201,15 +210,27 @@
         else btnFraud.classList.add('fg-selected');
 
         /* Build result card */
-        var resultClass = correct ? 'fg-result fg-result-correct' : 'fg-result fg-result-wrong';
-        var iconText = correct ? '\u2713' : '\u2717';
-        var labelText = correct ? 'Correct!' : 'Not quite!';
-        var labelClass = correct ? 'fg-result-label fg-correct-label' : 'fg-result-label fg-wrong-label';
+        var resultClass, iconText, labelText, labelClass;
+        if (isAmbiguous) {
+          resultClass = 'fg-result fg-result-correct';
+          iconText = '\u2248';
+          labelText = 'Both answers are reasonable!';
+          labelClass = 'fg-result-label fg-correct-label';
+        } else {
+          resultClass = correct ? 'fg-result fg-result-correct' : 'fg-result fg-result-wrong';
+          iconText = correct ? '\u2713' : '\u2717';
+          labelText = correct ? 'Correct!' : 'Not quite!';
+          labelClass = correct ? 'fg-result-label fg-correct-label' : 'fg-result-label fg-wrong-label';
+        }
+
+        var explainText = isAmbiguous
+          ? 'This scenario is genuinely ambiguous \u2014 and that\u2019s the point. ' + sc.explanation
+          : sc.explanation;
 
         var result = el('div', { className: resultClass }, [
           el('div', { className: 'fg-result-icon', textContent: iconText }),
           el('div', { className: labelClass, textContent: labelText }),
-          el('p', { className: 'fg-result-explain', textContent: sc.explanation }),
+          el('p', { className: 'fg-result-explain', textContent: explainText }),
           el('p', { className: 'fg-result-bayesian', innerHTML: '<strong>Bayesian hint:</strong> ' + sc.bayesian })
         ]);
         resultSlot.appendChild(result);
@@ -232,6 +253,14 @@
 
       btnLegit.addEventListener('click', function () { vote('legit'); });
       btnFraud.addEventListener('click', function () { vote('fraud'); });
+
+      /* Keyboard navigation: Enter/Space triggers same as click */
+      btnLegit.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); vote('legit'); }
+      });
+      btnFraud.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); vote('fraud'); }
+      });
     }
 
     /* ── Summary screen ────────────────────────────────────────────── */

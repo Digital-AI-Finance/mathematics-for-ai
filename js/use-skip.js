@@ -55,7 +55,7 @@
       bankVerdict: 'USE IT',
       bankLabel: 'Some lenders',
       ethicsVerdict: 'SKIP IT',
-      ethicsNote: 'Debatable'
+      ethicsNote: 'Debatable — penalizes people who had tough school years but are financially responsible. Some US lenders offer lower interest rates to students with high GPAs, which critics say encodes privilege.'
     },
     {
       name: 'Shopping Habits',
@@ -64,7 +64,7 @@
       bankVerdict: 'USE IT',
       bankLabel: 'Some AI models',
       ethicsVerdict: 'SKIP IT',
-      ethicsNote: 'Very controversial'
+      ethicsNote: 'Very controversial — buying budget items does not mean you are a bad borrower. This encodes economic class into credit decisions and can perpetuate cycles of disadvantage.'
     },
     {
       name: 'Family Wealth',
@@ -83,6 +83,24 @@
       bankLabel: 'Used indirectly',
       ethicsVerdict: 'SKIP IT',
       ethicsNote: 'Protected characteristic'
+    },
+    {
+      name: 'Gender',
+      icon: '♀♂',
+      description: 'Male, female, or non-binary identification',
+      bankVerdict: 'SKIP IT',
+      bankLabel: 'Illegal in most countries',
+      ethicsVerdict: 'SKIP IT',
+      ethicsNote: 'Illegal — gender is a protected characteristic under equal credit opportunity laws in most countries.'
+    },
+    {
+      name: 'Smartphone Brand',
+      icon: '📱',
+      description: 'Whether you use iPhone, Samsung, budget Android, etc.',
+      bankVerdict: 'USE IT',
+      bankLabel: 'Some fintech lenders',
+      ethicsVerdict: 'SKIP IT',
+      ethicsNote: 'Discriminatory proxy — penalizes people who choose budget phones or live in regions where certain brands dominate. Encodes economic class into credit decisions.'
     }
   ];
 
@@ -511,6 +529,13 @@
       <div class="us-score-label">times you agreed with ethicists</div>
     `;
     summaryEl.appendChild(scoreBox);
+
+    // Synthesis message
+    const synthesis = el('div', 'us-bankbot');
+    synthesis.style.borderLeftColor = '#ff8f00';
+    synthesis.style.background = 'linear-gradient(135deg, #fff3e0 0%, #f0f4ff 100%)';
+    synthesis.innerHTML = '<strong style="color:#ff8f00;">Key Insight:</strong> You probably found that "fair" and "useful" aren\'t always the same thing. That tension is what AI ethics researchers study every day. Remember the credit score slider? Each of these data types would get a weight. The ethical question isn\'t just WHAT data to use, but HOW MUCH weight to give it.';
+    summaryEl.appendChild(synthesis);
 
     // BankBot comment
     const bankbot = el('div', 'us-bankbot');
